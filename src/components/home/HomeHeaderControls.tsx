@@ -21,9 +21,21 @@ export function HomeHeaderControls() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    // Defer non-critical widgets until after first paint.
-    const id = window.setTimeout(() => setEnabled(true), 0);
-    return () => window.clearTimeout(id);
+    if (enabled) return;
+
+    const enable = () => setEnabled(true);
+
+    window.addEventListener('pointerdown', enable, { once: true });
+    window.addEventListener('keydown', enable, { once: true });
+    window.addEventListener('touchstart', enable, { once: true });
+    window.addEventListener('scroll', enable, { once: true });
+
+    return () => {
+      window.removeEventListener('pointerdown', enable);
+      window.removeEventListener('keydown', enable);
+      window.removeEventListener('touchstart', enable);
+      window.removeEventListener('scroll', enable);
+    };
   }, []);
 
   if (!enabled) {

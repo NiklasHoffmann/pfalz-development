@@ -20,7 +20,7 @@ export function HomeHeroSection({
   return (
     <section
       id="start"
-      className="relative overflow-hidden border-b border-stone-300/70 bg-[radial-gradient(circle_at_top_left,_rgba(245,158,11,0.22),_transparent_30%),linear-gradient(135deg,_#faf5ea_0%,_#f1e2c9_48%,_#ead8bf_100%)] pt-[5.75rem] dark:border-stone-700/80 dark:bg-[radial-gradient(circle_at_top_left,_rgba(251,191,36,0.16),_transparent_24%),linear-gradient(135deg,_#3a2f28_0%,_#40332d_48%,_#253140_100%)] sm:pt-[6.25rem] md:pt-[5.5rem]"
+      className="surface-hero relative overflow-hidden border-b border-stone-300/70 pt-[5.75rem] dark:border-stone-700/80 sm:pt-[6.25rem] md:pt-[5.5rem]"
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-10 lg:pb-24 lg:pt-14">
         <div className="min-w-0 max-w-3xl">

@@ -7,7 +7,7 @@ interface HomeMobileDockProps {
 export function HomeMobileDock({ items }: HomeMobileDockProps) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 px-2 pb-[calc(env(safe-area-inset-bottom)+0.7rem)] md:hidden">
-      <nav className="mx-auto w-full max-w-md overflow-hidden rounded-[1.9rem] border border-stone-300/80 bg-[linear-gradient(180deg,_rgba(252,250,246,0.985),_rgba(247,241,231,0.96))] p-2 shadow-[0_-10px_35px_rgba(41,37,36,0.14)] backdrop-blur-xl dark:border-stone-600/90 dark:bg-[linear-gradient(180deg,_rgba(66,56,49,0.96),_rgba(39,53,68,0.96))] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.3)]">
+      <nav className="surface-mobile-dock mx-auto w-full max-w-md overflow-hidden rounded-[1.9rem] border border-stone-300/80 p-2 backdrop-blur-xl dark:border-stone-600/90">
         <div className="grid grid-cols-4 gap-2">
           {items.map((item) => (
             <a
