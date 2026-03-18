@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { siteConfig } from '@/config/site';
+import { routing } from '@/routing';
 import '../globals.css';
 
 const bodyFont = Plus_Jakarta_Sans({
@@ -87,6 +88,12 @@ export const metadata: Metadata = {
   },
 };
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export const dynamicParams = false;
+
 export default async function LocaleLayout({
   children,
   params,
@@ -95,7 +102,9 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const messages = (await getMessages()) as Record<string, unknown>;
+  setRequestLocale(locale);
+
+  const messages = (await getMessages({ locale })) as Record<string, unknown>;
   const clientMessages = {
     language: messages.language,
     theme: messages.theme,
