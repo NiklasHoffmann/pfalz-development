@@ -58,10 +58,12 @@ export function ThemeToggle() {
           root.classList.remove('theme-transition');
         }, 1000);
       }}
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-stone-400/80 bg-stone-50/95 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition-colors hover:bg-white focus:border-amber-600 focus:outline-none disabled:cursor-wait disabled:opacity-70 sm:h-10 sm:w-auto sm:px-4 sm:text-sm dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700"
+      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-stone-400/80 bg-stone-50/95 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition-colors hover:bg-white focus:border-amber-600 focus:outline-none disabled:cursor-wait disabled:opacity-70 dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:h-10 sm:w-auto sm:px-4 sm:text-sm"
       aria-label={t('toggle')}
     >
-      <span className="inline-flex items-center justify-center sm:mr-2">{nextThemeIcon}</span>
+      <span className="inline-flex items-center justify-center sm:mr-2">
+        {nextThemeIcon}
+      </span>
       <span className="hidden sm:inline">{nextThemeLabel}</span>
     </button>
   );
