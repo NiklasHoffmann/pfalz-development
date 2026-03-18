@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export type CardItem = {
   title: string;
   description: string;
@@ -80,7 +78,6 @@ export type HomePageData = {
     primaryCta: string;
     secondaryCta: string;
     details: ContactDetails;
-    form: ReactNode;
   };
   footer: {
     note: string;

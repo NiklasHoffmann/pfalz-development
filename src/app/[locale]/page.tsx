@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { ContactForm } from '@/components/ui/ContactForm';
 import { HomePageView } from '@/components/home/HomePageView';
 import { siteConfig } from '@/config/site';
 import type {
@@ -154,7 +153,6 @@ export default async function HomePage({ params }: HomePageProps) {
       primaryCta: t('home.contact.primaryCta'),
       secondaryCta: t('home.contact.secondaryCta'),
       details: contactDetails,
-      form: <ContactForm />,
     },
     footer: {
       note: legalT('footerNote'),
