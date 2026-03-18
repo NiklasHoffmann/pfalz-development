@@ -4,12 +4,16 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
 const LanguageToggle = dynamic(
-  () => import('@/components/ui/LanguageToggle').then((module) => module.LanguageToggle),
+  () =>
+    import('@/components/ui/LanguageToggle').then(
+      (module) => module.LanguageToggle
+    ),
   { ssr: false }
 );
 
 const ThemeToggle = dynamic(
-  () => import('@/components/ui/ThemeToggle').then((module) => module.ThemeToggle),
+  () =>
+    import('@/components/ui/ThemeToggle').then((module) => module.ThemeToggle),
   { ssr: false }
 );
 
