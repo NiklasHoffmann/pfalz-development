@@ -21,20 +21,22 @@ export function HomeHeaderControls() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    if (enabled) return;
+    // Keep only a tiny defer so controls appear quickly for users.
+    const timer = window.setTimeout(() => setEnabled(true), 250);
 
-    const enable = () => setEnabled(true);
+    const enableNow = () => setEnabled(true);
 
-    window.addEventListener('pointerdown', enable, { once: true });
-    window.addEventListener('keydown', enable, { once: true });
-    window.addEventListener('touchstart', enable, { once: true });
-    window.addEventListener('scroll', enable, { once: true });
+    window.addEventListener('pointerdown', enableNow, { once: true });
+    window.addEventListener('keydown', enableNow, { once: true });
+    window.addEventListener('touchstart', enableNow, { once: true });
+    window.addEventListener('scroll', enableNow, { once: true });
 
     return () => {
-      window.removeEventListener('pointerdown', enable);
-      window.removeEventListener('keydown', enable);
-      window.removeEventListener('touchstart', enable);
-      window.removeEventListener('scroll', enable);
+      window.clearTimeout(timer);
+      window.removeEventListener('pointerdown', enableNow);
+      window.removeEventListener('keydown', enableNow);
+      window.removeEventListener('touchstart', enableNow);
+      window.removeEventListener('scroll', enableNow);
     };
   }, []);
 
