@@ -1,6 +1,12 @@
 import mongoose, { Schema } from 'mongoose';
 import type { IUser } from '@/types/database';
 
+type UserJson = Omit<IUser, '_id'> & {
+  _id?: unknown;
+  __v?: number;
+  id?: unknown;
+};
+
 const UserSchema = new Schema<IUser>(
   {
     name: {
@@ -35,10 +41,10 @@ const UserSchema = new Schema<IUser>(
     timestamps: true,
     toJSON: {
       virtuals: true,
-      transform: function (_doc, ret) {
+      transform: function (_doc, ret: UserJson) {
         ret.id = ret._id;
-        delete (ret as any)._id;
-        delete (ret as any).__v;
+        delete ret._id;
+        delete ret.__v;
         return ret;
       },
     },
@@ -46,7 +52,6 @@ const UserSchema = new Schema<IUser>(
 );
 
 // Indexes
-UserSchema.index({ email: 1 });
 UserSchema.index({ createdAt: -1 });
 
 // Prevent model recompilation in development

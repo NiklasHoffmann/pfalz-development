@@ -1,18 +1,148 @@
 {
   "common": {
-    "appName": "Next.js Starter",
+    "appName": "Pfalz Development",
     "welcome": "Welcome",
     "home": {
-      "headline": "Welcome",
-      "cards": {
-        "nextTitle": "Next.js 16",
-        "nextDescription": "Latest Next.js with App Router",
-        "tsTitle": "TypeScript",
-        "tsDescription": "Fully typed codebase",
-        "dbTitle": "MongoDB",
-        "dbDescription": "Database integration ready",
-        "i18nTitle": "i18n",
-        "i18nDescription": "Multi-language support"
+      "eyebrow": "Websites for businesses in the Palatinate",
+      "headline": "Websites with a clear profile for holiday rentals, restaurants, and local businesses.",
+      "subheadline": "I build modern websites that look professional, are easy to understand, and bring in new inquiries.",
+      "primaryCta": "Request a project",
+      "secondaryCta": "See services",
+      "trust": {
+        "title": "What clients get from working with me",
+        "items": [
+          "Personal collaboration instead of agency talk",
+          "A clear regional focus on the Palatinate",
+          "Practical understanding of hospitality and local trades",
+          "Hosting, maintenance, and further development from one source"
+        ]
+      },
+      "services": {
+        "title": "What you get",
+        "items": [
+          {
+            "title": "Professional website creation",
+            "description": "From the first structure to launch, you get a website that fits your business."
+          },
+          {
+            "title": "Hosting and technical support",
+            "description": "I take care of the technical side so your website stays stable and available."
+          },
+          {
+            "title": "Maintenance and ongoing updates",
+            "description": "When your content, offers, or opening hours change, your website stays up to date."
+          }
+        ]
+      },
+      "audiences": {
+        "title": "Who I build websites for",
+        "items": [
+          "Holiday rentals and hosts",
+          "Restaurants and hospitality businesses",
+          "Butcher shops and craft businesses",
+          "Local service providers and smaller companies"
+        ]
+      },
+      "whyMe": {
+        "title": "Why this is a good fit",
+        "items": [
+          "I do not just speak tech. I also understand day-to-day business workflows.",
+          "I value clear communication instead of agency language.",
+          "I build websites so visitors quickly understand what matters.",
+          "I work regionally and close to the real needs of smaller businesses."
+        ]
+      },
+      "packages": {
+        "title": "Packages for typical projects",
+        "items": [
+          {
+            "name": "Compact",
+            "description": "For smaller businesses that need a professional and streamlined web presence quickly."
+          },
+          {
+            "name": "Host",
+            "description": "For holiday rentals and hosts who want to build trust and generate direct inquiries."
+          },
+          {
+            "name": "Custom",
+            "description": "For businesses with specific needs, more content, or extended functionality."
+          }
+        ]
+      },
+      "process": {
+        "title": "How the collaboration works",
+        "steps": [
+          "Short initial call",
+          "Clarify goals, scope, and content",
+          "Align on structure and design",
+          "Implementation, revisions, and launch"
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "question": "Is this suitable for smaller businesses as well?",
+            "answer": "Yes. Smaller businesses especially benefit from a clear and professional online presence."
+          },
+          {
+            "question": "Can I also get hosting and maintenance?",
+            "answer": "Yes. Website creation, hosting, and ongoing maintenance can all be handled together in one setup."
+          },
+          {
+            "question": "Is an English version possible too?",
+            "answer": "Yes. The website is planned for both German and English from the start."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Let us talk about your project",
+        "description": "If you need a website for your business in the Palatinate, get in touch easily via the form or by email.",
+        "primaryCta": "Send an email",
+        "secondaryCta": "Call",
+        "personLabel": "Contact person",
+        "ownerName": "Niklas Hoffmann",
+        "emailLabel": "Email",
+        "emailValue": "hoffmann.niklas@googlemail.com",
+        "phoneLabel": "Phone",
+        "phoneValue": "063211876643",
+        "addressLabel": "Address",
+        "addressLines": ["Neustadt an der Weinstraße"],
+        "regionNote": "For businesses, hosts, and local companies in the Palatinate and nearby.",
+        "form": {
+          "eyebrow": "Contact form",
+          "title": "Send a direct inquiry",
+          "description": "Send me a few details about your project and I will get back to you.",
+          "submit": "Send inquiry",
+          "privacyNote": "By submitting, your inquiry is sent to me for processing.",
+          "status": {
+            "loading": "Sending...",
+            "success": "Your inquiry was sent successfully.",
+            "error": "Your inquiry could not be sent right now."
+          },
+          "fields": {
+            "name": {
+              "label": "Name",
+              "placeholder": "Your name"
+            },
+            "business": {
+              "label": "Business or project",
+              "placeholder": "For example Holiday Rental Sonnental"
+            },
+            "email": {
+              "label": "Email",
+              "placeholder": "your@email.com"
+            },
+            "phone": {
+              "label": "Phone",
+              "placeholder": "Optional"
+            },
+            "message": {
+              "label": "Message",
+              "placeholder": "What is your project about?"
+            }
+          }
+        }
       }
     },
     "loading": "Loading...",
@@ -22,7 +152,9 @@
   },
   "navigation": {
     "home": "Home",
-    "about": "About",
+    "about": "Services",
+    "packages": "Packages",
+    "process": "Process",
     "contact": "Contact"
   },
   "theme": {
@@ -34,12 +166,65 @@
   "language": {
     "toggle": "Switch language",
     "de": "German",
-    "en": "English"
+    "en": "English",
+    "pfl": "Palatine"
   },
   "errors": {
     "generic": "Something went wrong!",
     "tryAgain": "Try again",
     "pageNotFound": "This page does not exist",
     "serverError": "Server error"
+  },
+  "legal": {
+    "backToHome": "Back to home",
+    "footerNote": "Pfalz Development, web development for businesses in the Palatinate.",
+    "imprint": {
+      "eyebrow": "Legal",
+      "title": "Imprint",
+      "providerTitle": "Provider information pursuant to § 5 TMG",
+      "contactTitle": "Contact",
+      "responsibleTitle": "Responsible for content pursuant to § 18 para. 2 MStV",
+      "noticeTitle": "Notice",
+      "noticeText": "These details are an initial template and should be reviewed legally and completed where necessary before publication.",
+      "vatIdTitle": "VAT ID",
+      "vatIdText": "Currently no VAT identification number available.",
+      "disputeResolutionTitle": "EU Dispute Resolution",
+      "disputeResolutionText": "The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr. I am neither obliged nor willing to participate in dispute resolution proceedings before a consumer arbitration board.",
+      "liabilityContentTitle": "Liability for Content",
+      "liabilityContentText": "As a service provider, I am responsible for my own content on these pages pursuant to § 7 para. 1 TMG under general law. According to §§ 8 to 10 TMG, however, I am not obliged to monitor transmitted or stored third-party information or investigate circumstances indicating illegal activity. Upon becoming aware of any such legal violations, I will remove the relevant content immediately.",
+      "liabilityLinksTitle": "Liability for Links",
+      "liabilityLinksText": "My website contains links to external third-party websites over whose content I have no control. Therefore, I cannot assume any liability for this external content. The respective provider or operator is always responsible for the linked pages. Upon becoming aware of legal violations, I will remove such links immediately.",
+      "copyrightTitle": "Copyright",
+      "copyrightText": "The content and works created by the site operator on these pages are subject to German copyright law. Reproduction, editing, distribution and any type of use beyond the limits of copyright law require the written consent of the respective author or creator."
+    },
+    "privacy": {
+      "eyebrow": "Legal",
+      "title": "Privacy Policy",
+      "overviewTitle": "Overview",
+      "overviewText": "This website processes personal data only to the extent required for operating the website and handling inquiries.",
+      "responsibleTitle": "Responsible entity",
+      "dataTypesTitle": "Types of Data Processed",
+      "dataTypesText": "Depending on your use of this website, the processed data may include inventory data, contact data, content data, usage data, connection data, and meta/log data.",
+      "purposesTitle": "Purposes of Processing",
+      "purposesText": "Data is processed to provide and technically operate the website, handle contact requests, prevent misuse, and safeguard legitimate interests pursuant to Art. 6 para. 1 lit. f GDPR.",
+      "legalBasisTitle": "Legal Bases",
+      "legalBasisText": "Where applicable, processing is based on Art. 6 para. 1 lit. a GDPR (consent), Art. 6 para. 1 lit. b GDPR (contract or pre-contractual measures), and Art. 6 para. 1 lit. f GDPR (legitimate interests).",
+      "contactRequestsTitle": "Contact requests",
+      "contactRequestsText": "If you contact me via the contact form or by email, the submitted information will be stored and processed to handle your request.",
+      "serverLogsTitle": "Server and log data",
+      "serverLogsText": "When visiting the website, technically necessary data may be stored in server logs to ensure stability, security, and error analysis.",
+      "recipientsTitle": "Recipients of Data",
+      "recipientsText": "Data is shared with third parties only where necessary for contractual performance, technical service provision (e.g. hosting, email delivery), or legal obligations.",
+      "storageTitle": "Storage Duration",
+      "storageText": "Personal data is stored only as long as necessary for the respective purposes or as required by statutory retention obligations.",
+      "securityTitle": "Security Measures",
+      "securityText": "Appropriate technical and organizational measures are implemented to protect your data against loss, unauthorized access, and other risks.",
+      "rightsTitle": "Your rights",
+      "rightsText": "Under applicable law, you have in particular the right to access, rectification, erasure, restriction of processing, data portability, and objection to certain processing activities.",
+      "revocationTitle": "Withdrawal of Consent",
+      "revocationText": "You may withdraw any consent you have given at any time with effect for the future. The lawfulness of processing carried out before withdrawal remains unaffected.",
+      "complaintTitle": "Right to Lodge a Complaint",
+      "complaintText": "You have the right to lodge a complaint with a data protection supervisory authority regarding the processing of your personal data."
+    }
   }
 }

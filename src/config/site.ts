@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: 'Next.js Starter',
+  name: 'Pfalz Development',
   description:
-    'A production-ready Next.js 16 starter with TypeScript, Tailwind CSS, MongoDB, i18n, and more.',
+    'Webdesign und professionelle Websites fuer Unternehmen in der Pfalz - Neustadt an der Weinstrasse, Landau und Umgebung.',
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-  ogImage: '/og-image.png',
+  ogImage: '/logo-pfalz-development.webp',
   links: {
     github: 'https://github.com/NiklasHoffmann/NextJSRaw',
   },

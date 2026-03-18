@@ -1,4 +1,5 @@
 FROM node:20-alpine AS base
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -15,10 +16,12 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Environment variables must be present at build time
-ARG MONGODB_URI
-ARG NEXT_PUBLIC_APP_URL
+ARG MONGODB_URI=mongodb://localhost:27017/nextjs-starter
+ARG NEXT_PUBLIC_APP_URL=http://localhost:3000
+ARG NEXT_OUTPUT_STANDALONE=1
 ENV MONGODB_URI=${MONGODB_URI}
 ENV NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
+ENV NEXT_OUTPUT_STANDALONE=${NEXT_OUTPUT_STANDALONE}
 
 RUN npm run build
 
@@ -47,5 +50,8 @@ EXPOSE 3000
 
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+	CMD wget -qO- http://127.0.0.1:3000/api/health >/dev/null || exit 1
 
 CMD ["node", "server.js"]

@@ -10,11 +10,11 @@ export interface UseZodFormOptions<T extends FieldValues> {
 export function useZodForm<T extends FieldValues>(
   options: UseZodFormOptions<T>
 ): UseFormReturn<T> {
-  // @ts-ignore - Type compatibility between zod and react-hook-form versions
+  // @ts-expect-error - Type compatibility between zod and react-hook-form versions
   return useForm<T>({
-    // @ts-ignore
+    // @ts-expect-error - Resolver typing is narrower than react-hook-form expects here
     resolver: zodResolver(options.schema),
-    // @ts-ignore
+    // @ts-expect-error - Partial default values are valid for this hook wrapper
     defaultValues: options.defaultValues,
     mode: 'onBlur',
   });

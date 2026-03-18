@@ -103,7 +103,7 @@ export class QueryFilterBuilder<T> {
    * Build MongoDB filter query
    */
   build(): FilterQuery<T> {
-    const query: any = {};
+    const query: Record<string, unknown> = {};
 
     for (const filter of this.filters) {
       const { field, operator, value } = filter;

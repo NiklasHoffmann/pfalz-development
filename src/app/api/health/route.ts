@@ -15,7 +15,7 @@ export async function GET() {
       },
       'System is healthy'
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         success: false,

@@ -1,65 +1,226 @@
-import { useTranslations } from 'next-intl';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { LanguageToggle } from '@/components/ui/LanguageToggle';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { ContactForm } from '@/components/ui/ContactForm';
+import { HomePageView } from '@/components/home/HomePageView';
+import { siteConfig } from '@/config/site';
+import type {
+  CardItem,
+  ContactDetails,
+  FaqItem,
+  HomePageData,
+  PackageItem,
+} from '@/components/home/types';
 
-export default function HomePage() {
-  const t = useTranslations('common');
+interface HomePageProps {
+  params: Promise<{ locale: string }>;
+}
+
+function localeToOgLocale(locale: string): string {
+  if (locale === 'en') return 'en_US';
+  if (locale === 'pfl') return 'de_DE';
+  return 'de_DE';
+}
+
+function localeToPath(locale: string): string {
+  return locale === 'de' ? '' : `/${locale}`;
+}
+
+export async function generateMetadata({
+  params,
+}: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'common.home' });
+  const canonicalPath = localeToPath(locale);
+  const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
+
+  return {
+    title: t('headline'),
+    description: t('subheadline'),
+    keywords: [
+      'Website erstellen lassen Pfalz',
+      'Webdesign Neustadt an der Weinstrasse',
+      'Webdesign Landau in der Pfalz',
+      'Webentwickler Pfalz',
+      'Homepage fuer Unternehmen Pfalz',
+      'Website fuer Ferienwohnung Pfalz',
+      'Website fuer Restaurant Pfalz',
+      'Webdesign Bad Duerkheim',
+      'Webdesign Speyer',
+      'Webdesign Ludwigshafen',
+    ],
+    alternates: {
+      canonical: canonicalPath || '/',
+      languages: {
+        de: '/',
+        en: '/en',
+        'x-default': '/',
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: localeToOgLocale(locale),
+      url: canonicalUrl,
+      title: t('headline'),
+      description: t('subheadline'),
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('headline'),
+      description: t('subheadline'),
+      images: [siteConfig.ogImage],
+    },
+  };
+}
+
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'common' });
+  const navT = await getTranslations({ locale, namespace: 'navigation' });
+  const trustItems = t.raw('home.trust.items') as string[];
+  const serviceItems = t.raw('home.services.items') as CardItem[];
+  const audiences = t.raw('home.audiences.items') as string[];
+  const whyMeItems = t.raw('home.whyMe.items') as string[];
+  const packageItems = t.raw('home.packages.items') as PackageItem[];
+  const processSteps = t.raw('home.process.steps') as string[];
+  const faqItems = t.raw('home.faq.items') as FaqItem[];
+  const contactDetails = t.raw('home.contact') as ContactDetails;
+  const legalT = await getTranslations({ locale, namespace: 'legal' });
+  const navItems = [
+    { label: navT('home'), href: '#start' },
+    { label: navT('about'), href: '#leistungen' },
+    { label: navT('packages'), href: '#pakete' },
+    { label: navT('process'), href: '#ablauf' },
+    { label: navT('contact'), href: '#kontakt' },
+  ];
+  const mobileNavItems = [
+    { label: navT('home'), href: '#start', shortLabel: 'Start' },
+    { label: navT('about'), href: '#leistungen', shortLabel: 'Leistung' },
+    { label: navT('packages'), href: '#pakete', shortLabel: 'Pakete' },
+    { label: navT('contact'), href: '#kontakt', shortLabel: 'Kontakt' },
+  ];
+  const canonicalPath = localeToPath(locale);
+  const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
+
+  const pageData: HomePageData = {
+    appName: t('appName'),
+    navItems,
+    mobileNavItems,
+    hero: {
+      eyebrow: t('home.eyebrow'),
+      headline: t('home.headline'),
+      subheadline: t('home.subheadline'),
+      primaryCta: t('home.primaryCta'),
+      secondaryCta: t('home.secondaryCta'),
+      trustTitle: t('home.trust.title'),
+      trustItems,
+    },
+    services: {
+      title: t('home.services.title'),
+      items: serviceItems,
+    },
+    audiences: {
+      title: t('home.audiences.title'),
+      items: audiences,
+    },
+    whyMe: {
+      title: t('home.whyMe.title'),
+      items: whyMeItems,
+    },
+    packages: {
+      title: t('home.packages.title'),
+      items: packageItems,
+    },
+    process: {
+      title: t('home.process.title'),
+      steps: processSteps,
+    },
+    faq: {
+      title: t('home.faq.title'),
+      items: faqItems,
+    },
+    contact: {
+      navLabel: navT('contact'),
+      title: t('home.contact.title'),
+      description: t('home.contact.description'),
+      primaryCta: t('home.contact.primaryCta'),
+      secondaryCta: t('home.contact.secondaryCta'),
+      details: contactDetails,
+      form: <ContactForm />,
+    },
+    footer: {
+      note: legalT('footerNote'),
+      imprintLabel: legalT('imprint.title'),
+      privacyLabel: legalT('privacy.title'),
+    },
+  };
+
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: siteConfig.name,
+    url: canonicalUrl,
+    areaServed: [
+      'Neustadt an der Weinstrasse',
+      'Landau in der Pfalz',
+      'Bad Duerkheim',
+      'Speyer',
+      'Ludwigshafen',
+      'Pfalz',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Froebelstrasse 20',
+      postalCode: '67433',
+      addressLocality: 'Neustadt an der Weinstrasse',
+      addressCountry: 'DE',
+    },
+    email: 'hoffmann.niklas@googlemail.com',
+    serviceType: [
+      'Webdesign',
+      'Webentwicklung',
+      'Website Erstellung',
+      'Website Wartung',
+      'Hosting',
+    ],
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          {t('appName')}
-        </div>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <div className="flex gap-2">
-            <ThemeToggle />
-            <LanguageToggle />
-          </div>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center">
-        <h1 className="text-center text-4xl font-bold">{t('home.headline')}</h1>
-      </div>
-
-      <div className="mb-32 mt-12 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <h2 className="mb-3 text-2xl font-semibold">
-            {t('home.cards.nextTitle')}
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            {t('home.cards.nextDescription')}
-          </p>
-        </div>
-
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <h2 className="mb-3 text-2xl font-semibold">
-            {t('home.cards.tsTitle')}
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            {t('home.cards.tsDescription')}
-          </p>
-        </div>
-
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <h2 className="mb-3 text-2xl font-semibold">
-            {t('home.cards.dbTitle')}
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            {t('home.cards.dbDescription')}
-          </p>
-        </div>
-
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <h2 className="mb-3 text-2xl font-semibold">
-            {t('home.cards.i18nTitle')}
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            {t('home.cards.i18nDescription')}
-          </p>
-        </div>
-      </div>
-    </main>
+    <>
+      <HomePageView data={pageData} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+    </>
   );
 }

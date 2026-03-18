@@ -1,11 +1,12 @@
 import { format, formatDistance, formatRelative, parseISO } from 'date-fns';
 import { de, enUS } from 'date-fns/locale';
 
-type Locale = 'de' | 'en';
+type Locale = 'de' | 'en' | 'pfl';
 
 const locales = {
   de: de,
   en: enUS,
+  pfl: de,
 };
 
 function getLocale(locale: Locale = 'en') {
@@ -103,10 +104,8 @@ export function formatNumber(
   locale: Locale = 'en',
   options?: Intl.NumberFormatOptions
 ): string {
-  return new Intl.NumberFormat(
-    locale === 'de' ? 'de-DE' : 'en-US',
-    options
-  ).format(value);
+  const intlLocale = locale === 'en' ? 'en-US' : 'de-DE';
+  return new Intl.NumberFormat(intlLocale, options).format(value);
 }
 
 /**
@@ -118,7 +117,9 @@ export function formatCurrency(
   currency: string = 'USD',
   locale: Locale = 'en'
 ): string {
-  return new Intl.NumberFormat(locale === 'de' ? 'de-DE' : 'en-US', {
+  const intlLocale = locale === 'en' ? 'en-US' : 'de-DE';
+
+  return new Intl.NumberFormat(intlLocale, {
     style: 'currency',
     currency,
   }).format(value);
@@ -133,7 +134,9 @@ export function formatPercent(
   locale: Locale = 'en',
   decimals: number = 2
 ): string {
-  return new Intl.NumberFormat(locale === 'de' ? 'de-DE' : 'en-US', {
+  const intlLocale = locale === 'en' ? 'en-US' : 'de-DE';
+
+  return new Intl.NumberFormat(intlLocale, {
     style: 'percent',
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
@@ -164,7 +167,9 @@ export function formatCompactNumber(
   value: number,
   locale: Locale = 'en'
 ): string {
-  return new Intl.NumberFormat(locale === 'de' ? 'de-DE' : 'en-US', {
+  const intlLocale = locale === 'en' ? 'en-US' : 'de-DE';
+
+  return new Intl.NumberFormat(intlLocale, {
     notation: 'compact',
     compactDisplay: 'short',
   }).format(value);
