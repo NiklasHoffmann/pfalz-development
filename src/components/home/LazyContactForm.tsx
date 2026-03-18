@@ -4,7 +4,8 @@ import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 
 const ContactForm = dynamic(
-  () => import('@/components/ui/ContactForm').then((module) => module.ContactForm),
+  () =>
+    import('@/components/ui/ContactForm').then((module) => module.ContactForm),
   {
     ssr: false,
     loading: () => (
