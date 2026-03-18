@@ -22,8 +22,8 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
               alt={appName}
               width={1536}
               height={1024}
-              sizes="(max-width: 640px) 72px, (max-width: 1024px) 82px, 90px"
-              quality={60}
+              sizes="(max-width: 640px) 64px, (max-width: 1024px) 74px, 84px"
+              quality={40}
               priority
               className="h-[3rem] w-auto object-contain dark:hidden sm:h-[3.35rem] lg:h-[3.65rem]"
             />
@@ -32,9 +32,10 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
               alt={appName}
               width={1536}
               height={1024}
-              sizes="(max-width: 640px) 72px, (max-width: 1024px) 82px, 90px"
-              quality={60}
-              priority
+              sizes="(max-width: 640px) 64px, (max-width: 1024px) 74px, 84px"
+              quality={50}
+              loading="lazy"
+              fetchPriority="low"
               className="hidden h-[3rem] w-auto object-contain dark:block sm:h-[3.35rem] lg:h-[3.65rem]"
             />
           </a>
