@@ -15,7 +15,7 @@ interface HomePageViewProps {
 
 export function HomePageView({ data }: HomePageViewProps) {
   return (
-    <main className="min-h-screen overflow-x-clip bg-[linear-gradient(180deg,_#fcfbf7_0%,_#f5efe4_38%,_#f8f5ef_100%)] pb-24 text-stone-950 dark:bg-[linear-gradient(180deg,_#2c2623_0%,_#332b26_34%,_#24303d_100%)] dark:text-stone-100 md:pb-0">
+    <main className="surface-page min-h-screen overflow-x-clip pb-24 md:pb-0">
       <HomeHeader appName={data.appName} navItems={data.navItems} />
       <HomeMobileDock items={data.mobileNavItems} />
       <HomeHeroSection

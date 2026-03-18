@@ -29,7 +29,7 @@ export function HomeContactSection({
       id="kontakt"
       className="scroll-mt-[5.75rem] px-4 pb-16 sm:scroll-mt-[6.25rem] sm:px-6 sm:pb-20 md:scroll-mt-[5.5rem] lg:px-10 lg:pb-24"
     >
-      <div className="dark:border-amber-300/18 mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-stone-950 px-5 py-8 text-stone-50 shadow-[0_28px_80px_rgba(15,23,42,0.24)] dark:border dark:bg-[linear-gradient(180deg,_rgba(62,52,45,0.96),_rgba(38,50,64,0.96))] sm:px-8 sm:py-10 lg:px-12 lg:py-14">
+      <div className="surface-contact dark:border-amber-300/18 mx-auto max-w-7xl overflow-hidden rounded-[2rem] px-5 py-8 text-stone-50 dark:border sm:px-8 sm:py-10 lg:px-12 lg:py-14">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-200 dark:text-amber-200">
           {navLabel}
         </p>

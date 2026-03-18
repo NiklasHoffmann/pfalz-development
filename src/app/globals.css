@@ -46,3 +46,84 @@
     overflow-x: hidden;
   }
 }
+
+@layer components {
+  .surface-page {
+    background: linear-gradient(180deg, #fcfbf7 0%, #f5efe4 38%, #f8f5ef 100%);
+    color: rgb(28 25 23);
+  }
+
+  .dark .surface-page {
+    background: linear-gradient(180deg, #2c2623 0%, #332b26 34%, #24303d 100%);
+    color: rgb(245 245 244);
+  }
+
+  .surface-header {
+    background: linear-gradient(
+      180deg,
+      rgba(252, 250, 246, 0.96),
+      rgba(248, 244, 236, 0.92)
+    );
+    box-shadow: 0 10px 35px rgba(41, 37, 36, 0.08);
+  }
+
+  .dark .surface-header {
+    background: linear-gradient(
+      180deg,
+      rgba(68, 57, 49, 0.96),
+      rgba(42, 55, 69, 0.9)
+    );
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+  }
+
+  .surface-hero {
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(245, 158, 11, 0.22),
+        transparent 30%
+      ),
+      linear-gradient(135deg, #faf5ea 0%, #f1e2c9 48%, #ead8bf 100%);
+  }
+
+  .dark .surface-hero {
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(251, 191, 36, 0.16),
+        transparent 24%
+      ),
+      linear-gradient(135deg, #3a2f28 0%, #40332d 48%, #253140 100%);
+  }
+
+  .surface-mobile-dock {
+    background: linear-gradient(
+      180deg,
+      rgba(252, 250, 246, 0.985),
+      rgba(247, 241, 231, 0.96)
+    );
+    box-shadow: 0 -10px 35px rgba(41, 37, 36, 0.14);
+  }
+
+  .dark .surface-mobile-dock {
+    background: linear-gradient(
+      180deg,
+      rgba(66, 56, 49, 0.96),
+      rgba(39, 53, 68, 0.96)
+    );
+    box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.3);
+  }
+
+  .surface-contact {
+    background-color: rgb(28 25 23);
+    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.24);
+  }
+
+  .dark .surface-contact {
+    background: linear-gradient(
+      180deg,
+      rgba(62, 52, 45, 0.96),
+      rgba(38, 50, 64, 0.96)
+    );
+  }
+}
