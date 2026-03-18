@@ -79,7 +79,11 @@ export function ContactForm() {
           </p>
         </div>
 
-        <Form onSubmit={onSubmit} isLoading={isSubmitting} className="space-y-4">
+        <Form
+          onSubmit={onSubmit}
+          isLoading={isSubmitting}
+          className="space-y-4"
+        >
           <input
             type="text"
             className="hidden"
