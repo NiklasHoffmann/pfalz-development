@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import { LanguageToggle } from '@/components/ui/LanguageToggle';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { HomeHeaderControls } from './HomeHeaderControls';
 import type { NavItem } from './types';
 
 interface HomeHeaderProps {
@@ -52,10 +51,7 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-            <LanguageToggle />
-            <ThemeToggle />
-          </div>
+          <HomeHeaderControls />
         </div>
       </div>
     </div>
