@@ -12,7 +12,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "type-check": "tsc --noEmit",
-    "prepare": "husky",
+    "prepare": "node -e \"(async()=>{try{const m=await import('husky'); if(typeof m.default==='function'){m.default();}}catch(e){process.exit(0);}})()\"",
     "lint-staged": "lint-staged"
   },
   "dependencies": {
