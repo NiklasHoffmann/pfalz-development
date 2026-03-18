@@ -54,7 +54,6 @@ export function HomePageView({ data }: HomePageViewProps) {
         primaryCta={data.contact.primaryCta}
         secondaryCta={data.contact.secondaryCta}
         details={data.contact.details}
-        form={data.contact.form}
       />
       <HomeFooter
         note={data.footer.note}

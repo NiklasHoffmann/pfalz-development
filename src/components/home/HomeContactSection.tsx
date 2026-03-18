@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { LazyContactForm } from './LazyContactForm';
 import type { ContactDetails } from './types';
 
 interface HomeContactSectionProps {
@@ -8,7 +8,6 @@ interface HomeContactSectionProps {
   primaryCta: string;
   secondaryCta: string;
   details: ContactDetails;
-  form: ReactNode;
 }
 
 export function HomeContactSection({
@@ -18,7 +17,6 @@ export function HomeContactSection({
   primaryCta,
   secondaryCta,
   details,
-  form,
 }: HomeContactSectionProps) {
   const phoneHref = details.phoneValue.replace(/\s+/g, '');
   const phoneDisplay =
@@ -106,7 +104,7 @@ export function HomeContactSection({
             </p>
           </div>
 
-          {form}
+          <LazyContactForm />
         </div>
       </div>
     </section>
