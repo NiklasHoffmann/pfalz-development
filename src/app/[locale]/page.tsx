@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
 import { siteConfig } from '@/config/site';
 import type {
@@ -82,6 +82,8 @@ export async function generateMetadata({
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations({ locale, namespace: 'common' });
   const navT = await getTranslations({ locale, namespace: 'navigation' });
   const trustItems = t.raw('home.trust.items') as string[];
