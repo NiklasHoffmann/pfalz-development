@@ -5,7 +5,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
   ogImage: '/logo-pfalz-development.webp',
   links: {
-    github: 'https://github.com/NiklasHoffmann/NextJSRaw',
+    github: 'https://github.com/NiklasHoffmann/pfalz-development',
   },
   creator: {
     name: 'Niklas Hoffmann',

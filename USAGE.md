@@ -73,54 +73,164 @@ export default function MyForm() {
 }
 ```
 
-## Data Fetching with TanStack Query
+## Data Fetching via API Route
 
 ```tsx
 'use client';
 
-import { useUsers, useCreateUser, useDeleteUser } from '@/hooks/useUsers';
+import { useEffect, useState } from 'react';
 import { useNotification } from '@/hooks/useNotification';
 
+type User = {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+};
+
 export default function UsersList() {
-  const { data: users, isLoading, error } = useUsers();
-  const createUser = useCreateUser();
-  const deleteUser = useDeleteUser();
+  const [users, setUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const notification = useNotification();
+
+  const loadUsers = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/users');
+      const json = await res.json();
+
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || 'Failed to load users');
+      }
+
+      setUsers(json.data ?? []);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    void loadUsers();
+  }, []);
 
   const handleCreate = async () => {
     try {
-      await createUser.mutateAsync({
-        name: 'John Doe',
-        email: 'john@example.com',
+      const res = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'John Doe',
+          email: 'john@example.com',
+        }),
       });
+
+      const json = await res.json();
+
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || 'Failed to create user');
+      }
+
+      await loadUsers();
       notification.success('User created successfully!');
-    } catch (error) {
-      notification.error('Failed to create user');
+    } catch (err) {
+      notification.error(
+        err instanceof Error ? err.message : 'Failed to create user'
+      );
     }
   };
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteUser.mutateAsync(id);
+      const res = await fetch(`/api/users/${id}`, {
+        method: 'DELETE',
+      });
+
+      const json = await res.json();
+
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || 'Failed to delete user');
+      }
+
+      await loadUsers();
       notification.success('User deleted');
-    } catch (error) {
-      notification.error('Failed to delete user');
+    } catch (err) {
+      notification.error(
+        err instanceof Error ? err.message : 'Failed to delete user'
+      );
     }
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading users</div>;
+  if (error) return <div>Error loading users: {error}</div>;
 
   return (
     <div>
       <button onClick={handleCreate}>Add User</button>
-      {users?.map((user) => (
-        <div key={user.id}>
+      {users.map((user) => (
+        <div key={user._id}>
           {user.name} - {user.email}
-          <button onClick={() => handleDelete(user.id)}>Delete</button>
+          <button onClick={() => handleDelete(user._id)}>Delete</button>
         </div>
       ))}
     </div>
+  );
+}
+```
+
+## Contact Form Submission
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+import { useNotification } from '@/hooks/useNotification';
+
+export default function ContactSubmitExample() {
+  const notification = useNotification();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async () => {
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Max Mustermann',
+          business: 'Mustermann GmbH',
+          email: 'max@example.com',
+          phone: '+49 123 4567',
+          message: 'Ich moechte eine neue Website erstellen lassen.',
+          website: '',
+        }),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || 'Contact request failed');
+      }
+
+      notification.success('Message sent successfully');
+    } catch (err) {
+      notification.error(
+        err instanceof Error ? err.message : 'Contact request failed'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <button onClick={onSubmit} disabled={isSubmitting}>
+      {isSubmitting ? 'Sending...' : 'Send message'}
+    </button>
   );
 }
 ```
