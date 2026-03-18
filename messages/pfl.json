@@ -1,0 +1,230 @@
+{
+  "common": {
+    "appName": "Pfalz Development",
+    "welcome": "Herzlisch Willkumme",
+    "home": {
+      "eyebrow": "Websites fer Betriewe in de Palz",
+      "headline": "Websites mit klarem Profil fer Feriewohnunge, Restaurants un lokale Betriebe.",
+      "subheadline": "Isch bau moderni Websites, die professionell wirke, schnell verstonne werre un neie Aa'frooche reihole.",
+      "primaryCta": "Projekt aa'frooche",
+      "secondaryCta": "Leischdunge aa'gugge",
+      "trust": {
+        "title": "Was Kunne bei mir krigge",
+        "items": [
+          "Persönlische Zammeaarwet statt Agentur-Gebabbel",
+          "Klare Fokus uff de Palz",
+          "Praxisverständnis fer Gastro un Handwerk vor Ort",
+          "Hosting, Pflege un Weiterentwicklung aus eener Hand"
+        ]
+      },
+      "services": {
+        "title": "Was de krigsch",
+        "items": [
+          {
+            "title": "Professionelle Website-Erstellung",
+            "description": "Vun de erschte Struktur bis zur Veröffentlichung entsteht en Auftritt, der zu deim Betrieb passt."
+          },
+          {
+            "title": "Hosting un technische Betreuung",
+            "description": "Isch kimmer mich um die Teschnik, dass dei Website stabil laaft un erreichbar bleibt."
+          },
+          {
+            "title": "Pflege un laufende Weiterentwicklung",
+            "description": "Wann sisch Inhalte, Agebote oder Öffnungszeite ännre, bleibt dei Website top aktuell."
+          }
+        ]
+      },
+      "audiences": {
+        "title": "Fer wen isch Websites umsetze",
+        "items": [
+          "Feriewohnunge un Gaschdgewwer",
+          "Woistube un Gastro",
+          "Metzgereie un Handwerksbetriebe",
+          "Lokale Dinschdleischder un klännere Unnernehme"
+        ]
+      },
+      "whyMe": {
+        "title": "Warum des gut zammebasst",
+        "items": [
+          "Isch babbel net bloß Teschnik, isch versteh aa de Alldach im Betrieb.",
+          "Isch leg Wert uff klare Kommunikation statt Agentur-Sprooch.",
+          "Isch bau Websites so, dass Bsucher direkt kapiere, worum's geht.",
+          "Isch schaff regional un nah an de echte Aforderunge vun klänne Unternehme."
+        ]
+      },
+      "packages": {
+        "title": "Pakede fer typische Projekte",
+        "items": [
+          {
+            "name": "Kompagd",
+            "description": "Fer klännere Betriewe, die schnell en professionelle un klare Webuftritt brauche."
+          },
+          {
+            "name": "Gaschdgewwer",
+            "description": "Fer Feriewohnunge un Gaschdgewwer, die Vertraue uffbaue un direkte Aafrooche krigge wolle."
+          },
+          {
+            "name": "Individuell",
+            "description": "Fer Unnernehme mit besonnere Aforderunge, mehr Inhald oder erweiderdem Funktionsumfang."
+          }
+        ]
+      },
+      "process": {
+        "title": "So laaft die Zammeaarwet ab",
+        "steps": [
+          "Kurzes Erschtgspräch",
+          "Ziel, Umfang un Inhalde kläre",
+          "Strukdur un Design abstimme",
+          "Umsetzung, Korrekdure un Veröffentlischung"
+        ]
+      },
+      "faq": {
+        "title": "Häufische Frooche",
+        "items": [
+          {
+            "question": "Is die Website aa fer klännere Betriewe geeichnet?",
+            "answer": "Ajo. Grad klännere Unnernehme profitiere vun eme klare, professionelle Uftritt."
+          },
+          {
+            "question": "Konn isch Hosting un Betreuung aa dazunehme?",
+            "answer": "Ajo. Erstellung, Hoschding un laufende Betreiung krigsch aus eener Hond."
+          },
+          {
+            "question": "Geht aa e englischi Version?",
+            "answer": "Ajo. Die Website is vun Anfang aa fer Deitsch un Englisch gedocht. Onnere Sprooche sinn awwer immer machbar."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Lass uns iwwer doi Projekt babble",
+        "description": "Wann de in de Palz e Website fer doin Betrieb brauchsch, meldsch dich ääfach per Formular odder Mail.",
+        "primaryCta": "E-Mail schreiwe",
+        "secondaryCta": "Aarufe",
+        "personLabel": "Asprechpardner",
+        "ownerName": "Niklas Hoffmann",
+        "emailLabel": "Mail",
+        "emailValue": "hoffmann.niklas@googlemail.com",
+        "phoneLabel": "Delefon",
+        "phoneValue": "063211876643",
+        "addressLabel": "Adresse",
+        "addressLines": ["Neischdad an de Woistrooß"],
+        "regionNote": "Fer Unnernehme, Gaschdgewwer un Betriewe in de Palz un drumrum.",
+        "form": {
+          "eyebrow": "Kontakdformular",
+          "title": "Direkt aafrooche",
+          "description": "Schick mir kurz e paar Infos zu deim Projekd. Isch meld mich dann bei dir zrick.",
+          "submit": "Aafrooch abschicke",
+          "privacyNote": "Mit em Abschicke werd dei Aafrooch zur Bearbeitung an mich iwwertrache.",
+          "status": {
+            "loading": "Wird verschickt...",
+            "success": "Dei Aafrooch is erfolgreich iwwertrache worre.",
+            "error": "Dei Aafrooch hot grad net verschickt werre kenne."
+          },
+          "fields": {
+            "name": {
+              "label": "Name",
+              "placeholder": "Doin Name"
+            },
+            "business": {
+              "label": "Betrieb oder Projekt",
+              "placeholder": "Zum Boispiel Feriewohnung Sunnendal"
+            },
+            "email": {
+              "label": "E-Mail",
+              "placeholder": "dei@email.de"
+            },
+            "phone": {
+              "label": "Telefon",
+              "placeholder": "Muss net is awwer prakdisch"
+            },
+            "message": {
+              "label": "Nachricht",
+              "placeholder": "Worum gehts'n bei deim Projekd?"
+            }
+          }
+        }
+      }
+    },
+    "loading": "Werd glaade...",
+    "error": "Do is ebbes schiefgonge",
+    "notFound": "Seid net gfunne",
+    "backToHome": "Zrick zur Schtardtseid"
+  },
+  "navigation": {
+    "home": "Schtardt",
+    "about": "Leischdunge",
+    "packages": "Pakede",
+    "process": "Ablaaf",
+    "contact": "Kontakd"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dungel",
+    "system": "System",
+    "toggle": "Design wechsle"
+  },
+  "language": {
+    "toggle": "Sprooch wechsle",
+    "de": "Deutsch",
+    "en": "Englisch",
+    "pfl": "Pälzisch"
+  },
+  "errors": {
+    "generic": "Ebbes is schiefgonge!",
+    "tryAgain": "Probier's nochemol",
+    "pageNotFound": "Die Seid die gebt's net",
+    "serverError": "Serverfehler"
+  },
+  "legal": {
+    "backToHome": "Zrick zur Schtardtseid",
+    "footerNote": "Pfalz Development, Webentwicklung fer Unnernehmen in de Palz.",
+    "imprint": {
+      "eyebrow": "Rechtliches",
+      "title": "Imbressum",
+      "providerTitle": "Angawe gemäss § 5 TMG",
+      "contactTitle": "Kontakd",
+      "responsibleTitle": "Verantwortlisch fer de Inhalt gemäss § 18 Abs. 2 MStV",
+      "noticeTitle": "Hinweis",
+      "noticeText": "Die Agawwe sinn als erste Vorlage zu verstehe un sollte vorm Veröffentliche rechtlich geprüft un bei Bedarf ergänzt werde.",
+      "vatIdTitle": "Umsatzsteuer-ID",
+      "vatIdText": "Aktuell is kei Umsatzsteuer-Identifikationsnummer vorhande.",
+      "disputeResolutionTitle": "EU-Streitbeilegung",
+      "disputeResolutionText": "Die Europäische Kommission stellt e Plattform fer Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Ich bin net verpflichtet un net bereit, an Streitbeilegungsverfahre vor ere Verbraucherschlichtungsstell teilzunehmen.",
+      "liabilityContentTitle": "Haftung fer Inhalte",
+      "liabilityContentText": "Als Diensteanbieter bin isch gemäss § 7 Abs. 1 TMG fer eigne Inhalte uff dene Seite nach de allgemeine Gesetze verantwortlich. Nach §§ 8 bis 10 TMG bin isch awer net verpflichtet, übermittelte oder gespeicherte fremde Informatione zu überwache oder no Umständ zu suche, die uff e rechtswidrige Tätigkeit hiweise. Wann mer Rechtsverletzunge bekannt werde, werre isch die Inhalte umgehend entferne.",
+      "liabilityLinksTitle": "Haftung fer Links",
+      "liabilityLinksText": "Mei Angebot enthält Links zu externe Website vun Dritte, uff dere Inhalte isch kei Einfluss hab. Deshalb kann isch fer die fremde Inhalte kei Gewähr übernehme. Fer die Inhalte vun de verlinkte Seite is immer de jeweilige Anbieter oder Betreiber verantwortlich. Wann mer Rechtsverletzunge bekannt werde, werre isch die Links umgehend entferne.",
+      "copyrightTitle": "Urheberrecht",
+      "copyrightText": "Die vum Seitenbetreiber erstellte Inhalte un Werke uff dene Seite unterliege em deutsche Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung un jede Art vun Verwertung ausserhalb vun de Grenze vum Urheberrecht brauche die schriftliche Zustimmung vum jeweilige Autor bzw. Ersteller."
+    },
+    "privacy": {
+      "eyebrow": "Rechtliches",
+      "title": "Datenschutz",
+      "overviewTitle": "Überblick",
+      "overviewText": "Die Website verarbeitet personenbezogene Date nur in dem Umfang, wie's fer de Betrieb vun de Website un die Bearbeitung vun Aafrooche nötig is.",
+      "responsibleTitle": "Verantwortliche Stell",
+      "dataTypesTitle": "Verarbeitete Datearte",
+      "dataTypesText": "Je no Nutzung vun de Website kenne insbesondere Bestandsdate, Kontaktdate, Inhaltsdate, Nutzungsdate, Verbindungsdate un Meta- un Protokolldate verarbeitet werde.",
+      "purposesTitle": "Zweck vun de Verarbeitung",
+      "purposesText": "Die Verarbeitung passiert fer Bereitstellung un technische Stabilität vun de Website, fer Bearbeitung vun Kontaktanfrooche, fer Missbrauchsprävention un fer berechtigte Interesse nach Art. 6 Abs. 1 lit. f DSGVO.",
+      "legalBasisTitle": "Rechtsgrundlage",
+      "legalBasisText": "Soweit im Einzelfall nötig, basiert die Verarbeitung uff Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), Art. 6 Abs. 1 lit. b DSGVO (Vertrag bzw. vorvertragliche Massnahme) un Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interesse).",
+      "contactRequestsTitle": "Kontaktanfrooche",
+      "contactRequestsText": "Wann de iwwer's Kontaktformular oder per E-Mail Kontakt uffnimmsch, werde die übermittelten Angawe fer die Bearbeitung vun deiner Aafroo gespeichert un verarbeitet.",
+      "serverLogsTitle": "Server- un Protokolldate",
+      "serverLogsText": "Beim Uffruf vun de Website kenne technisch nötige Date in Server-Logs gespeichert werde, fer Stabilität, Sicherheit un Fehleranalyse zu ermögliche.",
+      "recipientsTitle": "Empfänger vun Date",
+      "recipientsText": "E Weitergabe an Dritte passiert nur, wann des fer Vertragserfüllung, fer technische Bereitstellung (z. B. Hosting, E-Mail-Versand) oder wege gesetzliche Verpflichtunge nötig is.",
+      "storageTitle": "Speicherdauer",
+      "storageText": "Personenbezogene Date werde nur so lang gespeichert, wie's fer de jeweilige Zweck nötig is oder gesetzliche Aufbewahrungspflichte bestiehe.",
+      "securityTitle": "Sicherheitsmassnahme",
+      "securityText": "Es werde angemessene technische un organisatorische Massnahme eingesetzt, fer dei Date gege Verlust, unbefugte Zugriff un sonschtige Risiken zu schütze.",
+      "rightsTitle": "Dei Rechte",
+      "rightsText": "Du hosch nach de geltende gesetzliche Vorschrifte insbesondere des Recht uff Auskunft, Berichtigung, Löschung, Einschränkung vun de Verarbeitung, Dateübertragbarkeit un Widerspruch gege bestimmte Verarbeitunge.",
+      "revocationTitle": "Widerruf vun Einwilligunge",
+      "revocationText": "Erteilte Einwilligunge kannsch jederzeit mit Wirkung fer die Zukunft widerrufe. Die Rechtmässigkeit vun de bis dohi erfolgte Verarbeitung bleibt dovu unberührt.",
+      "complaintTitle": "Beschwerderecht",
+      "complaintText": "Du hosch des Recht, dich bei ere Datenschutz-Aufsichtsbehörd iwwer die Verarbeitung vun deine personenbezogene Date zu beschwere."
+    }
+  }
+}

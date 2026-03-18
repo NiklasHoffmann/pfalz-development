@@ -1,25 +1,38 @@
 import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
-import ReactQueryProvider from '@/components/providers/ReactQueryProvider';
-import { Toaster } from 'react-hot-toast';
+import { AppToaster } from '@/components/ui/AppToaster';
 import { siteConfig } from '@/config/site';
 import '../globals.css';
 
+const bodyFont = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  icons: {
+    icon: '/pfalz-development-favicon.ico',
+    shortcut: '/pfalz-development-favicon.ico',
+    apple: '/pfalz-development-favicon.ico',
+  },
   keywords: [
-    'Next.js',
-    'React',
-    'TypeScript',
-    'Tailwind CSS',
-    'MongoDB',
-    'i18n',
+    'Webdesign Pfalz',
+    'Website erstellen lassen Pfalz',
+    'Webentwickler Neustadt an der Weinstrasse',
+    'Webdesign Landau',
+    'Website fuer Ferienwohnung',
+    'Website fuer Restaurant',
+    'Lokale SEO Pfalz',
   ],
   authors: [
     {
@@ -49,7 +62,14 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: '@yourusername',
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      de: '/',
+      en: '/en',
+      'x-default': '/',
+    },
   },
   robots: {
     index: true,
@@ -62,6 +82,10 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'geo.region': 'DE-RP',
+    'geo.placename': 'Neustadt an der Weinstrasse',
+  },
 };
 
 export default async function LocaleLayout({
@@ -72,7 +96,32 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const messages = await getMessages();
+  const messages = (await getMessages()) as Record<string, unknown>;
+  const clientMessages = {
+    language: messages.language,
+    theme: messages.theme,
+    common: {
+      home: {
+        contact: {
+          form: (
+            (messages.common as Record<string, unknown>)?.home as Record<
+              string,
+              unknown
+            >
+          )?.contact
+            ? ((
+                (
+                  (messages.common as Record<string, unknown>).home as Record<
+                    string,
+                    unknown
+                  >
+                ).contact as Record<string, unknown>
+              ).form as Record<string, unknown>)
+            : {},
+        },
+      },
+    },
+  };
 
   return (
     <html lang={locale} suppressHydrationWarning className="loading">
@@ -102,20 +151,18 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning>
-        <ReactQueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            storageKey="nextjs-theme"
-          >
-            <NextIntlClientProvider messages={messages}>
-              {children}
-              <Toaster position="top-right" />
-            </NextIntlClientProvider>
-          </ThemeProvider>
-        </ReactQueryProvider>
+      <body suppressHydrationWarning className={bodyFont.variable}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          storageKey="nextjs-theme"
+        >
+          <NextIntlClientProvider messages={clientMessages}>
+            {children}
+            <AppToaster />
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

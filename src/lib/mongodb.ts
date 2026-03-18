@@ -8,7 +8,6 @@ interface MongooseConnection {
 }
 
 declare global {
-  // eslint-disable-next-line no-var
   var mongoose: MongooseConnection | undefined;
 }
 
@@ -18,7 +17,7 @@ if (!MONGODB_URI) {
   throw new Error('Please define MONGODB_URI in your .env.local file');
 }
 
-let cached: MongooseConnection = global.mongoose || {
+const cached: MongooseConnection = global.mongoose || {
   conn: null,
   promise: null,
 };

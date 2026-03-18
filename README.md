@@ -319,6 +319,36 @@ const user = await User.create({
 
 ### Health Check
 
+## Coolify Deployment
+
+Dieses Projekt ist fuer Coolify mit Dockerfile vorbereitet.
+
+### Empfohlene Methode
+
+1. In Coolify ein neues Projekt als `Dockerfile`-Deployment anlegen.
+2. Build-Kontext auf Repository-Root lassen.
+3. Port auf `3000` setzen.
+4. Healthcheck auf `/api/health` setzen.
+
+### Wichtige Environment Variables in Coolify
+
+- `NODE_ENV=production`
+- `NEXT_PUBLIC_APP_URL=https://deine-domain.tld`
+- `MONGODB_URI=...`
+- optional fuer Kontaktformular-Mailversand:
+  - `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`
+  - `SMTP_FROM_EMAIL`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`
+
+### Hinweis zu Start Command
+
+Das Projekt nutzt `output: standalone` und startet in Production ueber:
+
+```bash
+npm start
+```
+
+Der Script zeigt auf `node .next/standalone/server.js` und ist damit fuer Coolify kompatibel.
+
 ```bash
 GET /api/health
 # Response: { status: 'healthy', database: 'connected' }

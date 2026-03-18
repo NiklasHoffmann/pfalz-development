@@ -40,7 +40,7 @@ export function withAuth<P extends object>(
       ) {
         router.push('/unauthorized');
       }
-    }, [isAuthenticated, isLoading, user, router]);
+    }, [isAuthenticated, isLoading, redirectTo, requiredRole, router, user]);
 
     if (isLoading) {
       return (
