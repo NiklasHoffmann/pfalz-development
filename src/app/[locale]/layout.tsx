@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
-import { AppToaster } from '@/components/ui/AppToaster';
 import { siteConfig } from '@/config/site';
 import '../globals.css';
 
@@ -160,7 +159,6 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={clientMessages}>
             {children}
-            <AppToaster />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
