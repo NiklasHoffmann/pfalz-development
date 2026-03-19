@@ -5,6 +5,7 @@ import {
   handleApiError,
 } from '@/lib/api-response';
 import { rateLimit } from '@/lib/rate-limit';
+import { requireAdminApiKey } from '@/lib/api-auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
 import { userSchema } from '@/schemas/user.schema';
@@ -12,6 +13,11 @@ import { userSchema } from '@/schemas/user.schema';
 // GET /api/users - Get all users
 export async function GET(request: NextRequest) {
   try {
+    const authError = requireAdminApiKey(request);
+    if (authError) {
+      return authError;
+    }
+
     const ip = request.headers.get('x-forwarded-for') ?? 'anonymous';
     const rateLimitResult = rateLimit(ip);
 
@@ -35,6 +41,11 @@ export async function GET(request: NextRequest) {
 // POST /api/users - Create new user
 export async function POST(request: NextRequest) {
   try {
+    const authError = requireAdminApiKey(request);
+    if (authError) {
+      return authError;
+    }
+
     const ip = request.headers.get('x-forwarded-for') ?? 'anonymous';
     const rateLimitResult = rateLimit(ip);
 

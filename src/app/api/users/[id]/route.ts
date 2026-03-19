@@ -4,6 +4,7 @@ import {
   errorResponse,
   handleApiError,
 } from '@/lib/api-response';
+import { requireAdminApiKey } from '@/lib/api-auth';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
 import { updateUserSchema } from '@/schemas/user.schema';
@@ -14,6 +15,11 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = requireAdminApiKey(request);
+    if (authError) {
+      return authError;
+    }
+
     await connectToDatabase();
     const { id } = await params;
 
@@ -35,6 +41,11 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = requireAdminApiKey(request);
+    if (authError) {
+      return authError;
+    }
+
     await connectToDatabase();
     const { id } = await params;
 
@@ -62,6 +73,11 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = requireAdminApiKey(request);
+    if (authError) {
+      return authError;
+    }
+
     await connectToDatabase();
     const { id } = await params;
 

@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { createHash } from 'node:crypto';
 import {
   errorResponse,
   handleApiError,
@@ -20,6 +21,14 @@ function getClientIp(request: NextRequest): string {
   return request.headers.get('x-real-ip')?.trim() || 'anonymous';
 }
 
+function ipFingerprint(ip: string): string {
+  if (ip === 'anonymous') {
+    return ip;
+  }
+
+  return createHash('sha256').update(ip).digest('hex').slice(0, 12);
+}
+
 export async function POST(request: NextRequest) {
   try {
     const ip = getClientIp(request);
@@ -37,7 +46,7 @@ export async function POST(request: NextRequest) {
     }
 
     logger.info(
-      `Contact request received from ${ip} at ${new Date().toISOString()} (business=${submission.business ? 'yes' : 'no'}, phone=${submission.phone ? 'yes' : 'no'})`
+      `Contact request received (ipfp=${ipFingerprint(ip)}, business=${submission.business ? 'yes' : 'no'}, phone=${submission.phone ? 'yes' : 'no'})`
     );
 
     const mailResult = await sendContactMail(submission);
