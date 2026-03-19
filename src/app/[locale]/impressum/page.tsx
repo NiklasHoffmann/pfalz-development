@@ -82,6 +82,7 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
               <p className="mt-3">Niklas Hoffmann</p>
               <p>Fröbelstraße 20</p>
               <p>67433 Neustadt an der Weinstraße</p>
+              <p>Deutschland</p>
             </section>
 
             <section>
@@ -104,6 +105,9 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
               >
                 https://ec.europa.eu/consumers/odr/
               </a>
+              <p className="mt-3">
+                {t('imprint.disputeResolutionParticipationText')}
+              </p>
             </section>
 
             <section>
