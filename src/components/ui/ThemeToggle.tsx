@@ -57,9 +57,9 @@ export function ThemeToggle() {
         });
         window.setTimeout(() => {
           root.classList.remove('theme-transition');
-        }, 1000);
+        }, 320);
       }}
-      className="inline-flex h-8 w-auto min-w-[2.75rem] items-center justify-center rounded-full border border-stone-400/80 bg-stone-50/95 px-2 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition-colors hover:bg-white focus:border-amber-600 focus:outline-none disabled:cursor-wait disabled:opacity-70 dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:h-10 sm:min-w-[5.75rem] sm:px-4 sm:text-sm"
+      className="inline-flex h-8 w-auto min-w-[2.75rem] items-center justify-center rounded-full border border-stone-400/80 bg-stone-50/95 px-2 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition-[background-color,border-color,color,fill,stroke] duration-[260ms] ease-linear hover:bg-white focus:border-amber-600 focus:outline-none disabled:cursor-wait disabled:opacity-70 dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:h-10 sm:min-w-[5.75rem] sm:px-4 sm:text-sm"
       aria-label={t('toggle')}
       disabled={!mounted}
       aria-disabled={!mounted}
