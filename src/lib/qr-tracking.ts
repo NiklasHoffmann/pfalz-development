@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
+import { env } from '@/lib/env';
 import { logger } from '@/lib/logger';
 import QrScan from '@/models/QrScan';
 
@@ -22,8 +23,24 @@ function getClientIp(request: NextRequest): string {
   return request.headers.get('x-real-ip')?.trim() || 'anonymous';
 }
 
+function getPublicOrigin(request: NextRequest): string {
+  const forwardedHost = request.headers.get('x-forwarded-host')?.trim();
+  const forwardedProto = request.headers.get('x-forwarded-proto')?.trim();
+
+  if (forwardedHost) {
+    const protocol = forwardedProto || 'https';
+    return `${protocol}://${forwardedHost}`;
+  }
+
+  if (env.NEXT_PUBLIC_APP_URL) {
+    return env.NEXT_PUBLIC_APP_URL;
+  }
+
+  return request.nextUrl.origin;
+}
+
 function buildTargetUrl(request: NextRequest, code: QrCode): string {
-  const url = new URL('/', request.url);
+  const url = new URL('/', getPublicOrigin(request));
   url.searchParams.set('utm_source', 'qr');
   url.searchParams.set('utm_medium', 'offline');
   url.searchParams.set('utm_campaign', campaigns[code]);
