@@ -54,20 +54,20 @@
       },
       "packages": {
         "title": "Packages for typical projects",
-        "note": "It is important to me that smaller businesses can also get a professional online presence. That is why there is a clear entry point from EUR 1,190 and the option to expand step by step later.",
-        "supportNote": "Hosting from EUR 19 per month, maintenance and updates from EUR 119 per month.",
+        "note": "It is important to me that smaller businesses can also achieve a professional online presence. That is why I deliberately start with an affordable entry point from EUR 1,090 that can be expanded flexibly when needed.",
+        "supportNote": "In the minimal package, hosting is mandatory and included (from EUR 9 per month). In all other packages, hosting can be added from EUR 9 per month. Maintenance and updates from EUR 109 per month.",
         "items": [
           {
             "name": "Compact",
-            "description": "From EUR 1,790. For smaller businesses that need more content and a clearly structured overall presence."
+            "description": "From EUR 1,690. For smaller businesses that want to broaden their content and present themselves with a clear, coherent overall presence."
           },
           {
             "name": "Host",
-            "description": "From EUR 2,990. For holiday rentals and hosts who want to build trust and generate direct inquiries."
+            "description": "From EUR 2,790. For holiday rentals and hosts who want to build trust and generate direct inquiries."
           },
           {
             "name": "Custom",
-            "description": "From EUR 4,490. For businesses with specific needs, more content, or extended functionality."
+            "description": "From EUR 4,290. For businesses with specific needs, more content, or extended functionality."
           }
         ]
       },
@@ -89,7 +89,7 @@
           },
           {
             "question": "Can I also get hosting and maintenance?",
-            "answer": "Yes. Website creation, hosting, and ongoing maintenance can all be handled together in one setup. Hosting starts from EUR 19 per month, maintenance and updates from EUR 119 per month."
+            "answer": "Yes. Website creation, hosting, and ongoing maintenance can all be handled together in one setup. In the minimal package, hosting is mandatory and included (from EUR 9 per month). In all other packages, hosting can be added from EUR 9 per month. Maintenance and updates from EUR 109 per month."
           },
           {
             "question": "Is an English version possible too?",

@@ -54,20 +54,20 @@
       },
       "packages": {
         "title": "Pakede fer typische Projekte",
-        "note": "Mir is wichtig, dass aa klännere Betriewe professionell online sichtbar werre. Dofier gebt's en klare Einstieg ab 1.190 EUR un die Möglichkeit, späder Schritt fer Schritt auszubaue.",
-        "supportNote": "Hoschding ab 19 EUR im Monnad, Pflege un Updates ab 119 EUR im Monnad.",
+        "note": "Mir is wichtig, dass aa klännere Betriewe professionell online sichtbar werre. Drum fang isch bewusst mit eme bezahlbare Einstieg ab 1.090 EUR aa, den mer bei Bedarf flexibel ausbaue kann.",
+        "supportNote": "Im Minimalpaket is Hoschding verpflichtend dabei (ab 9 EUR im Monnad). Bei alle annere Pakede kannsch Hoschding ab 9 EUR im Monnad dazubuche. Pflege un Updates ab 109 EUR im Monnad.",
         "items": [
           {
             "name": "Kompagd",
-            "description": "Ab 1.790 EUR. Fer klännere Betriewe, die meh Inhald un en klar strukturierte Gesamduftritt brauche."
+            "description": "Ab 1.690 EUR. Fer klännere Betriewe, die ihre Ufftritt inhaltlich breider uffstelle un als klare, stimmige Gesamtpräsenz zeige wolle."
           },
           {
             "name": "Gaschdgewwer",
-            "description": "Ab 2.990 EUR. Fer Feriewohnunge un Gaschdgewwer, die Vertraue uffbaue un direkte Aafrooche krigge wolle."
+            "description": "Ab 2.790 EUR. Fer Feriewohnunge un Gaschdgewwer, die Vertraue uffbaue un direkte Aafrooche krigge wolle."
           },
           {
             "name": "Individuell",
-            "description": "Ab 4.490 EUR. Fer Unnernehme mit besonnere Aforderunge, mehr Inhald oder erweiderdem Funktionsumfang."
+            "description": "Ab 4.290 EUR. Fer Unnernehme mit besonnere Aforderunge, mehr Inhald oder erweiderdem Funktionsumfang."
           }
         ]
       },
@@ -89,7 +89,7 @@
           },
           {
             "question": "Konn isch Hosting un Betreuung aa dazunehme?",
-            "answer": "Ajo. Erstellung, Hoschding un laufende Betreiung krigsch aus eener Hond. Hoschding geht ab 19 EUR im Monnad los, Pflege un Updates ab 119 EUR im Monnad."
+            "answer": "Ajo. Erstellung, Hoschding un laufende Betreiung krigsch aus eener Hond. Im Minimalpaket is Hoschding verpflichtend dabei (ab 9 EUR im Monnad), bei alle annere Pakede kannsch es ab 9 EUR im Monnad dazubuche. Pflege un Updates ab 109 EUR im Monnad."
           },
           {
             "question": "Geht aa e englischi Version?",

@@ -56,7 +56,7 @@ export function HomePackagesSection({
           </RevealOnScroll>
         ))}
       </div>
-      <p className="mt-16 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
+      <p className="mt-24 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
         {note}
       </p>
       <p className="mt-6 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300 sm:text-base sm:leading-7">
