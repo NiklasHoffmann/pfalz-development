@@ -37,7 +37,10 @@ export function HomeScrollOffsetSync() {
       return document.getElementById(id);
     };
 
-    const scrollToElement = (element: HTMLElement, behavior: ScrollBehavior) => {
+    const scrollToElement = (
+      element: HTMLElement,
+      behavior: ScrollBehavior
+    ) => {
       const offset = updateOffset();
       const top = Math.max(
         0,
