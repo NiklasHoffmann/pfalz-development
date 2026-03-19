@@ -40,7 +40,6 @@ export function HomePageView({ data }: HomePageViewProps) {
       <HomePackagesSection
         title={data.packages.title}
         note={data.packages.note}
-        supportNote={data.packages.supportNote}
         items={data.packages.items}
       />
       <HomeProcessFaqSection
