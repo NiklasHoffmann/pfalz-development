@@ -19,23 +19,22 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
           >
             <span className="-mb-[32px] -mt-[8px] inline-grid place-items-center">
               <Image
-                src="/pfalz-development-logo-light-ohne-schrift.png"
+                src="/pfalz-development-logo-light-ohne-schrift.webp"
                 alt={appName}
-                width={1536}
-                height={1024}
+                width={360}
+                height={163}
                 sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
-                quality={100}
+                quality={60}
                 priority
                 className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-100 dark:opacity-0 sm:h-[4.25rem] lg:h-[4.64rem]"
               />
               <Image
-                src="/pfalz-development-logo-dark-ohne-schrift.png"
+                src="/pfalz-development-logo-dark-ohne-schrift.webp"
                 alt={appName}
-                width={1536}
-                height={1024}
+                width={360}
+                height={163}
                 sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
-                quality={100}
-                priority
+                quality={60}
                 className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-0 dark:opacity-100 sm:h-[4.25rem] lg:h-[4.64rem]"
               />
             </span>
