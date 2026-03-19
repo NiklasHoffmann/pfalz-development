@@ -103,9 +103,23 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
 
             <section>
               <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                {t('privacy.cookiesTitle')}
+              </h2>
+              <p className="mt-3">{t('privacy.cookiesText')}</p>
+            </section>
+
+            <section>
+              <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                 {t('privacy.recipientsTitle')}
               </h2>
               <p className="mt-3">{t('privacy.recipientsText')}</p>
+            </section>
+
+            <section>
+              <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                {t('privacy.processorsTitle')}
+              </h2>
+              <p className="mt-3">{t('privacy.processorsText')}</p>
             </section>
 
             <section>
@@ -141,6 +155,20 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
                 {t('privacy.complaintTitle')}
               </h2>
               <p className="mt-3">{t('privacy.complaintText')}</p>
+            </section>
+
+            <section>
+              <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                {t('privacy.dpoTitle')}
+              </h2>
+              <p className="mt-3">{t('privacy.dpoText')}</p>
+            </section>
+
+            <section>
+              <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                {t('privacy.statusTitle')}
+              </h2>
+              <p className="mt-3">{t('privacy.statusText')}</p>
             </section>
           </div>
         </div>
