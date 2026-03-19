@@ -1,17 +1,10 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { siteConfig } from '@/config/site';
 import { routing } from '@/routing';
 import '../globals.css';
-
-const bodyFont = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -159,7 +152,7 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning className={bodyFont.variable}>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

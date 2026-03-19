@@ -222,7 +222,7 @@
       "recipientsTitle": "Recipients of Data",
       "recipientsText": "Data is shared with third parties only where necessary for contractual performance, technical service provision (e.g. hosting, email delivery), or legal obligations. For reach measurement via QR links, pseudonymized access data is processed.",
       "processorsTitle": "Hosting and Processors",
-      "processorsText": "Hosting is provided by STRATO AG, Otto-Ostrowski-Strasse 7, 10249 Berlin, Germany. A data processing agreement pursuant to Art. 28 GDPR is in place with the hosting provider. Email delivery is handled by a technically integrated email service provider (SMTP provider) as part of technical communication.",
+      "processorsText": "Hosting is provided by STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin, Germany. A data processing agreement pursuant to Art. 28 GDPR is in place with the hosting provider. Email delivery is handled by a technically integrated email service provider (SMTP provider) as part of technical communication.",
       "storageTitle": "Storage Duration",
       "storageText": "Contact inquiries are generally stored in email inboxes for up to 12 months unless statutory retention obligations require longer storage. Pseudonymized QR tracking data is automatically deleted after 90 days.",
       "securityTitle": "Security Measures",
