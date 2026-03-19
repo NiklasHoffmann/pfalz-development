@@ -19,7 +19,7 @@ export function HomeServicesSection({
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
         {title}
       </p>
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 lg:grid-cols-3">
         {items.map((item, index) => (
           <RevealOnScroll
             as="article"

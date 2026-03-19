@@ -138,6 +138,8 @@ export default async function HomePage({ params }: HomePageProps) {
     },
     packages: {
       title: t('home.packages.title'),
+      note: t('home.packages.note'),
+      supportNote: t('home.packages.supportNote'),
       items: packageItems,
     },
     process: {

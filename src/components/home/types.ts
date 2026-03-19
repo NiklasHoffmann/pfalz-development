@@ -61,6 +61,8 @@ export type HomePageData = {
   };
   packages: {
     title: string;
+    note: string;
+    supportNote: string;
     items: PackageItem[];
   };
   process: {

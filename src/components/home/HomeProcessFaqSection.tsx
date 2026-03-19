@@ -25,7 +25,7 @@ export function HomeProcessFaqSection({
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
             {processTitle}
           </p>
-          <div className="mt-6 grid gap-4">
+          <div className="mt-10 grid gap-4">
             {processSteps.map((step, index) => (
               <RevealOnScroll
                 as="div"
@@ -47,7 +47,7 @@ export function HomeProcessFaqSection({
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
             {faqTitle}
           </p>
-          <div className="mt-6 grid gap-4">
+          <div className="mt-10 grid gap-4">
             {faqItems.map((item, index) => (
               <RevealOnScroll
                 as="article"
