@@ -1,4 +1,5 @@
 import type { FaqItem } from './types';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 interface HomeProcessFaqSectionProps {
   processTitle: string;
@@ -14,7 +15,8 @@ export function HomeProcessFaqSection({
   faqItems,
 }: HomeProcessFaqSectionProps) {
   return (
-    <section
+    <RevealOnScroll
+      as="section"
       id="ablauf"
       className="mx-auto max-w-7xl scroll-mt-[4rem] px-4 py-16 sm:scroll-mt-[4.5rem] sm:px-6 sm:py-20 md:scroll-mt-[4.25rem] lg:px-10"
     >
@@ -25,8 +27,10 @@ export function HomeProcessFaqSection({
           </p>
           <div className="mt-6 grid gap-4">
             {processSteps.map((step, index) => (
-              <div
+              <RevealOnScroll
+                as="div"
                 key={`${step}-${index}`}
+                delayMs={80 + index * 75}
                 className="bg-white/94 dark:bg-stone-800/82 flex min-w-0 items-start gap-4 overflow-hidden rounded-2xl border border-stone-200/90 px-5 py-4 shadow-sm dark:border-stone-700/80"
               >
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-stone-950 text-sm font-bold text-stone-50 dark:bg-amber-400 dark:text-stone-950">
@@ -35,7 +39,7 @@ export function HomeProcessFaqSection({
                 <p className="pt-2 text-base font-medium text-stone-800 dark:text-stone-100">
                   {step}
                 </p>
-              </div>
+              </RevealOnScroll>
             ))}
           </div>
         </div>
@@ -45,8 +49,10 @@ export function HomeProcessFaqSection({
           </p>
           <div className="mt-6 grid gap-4">
             {faqItems.map((item, index) => (
-              <article
+              <RevealOnScroll
+                as="article"
                 key={`${item.question}-${index}`}
+                delayMs={110 + index * 80}
                 className="bg-white/92 dark:bg-stone-800/82 min-w-0 overflow-hidden rounded-2xl border border-stone-200/90 px-5 py-5 shadow-sm dark:border-stone-700/80"
               >
                 <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">
@@ -55,11 +61,11 @@ export function HomeProcessFaqSection({
                 <p className="mt-3 text-base leading-7 text-stone-800 dark:text-stone-100">
                   {item.answer}
                 </p>
-              </article>
+              </RevealOnScroll>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </RevealOnScroll>
   );
 }

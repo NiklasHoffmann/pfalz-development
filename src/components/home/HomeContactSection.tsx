@@ -1,5 +1,6 @@
 import { LazyContactForm } from './LazyContactForm';
 import type { ContactDetails } from './types';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 interface HomeContactSectionProps {
   navLabel: string;
@@ -25,7 +26,8 @@ export function HomeContactSection({
       : details.phoneValue;
 
   return (
-    <section
+    <RevealOnScroll
+      as="section"
       id="kontakt"
       className="scroll-mt-[4rem] px-4 pb-16 sm:scroll-mt-[4.5rem] sm:px-6 sm:pb-20 md:scroll-mt-[4.25rem] lg:px-10 lg:pb-24"
     >
@@ -107,6 +109,6 @@ export function HomeContactSection({
           <LazyContactForm />
         </div>
       </div>
-    </section>
+    </RevealOnScroll>
   );
 }
