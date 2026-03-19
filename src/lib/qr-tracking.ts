@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createHash } from 'node:crypto';
 import connectToDatabase from '@/lib/mongodb';
 import { env } from '@/lib/env';
 import { logger } from '@/lib/logger';
@@ -21,6 +22,14 @@ function getClientIp(request: NextRequest): string {
   }
 
   return request.headers.get('x-real-ip')?.trim() || 'anonymous';
+}
+
+function hashIp(ip: string): string {
+  if (ip === 'anonymous') {
+    return ip;
+  }
+
+  return `sha256:${createHash('sha256').update(ip).digest('hex').slice(0, 32)}`;
 }
 
 function getPublicOrigin(request: NextRequest): string {
@@ -62,7 +71,7 @@ export async function trackQrAndRedirect(
       source: 'qr',
       medium: 'offline',
       targetUrl,
-      ip: getClientIp(request),
+      ip: hashIp(getClientIp(request)),
       userAgent: request.headers.get('user-agent') ?? undefined,
       referer: request.headers.get('referer') ?? undefined,
     });

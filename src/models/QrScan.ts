@@ -54,6 +54,7 @@ const QrScanSchema = new Schema<IQrScan>(
 
 QrScanSchema.index({ createdAt: -1 });
 QrScanSchema.index({ campaign: 1, createdAt: -1 });
+QrScanSchema.index({ createdAt: 1 }, { expireAfterSeconds: 90 * 24 * 60 * 60 });
 
 export const QrScan =
   (mongoose.models.QrScan as mongoose.Model<IQrScan>) ||
