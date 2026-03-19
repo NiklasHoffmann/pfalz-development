@@ -16,7 +16,7 @@ export function HomeAudienceSection({
   return (
     <RevealOnScroll
       as="section"
-      className="border-y border-stone-200/90 bg-[linear-gradient(180deg,_rgba(250,247,241,0.9),_rgba(243,236,226,0.95))] py-16 dark:border-stone-700/80 dark:bg-[linear-gradient(180deg,_rgba(37,31,27,0.94),_rgba(22,30,40,0.94))] sm:py-20"
+      className="border-y border-stone-200/90 bg-[linear-gradient(180deg,_rgba(250,247,241,0.9),_rgba(243,236,226,0.95))] pb-16 pt-9 dark:border-stone-700/80 dark:bg-[linear-gradient(180deg,_rgba(37,31,27,0.94),_rgba(22,30,40,0.94))] sm:py-20"
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
         <div className="min-w-0">

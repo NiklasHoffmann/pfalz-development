@@ -33,7 +33,7 @@ export function HomePackagesSection({
     <RevealOnScroll
       as="section"
       id="pakete"
-      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-10"
+      className="mx-auto max-w-7xl px-4 pb-16 pt-9 sm:px-6 sm:py-20 lg:px-10"
     >
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
         {title}
