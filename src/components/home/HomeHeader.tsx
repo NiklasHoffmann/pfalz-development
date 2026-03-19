@@ -9,7 +9,10 @@ interface HomeHeaderProps {
 
 export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
   return (
-    <div className="surface-header fixed inset-x-0 top-0 z-40 border-b border-stone-300/80 backdrop-blur-xl dark:border-stone-600/90">
+    <div
+      id="home-header"
+      className="surface-header fixed inset-x-0 top-0 z-40 border-b border-stone-300/80 backdrop-blur-xl dark:border-stone-600/90"
+    >
       <div className="mx-auto min-h-[50px] max-w-7xl px-4 py-[9px] sm:min-h-[58px] sm:px-6 lg:px-10">
         <div className="flex items-center justify-between gap-2 sm:gap-3 lg:gap-6">
           <a

@@ -18,7 +18,7 @@ export function HomeProcessFaqSection({
     <RevealOnScroll
       as="section"
       id="ablauf"
-      className="mx-auto max-w-7xl scroll-mt-[4rem] px-4 py-16 sm:scroll-mt-[4.5rem] sm:px-6 sm:py-20 md:scroll-mt-[4.25rem] lg:px-10"
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-10"
     >
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="min-w-0">
