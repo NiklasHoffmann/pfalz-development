@@ -54,18 +54,20 @@
       },
       "packages": {
         "title": "Pakede fer typische Projekte",
+        "note": "Mir is wichtig, dass aa klännere Betriewe professionell online sichtbar werre. Dofier gebt's en klare Einstieg ab 1.190 EUR un die Möglichkeit, späder Schritt fer Schritt auszubaue.",
+        "supportNote": "Hoschding ab 19 EUR im Monnad, Pflege un Updates ab 119 EUR im Monnad.",
         "items": [
           {
             "name": "Kompagd",
-            "description": "Fer klännere Betriewe, die schnell en professionelle un klare Webuftritt brauche."
+            "description": "Ab 1.790 EUR. Fer klännere Betriewe, die meh Inhald un en klar strukturierte Gesamduftritt brauche."
           },
           {
             "name": "Gaschdgewwer",
-            "description": "Fer Feriewohnunge un Gaschdgewwer, die Vertraue uffbaue un direkte Aafrooche krigge wolle."
+            "description": "Ab 2.990 EUR. Fer Feriewohnunge un Gaschdgewwer, die Vertraue uffbaue un direkte Aafrooche krigge wolle."
           },
           {
             "name": "Individuell",
-            "description": "Fer Unnernehme mit besonnere Aforderunge, mehr Inhald oder erweiderdem Funktionsumfang."
+            "description": "Ab 4.490 EUR. Fer Unnernehme mit besonnere Aforderunge, mehr Inhald oder erweiderdem Funktionsumfang."
           }
         ]
       },
@@ -87,7 +89,7 @@
           },
           {
             "question": "Konn isch Hosting un Betreuung aa dazunehme?",
-            "answer": "Ajo. Erstellung, Hoschding un laufende Betreiung krigsch aus eener Hond."
+            "answer": "Ajo. Erstellung, Hoschding un laufende Betreiung krigsch aus eener Hond. Hoschding geht ab 19 EUR im Monnad los, Pflege un Updates ab 119 EUR im Monnad."
           },
           {
             "question": "Geht aa e englischi Version?",

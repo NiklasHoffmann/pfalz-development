@@ -3,11 +3,15 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 interface HomePackagesSectionProps {
   title: string;
+  note: string;
+  supportNote: string;
   items: PackageItem[];
 }
 
 export function HomePackagesSection({
   title,
+  note,
+  supportNote,
   items,
 }: HomePackagesSectionProps) {
   return (
@@ -19,7 +23,7 @@ export function HomePackagesSection({
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
         {title}
       </p>
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 lg:grid-cols-3">
         {items.map((item, index) => (
           <RevealOnScroll
             as="article"
@@ -52,6 +56,12 @@ export function HomePackagesSection({
           </RevealOnScroll>
         ))}
       </div>
+      <p className="mt-12 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
+        {note}
+      </p>
+      <p className="mt-4 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300 sm:text-base sm:leading-7">
+        {supportNote}
+      </p>
     </RevealOnScroll>
   );
 }

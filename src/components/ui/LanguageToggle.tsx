@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { routing, usePathname, useRouter } from '@/routing';
 
 type SupportedLocale = (typeof routing.locales)[number];
+const LOCALE_SCROLL_RESTORE_KEY = 'locale-switch-scroll-restore';
 
 function FlagSwatch({ locale }: { locale: SupportedLocale }) {
   const iconByLocale: Record<SupportedLocale, string> = {
@@ -58,7 +59,50 @@ export function LanguageToggle() {
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
+  const [optimisticLocale, setOptimisticLocale] =
+    useState<SupportedLocale>(locale);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const raw = sessionStorage.getItem(LOCALE_SCROLL_RESTORE_KEY);
+    if (!raw) {
+      return;
+    }
+
+    sessionStorage.removeItem(LOCALE_SCROLL_RESTORE_KEY);
+
+    let restoreData: { y?: number } | null = null;
+    try {
+      restoreData = JSON.parse(raw) as { y?: number };
+    } catch {
+      return;
+    }
+
+    if (typeof restoreData?.y !== 'number') {
+      return;
+    }
+
+    const targetY = Math.max(0, restoreData.y);
+    let attempts = 0;
+    const maxAttempts = 6;
+
+    const restore = () => {
+      window.scrollTo({ top: targetY, behavior: 'auto' });
+      attempts += 1;
+
+      if (Math.abs(window.scrollY - targetY) < 2 || attempts >= maxAttempts) {
+        return;
+      }
+
+      requestAnimationFrame(restore);
+    };
+
+    requestAnimationFrame(() => requestAnimationFrame(restore));
+  }, [locale]);
+
+  useEffect(() => {
+    setOptimisticLocale(locale);
+  }, [locale]);
 
   useEffect(() => {
     function handlePointerDown(event: PointerEvent) {
@@ -83,9 +127,21 @@ export function LanguageToggle() {
   }, []);
 
   function handleLocaleChange(nextLocale: SupportedLocale) {
+    if (isPending || nextLocale === locale) {
+      setIsOpen(false);
+      return;
+    }
+
+    setOptimisticLocale(nextLocale);
     setIsOpen(false);
+
+    sessionStorage.setItem(
+      LOCALE_SCROLL_RESTORE_KEY,
+      JSON.stringify({ y: window.scrollY })
+    );
+
     startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
+      router.replace(pathname, { locale: nextLocale, scroll: false });
     });
   }
 
@@ -93,16 +149,21 @@ export function LanguageToggle() {
     <div className="relative" ref={menuRef}>
       <button
         type="button"
-        onClick={() => setIsOpen((current) => !current)}
-        className="inline-flex h-8 min-w-0 items-center justify-between gap-2 rounded-full border border-stone-400/80 bg-stone-50 px-2.5 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition hover:bg-white focus:border-amber-600 focus:outline-none disabled:cursor-wait disabled:opacity-70 dark:border-stone-600/90 dark:bg-stone-800 dark:text-stone-50 dark:hover:bg-stone-700 sm:h-10 sm:min-w-[9.25rem] sm:gap-3 sm:px-3.5 sm:text-sm"
+        onClick={() => {
+          if (isPending) {
+            return;
+          }
+          setIsOpen((current) => !current);
+        }}
+        className={`inline-flex h-8 min-w-0 items-center justify-between gap-2 rounded-full border border-stone-400/80 bg-stone-50 px-2.5 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition hover:bg-white focus:border-amber-600 focus:outline-none dark:border-stone-600/90 dark:bg-stone-800 dark:text-stone-50 dark:hover:bg-stone-700 sm:h-10 sm:min-w-[9.25rem] sm:gap-3 sm:px-3.5 sm:text-sm ${isPending ? 'cursor-wait' : ''}`}
         aria-haspopup="menu"
         aria-expanded={isOpen}
         aria-label={t('toggle')}
-        disabled={isPending}
+        aria-busy={isPending}
       >
         <span className="flex items-center gap-2">
-          <FlagSwatch locale={locale} />
-          <span className="hidden sm:inline">{t(locale)}</span>
+          <FlagSwatch locale={optimisticLocale} />
+          <span className="hidden sm:inline">{t(optimisticLocale)}</span>
         </span>
         <ChevronIcon open={isOpen} />
       </button>
@@ -111,7 +172,7 @@ export function LanguageToggle() {
         <div className="absolute right-0 top-[calc(100%+0.55rem)] z-50 min-w-[10.5rem] overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white p-1.5 shadow-[0_24px_60px_rgba(28,25,23,0.16)] backdrop-blur-xl dark:border-stone-600/90 dark:bg-stone-800 sm:min-w-full">
           <div className="space-y-1" role="menu" aria-label={t('toggle')}>
             {routing.locales.map((supportedLocale) => {
-              const isActive = supportedLocale === locale;
+              const isActive = supportedLocale === optimisticLocale;
 
               return (
                 <button
@@ -154,6 +215,19 @@ export function LanguageToggle() {
           </div>
         </div>
       ) : null}
+
+      {/* Preload icons to avoid visual flash when switching locales */}
+      <div className="hidden" aria-hidden="true">
+        <Image src="/icons/germany.svg" alt="" width={24} height={16} priority />
+        <Image
+          src="/icons/united-kingdom.svg"
+          alt=""
+          width={24}
+          height={16}
+          priority
+        />
+        <Image src="/icons/dubbeglas.svg" alt="" width={24} height={16} priority />
+      </div>
     </div>
   );
 }

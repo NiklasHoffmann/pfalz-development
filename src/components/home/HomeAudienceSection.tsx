@@ -23,7 +23,7 @@ export function HomeAudienceSection({
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
             {audiencesTitle}
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             {audiences.map((item, index) => (
               <RevealOnScroll
                 as="span"
@@ -40,7 +40,7 @@ export function HomeAudienceSection({
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
             {whyMeTitle}
           </p>
-          <div className="mt-6 grid gap-4">
+          <div className="mt-8 grid gap-4">
             {whyMeItems.map((item, index) => (
               <RevealOnScroll
                 as="div"

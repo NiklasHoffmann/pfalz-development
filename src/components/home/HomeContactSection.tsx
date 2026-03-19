@@ -35,7 +35,7 @@ export function HomeContactSection({
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-200 dark:text-amber-200">
           {navLabel}
         </p>
-        <div className="mt-5 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div className="mt-6 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div className="min-w-0">
             <h2 className="text-3xl font-black tracking-tight md:text-4xl">
               {title}
