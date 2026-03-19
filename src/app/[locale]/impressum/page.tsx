@@ -65,7 +65,8 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                 </a>
               </p>
               <p className="mt-2">
-                {t('imprint.phoneLabel')}: <a
+                {t('imprint.phoneLabel')}:{' '}
+                <a
                   href="tel:+4963211876643"
                   className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                 >
