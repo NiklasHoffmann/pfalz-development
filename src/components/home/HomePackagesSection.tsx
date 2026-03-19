@@ -1,4 +1,5 @@
 import type { PackageItem } from './types';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 interface HomePackagesSectionProps {
   title: string;
@@ -10,7 +11,8 @@ export function HomePackagesSection({
   items,
 }: HomePackagesSectionProps) {
   return (
-    <section
+    <RevealOnScroll
+      as="section"
       id="pakete"
       className="mx-auto max-w-7xl scroll-mt-[3.125rem] px-4 py-16 sm:scroll-mt-[3.875rem] sm:px-6 sm:py-20 md:scroll-mt-[3.625rem] lg:px-10"
     >
@@ -19,8 +21,10 @@ export function HomePackagesSection({
       </p>
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
         {items.map((item, index) => (
-          <article
+          <RevealOnScroll
+            as="article"
             key={item.name}
+            delayMs={80 + index * 90}
             className={`min-w-0 overflow-hidden rounded-[1.9rem] border p-6 ${
               index === 1
                 ? 'border-amber-300 bg-[linear-gradient(180deg,_#fff7e6,_#f6e7c8)] shadow-[0_20px_70px_rgba(245,158,11,0.18)] dark:border-amber-500 dark:bg-[linear-gradient(180deg,_#5c2b0e,_#3d1d09)]'
@@ -45,9 +49,9 @@ export function HomePackagesSection({
             >
               {item.description}
             </p>
-          </article>
+          </RevealOnScroll>
         ))}
       </div>
-    </section>
+    </RevealOnScroll>
   );
 }
