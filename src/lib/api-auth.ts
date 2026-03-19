@@ -20,7 +20,11 @@ export function requireAdminApiKey(request: NextRequest) {
   const providedKey = request.headers.get(ADMIN_HEADER)?.trim();
 
   // Fail closed: if no key is configured, the endpoint remains unavailable.
-  if (!configuredKey || !providedKey || !safeEquals(providedKey, configuredKey)) {
+  if (
+    !configuredKey ||
+    !providedKey ||
+    !safeEquals(providedKey, configuredKey)
+  ) {
     return errorResponse('Not found', 404);
   }
 
