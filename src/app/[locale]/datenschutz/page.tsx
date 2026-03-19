@@ -58,10 +58,10 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
               <p>
                 E-Mail:{' '}
                 <a
-                  href="mailto:hoffmann.niklas@googlemail.com"
+                  href="mailto:kontakt@pfalz-development.de"
                   className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                 >
-                  hoffmann.niklas@googlemail.com
+                  kontakt@pfalz-development.de
                 </a>
               </p>
             </section>

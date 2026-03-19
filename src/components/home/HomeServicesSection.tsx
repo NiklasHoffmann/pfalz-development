@@ -12,7 +12,7 @@ export function HomeServicesSection({
   return (
     <section
       id="leistungen"
-      className="mx-auto max-w-7xl scroll-mt-[4rem] px-4 py-16 sm:scroll-mt-[4.5rem] sm:px-6 sm:py-20 md:scroll-mt-[4.25rem] lg:px-10"
+      className="mx-auto max-w-7xl scroll-mt-[3.375rem] px-4 py-16 sm:scroll-mt-[3.875rem] sm:px-6 sm:py-20 md:scroll-mt-[3.625rem] lg:px-10"
     >
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
         {title}
