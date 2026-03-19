@@ -29,9 +29,9 @@ export function HomeContactSection({
     <RevealOnScroll
       as="section"
       id="kontakt"
-      className="scroll-mt-[4rem] px-4 pb-16 sm:scroll-mt-[4.5rem] sm:px-6 sm:pb-20 md:scroll-mt-[4.25rem] lg:px-10 lg:pb-24"
+      className="px-4 pb-16 pt-8 sm:px-6 sm:pb-20 lg:px-10 lg:pb-24"
     >
-      <div className="surface-contact dark:border-amber-300/18 mx-auto max-w-7xl overflow-hidden rounded-[2rem] px-5 py-8 text-stone-50 dark:border sm:px-8 sm:py-10 lg:px-12 lg:py-14">
+      <div className="surface-contact dark:border-amber-300/18 mx-auto max-w-7xl overflow-hidden rounded-[2rem] px-5 pb-[2.75rem] pt-5 text-stone-50 dark:border sm:px-8 sm:pb-12 sm:pt-8 lg:px-12 lg:pb-16 lg:pt-12">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-200 dark:text-amber-200">
           {navLabel}
         </p>

@@ -33,7 +33,7 @@ export function HomePackagesSection({
     <RevealOnScroll
       as="section"
       id="pakete"
-      className="mx-auto max-w-7xl scroll-mt-[3.125rem] px-4 py-16 sm:scroll-mt-[3.875rem] sm:px-6 sm:py-20 md:scroll-mt-[3.625rem] lg:px-10"
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-10"
     >
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
         {title}
@@ -93,7 +93,7 @@ export function HomePackagesSection({
           );
         })}
       </div>
-      <p className="mt-24 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
+      <p className="mt-16 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
         {note}
       </p>
     </RevealOnScroll>

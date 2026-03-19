@@ -6,6 +6,20 @@
   html {
     color-scheme: light;
     overflow-x: hidden;
+    --home-scroll-offset: calc(5.625rem + 1px);
+    scroll-padding-top: var(--home-scroll-offset);
+  }
+
+  @media (min-width: 640px) {
+    html {
+      --home-scroll-offset: calc(6.125rem + 1px);
+    }
+  }
+
+  @media (min-width: 768px) {
+    html {
+      --home-scroll-offset: calc(5.375rem + 1px);
+    }
   }
 
   html.dark {
@@ -51,6 +65,11 @@
   }
 
   .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .reveal-on-scroll:target {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }

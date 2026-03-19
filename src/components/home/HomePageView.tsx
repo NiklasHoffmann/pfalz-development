@@ -6,6 +6,7 @@ import { HomeHeroSection } from './HomeHeroSection';
 import { HomeMobileDock } from './HomeMobileDock';
 import { HomePackagesSection } from './HomePackagesSection';
 import { HomeProcessFaqSection } from './HomeProcessFaqSection';
+import { HomeScrollOffsetSync } from './HomeScrollOffsetSync';
 import { HomeServicesSection } from './HomeServicesSection';
 import type { HomePageData } from './types';
 
@@ -16,6 +17,7 @@ interface HomePageViewProps {
 export function HomePageView({ data }: HomePageViewProps) {
   return (
     <main className="surface-page min-h-screen overflow-x-clip pb-24 md:pb-0">
+      <HomeScrollOffsetSync />
       <HomeHeader appName={data.appName} navItems={data.navItems} />
       <HomeMobileDock items={data.mobileNavItems} />
       <HomeHeroSection
