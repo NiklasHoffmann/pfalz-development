@@ -54,20 +54,20 @@
       },
       "packages": {
         "title": "Pakete für typische Projekte",
-        "note": "Mir ist wichtig, dass auch kleinere Betriebe professionell online sichtbar werden. Deshalb gibt es einen klaren Einstieg ab 1.190 EUR und die Möglichkeit, später Schritt für Schritt auszubauen.",
-        "supportNote": "Hosting ab 19 EUR pro Monat, Pflege und Updates ab 119 EUR pro Monat.",
+        "note": "Mir ist wichtig, dass auch kleinere Betriebe professionell online sichtbar werden. Deshalb gibt es ein schnelles Minimalpaket als klaren Einstieg ab 1.090 EUR, das sich bei Bedarf flexibel erweitern lässt.",
+        "supportNote": "Im Minimalpaket ist Hosting verpflichtend enthalten (ab 9 EUR pro Monat). Bei allen anderen Paketen kannst du Hosting ab 9 EUR pro Monat dazubuchen. Pflege und Updates ab 109 EUR pro Monat.",
         "items": [
           {
             "name": "Kompakt",
-            "description": "Ab 1.790 EUR. Für kleinere Betriebe, die mehr Inhalt und einen klar strukturierten Gesamtauftritt brauchen."
+            "description": "Ab 1.690 EUR. Für kleinere Betriebe, die ihren Auftritt inhaltlich breiter aufstellen und als klare, stimmige Gesamtpräsenz zeigen möchten."
           },
           {
             "name": "Gastgeber",
-            "description": "Ab 2.990 EUR. Für Ferienwohnungen und Gastgeber, die Vertrauen aufbauen und direkte Anfragen bekommen wollen."
+            "description": "Ab 2.790 EUR. Für Ferienwohnungen und Gastgeber, die Vertrauen aufbauen und direkte Anfragen bekommen wollen."
           },
           {
             "name": "Individuell",
-            "description": "Ab 4.490 EUR. Für Unternehmen mit besonderen Anforderungen, mehr Inhalten oder erweitertem Funktionsumfang."
+            "description": "Ab 4.290 EUR. Für Unternehmen mit besonderen Anforderungen, mehr Inhalten oder erweitertem Funktionsumfang."
           }
         ]
       },
@@ -89,7 +89,7 @@
           },
           {
             "question": "Kann ich Hosting und Betreuung ebenfalls bekommen?",
-            "answer": "Ja. Erstellung, Hosting und laufende Betreuung bekommst du aus einer Hand. Hosting startet ab 19 EUR pro Monat, Pflege und Updates ab 119 EUR pro Monat."
+            "answer": "Ja. Erstellung, Hosting und laufende Betreuung bekommst du aus einer Hand. Im Minimalpaket ist Hosting verpflichtend enthalten (ab 9 EUR pro Monat), bei allen anderen Paketen kannst du es ab 9 EUR pro Monat dazubuchen. Pflege und Updates ab 109 EUR pro Monat."
           },
           {
             "question": "Ist auch eine englische Version möglich?",
