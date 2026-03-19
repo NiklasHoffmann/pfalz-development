@@ -222,7 +222,7 @@
       "recipientsTitle": "Empfänger von Daten",
       "recipientsText": "Eine Weitergabe an Dritte erfolgt nur, soweit dies zur Vertragserfüllung, zur technischen Bereitstellung (z. B. Hosting, E-Mail-Versand) oder aufgrund gesetzlicher Verpflichtungen erforderlich ist. Für Reichweitenmessung über QR-Links werden pseudonymisierte Zugriffsdaten verarbeitet.",
       "processorsTitle": "Hosting und Auftragsverarbeiter",
-      "processorsText": "Das Hosting erfolgt über STRATO AG, Otto-Ostrowski-Strasse 7, 10249 Berlin, Deutschland. Mit dem Hosting-Anbieter besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Der E-Mail-Versand erfolgt über einen technisch eingebundenen E-Mail-Dienstleister (SMTP-Anbieter) im Rahmen der technischen Kommunikation.",
+      "processorsText": "Das Hosting erfolgt über STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin, Deutschland. Mit dem Hosting-Anbieter besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Der E-Mail-Versand erfolgt über einen technisch eingebundenen E-Mail-Dienstleister (SMTP-Anbieter) im Rahmen der technischen Kommunikation.",
       "storageTitle": "Speicherdauer",
       "storageText": "Kontaktanfragen werden in E-Mail-Postfächern in der Regel bis zu 12 Monate gespeichert, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Pseudonymisierte QR-Tracking-Daten werden automatisch nach 90 Tagen gelöscht.",
       "securityTitle": "Sicherheitsmaßnahmen",

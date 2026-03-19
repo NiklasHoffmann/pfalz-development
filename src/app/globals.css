@@ -45,7 +45,7 @@
 
   body {
     @apply bg-white text-gray-900 dark:bg-stone-900 dark:text-stone-100;
-    font-family: var(--font-body), Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
