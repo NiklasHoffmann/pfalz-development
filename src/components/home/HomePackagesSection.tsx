@@ -46,9 +46,7 @@ export function HomePackagesSection({
             item.description
           );
           const normalizedPriceLine = priceLine
-            ? priceLine
-                .replace(/^Ab\b/, 'ab')
-                .replace(/^From\b/, 'from')
+            ? priceLine.replace(/^Ab\b/, 'ab').replace(/^From\b/, 'from')
             : null;
 
           return (
