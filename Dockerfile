@@ -15,6 +15,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Force a production-like Next.js build regardless of external env injection.
+ENV NODE_ENV=production
+
 # Environment variables must be present at build time
 ARG MONGODB_URI=mongodb://localhost:27017/nextjs-starter
 ARG NEXT_PUBLIC_APP_URL=http://localhost:3000
