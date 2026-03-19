@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useTransition,
+} from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { routing, usePathname, useRouter } from '@/routing';
@@ -218,7 +224,13 @@ export function LanguageToggle() {
 
       {/* Preload icons to avoid visual flash when switching locales */}
       <div className="hidden" aria-hidden="true">
-        <Image src="/icons/germany.svg" alt="" width={24} height={16} priority />
+        <Image
+          src="/icons/germany.svg"
+          alt=""
+          width={24}
+          height={16}
+          priority
+        />
         <Image
           src="/icons/united-kingdom.svg"
           alt=""
@@ -226,7 +238,13 @@ export function LanguageToggle() {
           height={16}
           priority
         />
-        <Image src="/icons/dubbeglas.svg" alt="" width={24} height={16} priority />
+        <Image
+          src="/icons/dubbeglas.svg"
+          alt=""
+          width={24}
+          height={16}
+          priority
+        />
       </div>
     </div>
   );
