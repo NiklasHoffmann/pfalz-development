@@ -97,17 +97,6 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                 {t('imprint.disputeResolutionTitle')}
               </h2>
               <p className="mt-3">{t('imprint.disputeResolutionText')}</p>
-              <a
-                href="https://ec.europa.eu/consumers/odr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-block font-medium text-amber-700 hover:underline dark:text-amber-300"
-              >
-                https://ec.europa.eu/consumers/odr/
-              </a>
-              <p className="mt-3">
-                {t('imprint.disputeResolutionParticipationText')}
-              </p>
             </section>
 
             <section>
