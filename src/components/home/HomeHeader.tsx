@@ -10,34 +10,35 @@ interface HomeHeaderProps {
 export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
   return (
     <div className="surface-header fixed inset-x-0 top-0 z-40 border-b border-stone-300/80 backdrop-blur-xl dark:border-stone-600/90">
-      <div className="mx-auto max-w-7xl px-[40px] py-[5px]">
+      <div className="mx-auto min-h-[50px] max-w-7xl px-4 py-[9px] sm:min-h-[58px] sm:px-6 lg:px-10">
         <div className="flex items-center justify-between gap-2 sm:gap-3 lg:gap-6">
           <a
             href="#start"
-            className="inline-flex min-w-0 items-center"
+            className="inline-flex min-w-0 items-center leading-none"
             aria-label={appName}
           >
-            <Image
-              src="/pfalz-development-logo-light.png"
-              alt={appName}
-              width={1536}
-              height={1024}
-              sizes="(max-width: 640px) 64px, (max-width: 1024px) 74px, 84px"
-              quality={40}
-              priority
-              className="h-[3rem] w-auto object-contain dark:hidden sm:h-[3.35rem] lg:h-[3.65rem]"
-            />
-            <Image
-              src="/pfalz-development-logo-dark.png"
-              alt={appName}
-              width={1536}
-              height={1024}
-              sizes="(max-width: 640px) 64px, (max-width: 1024px) 74px, 84px"
-              quality={50}
-              loading="lazy"
-              fetchPriority="low"
-              className="hidden h-[3rem] w-auto object-contain dark:block sm:h-[3.35rem] lg:h-[3.65rem]"
-            />
+            <span className="-mb-[32px] -mt-[8px] inline-grid place-items-center">
+              <Image
+                src="/pfalz-development-logo-light-ohne-schrift.png"
+                alt={appName}
+                width={1536}
+                height={1024}
+                sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
+                quality={100}
+                priority
+                className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-100 dark:opacity-0 sm:h-[4.25rem] lg:h-[4.64rem]"
+              />
+              <Image
+                src="/pfalz-development-logo-dark-ohne-schrift.png"
+                alt={appName}
+                width={1536}
+                height={1024}
+                sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
+                quality={100}
+                priority
+                className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-0 dark:opacity-100 sm:h-[4.25rem] lg:h-[4.64rem]"
+              />
+            </span>
           </a>
 
           <nav className="hidden items-center gap-5 md:flex lg:gap-6">

@@ -183,7 +183,7 @@ export default async function HomePage({ params }: HomePageProps) {
       addressLocality: 'Neustadt an der Weinstrasse',
       addressCountry: 'DE',
     },
-    email: 'hoffmann.niklas@googlemail.com',
+    email: 'kontakt@pfalz-development.de',
     serviceType: [
       'Webdesign',
       'Webentwicklung',
