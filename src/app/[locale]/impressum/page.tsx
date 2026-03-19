@@ -64,6 +64,14 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                   kontakt@pfalz-development.de
                 </a>
               </p>
+              <p className="mt-2">
+                {t('imprint.phoneLabel')}: <a
+                  href="tel:+4963211876643"
+                  className="font-medium text-amber-700 hover:underline dark:text-amber-300"
+                >
+                  06321 1876643
+                </a>
+              </p>
             </section>
 
             <section>
@@ -73,13 +81,6 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
               <p className="mt-3">Niklas Hoffmann</p>
               <p>Fröbelstraße 20</p>
               <p>67433 Neustadt an der Weinstraße</p>
-            </section>
-
-            <section>
-              <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
-                {t('imprint.noticeTitle')}
-              </h2>
-              <p className="mt-3">{t('imprint.noticeText')}</p>
             </section>
 
             <section>
@@ -94,6 +95,14 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                 {t('imprint.disputeResolutionTitle')}
               </h2>
               <p className="mt-3">{t('imprint.disputeResolutionText')}</p>
+              <a
+                href="https://ec.europa.eu/consumers/odr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block font-medium text-amber-700 hover:underline dark:text-amber-300"
+              >
+                https://ec.europa.eu/consumers/odr/
+              </a>
             </section>
 
             <section>
