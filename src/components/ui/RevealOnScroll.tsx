@@ -3,7 +3,7 @@
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 
-type RevealTag = 'div' | 'section' | 'article' | 'p' | 'span';
+type RevealTag = 'div' | 'section' | 'article' | 'p' | 'span' | 'li';
 
 interface RevealOnScrollProps extends HTMLAttributes<HTMLElement> {
   as?: RevealTag;
@@ -25,7 +25,13 @@ export function RevealOnScroll({
   rootMargin = '0px 0px -10% 0px',
   ...rest
 }: RevealOnScrollProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
   const elementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -39,7 +45,6 @@ export function RevealOnScroll({
     ).matches;
 
     if (prefersReducedMotion) {
-      setIsVisible(true);
       return;
     }
 

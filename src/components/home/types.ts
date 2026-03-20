@@ -37,6 +37,9 @@ export type MobileNavItem = NavItem & {
 
 export type HomePageData = {
   appName: string;
+  accessibility: {
+    skipToContentLabel: string;
+  };
   navItems: NavItem[];
   mobileNavItems: MobileNavItem[];
   hero: {

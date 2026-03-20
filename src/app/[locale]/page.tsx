@@ -24,6 +24,11 @@ function localeToPath(locale: string): string {
   return locale === 'de' ? '' : `/${locale}`;
 }
 
+function localeToLanguageTag(locale: string): string {
+  if (locale === 'en') return 'en-US';
+  return 'de-DE';
+}
+
 export async function generateMetadata({
   params,
 }: HomePageProps): Promise<Metadata> {
@@ -52,6 +57,7 @@ export async function generateMetadata({
       languages: {
         de: '/',
         en: '/en',
+        'de-PF': '/pfl',
         'x-default': '/',
       },
     },
@@ -110,9 +116,13 @@ export default async function HomePage({ params }: HomePageProps) {
   ];
   const canonicalPath = localeToPath(locale);
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
+  const inLanguage = localeToLanguageTag(locale);
 
   const pageData: HomePageData = {
     appName: t('appName'),
+    accessibility: {
+      skipToContentLabel: t('accessibility.skipToContent'),
+    },
     navItems,
     mobileNavItems,
     hero: {
@@ -170,8 +180,21 @@ export default async function HomePage({ params }: HomePageProps) {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
+    '@id': `${canonicalUrl}#professional-service`,
     name: siteConfig.name,
+    inLanguage,
     url: canonicalUrl,
+    email: 'kontakt@pfalz-development.de',
+    telephone: '+4963211876643',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+4963211876643',
+      email: 'kontakt@pfalz-development.de',
+      contactType: 'customer support',
+      areaServed: 'DE',
+      availableLanguage: ['de', 'en'],
+    },
+    sameAs: [siteConfig.links.github],
     areaServed: [
       'Neustadt an der Weinstrasse',
       'Landau in der Pfalz',
@@ -187,7 +210,6 @@ export default async function HomePage({ params }: HomePageProps) {
       addressLocality: 'Neustadt an der Weinstrasse',
       addressCountry: 'DE',
     },
-    email: 'kontakt@pfalz-development.de',
     serviceType: [
       'Webdesign',
       'Webentwicklung',
@@ -197,9 +219,24 @@ export default async function HomePage({ params }: HomePageProps) {
     ],
   };
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteConfig.url}#website`,
+    url: siteConfig.url,
+    inLanguage,
+    name: siteConfig.name,
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    inLanguage,
     mainEntity: faqItems.map((item) => ({
       '@type': 'Question',
       name: item.question,
@@ -213,6 +250,12 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <HomePageView data={pageData} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

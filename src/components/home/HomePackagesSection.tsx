@@ -37,6 +37,7 @@ export function HomePackagesSection({
   modalIncludesTitle,
   items,
 }: HomePackagesSectionProps) {
+  const packageDialogId = 'package-details-dialog';
   const closeTimeoutRef = useRef<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activePackageName, setActivePackageName] = useState<string | null>(
@@ -135,6 +136,9 @@ export function HomePackagesSection({
                   setActivePackageName(item.name);
                   setIsModalOpen(true);
                 }}
+                aria-haspopup="dialog"
+                aria-controls={packageDialogId}
+                aria-expanded={isModalOpen && activePackageName === item.name}
                 className={`mt-6 inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
                   index === 1
                     ? 'border-amber-500/50 bg-amber-100/60 text-stone-900 hover:bg-amber-100 focus-visible:ring-amber-500 focus-visible:ring-offset-amber-100 dark:border-amber-300/50 dark:bg-amber-100/10 dark:text-amber-100 dark:hover:bg-amber-100/20 dark:focus-visible:ring-amber-300 dark:focus-visible:ring-offset-stone-900'
@@ -173,6 +177,7 @@ export function HomePackagesSection({
         title={activePackage?.name}
         description={activePriceAndDetails?.priceLine ?? undefined}
         size="lg"
+        contentId={packageDialogId}
       >
         {activePackage && activePriceAndDetails ? (
           <div className="space-y-5">

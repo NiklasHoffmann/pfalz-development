@@ -1,6 +1,9 @@
 {
   "common": {
     "appName": "Pfalz Development",
+    "accessibility": {
+      "skipToContent": "Skip to main content"
+    },
     "welcome": "Welcome",
     "home": {
       "eyebrow": "Websites for businesses in the Palatinate",
@@ -137,10 +140,19 @@
           "description": "Send me a few details about your project and I will get back to you.",
           "submit": "Send inquiry",
           "privacyNote": "By submitting, your inquiry is sent to me for processing.",
+          "privacyLinkLabel": "Privacy policy",
           "status": {
             "loading": "Sending...",
             "success": "Your inquiry was sent successfully.",
             "error": "Your inquiry could not be sent right now."
+          },
+          "validation": {
+            "nameMin": "Name must be at least 2 characters long.",
+            "businessMax": "Business or project must not exceed 80 characters.",
+            "emailRequired": "Email is required.",
+            "emailInvalid": "Please enter a valid email address.",
+            "phoneMax": "Phone number must not exceed 30 characters.",
+            "messageMin": "Message must be at least 20 characters long."
           },
           "fields": {
             "name": {

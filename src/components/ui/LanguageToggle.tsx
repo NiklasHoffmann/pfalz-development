@@ -224,27 +224,9 @@ export function LanguageToggle() {
 
       {/* Preload icons to avoid visual flash when switching locales */}
       <div className="hidden" aria-hidden="true">
-        <Image
-          src="/icons/germany.svg"
-          alt=""
-          width={24}
-          height={16}
-          priority
-        />
-        <Image
-          src="/icons/united-kingdom.svg"
-          alt=""
-          width={24}
-          height={16}
-          priority
-        />
-        <Image
-          src="/icons/dubbeglas.svg"
-          alt=""
-          width={24}
-          height={16}
-          priority
-        />
+        <Image src="/icons/germany.svg" alt="" width={24} height={16} />
+        <Image src="/icons/united-kingdom.svg" alt="" width={24} height={16} />
+        <Image src="/icons/dubbeglas.svg" alt="" width={24} height={16} />
       </div>
     </div>
   );

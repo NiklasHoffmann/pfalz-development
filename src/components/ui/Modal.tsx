@@ -11,6 +11,7 @@ export interface ModalProps {
   title?: string;
   description?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  contentId?: string;
 }
 
 const sizeClasses = {
@@ -28,6 +29,7 @@ export default function Modal({
   title,
   description,
   size = 'md',
+  contentId,
 }: ModalProps) {
   const lockedScrollYRef = useRef(0);
 
@@ -95,8 +97,8 @@ export default function Modal({
   const accessibleTitle = title?.trim() || 'Dialog';
 
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange} modal={false}>
-      <Dialog.Portal forceMount>
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal>
         <div
           className={cn(
             'fixed inset-0 z-50 bg-black/50 transition-opacity',
@@ -109,7 +111,7 @@ export default function Modal({
           onClick={() => onOpenChange(false)}
         />
         <Dialog.Content
-          forceMount
+          id={contentId}
           className={cn(
             'fixed left-1/2 top-1/2 z-[60] w-full -translate-x-1/2 -translate-y-1/2',
             'rounded-lg border border-gray-200 bg-white p-6 shadow-lg',

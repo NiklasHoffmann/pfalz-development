@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
@@ -61,6 +61,7 @@ export const metadata: Metadata = {
     languages: {
       de: '/',
       en: '/en',
+      'de-PF': '/pfl',
       'x-default': '/',
     },
   },
@@ -79,6 +80,16 @@ export const metadata: Metadata = {
     'geo.region': 'DE-RP',
     'geo.placename': 'Neustadt an der Weinstrasse',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fcfbf7' },
+    { media: '(prefers-color-scheme: dark)', color: '#2c2623' },
+  ],
 };
 
 export function generateStaticParams() {

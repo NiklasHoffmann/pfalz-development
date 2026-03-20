@@ -58,6 +58,44 @@
     padding-right: 0 !important;
     --removed-body-scroll-bar-size: 0px !important;
   }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [role='button']:focus-visible,
+  [role='menuitem']:focus-visible,
+  [role='menuitemradio']:focus-visible {
+    outline: 3px solid #b45309;
+    outline-offset: 2px;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 0.75rem;
+    z-index: 120;
+    transform: translateY(-180%);
+    border-radius: 9999px;
+    background: #1c1917;
+    color: #fafaf9;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 14px 34px rgba(28, 25, 23, 0.28);
+    transition: transform 180ms ease;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  .dark .skip-link {
+    background: #fbbf24;
+    color: #1c1917;
+  }
 }
 
 @layer components {
@@ -82,12 +120,24 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
     .reveal-on-scroll,
     .reveal-on-scroll.is-visible {
       opacity: 1;
       transform: none;
       transition: none;
       will-change: auto;
+    }
+
+    html.theme-transition,
+    html.theme-transition body,
+    html.theme-transition *,
+    html.theme-transition *::before,
+    html.theme-transition *::after {
+      transition: none !important;
     }
   }
 
