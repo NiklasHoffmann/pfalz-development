@@ -2,11 +2,9 @@
 
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Toaster } from 'react-hot-toast';
 import Form from '@/components/ui/Form/Form';
 import Input from '@/components/ui/Form/Input';
 import Textarea from '@/components/ui/Form/Textarea';
-import { useNotification } from '@/hooks/useNotification';
 import { useZodForm } from '@/hooks/useZodForm';
 import { Link } from '@/routing';
 import {
@@ -21,8 +19,10 @@ type ContactApiResponse = {
 
 export function ContactForm() {
   const t = useTranslations('common.home.contact.form');
-  const notification = useNotification();
   const [statusMessage, setStatusMessage] = useState('');
+  const [statusType, setStatusType] = useState<'success' | 'error' | null>(
+    null
+  );
   const contactSchema = useMemo(() => createContactSchema(t), [t]);
   const form = useZodForm<ContactFormValues>({
     schema: contactSchema,
@@ -44,6 +44,9 @@ export function ContactForm() {
   } = form;
 
   const onSubmit = handleSubmit(async (values) => {
+    setStatusMessage('');
+    setStatusType(null);
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -59,20 +62,19 @@ export function ContactForm() {
         throw new Error(result.error || t('status.error'));
       }
 
-      notification.success(t('status.success'));
       setStatusMessage(t('status.success'));
+      setStatusType('success');
       reset();
     } catch (error) {
       const message =
         error instanceof Error ? error.message : t('status.error');
-      notification.error(message);
       setStatusMessage(message);
+      setStatusType('error');
     }
   });
 
   return (
-    <>
-      <div className="rounded-[1.75rem] bg-white p-6 text-stone-900 shadow-[0_25px_80px_rgba(0,0,0,0.18)] dark:border dark:border-stone-600/90 dark:bg-stone-900 dark:text-stone-100 dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+    <div className="rounded-[1.75rem] bg-white p-6 text-stone-900 shadow-[0_25px_80px_rgba(0,0,0,0.18)] dark:border dark:border-stone-600/90 dark:bg-stone-900 dark:text-stone-100 dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
         <div className="mb-6">
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-200">
             {t('eyebrow')}
@@ -171,12 +173,23 @@ export function ContactForm() {
             </button>
           </div>
 
-          <p id="contact-form-status" className="sr-only" aria-live="polite">
-            {statusMessage}
-          </p>
+          {statusMessage ? (
+            <p
+              id="contact-form-status"
+              className={`rounded-xl border px-4 py-3 text-sm font-medium ${
+                statusType === 'success'
+                  ? 'border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-500/60 dark:bg-emerald-900/30 dark:text-emerald-200'
+                  : 'border-rose-300 bg-rose-50 text-rose-800 dark:border-rose-500/60 dark:bg-rose-900/30 dark:text-rose-200'
+              }`}
+              role={statusType === 'error' ? 'alert' : 'status'}
+              aria-live={statusType === 'error' ? 'assertive' : 'polite'}
+            >
+              {statusMessage}
+            </p>
+          ) : (
+            <p id="contact-form-status" className="sr-only" aria-live="polite" />
+          )}
         </Form>
       </div>
-      <Toaster position="top-right" />
-    </>
   );
 }
