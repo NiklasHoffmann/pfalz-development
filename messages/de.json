@@ -1,6 +1,9 @@
 {
   "common": {
     "appName": "Pfalz Development",
+    "accessibility": {
+      "skipToContent": "Zum Inhalt springen"
+    },
     "welcome": "Willkommen",
     "home": {
       "eyebrow": "Websites für Unternehmen in der Pfalz",
@@ -137,10 +140,19 @@
           "description": "Schick mir kurz ein paar Infos zu deinem Projekt. Ich melde mich dann bei dir zurück.",
           "submit": "Anfrage absenden",
           "privacyNote": "Mit dem Absenden wird deine Anfrage zur Bearbeitung an mich übermittelt.",
+          "privacyLinkLabel": "Datenschutzhinweise",
           "status": {
             "loading": "Wird gesendet...",
             "success": "Deine Anfrage wurde erfolgreich übermittelt.",
             "error": "Die Anfrage konnte gerade nicht gesendet werden."
+          },
+          "validation": {
+            "nameMin": "Der Name muss mindestens 2 Zeichen lang sein.",
+            "businessMax": "Betrieb oder Projekt darf maximal 80 Zeichen lang sein.",
+            "emailRequired": "E-Mail ist erforderlich.",
+            "emailInvalid": "Bitte gib eine gültige E-Mail-Adresse ein.",
+            "phoneMax": "Telefonnummer darf maximal 30 Zeichen lang sein.",
+            "messageMin": "Die Nachricht muss mindestens 20 Zeichen lang sein."
           },
           "fields": {
             "name": {

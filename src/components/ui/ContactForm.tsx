@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Toaster } from 'react-hot-toast';
 import Form from '@/components/ui/Form/Form';
@@ -7,8 +8,9 @@ import Input from '@/components/ui/Form/Input';
 import Textarea from '@/components/ui/Form/Textarea';
 import { useNotification } from '@/hooks/useNotification';
 import { useZodForm } from '@/hooks/useZodForm';
+import { Link } from '@/routing';
 import {
-  contactSchema,
+  createContactSchema,
   type ContactFormValues,
 } from '@/schemas/contact.schema';
 
@@ -20,6 +22,8 @@ type ContactApiResponse = {
 export function ContactForm() {
   const t = useTranslations('common.home.contact.form');
   const notification = useNotification();
+  const [statusMessage, setStatusMessage] = useState('');
+  const contactSchema = useMemo(() => createContactSchema(t), [t]);
   const form = useZodForm<ContactFormValues>({
     schema: contactSchema,
     defaultValues: {
@@ -56,11 +60,13 @@ export function ContactForm() {
       }
 
       notification.success(t('status.success'));
+      setStatusMessage(t('status.success'));
       reset();
     } catch (error) {
       const message =
         error instanceof Error ? error.message : t('status.error');
       notification.error(message);
+      setStatusMessage(message);
     }
   });
 
@@ -83,11 +89,13 @@ export function ContactForm() {
           onSubmit={onSubmit}
           isLoading={isSubmitting}
           className="space-y-4"
+          aria-describedby="contact-form-status"
         >
           <input
             type="text"
             className="hidden"
             tabIndex={-1}
+            aria-hidden="true"
             autoComplete="off"
             {...register('website')}
           />
@@ -98,6 +106,7 @@ export function ContactForm() {
             error={errors.name?.message}
             className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
             required
+            autoComplete="name"
             {...register('name')}
           />
 
@@ -106,6 +115,7 @@ export function ContactForm() {
             placeholder={t('fields.business.placeholder')}
             error={errors.business?.message}
             className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
+            autoComplete="organization"
             {...register('business')}
           />
 
@@ -117,6 +127,7 @@ export function ContactForm() {
               error={errors.email?.message}
               className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
               required
+              autoComplete="email"
               {...register('email')}
             />
 
@@ -126,6 +137,8 @@ export function ContactForm() {
               placeholder={t('fields.phone.placeholder')}
               error={errors.phone?.message}
               className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
+              autoComplete="tel"
+              inputMode="tel"
               {...register('phone')}
             />
           </div>
@@ -141,7 +154,13 @@ export function ContactForm() {
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs leading-5 text-stone-500 dark:text-stone-300">
-              {t('privacyNote')}
+              {t('privacyNote')}{' '}
+              <Link
+                href="/datenschutz"
+                className="font-semibold underline decoration-amber-600/70 underline-offset-2 hover:decoration-amber-500"
+              >
+                {t('privacyLinkLabel')}
+              </Link>
             </p>
             <button
               type="submit"
@@ -151,6 +170,10 @@ export function ContactForm() {
               {isSubmitting ? t('status.loading') : t('submit')}
             </button>
           </div>
+
+          <p id="contact-form-status" className="sr-only" aria-live="polite">
+            {statusMessage}
+          </p>
         </Form>
       </div>
       <Toaster position="top-right" />

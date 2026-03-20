@@ -18,17 +18,21 @@ export function HomeProcessFaqSection({
     <RevealOnScroll
       as="section"
       id="ablauf"
+      aria-labelledby="home-process-title"
       className="mx-auto max-w-7xl px-4 pb-16 pt-9 sm:px-6 sm:py-20 lg:px-10"
     >
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="min-w-0">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
+          <h2
+            id="home-process-title"
+            className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200"
+          >
             {processTitle}
-          </p>
-          <div className="mt-10 grid gap-4">
+          </h2>
+          <ol className="mt-10 grid gap-4" aria-label={processTitle}>
             {processSteps.map((step, index) => (
               <RevealOnScroll
-                as="div"
+                as="li"
                 key={`${step}-${index}`}
                 delayMs={80 + index * 75}
                 className="bg-white/94 dark:bg-stone-800/82 flex min-w-0 items-start gap-4 overflow-hidden rounded-2xl border border-stone-200/90 px-5 py-4 shadow-sm dark:border-stone-700/80"
@@ -41,16 +45,16 @@ export function HomeProcessFaqSection({
                 </p>
               </RevealOnScroll>
             ))}
-          </div>
+          </ol>
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
             {faqTitle}
-          </p>
-          <div className="mt-10 grid gap-4">
+          </h2>
+          <ul className="mt-10 grid gap-4" aria-label={faqTitle}>
             {faqItems.map((item, index) => (
               <RevealOnScroll
-                as="article"
+                as="li"
                 key={`${item.question}-${index}`}
                 delayMs={110 + index * 80}
                 className="bg-white/92 dark:bg-stone-800/82 min-w-0 overflow-hidden rounded-2xl border border-stone-200/90 px-5 py-5 shadow-sm dark:border-stone-700/80"
@@ -63,7 +67,7 @@ export function HomeProcessFaqSection({
                 </p>
               </RevealOnScroll>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </RevealOnScroll>

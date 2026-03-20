@@ -29,6 +29,7 @@ export function HomeContactSection({
     <RevealOnScroll
       as="section"
       id="kontakt"
+      aria-labelledby="home-contact-title"
       className="px-4 pb-16 pt-4 sm:px-6 sm:pb-20 sm:pt-8 lg:px-10 lg:pb-24"
     >
       <div className="surface-contact dark:border-amber-300/18 mx-auto max-w-7xl overflow-hidden rounded-[2rem] px-5 pb-[2.75rem] pt-5 text-stone-50 dark:border sm:px-8 sm:pb-12 sm:pt-8 lg:px-12 lg:pb-16 lg:pt-12">
@@ -37,7 +38,10 @@ export function HomeContactSection({
         </p>
         <div className="mt-6 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div className="min-w-0">
-            <h2 className="text-3xl font-black tracking-tight md:text-4xl">
+            <h2
+              id="home-contact-title"
+              className="text-3xl font-black tracking-tight md:text-4xl"
+            >
               {title}
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-stone-200/95 dark:text-stone-200/95">
@@ -89,7 +93,7 @@ export function HomeContactSection({
                   {phoneDisplay}
                 </a>
               </div>
-              <div className="rounded-2xl bg-white/10 px-5 py-4 dark:bg-white/10">
+              <address className="rounded-2xl bg-white/10 px-5 py-4 not-italic dark:bg-white/10">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-200 dark:text-stone-200">
                   {details.addressLabel}
                 </p>
@@ -98,7 +102,7 @@ export function HomeContactSection({
                     <p key={line}>{line}</p>
                   ))}
                 </div>
-              </div>
+              </address>
             </div>
 
             <p className="mt-6 text-sm text-stone-200 dark:text-stone-200">

@@ -9,7 +9,7 @@ interface HomeHeaderProps {
 
 export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
   return (
-    <div
+    <header
       id="home-header"
       className="surface-header fixed inset-x-0 top-0 z-40 border-b border-stone-300/80 backdrop-blur-xl dark:border-stone-600/90"
     >
@@ -43,12 +43,15 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-5 md:flex lg:gap-6">
+          <nav
+            className="hidden items-center gap-5 md:flex lg:gap-6"
+            aria-label={`${appName} Hauptnavigation`}
+          >
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-stone-700 transition hover:text-stone-950 dark:text-stone-200 dark:hover:text-white"
+                className="rounded-md px-1.5 py-1 text-sm font-medium text-stone-700 transition hover:text-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:text-stone-200 dark:hover:text-white dark:focus-visible:ring-amber-300"
               >
                 {item.label}
               </a>
@@ -58,6 +61,6 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
           <HomeHeaderControls />
         </div>
       </div>
-    </div>
+    </header>
   );
 }

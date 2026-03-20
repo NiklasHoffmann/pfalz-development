@@ -1,6 +1,9 @@
 {
   "common": {
     "appName": "Pfalz Development",
+    "accessibility": {
+      "skipToContent": "Direkt zum Inhald springe"
+    },
     "welcome": "Herzlisch Willkumme",
     "home": {
       "eyebrow": "Websites fer Betriewe in de Palz",
@@ -137,10 +140,19 @@
           "description": "Schick mir kurz e paar Infos zu deim Projekd. Isch meld mich dann bei dir zrick.",
           "submit": "Aafrooch abschicke",
           "privacyNote": "Mit em Abschicke werd dei Aafrooch zur Bearbeitung an mich iwwertrache.",
+          "privacyLinkLabel": "Datenschutzhinweise",
           "status": {
             "loading": "Wird verschickt...",
             "success": "Dei Aafrooch is erfolgreich iwwertrache worre.",
             "error": "Dei Aafrooch hot grad net verschickt werre kenne."
+          },
+          "validation": {
+            "nameMin": "De Name muss mindestens 2 Zeiche lang sei.",
+            "businessMax": "Betrieb odder Projekt derf maximal 80 Zeiche lang sei.",
+            "emailRequired": "E-Mail is verpflichtend.",
+            "emailInvalid": "Bitte geb e gülti E-Mail-Adress ei.",
+            "phoneMax": "Delefonnummer derf maximal 30 Zeiche lang sei.",
+            "messageMin": "Die Nachricht muss mindestens 20 Zeiche lang sei."
           },
           "fields": {
             "name": {
