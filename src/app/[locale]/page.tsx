@@ -29,6 +29,18 @@ function localeToLanguageTag(locale: string): string {
   return 'de-DE';
 }
 
+function localeToSeoTitle(locale: string): string {
+  if (locale === 'en') {
+    return 'Web Design for Palatinate Businesses | Pfalz Development';
+  }
+
+  if (locale === 'pfl') {
+    return 'Webdesign in de Palz | Pfalz Development';
+  }
+
+  return 'Webdesign Pfalz fuer Unternehmen | Pfalz Development';
+}
+
 export async function generateMetadata({
   params,
 }: HomePageProps): Promise<Metadata> {
@@ -36,9 +48,10 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'common.home' });
   const canonicalPath = localeToPath(locale);
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
+  const seoTitle = localeToSeoTitle(locale);
 
   return {
-    title: t('headline'),
+    title: seoTitle,
     description: t('subheadline'),
     keywords: [
       'Website erstellen lassen Pfalz',
@@ -65,7 +78,7 @@ export async function generateMetadata({
       type: 'website',
       locale: localeToOgLocale(locale),
       url: canonicalUrl,
-      title: t('headline'),
+      title: seoTitle,
       description: t('subheadline'),
       siteName: siteConfig.name,
       images: [
@@ -79,7 +92,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: t('headline'),
+      title: seoTitle,
       description: t('subheadline'),
       images: [siteConfig.ogImage],
     },

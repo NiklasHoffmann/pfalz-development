@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 const useStandaloneOutput = process.env.NEXT_OUTPUT_STANDALONE === '1';
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   typescript: {
     ignoreBuildErrors: false,
   },

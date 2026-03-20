@@ -38,7 +38,8 @@ export function createContactSchema(
 
 const fallbackValidationMessages: Record<string, string> = {
   'validation.nameMin': 'Name must be at least 2 characters long.',
-  'validation.businessMax': 'Business or project must not exceed 80 characters.',
+  'validation.businessMax':
+    'Business or project must not exceed 80 characters.',
   'validation.emailRequired': 'Email is required.',
   'validation.emailInvalid': 'Please enter a valid email address.',
   'validation.phoneMax': 'Phone number must not exceed 30 characters.',
