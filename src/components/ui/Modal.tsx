@@ -73,8 +73,8 @@ export default function Modal({
             'fixed inset-0 z-50 bg-black/50 transition-opacity',
             'ease-[cubic-bezier(0.22,1,0.36,1)]',
             open
-              ? 'duration-[420ms] opacity-100'
-              : 'pointer-events-none duration-[360ms] opacity-0'
+              ? 'opacity-100 duration-[420ms]'
+              : 'pointer-events-none opacity-0 duration-[360ms]'
           )}
           aria-hidden="true"
           onClick={() => onOpenChange(false)}
@@ -87,8 +87,8 @@ export default function Modal({
             'dark:border-gray-700 dark:bg-gray-800',
             'transition-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)]',
             open
-              ? 'duration-[420ms] opacity-100 scale-100'
-              : 'pointer-events-none duration-[360ms] opacity-0 scale-[0.99]',
+              ? 'scale-100 opacity-100 duration-[420ms]'
+              : 'pointer-events-none scale-[0.99] opacity-0 duration-[360ms]',
             sizeClasses[size]
           )}
         >
