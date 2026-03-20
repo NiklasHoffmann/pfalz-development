@@ -1,75 +1,116 @@
 # 14-Tage Plan: Security + Offpage SEO
 
-Stand: 2026-03-20
+Stand: 2026-03-20 (aktualisiert)
 
-## Ziel
-- Security-Hardening technisch abschliessen.
-- Offpage-Signale (Backlinks, Local Signals, Brand Mentions) strukturiert aufbauen.
+## Statusuebersicht
 
-## Tag 1-2: Security Deployment + Verifikation
-1. Deployment ausrollen, damit neue Security-Header live sind.
-2. Live-Checks ausfuehren:
-   - `curl -I https://pfalz-development.de`
-   - `curl -I https://pfalz-development.de/en`
-3. Soll-Header pruefen:
+### Erledigt
+
+1. Security-Header live:
    - Strict-Transport-Security
    - Content-Security-Policy
    - Referrer-Policy
    - Permissions-Policy
    - X-Frame-Options
    - X-Content-Type-Options
-4. Externe Tests:
-   - https://securityheaders.com/
-   - SSL Labs fuer `pfalz-development.de` und `www.pfalz-development.de`
+   - Cross-Origin-Opener-Policy
+   - Cross-Origin-Resource-Policy
+2. HTTPS auf Hauptdomain aktiv und stabil.
+3. www auf non-www Redirect auf HTTPS-Ebene aktiv.
+4. Canonical/Hreflang auf non-www korrekt sichtbar.
+5. SEO-Titel verkuerzt und live.
+6. SecurityHeaders-Scan mit Note A dokumentiert.
+7. SSL Labs Check fuer Hauptdomain mit Note A dokumentiert.
+8. Automatisierter Live-Check verfuegbar ueber `npm run security:check-live`.
 
-## Tag 3-4: Redirect/Canonical Kontrolle
-1. Redirect-Kette pruefen:
-   - `http://pfalz-development.de`
-   - `https://www.pfalz-development.de`
-   - `http://www.pfalz-development.de`
-2. SEO-Crawler erneut laufen lassen und dokumentieren:
-   - Onpage Score
-   - Meta-Angaben
-   - Seitenstruktur
-3. Sicherstellen, dass Canonical/Hreflang auf non-www Host zeigen.
+### Offen (wichtig)
 
-## Tag 5-7: Local SEO Grundlagen
-1. Google Unternehmensprofil optimieren:
-   - Hauptkategorie, Beschreibung, Oeffnungszeiten
-   - Leistungen, Fotos, Kontaktwege
-2. Konsistente NAP-Daten festziehen (Name/Adresse/Telefon) fuer alle Plattformen.
-3. Wichtigste Branchenprofile anlegen oder korrigieren (D-A-CH lokal):
-   - Das Oertliche
-   - Gelbe Seiten
-   - Bing Places
+1. SSL Labs fuer www-Host final dokumentieren.
+2. Offpage-Aufbau starten (Citations + Backlinks + Outreach).
 
-## Tag 8-10: Erste Backlink-Welle
-1. 5-10 lokale/verwandte Eintraege mit Link aufbauen.
-2. Partner/Netzwerk anschreiben fuer 3 konkrete Verlinkungen:
-   - Referenzen
-   - Partnerseiten
-   - Vereins-/Projektseiten
-3. Zielseite fuer Links standardisieren:
-   - `https://pfalz-development.de/`
+### Offen (optional)
 
-## Tag 11-12: Content als Link-Magnet
-1. Eine neue, teilbare Seite erstellen (z. B. regionaler Leitfaden):
-   - "Website-Checkliste fuer lokale Betriebe in der Pfalz"
-2. Interne Verlinkung auf diese Seite von der Startseite.
-3. Outreach an 5 lokale Kontakte mit Mehrwert-Hinweis.
+1. Redirect-Kette von http://www auf 1 Hop optimieren.
+2. CSP langfristig ohne unsafe-inline (nur mit nonce/hash).
 
-## Tag 13-14: Messung und Feinjustierung
-1. Search Console pruefen:
-   - Indexierung
-   - Abdeckung
-   - Core Web Vitals
-2. SEO-Tool Vergleich alt/neu dokumentieren.
-3. Nächste 30 Tage priorisieren:
-   - 2 neue Backlinks pro Woche
-   - 1 neuer lokaler Ratgeber pro Monat
+## Was wir sofort umgesetzt haben
 
-## KPI-Ziele (realistisch)
-- Security Headers Bewertung deutlich verbessert.
-- Backlinks: +5 bis +15 neue verweisende Domains.
-- Local Citations: 100% konsistente NAP-Daten.
-- Onpage-Checks: keine kritischen Meta/Struktur-Fehler mehr.
+1. Security-Hardening im Code.
+2. Deploy-Validierung mit curl.
+3. 14-Tage Umsetzungsplan mit Prioritaeten.
+4. Node-basiertes Security-Live-Check-Script angelegt.
+
+## Testprotokoll (durchgelaufen)
+
+Stand: 2026-03-20
+
+1. Lint/Type/Dependency
+   - `npm run lint` -> erfolgreich.
+   - `npm audit --omit=dev --audit-level=moderate` -> 0 Vulnerabilities.
+2. Automatisierter Header-Test
+   - `npm run security:check-live` -> bestanden.
+   - Gepruefte Header auf `/` und `/en`:
+     - Strict-Transport-Security
+     - Content-Security-Policy
+     - Referrer-Policy
+     - Permissions-Policy
+     - X-Frame-Options
+     - X-Content-Type-Options
+     - Cross-Origin-Opener-Policy
+     - Cross-Origin-Resource-Policy
+3. Redirect-Checks mit curl
+   - `https://pfalz-development.de` -> 200.
+   - `https://www.pfalz-development.de` -> Redirect auf non-www.
+   - `http://pfalz-development.de` -> Redirect auf HTTPS.
+   - `http://www.pfalz-development.de` -> Redirect-Kette aktiv (2 Hops, funktional ok).
+4. Externe Scans
+   - SecurityHeaders: Note A fuer `https://pfalz-development.de/en`.
+   - SSL Labs: Note A fuer `pfalz-development.de`.
+
+## Konkrete Aufgaben fuer die naechsten 14 Tage
+
+### Tag 1-2: Abschluss Security-Dokumentation
+
+1. Securityheaders-Scan laufen lassen und Ergebnis sichern.
+2. SSL Labs Scans fuer beide Hosts sichern.
+3. Ergebnisse in Kurzprotokoll uebernehmen (Datum, Score, offene Punkte).
+
+### Tag 3-4: Redirect/SEO-Re-Check
+
+1. Redirect-Kette erneut pruefen:
+   - http://pfalz-development.de
+   - https://www.pfalz-development.de
+   - http://www.pfalz-development.de
+2. Onpage-Tool erneut laufen lassen und Vorher/Nachher notieren.
+
+### Tag 5-7: Local SEO Grundlagen
+
+1. Google Unternehmensprofil vervollstaendigen.
+2. NAP-Daten konsistent in allen Profilen pflegen.
+3. Eintraege bei Das Oertliche, Gelbe Seiten, Bing Places erstellen/pruefen.
+
+### Tag 8-10: Backlink-Welle 1
+
+1. 5-10 lokale Eintraege mit Link aufbauen.
+2. Drei konkrete Partnerlinks anfragen.
+3. Ziel-URL fuer alle Links standardisieren:
+   - https://pfalz-development.de/
+
+### Tag 11-12: Link-Magnet Content
+
+1. Eine lokale Ratgeberseite erstellen.
+2. Von Startseite intern auf den Ratgeber verlinken.
+3. 5 direkte Outreach-Kontakte anschreiben.
+
+### Tag 13-14: Messung und Priorisierung
+
+1. Search Console: Impressionen, Klicks, Indexierung, Queries.
+2. Offpage: verweisende Domains und neue Links erfassen.
+3. 30-Tage-Fortsetzungsplan festlegen.
+
+## KPI-Ziele
+
+1. Security-Header Score deutlich verbessert.
+2. +5 bis +15 neue verweisende Domains.
+3. 100% konsistente NAP-Daten in Kernprofilen.
+4. Keine kritischen Onpage-Fehler mehr.
