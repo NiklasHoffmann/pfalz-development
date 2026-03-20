@@ -41,8 +41,9 @@ Ziel: Sofort umsetzbare Seitenplanung fuer die ersten 6 SEO-Landingpages.
    - Primaer: Projekt anfragen
    - Sekundaer: Leistungen ansehen
 10. Mindestinhalt
-   - 900-1200 Woerter
-   - 1 FAQ-Block (4-6 Fragen)
+
+- 900-1200 Woerter
+- 1 FAQ-Block (4-6 Fragen)
 
 ## Seite 2: Website fuer Ferienwohnungen in der Pfalz
 
@@ -72,8 +73,9 @@ Ziel: Sofort umsetzbare Seitenplanung fuer die ersten 6 SEO-Landingpages.
 9. CTA
    - Kostenlose Erstberatung anfragen
 10. Mindestinhalt
-   - 800-1100 Woerter
-   - 1 Praxisbeispiel oder Ablaufkasten
+
+- 800-1100 Woerter
+- 1 Praxisbeispiel oder Ablaufkasten
 
 ## Seite 3: Website fuer Restaurants in der Pfalz
 
@@ -103,8 +105,9 @@ Ziel: Sofort umsetzbare Seitenplanung fuer die ersten 6 SEO-Landingpages.
 9. CTA
    - Unverbindlich Projekt besprechen
 10. Mindestinhalt
-   - 800-1100 Woerter
-   - FAQ-Block + klare Kontakt-CTA
+
+- 800-1100 Woerter
+- FAQ-Block + klare Kontakt-CTA
 
 ## Seite 4: Webdesign Neustadt an der Weinstrasse
 
@@ -134,7 +137,8 @@ Ziel: Sofort umsetzbare Seitenplanung fuer die ersten 6 SEO-Landingpages.
 9. CTA
    - Beratungstermin fuer Neustadt anfragen
 10. Mindestinhalt
-   - 700-1000 Woerter
+
+- 700-1000 Woerter
 
 ## Seite 5: Webdesign Landau in der Pfalz
 
@@ -163,7 +167,8 @@ Ziel: Sofort umsetzbare Seitenplanung fuer die ersten 6 SEO-Landingpages.
 9. CTA
    - Projekt fuer Landau starten
 10. Mindestinhalt
-   - 700-1000 Woerter
+
+- 700-1000 Woerter
 
 ## Seite 6: Website fuer Handwerksbetriebe
 
@@ -193,7 +198,8 @@ Ziel: Sofort umsetzbare Seitenplanung fuer die ersten 6 SEO-Landingpages.
 9. CTA
    - Handwerksprojekt anfragen
 10. Mindestinhalt
-   - 800-1100 Woerter
+
+- 800-1100 Woerter
 
 ## Redaktionsregeln fuer alle 6 Seiten
 
