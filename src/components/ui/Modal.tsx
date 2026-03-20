@@ -1,7 +1,7 @@
 'use client';
 
 import * as Dialog from '@radix-ui/react-dialog';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface ModalProps {
@@ -29,57 +29,82 @@ export default function Modal({
   description,
   size = 'md',
 }: ModalProps) {
+  const previousOverflowRef = useRef<string | null>(null);
+
   useEffect(() => {
-    if (!open) {
+    const { body } = document;
+
+    if (open) {
+      if (previousOverflowRef.current === null) {
+        previousOverflowRef.current = body.style.overflow;
+      }
+      body.style.overflow = 'hidden';
       return;
     }
 
-    const { body } = document;
-    const previousOverflow = body.style.overflow;
-
-    body.style.overflow = 'hidden';
+    const timeoutId = window.setTimeout(() => {
+      if (previousOverflowRef.current !== null) {
+        body.style.overflow = previousOverflowRef.current;
+        previousOverflowRef.current = null;
+      }
+    }, 360);
 
     return () => {
-      body.style.overflow = previousOverflow;
+      window.clearTimeout(timeoutId);
     };
   }, [open]);
 
+  useEffect(() => {
+    return () => {
+      if (previousOverflowRef.current !== null) {
+        document.body.style.overflow = previousOverflowRef.current;
+        previousOverflowRef.current = null;
+      }
+    };
+  }, []);
+
+  const accessibleTitle = title?.trim() || 'Dialog';
+
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange} modal={false}>
-      <Dialog.Portal>
-        {open ? (
-          <div
-            className="fixed inset-0 z-50 bg-black/50"
-            aria-hidden="true"
-            onClick={() => onOpenChange(false)}
-          />
-        ) : null}
+      <Dialog.Portal forceMount>
+        <div
+          className={cn(
+            'fixed inset-0 z-50 bg-black/50 transition-opacity',
+            'ease-[cubic-bezier(0.22,1,0.36,1)]',
+            open
+              ? 'duration-[420ms] opacity-100'
+              : 'pointer-events-none duration-[360ms] opacity-0'
+          )}
+          aria-hidden="true"
+          onClick={() => onOpenChange(false)}
+        />
         <Dialog.Content
+          forceMount
           className={cn(
             'fixed left-1/2 top-1/2 z-[60] w-full -translate-x-1/2 -translate-y-1/2',
             'rounded-lg border border-gray-200 bg-white p-6 shadow-lg',
             'dark:border-gray-700 dark:bg-gray-800',
-            'data-[state=open]:animate-in data-[state=closed]:animate-out',
-            'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-            'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
-            'data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]',
-            'data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
+            'transition-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)]',
+            open
+              ? 'duration-[420ms] opacity-100 scale-100'
+              : 'pointer-events-none duration-[360ms] opacity-0 scale-[0.99]',
             sizeClasses[size]
           )}
         >
-          {(title || description) && (
+          {title ? (
             <div className="mb-4">
-              {title && (
-                <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {title}
-                </Dialog.Title>
-              )}
+              <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-white">
+                {title}
+              </Dialog.Title>
               {description && (
                 <Dialog.Description className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                   {description}
                 </Dialog.Description>
               )}
             </div>
+          ) : (
+            <Dialog.Title className="sr-only">{accessibleTitle}</Dialog.Title>
           )}
           {children}
           <Dialog.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-gray-100 dark:ring-offset-gray-950 dark:focus:ring-gray-800 dark:data-[state=open]:bg-gray-800">
