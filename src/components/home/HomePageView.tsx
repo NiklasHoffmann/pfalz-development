@@ -42,6 +42,8 @@ export function HomePageView({ data }: HomePageViewProps) {
       <HomePackagesSection
         title={data.packages.title}
         note={data.packages.note}
+        detailsCta={data.packages.detailsCta}
+        modalIncludesTitle={data.packages.modalIncludesTitle}
         items={data.packages.items}
       />
       <HomeProcessFaqSection

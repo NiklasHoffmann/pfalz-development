@@ -56,18 +56,38 @@
         "title": "Packages for typical projects",
         "note": "It is important to me that smaller businesses can also achieve a professional online presence. That is why I deliberately start with an affordable entry point from EUR 1,090 that can be expanded flexibly when needed.",
         "supportNote": "In the minimal package, hosting is mandatory and included (from EUR 9 per month). In all other packages, hosting can be added from EUR 9 per month. Maintenance and updates from EUR 109 per month.",
+        "detailsCta": "View package details",
+        "modalIncludesTitle": "What is included",
         "items": [
           {
             "name": "Compact",
-            "description": "From EUR 1,690. For smaller businesses that want to broaden their content and present themselves with a clear, coherent overall presence."
+            "description": "From EUR 1,690. For smaller businesses that want to broaden their content and present themselves with a clear, coherent overall presence.",
+            "highlights": [
+              "Custom homepage with a clear service-focused structure",
+              "Up to 5 content pages including well-structured copy",
+              "Contact form, imprint, and privacy page integrated",
+              "Technical foundation with responsive design and fast loading"
+            ]
           },
           {
             "name": "Host",
-            "description": "From EUR 2,790. For holiday rentals and hosts who want to build trust and generate direct inquiries."
+            "description": "From EUR 2,790. For holiday rentals and hosts who want to build trust and generate direct inquiries.",
+            "highlights": [
+              "Story-driven homepage focused on trust and direct inquiries",
+              "Up to 8 pages including accommodation, surroundings, and amenities",
+              "Inquiry flow and booking-oriented call-to-actions",
+              "Multilingual structure prepared for German and English"
+            ]
           },
           {
             "name": "Custom",
-            "description": "From EUR 4,290. For businesses with specific needs, more content, or extended functionality."
+            "description": "From EUR 4,290. For businesses with specific needs, more content, or extended functionality.",
+            "highlights": [
+              "Tailored page architecture for more complex content",
+              "Custom modules such as download areas or specialized forms",
+              "Advanced SEO and tracking foundations for scalable growth",
+              "Project support with multiple feedback and optimization rounds"
+            ]
           }
         ]
       },

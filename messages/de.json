@@ -56,18 +56,38 @@
         "title": "Pakete für typische Projekte",
         "note": "Mir ist wichtig, dass auch kleinere Betriebe professionell online sichtbar werden. Deshalb gibt es ein schnelles Minimalpaket als klaren Einstieg ab 1.090 EUR, das sich bei Bedarf flexibel erweitern lässt.",
         "supportNote": "Im Minimalpaket ist Hosting verpflichtend enthalten (ab 9 EUR pro Monat). Bei allen anderen Paketen kannst du Hosting ab 9 EUR pro Monat dazubuchen. Pflege und Updates ab 109 EUR pro Monat.",
+        "detailsCta": "Leistungen ansehen",
+        "modalIncludesTitle": "Das ist enthalten",
         "items": [
           {
             "name": "Kompakt",
-            "description": "Ab 1.690 EUR. Für kleinere Betriebe, die ihren Auftritt inhaltlich breiter aufstellen und als klare, stimmige Gesamtpräsenz zeigen möchten."
+            "description": "Ab 1.690 EUR. Für kleinere Betriebe, die ihren Auftritt inhaltlich breiter aufstellen und als klare, stimmige Gesamtpräsenz zeigen möchten.",
+            "highlights": [
+              "Individuelle Startseite mit klarem Leistungsfokus",
+              "Bis zu 5 Inhaltsseiten inklusive strukturierter Texte",
+              "Kontaktformular, Impressum und Datenschutz rechtssicher eingebunden",
+              "Technische Basis mit responsivem Design und schneller Ladezeit"
+            ]
           },
           {
             "name": "Gastgeber",
-            "description": "Ab 2.790 EUR. Für Ferienwohnungen und Gastgeber, die Vertrauen aufbauen und direkte Anfragen bekommen wollen."
+            "description": "Ab 2.790 EUR. Für Ferienwohnungen und Gastgeber, die Vertrauen aufbauen und direkte Anfragen bekommen wollen.",
+            "highlights": [
+              "Story-basierte Startseite mit Fokus auf Vertrauen und Buchungsanfragen",
+              "Bis zu 8 Seiten inklusive Unterkunft, Umgebung und Ausstattung",
+              "Anfrage- und Belegungslogik mit klaren Call-to-Actions",
+              "Mehrsprachige Struktur für Deutsch und Englisch vorbereitet"
+            ]
           },
           {
             "name": "Individuell",
-            "description": "Ab 4.290 EUR. Für Unternehmen mit besonderen Anforderungen, mehr Inhalten oder erweitertem Funktionsumfang."
+            "description": "Ab 4.290 EUR. Für Unternehmen mit besonderen Anforderungen, mehr Inhalten oder erweitertem Funktionsumfang.",
+            "highlights": [
+              "Maßgeschneiderte Seitenarchitektur für komplexe Inhalte",
+              "Individuelle Funktionsmodule wie Download-Bereiche oder spezielle Formulare",
+              "Erweiterte SEO- und Tracking-Grundlagen für skalierbares Wachstum",
+              "Projektbegleitung mit mehreren Feedback- und Optimierungsrunden"
+            ]
           }
         ]
       },

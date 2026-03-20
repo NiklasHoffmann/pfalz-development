@@ -56,18 +56,38 @@
         "title": "Pakede fer typische Projekte",
         "note": "Mir is wichtig, dass aa klännere Betriewe professionell online sichtbar werre. Drum fang isch bewusst mit eme bezahlbare Einstieg ab 1.090 EUR aa, den mer bei Bedarf flexibel ausbaue kann.",
         "supportNote": "Im Minimalpaket is Hoschding verpflichtend dabei (ab 9 EUR im Monnad). Bei alle annere Pakede kannsch Hoschding ab 9 EUR im Monnad dazubuche. Pflege un Updates ab 109 EUR im Monnad.",
+        "detailsCta": "Leischdunge aa'gugge",
+        "modalIncludesTitle": "Des is drin",
         "items": [
           {
             "name": "Kompagd",
-            "description": "Ab 1.690 EUR. Fer klännere Betriewe, die ihre Ufftritt inhaltlich breider uffstelle un als klare, stimmige Gesamtpräsenz zeige wolle."
+            "description": "Ab 1.690 EUR. Fer klännere Betriewe, die ihre Ufftritt inhaltlich breider uffstelle un als klare, stimmige Gesamtpräsenz zeige wolle.",
+            "highlights": [
+              "Individuelle Schtardtseid mit klarem Fokus uff dei Leischdunge",
+              "Bis zu 5 Inhaldsseide inklusive sauber strukturierde Texte",
+              "Kontakdformular, Imbressum un Datenschutz sauber eingebunne",
+              "Technische Basis mit responsivem Design un schneller Ladezeit"
+            ]
           },
           {
             "name": "Gaschdgewwer",
-            "description": "Ab 2.790 EUR. Fer Feriewohnunge un Gaschdgewwer, die Vertraue uffbaue un direkte Aafrooche krigge wolle."
+            "description": "Ab 2.790 EUR. Fer Feriewohnunge un Gaschdgewwer, die Vertraue uffbaue un direkte Aafrooche krigge wolle.",
+            "highlights": [
+              "Schtory-basierte Schtardtseid mit Fokus uff Vertraue un Aafrooche",
+              "Bis zu 8 Seide inklusive Unterkunft, Umgebing un Ausstatting",
+              "Aafrooch-Logik mit klaren Call-to-Actions",
+              "Mehrsprachige Struktur fer Deitsch un Englisch vorbereitet"
+            ]
           },
           {
             "name": "Individuell",
-            "description": "Ab 4.290 EUR. Fer Unnernehme mit besonnere Aforderunge, mehr Inhald oder erweiderdem Funktionsumfang."
+            "description": "Ab 4.290 EUR. Fer Unnernehme mit besonnere Aforderunge, mehr Inhald oder erweiderdem Funktionsumfang.",
+            "highlights": [
+              "Maßgschneiderde Seitenstruktur fer komplexere Inhalde",
+              "Individuelle Funktionsmodule wie Download-Bereiche odder Spezial-Formulare",
+              "Erweiderde SEO- un Tracking-Basis fer langfristigs Wachsdum",
+              "Projektbegleitung mit mehrrere Feedback- un Optimierungsrunde"
+            ]
           }
         ]
       },
