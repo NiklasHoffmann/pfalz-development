@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PackageItem } from './types';
 import Modal from '@/components/ui/Modal';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
@@ -37,6 +37,8 @@ export function HomePackagesSection({
   modalIncludesTitle,
   items,
 }: HomePackagesSectionProps) {
+  const closeTimeoutRef = useRef<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activePackageName, setActivePackageName] = useState<string | null>(
     null
   );
@@ -53,6 +55,14 @@ export function HomePackagesSection({
 
     return splitPriceFromDescription(activePackage.description);
   }, [activePackage]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current !== null) {
+        window.clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <RevealOnScroll
@@ -116,7 +126,15 @@ export function HomePackagesSection({
               </p>
               <button
                 type="button"
-                onClick={() => setActivePackageName(item.name)}
+                onClick={() => {
+                  if (closeTimeoutRef.current !== null) {
+                    window.clearTimeout(closeTimeoutRef.current);
+                    closeTimeoutRef.current = null;
+                  }
+
+                  setActivePackageName(item.name);
+                  setIsModalOpen(true);
+                }}
                 className={`mt-6 inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
                   index === 1
                     ? 'border-amber-500/50 bg-amber-100/60 text-stone-900 hover:bg-amber-100 focus-visible:ring-amber-500 focus-visible:ring-offset-amber-100 dark:border-amber-300/50 dark:bg-amber-100/10 dark:text-amber-100 dark:hover:bg-amber-100/20 dark:focus-visible:ring-amber-300 dark:focus-visible:ring-offset-stone-900'
@@ -133,11 +151,24 @@ export function HomePackagesSection({
         {note}
       </p>
       <Modal
-        open={Boolean(activePackage)}
+        open={isModalOpen}
         onOpenChange={(open) => {
-          if (!open) {
-            setActivePackageName(null);
+          if (open) {
+            setIsModalOpen(true);
+            return;
           }
+
+          setIsModalOpen(false);
+
+          if (closeTimeoutRef.current !== null) {
+            window.clearTimeout(closeTimeoutRef.current);
+          }
+
+          // Keep content mounted until the close animation fully finishes.
+          closeTimeoutRef.current = window.setTimeout(() => {
+            setActivePackageName(null);
+            closeTimeoutRef.current = null;
+          }, 360);
         }}
         title={activePackage?.name}
         description={activePriceAndDetails?.priceLine ?? undefined}
