@@ -140,6 +140,8 @@ export default async function HomePage({ params }: HomePageProps) {
       title: t('home.packages.title'),
       note: t('home.packages.note'),
       supportNote: t('home.packages.supportNote'),
+      detailsCta: t('home.packages.detailsCta'),
+      modalIncludesTitle: t('home.packages.modalIncludesTitle'),
       items: packageItems,
     },
     process: {

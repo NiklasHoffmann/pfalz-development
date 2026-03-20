@@ -1,9 +1,15 @@
+'use client';
+
+import { useMemo, useState } from 'react';
 import type { PackageItem } from './types';
+import Modal from '@/components/ui/Modal';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 interface HomePackagesSectionProps {
   title: string;
   note: string;
+  detailsCta: string;
+  modalIncludesTitle: string;
   items: PackageItem[];
 }
 
@@ -27,8 +33,27 @@ function splitPriceFromDescription(description: string): {
 export function HomePackagesSection({
   title,
   note,
+  detailsCta,
+  modalIncludesTitle,
   items,
 }: HomePackagesSectionProps) {
+  const [activePackageName, setActivePackageName] = useState<string | null>(
+    null
+  );
+
+  const activePackage = useMemo(
+    () => items.find((item) => item.name === activePackageName) ?? null,
+    [items, activePackageName]
+  );
+
+  const activePriceAndDetails = useMemo(() => {
+    if (!activePackage) {
+      return null;
+    }
+
+    return splitPriceFromDescription(activePackage.description);
+  }, [activePackage]);
+
   return (
     <RevealOnScroll
       as="section"
@@ -89,6 +114,17 @@ export function HomePackagesSection({
               >
                 {details}
               </p>
+              <button
+                type="button"
+                onClick={() => setActivePackageName(item.name)}
+                className={`mt-6 inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+                  index === 1
+                    ? 'border-amber-500/50 bg-amber-100/60 text-stone-900 hover:bg-amber-100 focus-visible:ring-amber-500 focus-visible:ring-offset-amber-100 dark:border-amber-300/50 dark:bg-amber-100/10 dark:text-amber-100 dark:hover:bg-amber-100/20 dark:focus-visible:ring-amber-300 dark:focus-visible:ring-offset-stone-900'
+                    : 'border-stone-300/90 bg-white text-stone-900 hover:bg-stone-100 focus-visible:ring-stone-500 focus-visible:ring-offset-white dark:border-stone-500/90 dark:bg-stone-800 dark:text-stone-100 dark:hover:bg-stone-700 dark:focus-visible:ring-stone-300 dark:focus-visible:ring-offset-stone-900'
+                }`}
+              >
+                {detailsCta}
+              </button>
             </RevealOnScroll>
           );
         })}
@@ -96,6 +132,38 @@ export function HomePackagesSection({
       <p className="mt-16 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
         {note}
       </p>
+      <Modal
+        open={Boolean(activePackage)}
+        onOpenChange={(open) => {
+          if (!open) {
+            setActivePackageName(null);
+          }
+        }}
+        title={activePackage?.name}
+        description={activePriceAndDetails?.priceLine ?? undefined}
+        size="lg"
+      >
+        {activePackage && activePriceAndDetails ? (
+          <div className="space-y-5">
+            <p className="text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base">
+              {activePriceAndDetails.details}
+            </p>
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-[0.1em] text-amber-700 dark:text-amber-200">
+                {modalIncludesTitle}
+              </h4>
+              <ul className="mt-3 space-y-2 text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base">
+                {activePackage.highlights.map((highlight) => (
+                  <li key={highlight} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-600 dark:bg-amber-300" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : null}
+      </Modal>
     </RevealOnScroll>
   );
 }

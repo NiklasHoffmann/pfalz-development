@@ -6,6 +6,7 @@
   html {
     color-scheme: light;
     overflow-x: hidden;
+    overflow-y: scroll;
     --home-scroll-offset: calc(5.625rem + 1px);
     scroll-padding-top: var(--home-scroll-offset);
   }
@@ -50,6 +51,12 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+  }
+
+  body[data-scroll-locked] {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    --removed-body-scroll-bar-size: 0px !important;
   }
 }
 

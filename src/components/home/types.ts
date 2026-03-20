@@ -11,6 +11,7 @@ export type FaqItem = {
 export type PackageItem = {
   name: string;
   description: string;
+  highlights: string[];
 };
 
 export type ContactDetails = {
@@ -63,6 +64,8 @@ export type HomePageData = {
     title: string;
     note: string;
     supportNote: string;
+    detailsCta: string;
+    modalIncludesTitle: string;
     items: PackageItem[];
   };
   process: {

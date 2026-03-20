@@ -1,7 +1,7 @@
 'use client';
 
 import * as Dialog from '@radix-ui/react-dialog';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface ModalProps {
@@ -29,13 +29,34 @@ export default function Modal({
   description,
   size = 'md',
 }: ModalProps) {
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const { body } = document;
+    const previousOverflow = body.style.overflow;
+
+    body.style.overflow = 'hidden';
+
+    return () => {
+      body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open} onOpenChange={onOpenChange} modal={false}>
       <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50" />
+        {open ? (
+          <div
+            className="fixed inset-0 z-50 bg-black/50"
+            aria-hidden="true"
+            onClick={() => onOpenChange(false)}
+          />
+        ) : null}
         <Dialog.Content
           className={cn(
-            'fixed left-1/2 top-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2',
+            'fixed left-1/2 top-1/2 z-[60] w-full -translate-x-1/2 -translate-y-1/2',
             'rounded-lg border border-gray-200 bg-white p-6 shadow-lg',
             'dark:border-gray-700 dark:bg-gray-800',
             'data-[state=open]:animate-in data-[state=closed]:animate-out',
