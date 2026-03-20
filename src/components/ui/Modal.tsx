@@ -29,39 +29,68 @@ export default function Modal({
   description,
   size = 'md',
 }: ModalProps) {
-  const previousOverflowRef = useRef<string | null>(null);
+  const lockedScrollYRef = useRef(0);
 
   useEffect(() => {
-    const { body } = document;
-
-    if (open) {
-      if (previousOverflowRef.current === null) {
-        previousOverflowRef.current = body.style.overflow;
-      }
-      body.style.overflow = 'hidden';
+    if (!open) {
       return;
     }
 
-    const timeoutId = window.setTimeout(() => {
-      if (previousOverflowRef.current !== null) {
-        body.style.overflow = previousOverflowRef.current;
-        previousOverflowRef.current = null;
+    lockedScrollYRef.current = window.scrollY;
+
+    const keepScrollPosition = () => {
+      if (window.scrollY !== lockedScrollYRef.current) {
+        window.scrollTo(0, lockedScrollYRef.current);
       }
-    }, 360);
+    };
+
+    const preventPointerScroll = (event: WheelEvent | TouchEvent) => {
+      event.preventDefault();
+    };
+
+    const preventScrollKeys = (event: KeyboardEvent) => {
+      const scrollKeys = new Set([
+        'ArrowUp',
+        'ArrowDown',
+        'PageUp',
+        'PageDown',
+        'Home',
+        'End',
+        ' ',
+      ]);
+
+      if (!scrollKeys.has(event.key)) {
+        return;
+      }
+
+      const target = event.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+    };
+
+    window.addEventListener('scroll', keepScrollPosition, { passive: true });
+    window.addEventListener('wheel', preventPointerScroll, { passive: false });
+    window.addEventListener('touchmove', preventPointerScroll, {
+      passive: false,
+    });
+    window.addEventListener('keydown', preventScrollKeys, { passive: false });
 
     return () => {
-      window.clearTimeout(timeoutId);
+      window.removeEventListener('scroll', keepScrollPosition);
+      window.removeEventListener('wheel', preventPointerScroll);
+      window.removeEventListener('touchmove', preventPointerScroll);
+      window.removeEventListener('keydown', preventScrollKeys);
     };
   }, [open]);
-
-  useEffect(() => {
-    return () => {
-      if (previousOverflowRef.current !== null) {
-        document.body.style.overflow = previousOverflowRef.current;
-        previousOverflowRef.current = null;
-      }
-    };
-  }, []);
 
   const accessibleTitle = title?.trim() || 'Dialog';
 
