@@ -4,6 +4,8 @@ import { useTheme } from 'next-themes';
 import { useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 
+type ThemeMode = 'light' | 'dark' | 'system';
+
 function SunIcon() {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
@@ -29,18 +31,58 @@ function MoonIcon() {
   );
 }
 
+function SystemIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
+      <rect
+        x="2.25"
+        y="3"
+        width="15.5"
+        height="10.5"
+        rx="1.8"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M7 17H13M10 13.5V17"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function ThemeToggle() {
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false
   );
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const t = useTranslations('theme');
-  const nextThemeLabel =
-    mounted && resolvedTheme === 'dark' ? t('light') : t('dark');
+
+  const activeTheme: ThemeMode =
+    mounted && (theme === 'light' || theme === 'dark' || theme === 'system')
+      ? theme
+      : 'system';
+
+  const nextTheme: ThemeMode =
+    activeTheme === 'light'
+      ? 'dark'
+      : activeTheme === 'dark'
+        ? 'system'
+        : 'light';
+
+  const nextThemeLabel = t(nextTheme);
   const nextThemeIcon =
-    mounted && resolvedTheme === 'dark' ? <SunIcon /> : <MoonIcon />;
+    nextTheme === 'light' ? (
+      <SunIcon />
+    ) : nextTheme === 'dark' ? (
+      <MoonIcon />
+    ) : (
+      <SystemIcon />
+    );
 
   return (
     <button
@@ -52,7 +94,6 @@ export function ThemeToggle() {
         const root = document.documentElement;
         root.classList.add('theme-transition');
         window.requestAnimationFrame(() => {
-          const nextTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
           setTheme(nextTheme);
         });
         window.setTimeout(() => {
