@@ -31,92 +31,91 @@ function MoonIcon() {
   );
 }
 
-function SystemIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
-      <rect
-        x="2.25"
-        y="3"
-        width="15.5"
-        height="10.5"
-        rx="1.8"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-      <path
-        d="M7 17H13M10 13.5V17"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 export function ThemeToggle() {
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false
   );
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const t = useTranslations('theme');
 
-  const activeTheme: ThemeMode =
-    mounted && (theme === 'light' || theme === 'dark' || theme === 'system')
-      ? theme
-      : 'system';
-
-  const nextTheme: ThemeMode =
-    activeTheme === 'light'
+  const effectiveTheme: Exclude<ThemeMode, 'system'> =
+    mounted &&
+    (theme === 'dark' || (theme === 'system' && resolvedTheme === 'dark'))
       ? 'dark'
-      : activeTheme === 'dark'
-        ? 'system'
-        : 'light';
+      : 'light';
 
-  const currentThemeLabel =
-    activeTheme === 'system' ? t('system') : t(activeTheme);
+  const options = [
+    { mode: 'light' as const, label: t('light'), icon: <SunIcon /> },
+    { mode: 'dark' as const, label: t('dark'), icon: <MoonIcon /> },
+  ];
 
-  const currentThemeIcon =
-    activeTheme === 'light' ? (
-      <SunIcon />
-    ) : activeTheme === 'dark' ? (
-      <MoonIcon />
-    ) : (
-      <SystemIcon />
-    );
+  const isDark = effectiveTheme === 'dark';
+  const nextTheme: 'light' | 'dark' = isDark ? 'light' : 'dark';
 
-  const nextThemeLabel = t(nextTheme);
+  function handleThemeToggle() {
+    if (!mounted) {
+      return;
+    }
+
+    const withViewTransition = document as Document & {
+      startViewTransition?: (updateCallback: () => void) => void;
+    };
+
+    if (typeof withViewTransition.startViewTransition === 'function') {
+      withViewTransition.startViewTransition(() => {
+        setTheme(nextTheme);
+      });
+      return;
+    }
+
+    setTheme(nextTheme);
+  }
 
   return (
     <button
       type="button"
-      onClick={() => {
-        if (!mounted) {
-          return;
-        }
-        const withViewTransition = document as Document & {
-          startViewTransition?: (updateCallback: () => void) => void;
-        };
-
-        if (typeof withViewTransition.startViewTransition === 'function') {
-          withViewTransition.startViewTransition(() => {
-            setTheme(nextTheme);
-          });
-          return;
-        }
-
-        setTheme(nextTheme);
-      }}
-      className="inline-flex h-8 w-auto min-w-[2.75rem] items-center justify-center rounded-full border border-stone-400/80 bg-stone-50/95 px-2 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition-[background-color,border-color,color,fill,stroke] duration-[260ms] ease-linear hover:bg-white focus:border-amber-600 focus:outline-none disabled:cursor-wait disabled:opacity-70 dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:h-10 sm:min-w-[5.75rem] sm:px-4 sm:text-sm"
-      aria-label={`${t('toggle')} (${currentThemeLabel} -> ${nextThemeLabel})`}
+      onClick={handleThemeToggle}
+      aria-label={`${t('toggle')} (${t(effectiveTheme)})`}
+      aria-pressed={isDark}
       disabled={!mounted}
       aria-disabled={!mounted}
+      className="relative inline-flex h-8 w-14 items-center overflow-hidden rounded-full border border-stone-400/80 bg-[linear-gradient(180deg,rgba(241,235,226,0.95),rgba(232,225,214,0.95))] p-1 text-stone-900 shadow-[inset_0_2px_3px_rgba(28,25,23,0.2),inset_0_-1px_2px_rgba(255,255,255,0.45),0_1px_3px_rgba(28,25,23,0.08)] backdrop-blur transition-[background-color,border-color,color] duration-[260ms] ease-linear dark:border-stone-600/90 dark:bg-[linear-gradient(180deg,rgba(49,43,40,0.94),rgba(39,35,32,0.94))] dark:text-stone-50 dark:shadow-[inset_0_2px_3px_rgba(0,0,0,0.55),inset_0_-1px_2px_rgba(255,255,255,0.05),0_1px_3px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-300 sm:h-10 sm:w-[4.5rem]"
     >
-      <span className="inline-flex items-center justify-center sm:mr-2">
-        {currentThemeIcon}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-[2px] rounded-full shadow-[inset_0_2px_4px_rgba(28,25,23,0.16),inset_0_1px_0_rgba(255,255,255,0.3)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]"
+      />
+
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-y-0 left-1 my-auto z-10 inline-flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-stone-50 shadow-[0_1px_2px_rgba(28,25,23,0.4)] transition-[transform,background-color,box-shadow] duration-200 ease-linear dark:bg-amber-300 dark:text-stone-950 dark:shadow-[0_1px_2px_rgba(0,0,0,0.35)] sm:h-8 sm:w-8 ${
+          isDark ? 'translate-x-6 sm:translate-x-8' : 'translate-x-0'
+        }`}
+      >
+        {isDark ? <MoonIcon /> : <SunIcon />}
       </span>
-      <span className="hidden sm:inline">{currentThemeLabel}</span>
+
+      <span className="relative z-0 grid w-full grid-cols-2 place-items-center">
+        {options.map((option) => {
+          const isActive = option.mode === effectiveTheme;
+
+          return (
+            <span
+              key={option.mode}
+              aria-hidden="true"
+              className={`inline-flex items-center justify-center ${
+                isActive
+                  ? 'text-transparent'
+                  : 'text-stone-700/85 dark:text-stone-200/90'
+              }`}
+            >
+              {option.icon}
+            </span>
+          );
+        })}
+      </span>
     </button>
   );
 }
