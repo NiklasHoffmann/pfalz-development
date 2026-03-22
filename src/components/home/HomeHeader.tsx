@@ -29,7 +29,7 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
                 sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
                 quality={60}
                 priority
-                className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-100 dark:opacity-0 sm:h-[4.25rem] lg:h-[4.64rem]"
+                className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-100 transition-opacity duration-200 ease-linear dark:opacity-0 sm:h-[4.25rem] lg:h-[4.64rem]"
               />
               <Image
                 src="/pfalz-development-logo-dark-ohne-schrift.webp"
@@ -38,7 +38,7 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
                 height={163}
                 sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
                 quality={60}
-                className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-0 dark:opacity-100 sm:h-[4.25rem] lg:h-[4.64rem]"
+                className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-0 transition-opacity duration-200 ease-linear dark:opacity-100 sm:h-[4.25rem] lg:h-[4.64rem]"
               />
             </span>
           </a>
