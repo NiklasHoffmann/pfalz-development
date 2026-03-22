@@ -127,13 +127,14 @@
       transition: none;
       will-change: auto;
     }
-
   }
 
   .surface-page {
     background: linear-gradient(180deg, #fcfbf7 0%, #f5efe4 38%, #f8f5ef 100%);
     color: rgb(28 25 23);
-    transition: background 220ms linear, color 220ms linear;
+    transition:
+      background 220ms linear,
+      color 220ms linear;
   }
 
   .dark .surface-page {
@@ -148,7 +149,9 @@
       rgba(248, 244, 236, 0.92)
     );
     box-shadow: 0 10px 35px rgba(41, 37, 36, 0.08);
-    transition: background 220ms linear, box-shadow 220ms linear;
+    transition:
+      background 220ms linear,
+      box-shadow 220ms linear;
   }
 
   .dark .surface-header {
@@ -188,7 +191,9 @@
       rgba(247, 241, 231, 0.96)
     );
     box-shadow: 0 -10px 35px rgba(41, 37, 36, 0.14);
-    transition: background 220ms linear, box-shadow 220ms linear;
+    transition:
+      background 220ms linear,
+      box-shadow 220ms linear;
   }
 
   .dark .surface-mobile-dock {
@@ -203,7 +208,9 @@
   .surface-contact {
     background-color: rgb(28 25 23);
     box-shadow: 0 28px 80px rgba(15, 23, 42, 0.24);
-    transition: background-color 220ms linear, background 220ms linear,
+    transition:
+      background-color 220ms linear,
+      background 220ms linear,
       box-shadow 220ms linear;
   }
 
