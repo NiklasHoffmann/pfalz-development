@@ -8,6 +8,7 @@ import type {
   FaqItem,
   HomePageData,
   PackageItem,
+  SeoLinkItem,
 } from '@/components/home/types';
 
 interface HomePageProps {
@@ -29,6 +30,48 @@ function localeToLanguageTag(locale: string): string {
   return 'de-DE';
 }
 
+function localeToBasePath(locale: string): string {
+  return locale === 'de' ? '' : `/${locale}`;
+}
+
+function localeToIndustryLabel(locale: string): string {
+  if (locale === 'en') return 'Industry';
+  if (locale === 'pfl') return 'Branche';
+  return 'Branche';
+}
+
+function localeToMobileShortLabels(locale: string): {
+  home: string;
+  service: string;
+  industry: string;
+  contact: string;
+} {
+  if (locale === 'en') {
+    return {
+      home: 'Home',
+      service: 'Service',
+      industry: 'Industry',
+      contact: 'Contact',
+    };
+  }
+
+  if (locale === 'pfl') {
+    return {
+      home: 'Schtardt',
+      service: 'Leischdung',
+      industry: 'Branche',
+      contact: 'Kontakt',
+    };
+  }
+
+  return {
+    home: 'Start',
+    service: 'Leistung',
+    industry: 'Branche',
+    contact: 'Kontakt',
+  };
+}
+
 function localeToSeoTitle(locale: string): string {
   if (locale === 'en') {
     return 'Web Design for Palatinate Businesses | Pfalz Development';
@@ -38,7 +81,100 @@ function localeToSeoTitle(locale: string): string {
     return 'Webdesign in de Palz | Pfalz Development';
   }
 
-  return 'Webdesign Pfalz fuer Unternehmen | Pfalz Development';
+  return 'Webdesign Pfalz für Unternehmen | Pfalz Development';
+}
+
+function localeToSeoLinksTitle(locale: string): string {
+  if (locale === 'en') {
+    return 'Industries in focus';
+  }
+
+  if (locale === 'pfl') {
+    return 'Branche im Fokus';
+  }
+
+  return 'Branchen im Fokus';
+}
+
+function localeToSeoLinksCtaLabel(locale: string): string {
+  if (locale === 'en') {
+    return 'Open page';
+  }
+
+  if (locale === 'pfl') {
+    return 'Seid uffmache';
+  }
+
+  return 'Seite öffnen';
+}
+
+function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
+  if (locale === 'en') {
+    return [
+      {
+        label: 'Website for Holiday Rentals',
+        href: '/branchen/ferienwohnung-website',
+        description:
+          'Industry page for hosts who want more direct and qualified booking inquiries.',
+      },
+      {
+        label: 'Website for Restaurants',
+        href: '/branchen/restaurant-website',
+        description:
+          'Industry page for restaurants focused on clear guest information and direct reservation inquiries.',
+      },
+      {
+        label: 'View all industries',
+        href: '/branchen',
+        description:
+          'Overview page with all current industry pages, including wineries and sparkling wine estates.',
+      },
+    ];
+  }
+
+  if (locale === 'pfl') {
+    return [
+      {
+        label: 'Website fer Feriewohnunge',
+        href: '/branchen/ferienwohnung-website',
+        description:
+          'Brancheseid fer Gaschdgewwer, die meh direkte un passendi Buchungsafrooche wolle.',
+      },
+      {
+        label: 'Website fer Restaurants',
+        href: '/branchen/restaurant-website',
+        description:
+          'Brancheseid fer Restaurants mit Fokus uff klare Gaste-Info un direkte Reservierungsaafrooche.',
+      },
+      {
+        label: "Alle Branche aa'gugge",
+        href: '/branchen',
+        description:
+          'Uebersichtsseid mit alle Branchen, aa Winzer, Woigieder un Sekdgieder.',
+      },
+    ];
+  }
+
+  return [
+    {
+      label: 'Website für Ferienwohnungen',
+      href: '/branchen/ferienwohnung-website',
+      description:
+        'Branchenseite für Gastgeber, die mehr Direktanfragen statt Plattformabhängigkeit suchen.',
+    },
+    {
+      label: 'Website für Restaurants',
+      href: '/branchen/restaurant-website',
+      description:
+        'Branchenseite für Restaurants mit Fokus auf Reservierungsanfragen und klare Gäste-Kommunikation.',
+    },
+    {
+      label: 'Alle Branchen ansehen',
+      href: '/branchen',
+      description:
+        'Übersichtsseite mit allen Branchen, inklusive Winzer, Weingüter und Sektgüter.',
+    },
+  ];
 }
 
 export async function generateMetadata({
@@ -55,13 +191,15 @@ export async function generateMetadata({
     description: t('subheadline'),
     keywords: [
       'Website erstellen lassen Pfalz',
-      'Webdesign Neustadt an der Weinstrasse',
+      'Webdesign Neustadt an der Weinstraße',
       'Webdesign Landau in der Pfalz',
       'Webentwickler Pfalz',
-      'Homepage fuer Unternehmen Pfalz',
-      'Website fuer Ferienwohnung Pfalz',
-      'Website fuer Restaurant Pfalz',
-      'Webdesign Bad Duerkheim',
+      'Homepage für Unternehmen Pfalz',
+      'Website für Ferienwohnung Pfalz',
+      'Website für Restaurant Pfalz',
+      'Website für Weingut Pfalz',
+      'Website für Sektgut Pfalz',
+      'Webdesign Bad Dürkheim',
       'Webdesign Speyer',
       'Webdesign Ludwigshafen',
     ],
@@ -114,18 +252,40 @@ export default async function HomePage({ params }: HomePageProps) {
   const faqItems = t.raw('home.faq.items') as FaqItem[];
   const contactDetails = t.raw('home.contact') as ContactDetails;
   const legalT = await getTranslations({ locale, namespace: 'legal' });
+  const basePath = localeToBasePath(locale);
+  const homeHref = basePath || '/';
+  const industryLabel = localeToIndustryLabel(locale);
+  const mobileShortLabels = localeToMobileShortLabels(locale);
   const navItems = [
-    { label: navT('home'), href: '#start' },
-    { label: navT('about'), href: '#leistungen' },
-    { label: navT('packages'), href: '#pakete' },
-    { label: navT('process'), href: '#ablauf' },
-    { label: navT('contact'), href: '#kontakt' },
+    { label: navT('home'), href: homeHref },
+    { label: navT('about'), href: `${basePath}/leistungen/webdesign-pfalz` },
+    {
+      label: industryLabel,
+      href: `${basePath}/branchen`,
+    },
+    { label: navT('contact'), href: `${homeHref}#kontakt` },
   ];
   const mobileNavItems = [
-    { label: navT('home'), href: '#start', shortLabel: 'Start' },
-    { label: navT('about'), href: '#leistungen', shortLabel: 'Leistung' },
-    { label: navT('packages'), href: '#pakete', shortLabel: 'Pakete' },
-    { label: navT('contact'), href: '#kontakt', shortLabel: 'Kontakt' },
+    {
+      label: navT('home'),
+      href: homeHref,
+      shortLabel: mobileShortLabels.home,
+    },
+    {
+      label: navT('about'),
+      href: `${basePath}/leistungen/webdesign-pfalz`,
+      shortLabel: mobileShortLabels.service,
+    },
+    {
+      label: industryLabel,
+      href: `${basePath}/branchen`,
+      shortLabel: mobileShortLabels.industry,
+    },
+    {
+      label: navT('contact'),
+      href: `${homeHref}#kontakt`,
+      shortLabel: mobileShortLabels.contact,
+    },
   ];
   const canonicalPath = localeToPath(locale);
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
@@ -150,6 +310,11 @@ export default async function HomePage({ params }: HomePageProps) {
     services: {
       title: t('home.services.title'),
       items: serviceItems,
+    },
+    seoLinks: {
+      title: localeToSeoLinksTitle(locale),
+      ctaLabel: localeToSeoLinksCtaLabel(locale),
+      items: localeToSeoLinkItems(locale),
     },
     audiences: {
       title: t('home.audiences.title'),
@@ -209,18 +374,18 @@ export default async function HomePage({ params }: HomePageProps) {
     },
     sameAs: [siteConfig.links.github],
     areaServed: [
-      'Neustadt an der Weinstrasse',
+      'Neustadt an der Weinstraße',
       'Landau in der Pfalz',
-      'Bad Duerkheim',
+      'Bad Dürkheim',
       'Speyer',
       'Ludwigshafen',
       'Pfalz',
     ],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Froebelstrasse 20',
+      streetAddress: 'Fröbelstraße 20',
       postalCode: '67433',
-      addressLocality: 'Neustadt an der Weinstrasse',
+      addressLocality: 'Neustadt an der Weinstraße',
       addressCountry: 'DE',
     },
     serviceType: [

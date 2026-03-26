@@ -17,9 +17,9 @@ export function HomeAudienceSection({
     <RevealOnScroll
       as="section"
       aria-labelledby="home-audiences-title"
-      className="border-y border-stone-200/90 bg-[linear-gradient(180deg,_rgba(250,247,241,0.9),_rgba(243,236,226,0.95))] pb-16 pt-9 dark:border-stone-700/80 dark:bg-[linear-gradient(180deg,_rgba(37,31,27,0.94),_rgba(22,30,40,0.94))] sm:py-20"
+      className="border-t border-stone-200/85 px-4 pb-16 pt-10 dark:border-stone-700/80 sm:px-6 sm:py-20 lg:px-10"
     >
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
         <div className="min-w-0">
           <h2
             id="home-audiences-title"

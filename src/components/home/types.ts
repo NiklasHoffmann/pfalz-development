@@ -35,6 +35,12 @@ export type MobileNavItem = NavItem & {
   shortLabel: string;
 };
 
+export type SeoLinkItem = {
+  label: string;
+  href: string;
+  description: string;
+};
+
 export type HomePageData = {
   appName: string;
   accessibility: {
@@ -54,6 +60,11 @@ export type HomePageData = {
   services: {
     title: string;
     items: CardItem[];
+  };
+  seoLinks: {
+    title: string;
+    ctaLabel: string;
+    items: SeoLinkItem[];
   };
   audiences: {
     title: string;

@@ -6,7 +6,10 @@ interface HomeMobileDockProps {
 
 export function HomeMobileDock({ items }: HomeMobileDockProps) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 px-2 pb-[calc(env(safe-area-inset-bottom)+0.7rem)] md:hidden">
+    <div
+      data-mobile-dock="true"
+      className="fixed inset-x-0 bottom-0 z-40 px-2 pb-[calc(env(safe-area-inset-bottom)+0.7rem)] md:hidden"
+    >
       <nav
         className="surface-mobile-dock mx-auto w-full max-w-md overflow-hidden rounded-[1.9rem] border border-stone-300/80 p-2 backdrop-blur-xl dark:border-stone-600/90"
         aria-label="Mobile Seitennavigation"

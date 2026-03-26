@@ -1,21 +1,46 @@
 import { Link } from '@/routing';
+import type { NavItem } from './types';
 
 interface HomeFooterProps {
   note: string;
   imprintLabel: string;
   privacyLabel: string;
+  quickLinks?: NavItem[];
 }
 
 export function HomeFooter({
   note,
   imprintLabel,
   privacyLabel,
+  quickLinks,
 }: HomeFooterProps) {
+  const footerQuickLinks = (quickLinks ?? []).filter(
+    (item) => item.href && item.label
+  );
+
   return (
     <footer className="border-t border-stone-200/90 bg-stone-50/95 px-4 py-8 dark:border-stone-700/80 dark:bg-[linear-gradient(180deg,_rgba(38,50,64,0.76),_rgba(45,38,34,0.88))] sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-stone-600 dark:text-stone-100 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-2xl text-center sm:text-left">{note}</p>
-        <div className="flex flex-wrap justify-center gap-4 sm:justify-end">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 text-sm text-stone-600 dark:text-stone-100">
+        {footerQuickLinks.length > 0 ? (
+          <nav
+            aria-label="Footer"
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-b border-stone-200/85 pb-4 dark:border-stone-700/70"
+          >
+            {footerQuickLinks.map((item) => (
+              <Link
+                key={`${item.label}-${item.href}`}
+                href={item.href}
+                className="font-medium text-stone-700 transition hover:text-stone-950 dark:text-stone-100 dark:hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        ) : null}
+
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-2xl text-center sm:text-left">{note}</p>
+          <div className="flex flex-wrap justify-center gap-4 sm:justify-end">
           <Link
             href="/impressum"
             className="font-medium text-stone-700 transition hover:text-stone-950 dark:text-stone-100 dark:hover:text-white"
@@ -28,6 +53,7 @@ export function HomeFooter({
           >
             {privacyLabel}
           </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -81,7 +81,7 @@ export function ThemeToggle() {
       aria-pressed={isDark}
       disabled={!mounted}
       aria-disabled={!mounted}
-      className="relative inline-flex h-8 w-14 items-center overflow-hidden rounded-full border border-stone-400/80 bg-[linear-gradient(180deg,rgba(241,235,226,0.95),rgba(232,225,214,0.95))] p-1 text-stone-900 shadow-[inset_0_2px_3px_rgba(28,25,23,0.2),inset_0_-1px_2px_rgba(255,255,255,0.45),0_1px_3px_rgba(28,25,23,0.08)] backdrop-blur transition-[background-color,border-color,color] duration-[260ms] ease-linear dark:border-stone-600/90 dark:bg-[linear-gradient(180deg,rgba(49,43,40,0.94),rgba(39,35,32,0.94))] dark:text-stone-50 dark:shadow-[inset_0_2px_3px_rgba(0,0,0,0.55),inset_0_-1px_2px_rgba(255,255,255,0.05),0_1px_3px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-300 sm:h-10 sm:w-[4.5rem]"
+      className="relative inline-flex h-8 w-14 items-center overflow-hidden rounded-full border border-stone-400/80 bg-[linear-gradient(180deg,rgba(241,235,226,0.95),rgba(232,225,214,0.95))] p-1 text-stone-900 shadow-[inset_0_2px_3px_rgba(28,25,23,0.2),inset_0_-1px_2px_rgba(255,255,255,0.45),0_1px_3px_rgba(28,25,23,0.08)] backdrop-blur transition-[background-color,border-color,color] duration-[260ms] ease-linear focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:border-stone-600/90 dark:bg-[linear-gradient(180deg,rgba(49,43,40,0.94),rgba(39,35,32,0.94))] dark:text-stone-50 dark:shadow-[inset_0_2px_3px_rgba(0,0,0,0.55),inset_0_-1px_2px_rgba(255,255,255,0.05),0_1px_3px_rgba(0,0,0,0.22)] dark:focus-visible:ring-amber-300 sm:h-10 sm:w-[4.5rem]"
     >
       <span
         aria-hidden="true"
@@ -90,7 +90,7 @@ export function ThemeToggle() {
 
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 left-1 my-auto z-10 inline-flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-stone-50 shadow-[0_1px_2px_rgba(28,25,23,0.4)] transition-[transform,background-color,box-shadow] duration-200 ease-linear dark:bg-amber-300 dark:text-stone-950 dark:shadow-[0_1px_2px_rgba(0,0,0,0.35)] sm:h-8 sm:w-8 ${
+        className={`pointer-events-none absolute inset-y-0 left-1 z-10 my-auto inline-flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-stone-50 shadow-[0_1px_2px_rgba(28,25,23,0.4)] transition-[transform,background-color,box-shadow] duration-200 ease-linear dark:bg-amber-300 dark:text-stone-950 dark:shadow-[0_1px_2px_rgba(0,0,0,0.35)] sm:h-8 sm:w-8 ${
           isDark ? 'translate-x-6 sm:translate-x-8' : 'translate-x-0'
         }`}
       >

@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Pfalz Development',
   description:
-    'Webdesign und professionelle Websites fuer Unternehmen in der Pfalz - Neustadt an der Weinstrasse, Landau und Umgebung.',
+    'Webdesign und professionelle Websites für Unternehmen in der Pfalz - Neustadt an der Weinstraße, Landau und Umgebung.',
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
   ogImage: '/logo-pfalz-development.webp',
   links: {

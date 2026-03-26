@@ -69,12 +69,13 @@ export function HomePackagesSection({
     <RevealOnScroll
       as="section"
       id="pakete"
-      className="mx-auto max-w-7xl px-4 pb-16 pt-9 sm:px-6 sm:py-20 lg:px-10"
+      className="border-t border-stone-200/85 px-4 pb-16 pt-10 dark:border-stone-700/80 sm:px-6 sm:py-20 lg:px-10"
     >
-      <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
-        {title}
-      </p>
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
+      <div className="mx-auto max-w-7xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
+          {title}
+        </p>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
         {items.map((item, index) => {
           const { priceLine, details } = splitPriceFromDescription(
             item.description
@@ -150,10 +151,11 @@ export function HomePackagesSection({
             </RevealOnScroll>
           );
         })}
+        </div>
+        <p className="mt-16 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
+          {note}
+        </p>
       </div>
-      <p className="mt-16 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
-        {note}
-      </p>
       <Modal
         open={isModalOpen}
         onOpenChange={(open) => {

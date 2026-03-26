@@ -7,7 +7,7 @@
     "welcome": "Willkommen",
     "home": {
       "eyebrow": "Websites für Unternehmen in der Pfalz",
-      "headline": "Websites mit klarem Profil für Ferienwohnungen, Restaurants und lokale Betriebe.",
+      "headline": "Websites mit klarem Profil für Ferienwohnungen, Restaurants, Winzer und lokale Betriebe.",
       "subheadline": "Ich entwickle moderne Websites, die professionell wirken, klar verstanden werden und neue Anfragen bringen.",
       "primaryCta": "Projekt anfragen",
       "secondaryCta": "Leistungen ansehen",
@@ -42,6 +42,7 @@
         "items": [
           "Ferienwohnungen und Gastgeber",
           "Restaurants und Gastronomie",
+          "Winzer, Weingüter und Sektgüter",
           "Metzgereien und Handwerksbetriebe",
           "Lokale Dienstleister und kleinere Unternehmen"
         ]

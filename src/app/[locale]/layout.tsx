@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 import { siteConfig } from '@/config/site';
 import { routing } from '@/routing';
 import '../globals.css';
@@ -21,10 +22,10 @@ export const metadata: Metadata = {
   keywords: [
     'Webdesign Pfalz',
     'Website erstellen lassen Pfalz',
-    'Webentwickler Neustadt an der Weinstrasse',
+    'Webentwickler Neustadt an der Weinstraße',
     'Webdesign Landau',
-    'Website fuer Ferienwohnung',
-    'Website fuer Restaurant',
+    'Website für Ferienwohnung',
+    'Website für Restaurant',
     'Lokale SEO Pfalz',
   ],
   authors: [
@@ -78,7 +79,7 @@ export const metadata: Metadata = {
   },
   other: {
     'geo.region': 'DE-RP',
-    'geo.placename': 'Neustadt an der Weinstrasse',
+    'geo.placename': 'Neustadt an der Weinstraße',
   },
 };
 
@@ -172,6 +173,7 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={clientMessages}>
             {children}
+            <ScrollToTopButton />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

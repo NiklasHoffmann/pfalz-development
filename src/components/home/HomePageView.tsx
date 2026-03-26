@@ -6,6 +6,7 @@ import { HomeHeroSection } from './HomeHeroSection';
 import { HomeMobileDock } from './HomeMobileDock';
 import { HomePackagesSection } from './HomePackagesSection';
 import { HomeProcessFaqSection } from './HomeProcessFaqSection';
+import { HomeSeoLinksSection } from './HomeSeoLinksSection';
 import { HomeScrollOffsetSync } from './HomeScrollOffsetSync';
 import { HomeServicesSection } from './HomeServicesSection';
 import type { HomePageData } from './types';
@@ -36,15 +37,15 @@ export function HomePageView({ data }: HomePageViewProps) {
           trustTitle={data.hero.trustTitle}
           trustItems={data.hero.trustItems}
         />
-        <HomeServicesSection
-          title={data.services.title}
-          items={data.services.items}
-        />
         <HomeAudienceSection
           audiencesTitle={data.audiences.title}
           audiences={data.audiences.items}
           whyMeTitle={data.whyMe.title}
           whyMeItems={data.whyMe.items}
+        />
+        <HomeServicesSection
+          title={data.services.title}
+          items={data.services.items}
         />
         <HomePackagesSection
           title={data.packages.title}
@@ -52,6 +53,11 @@ export function HomePageView({ data }: HomePageViewProps) {
           detailsCta={data.packages.detailsCta}
           modalIncludesTitle={data.packages.modalIncludesTitle}
           items={data.packages.items}
+        />
+        <HomeSeoLinksSection
+          title={data.seoLinks.title}
+          ctaLabel={data.seoLinks.ctaLabel}
+          items={data.seoLinks.items}
         />
         <HomeProcessFaqSection
           processTitle={data.process.title}
@@ -71,6 +77,7 @@ export function HomePageView({ data }: HomePageViewProps) {
           note={data.footer.note}
           imprintLabel={data.footer.imprintLabel}
           privacyLabel={data.footer.privacyLabel}
+          quickLinks={data.navItems}
         />
       </main>
     </>

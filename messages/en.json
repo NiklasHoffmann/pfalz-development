@@ -7,7 +7,7 @@
     "welcome": "Welcome",
     "home": {
       "eyebrow": "Websites for businesses in the Palatinate",
-      "headline": "Websites with a clear profile for holiday rentals, restaurants, and local businesses.",
+      "headline": "Websites with a clear profile for holiday rentals, restaurants, wineries, and local businesses.",
       "subheadline": "I build modern websites that look professional, are easy to understand, and bring in new inquiries.",
       "primaryCta": "Request a project",
       "secondaryCta": "See services",
@@ -42,6 +42,7 @@
         "items": [
           "Holiday rentals and hosts",
           "Restaurants and hospitality businesses",
+          "Winegrowers, wineries, and sparkling wine estates",
           "Butcher shops and craft businesses",
           "Local service providers and smaller companies"
         ]

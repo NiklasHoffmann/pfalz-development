@@ -19,9 +19,9 @@ export function HomeProcessFaqSection({
       as="section"
       id="ablauf"
       aria-labelledby="home-process-title"
-      className="mx-auto max-w-7xl px-4 pb-16 pt-9 sm:px-6 sm:py-20 lg:px-10"
+      className="border-t border-stone-200/85 bg-[linear-gradient(180deg,_rgba(247,244,238,0.65),_rgba(250,248,244,0.25))] px-4 pb-16 pt-10 dark:border-stone-700/80 dark:bg-[linear-gradient(180deg,_rgba(28,25,23,0.5),_rgba(24,24,27,0.2))] sm:px-6 sm:py-20 lg:px-10"
     >
-      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="min-w-0">
           <h2
             id="home-process-title"

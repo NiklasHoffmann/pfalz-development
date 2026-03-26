@@ -7,7 +7,7 @@
     "welcome": "Herzlisch Willkumme",
     "home": {
       "eyebrow": "Websites fer Betriewe in de Palz",
-      "headline": "Websites mit klarem Profil fer Feriewohnunge, Restaurants un lokale Betriebe.",
+      "headline": "Websites mit klarem Profil fer Feriewohnunge, Restaurants, Winzer un lokale Betriebe.",
       "subheadline": "Isch bau moderni Websites, die professionell wirke, schnell verstonne werre un neie Aa'frooche reihole.",
       "primaryCta": "Projekt aa'frooche",
       "secondaryCta": "Leischdunge aa'gugge",
@@ -42,6 +42,7 @@
         "items": [
           "Feriewohnunge un Gaschdgewwer",
           "Woistube un Gastro",
+          "Winzer, Woigieder un Sekdgieder",
           "Metzgereie un Handwerksbetriebe",
           "Lokale Dinschdleischder un klännere Unnernehme"
         ]

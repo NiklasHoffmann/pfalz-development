@@ -5,9 +5,16 @@ import type { NavItem } from './types';
 interface HomeHeaderProps {
   appName: string;
   navItems: NavItem[];
+  brandHref?: string;
+  activeHref?: string;
 }
 
-export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
+export function HomeHeader({
+  appName,
+  navItems,
+  brandHref = '#start',
+  activeHref,
+}: HomeHeaderProps) {
   return (
     <header
       id="home-header"
@@ -16,7 +23,7 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
       <div className="mx-auto min-h-[50px] max-w-7xl px-4 py-[9px] sm:min-h-[58px] sm:px-6 lg:px-10">
         <div className="flex items-center justify-between gap-2 sm:gap-3 lg:gap-6">
           <a
-            href="#start"
+            href={brandHref}
             className="inline-flex min-w-0 items-center leading-none"
             aria-label={appName}
           >
@@ -51,7 +58,12 @@ export function HomeHeader({ appName, navItems }: HomeHeaderProps) {
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-1.5 py-1 text-sm font-medium text-stone-700 transition hover:text-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:text-stone-200 dark:hover:text-white dark:focus-visible:ring-amber-300"
+                className={`rounded-md px-1.5 py-1 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-300 ${
+                  activeHref === item.href
+                    ? 'text-amber-800 dark:text-amber-200'
+                    : 'text-stone-700 hover:text-stone-950 dark:text-stone-200 dark:hover:text-white'
+                }`}
+                aria-current={activeHref === item.href ? 'page' : undefined}
               >
                 {item.label}
               </a>

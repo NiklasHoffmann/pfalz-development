@@ -14,6 +14,7 @@
     background-color: #ffffff;
     overflow-x: hidden;
     overflow-y: scroll;
+    scrollbar-gutter: stable;
     --home-scroll-offset: calc(5.625rem + 1px);
     scroll-padding-top: var(--home-scroll-offset);
   }
