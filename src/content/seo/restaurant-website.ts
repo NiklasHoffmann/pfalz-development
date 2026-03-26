@@ -48,12 +48,14 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       faqTitle: 'FAQ für Restaurants',
       faq: [
         {
-          question: 'Kann die Website auf Reservierungsanfragen optimiert werden?',
+          question:
+            'Kann die Website auf Reservierungsanfragen optimiert werden?',
           answer:
             'Ja. Kontakt- und Reservierungswege werden so aufgebaut, dass Gäste schnell und ohne Umwege anfragen können.',
         },
         {
-          question: 'Kann ich Speisekarten und Öffnungszeiten selbst aktualisieren?',
+          question:
+            'Kann ich Speisekarten und Öffnungszeiten selbst aktualisieren?',
           answer:
             'Ja. Inhalte wie Menüs, Aktionen oder Zeiten können einfach gepflegt werden.',
         },
@@ -145,8 +147,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
         },
         {
           question: 'Is an English version possible for tourists?',
-          answer:
-            'Yes. German and English can be planned from the start.',
+          answer: 'Yes. German and English can be planned from the start.',
         },
         {
           question: 'Do you provide support after launch?',
@@ -164,7 +165,8 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
 
       related: {
         label: 'Related page',
-        pageLabel: 'Website for Winegrowers, Wineries, and Sparkling Wine Estates',
+        pageLabel:
+          'Website for Winegrowers, Wineries, and Sparkling Wine Estates',
         href: '/branchen/weingut-sektgut-website',
       },
 
@@ -220,12 +222,14 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       faqTitle: 'FAQ fer Restaurants',
       faq: [
         {
-          question: 'Kann die Website uff Reservierungsaafrooche optimiert werre?',
+          question:
+            'Kann die Website uff Reservierungsaafrooche optimiert werre?',
           answer:
             'Ajo. Kontakt- un Reservierungswege werre so gebaut, dass Geste schnell un klar aafrooche koenne.',
         },
         {
-          question: 'Kann isch Speisekard un Oeffnungszeiten selbst aktualisiere?',
+          question:
+            'Kann isch Speisekard un Oeffnungszeiten selbst aktualisiere?',
           answer:
             'Ajo. Menues, Akschione un Oeffnungszeiten kannsch einfach pflege.',
         },

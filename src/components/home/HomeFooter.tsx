@@ -41,18 +41,18 @@ export function HomeFooter({
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl text-center sm:text-left">{note}</p>
           <div className="flex flex-wrap justify-center gap-4 sm:justify-end">
-          <Link
-            href="/impressum"
-            className="font-medium text-stone-700 transition hover:text-stone-950 dark:text-stone-100 dark:hover:text-white"
-          >
-            {imprintLabel}
-          </Link>
-          <Link
-            href="/datenschutz"
-            className="font-medium text-stone-700 transition hover:text-stone-950 dark:text-stone-100 dark:hover:text-white"
-          >
-            {privacyLabel}
-          </Link>
+            <Link
+              href="/impressum"
+              className="font-medium text-stone-700 transition hover:text-stone-950 dark:text-stone-100 dark:hover:text-white"
+            >
+              {imprintLabel}
+            </Link>
+            <Link
+              href="/datenschutz"
+              className="font-medium text-stone-700 transition hover:text-stone-950 dark:text-stone-100 dark:hover:text-white"
+            >
+              {privacyLabel}
+            </Link>
           </div>
         </div>
       </div>

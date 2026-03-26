@@ -54,7 +54,9 @@ export const localizedSeoPageContentSchema = z.object({
 
 export type SeoLocale = z.infer<typeof seoLocaleSchema>;
 export type SeoPageContent = z.infer<typeof seoPageContentSchema>;
-export type LocalizedSeoPageContent = z.infer<typeof localizedSeoPageContentSchema>;
+export type LocalizedSeoPageContent = z.infer<
+  typeof localizedSeoPageContentSchema
+>;
 
 export function parseLocalizedSeoPageContent(
   input: unknown

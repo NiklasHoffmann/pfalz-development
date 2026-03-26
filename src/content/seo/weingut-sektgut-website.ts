@@ -48,17 +48,20 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       faqTitle: 'FAQ für Winzer, Weingüter und Sektgüter',
       faq: [
         {
-          question: 'Kann die Website auf Weinproben und Veranstaltungen optimiert werden?',
+          question:
+            'Kann die Website auf Weinproben und Veranstaltungen optimiert werden?',
           answer:
             'Ja. Termine, Anmeldehinweise und klare Kontakt-CTAs werden so integriert, dass Besucher schnell eine Anfrage stellen können.',
         },
         {
-          question: 'Kann ich Inhalte wie Jahrgänge und Preise später selbst pflegen?',
+          question:
+            'Kann ich Inhalte wie Jahrgänge und Preise später selbst pflegen?',
           answer:
             'Ja. Die Struktur wird so aufgebaut, dass Aktualisierungen von Sortiment, Preisen und Terminen einfach möglich sind.',
         },
         {
-          question: 'Ist eine mehrsprachige Website für internationale Gäste möglich?',
+          question:
+            'Ist eine mehrsprachige Website für internationale Gäste möglich?',
           answer:
             'Ja. Deutsch und Englisch können von Anfang an sauber mitgedacht und umgesetzt werden.',
         },
@@ -135,7 +138,8 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       faqTitle: 'FAQ for winegrowers and wineries',
       faq: [
         {
-          question: 'Can the website be optimized for tastings and event inquiries?',
+          question:
+            'Can the website be optimized for tastings and event inquiries?',
           answer:
             'Yes. Event details, registration info, and clear contact CTAs are structured so visitors can request quickly.',
         },
@@ -145,7 +149,8 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
             'Yes. The structure is built so wine listings, prices, and dates can be updated without complexity.',
         },
         {
-          question: 'Is a multilingual version possible for international visitors?',
+          question:
+            'Is a multilingual version possible for international visitors?',
           answer:
             'Yes. German and English can be planned and implemented from the start.',
         },
@@ -221,7 +226,8 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       faqTitle: 'FAQ fer Winzer, Woigieder un Sekdgieder',
       faq: [
         {
-          question: 'Kann die Website uff Woiproobe un Termine optimiert werre?',
+          question:
+            'Kann die Website uff Woiproobe un Termine optimiert werre?',
           answer:
             'Ajo. Termine, Infos zur Anmeldung un klare Kontakt-CTAs werre so eingebunne, dass Bsucher schnell aafrooche koenne.',
         },
