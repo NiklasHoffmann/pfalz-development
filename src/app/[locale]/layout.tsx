@@ -24,12 +24,8 @@ export const metadata: Metadata = {
         url: '/favicon_dark.ico',
         media: '(prefers-color-scheme: dark)',
       },
-      {
-        url: '/pfalz-development-favicon.ico',
-      },
     ],
-    shortcut: '/favicon_light.ico',
-    apple: '/pfalz-development-favicon.ico',
+    apple: '/favicon_light.png',
   },
   keywords: [
     'Webdesign Pfalz',
