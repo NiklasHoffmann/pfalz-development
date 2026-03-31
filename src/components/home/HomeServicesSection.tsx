@@ -6,6 +6,9 @@ interface HomeServicesSectionProps {
   items: CardItem[];
 }
 
+const SERVICES_STOCK_BACKGROUND_URL =
+  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1920&q=80';
+
 export function HomeServicesSection({
   title,
   items,
@@ -15,22 +18,34 @@ export function HomeServicesSection({
       as="section"
       id="leistungen"
       aria-labelledby="home-services-title"
-      className="border-t border-stone-200/85 bg-[linear-gradient(180deg,_rgba(250,247,241,0.7),_rgba(248,245,239,0.5))] px-4 pb-16 pt-10 dark:border-stone-700/80 dark:bg-[linear-gradient(180deg,_rgba(24,24,27,0.5),_rgba(24,24,27,0.15))] sm:px-6 sm:py-20 lg:px-10"
+      className="relative isolate overflow-hidden border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${SERVICES_STOCK_BACKGROUND_URL})` }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,_rgba(250,247,241,0.95),_rgba(248,245,239,0.9))] dark:bg-[linear-gradient(180deg,_rgba(24,24,27,0.9),_rgba(24,24,27,0.84))]"
+      />
+
       <div className="mx-auto max-w-7xl">
-        <h2
-          id="home-services-title"
-          className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100"
-        >
-          {title}
-        </h2>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="text-center">
+          <h2
+            id="home-services-title"
+            className="inline-flex rounded-full bg-stone-50/92 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 shadow-sm dark:bg-stone-900/90 dark:text-amber-100"
+          >
+            {title}
+          </h2>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (
             <RevealOnScroll
               as="article"
               key={item.title}
               delayMs={80 + index * 90}
-              className="min-w-0 overflow-hidden rounded-[1.75rem] border border-stone-200/90 bg-stone-50 p-6 shadow-[0_18px_45px_rgba(28,25,23,0.06)] transition hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(28,25,23,0.1)] dark:border-stone-700 dark:bg-stone-900 dark:shadow-[0_20px_50px_rgba(0,0,0,0.32)]"
+              className="min-w-0 overflow-hidden rounded-[1.25rem] border border-stone-200/90 bg-stone-50/96 p-8 shadow-[0_18px_45px_rgba(28,25,23,0.06)] backdrop-blur-[1px] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_55px_rgba(28,25,23,0.1)] dark:border-stone-700 dark:bg-stone-900/92 dark:shadow-[0_20px_50px_rgba(0,0,0,0.32)]"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-300">
                 0{index + 1}

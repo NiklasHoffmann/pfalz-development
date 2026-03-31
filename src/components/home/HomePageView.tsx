@@ -37,15 +37,21 @@ export function HomePageView({ data }: HomePageViewProps) {
           trustTitle={data.hero.trustTitle}
           trustItems={data.hero.trustItems}
         />
+        <HomeServicesSection
+          title={data.services.title}
+          items={data.services.items}
+        />
         <HomeAudienceSection
           audiencesTitle={data.audiences.title}
           audiences={data.audiences.items}
           whyMeTitle={data.whyMe.title}
           whyMeItems={data.whyMe.items}
         />
-        <HomeServicesSection
-          title={data.services.title}
-          items={data.services.items}
+        <HomeProcessFaqSection
+          processTitle={data.process.title}
+          processSteps={data.process.steps}
+          faqTitle={data.faq.title}
+          faqItems={data.faq.items}
         />
         <HomePackagesSection
           title={data.packages.title}
@@ -58,12 +64,6 @@ export function HomePageView({ data }: HomePageViewProps) {
           title={data.seoLinks.title}
           ctaLabel={data.seoLinks.ctaLabel}
           items={data.seoLinks.items}
-        />
-        <HomeProcessFaqSection
-          processTitle={data.process.title}
-          processSteps={data.process.steps}
-          faqTitle={data.faq.title}
-          faqItems={data.faq.items}
         />
         <HomeContactSection
           navLabel={data.contact.navLabel}

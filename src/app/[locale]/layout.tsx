@@ -15,8 +15,20 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: '/pfalz-development-favicon.ico',
-    shortcut: '/pfalz-development-favicon.ico',
+    icon: [
+      {
+        url: '/favicon_light.ico',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/favicon_dark.ico',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/pfalz-development-favicon.ico',
+      },
+    ],
+    shortcut: '/favicon_light.ico',
     apple: '/pfalz-development-favicon.ico',
   },
   keywords: [

@@ -8,6 +8,9 @@ interface HomeHeroSectionProps {
   trustItems: string[];
 }
 
+const HERO_TRUST_STOCK_BACKGROUND_URL =
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80';
+
 export function HomeHeroSection({
   eyebrow,
   headline,
@@ -21,9 +24,10 @@ export function HomeHeroSection({
     <section
       id="start"
       aria-labelledby="home-hero-title"
-      className="surface-hero relative overflow-hidden border-b border-stone-300/70 pt-[5.75rem] dark:border-stone-700/80 sm:pt-[6.25rem] md:pt-[5.5rem]"
+      className="surface-hero relative flex min-h-screen items-center overflow-hidden border-b border-stone-300/70 pt-[6.5rem] dark:border-stone-700/80 sm:pt-[7rem]"
     >
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-10 lg:pb-24 lg:pt-14">
+      <div className="bg-amber-500/12 pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full blur-3xl" />
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pb-24 lg:pt-14">
         <div className="min-w-0 max-w-3xl">
           <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-stone-700 dark:text-stone-100">
             {eyebrow}
@@ -53,20 +57,33 @@ export function HomeHeroSection({
           </div>
         </div>
 
-        <div className="bg-white/82 dark:bg-stone-800/82 min-w-0 overflow-hidden rounded-[2rem] border border-stone-200/90 p-5 shadow-[0_30px_80px_rgba(28,25,23,0.14)] backdrop-blur dark:border-stone-700/80 dark:shadow-[0_30px_80px_rgba(0,0,0,0.28)] sm:p-6">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
-            {trustTitle}
-          </h2>
-          <ul className="mt-6 grid gap-4" aria-label={trustTitle}>
-            {trustItems.map((item) => (
-              <li
-                key={item}
-                className="rounded-2xl border border-stone-200 bg-stone-100/90 px-4 py-4 text-sm leading-6 text-stone-800 dark:border-stone-700/80 dark:bg-stone-700/55 dark:text-stone-100"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="relative min-w-0">
+          <div className="absolute -left-4 -top-5 h-20 w-20 rounded-full bg-amber-500/15 blur-2xl" />
+          <div className="bg-white/82 dark:bg-stone-800/82 relative overflow-hidden rounded-[2rem] border border-stone-200/90 p-5 shadow-[0_30px_80px_rgba(28,25,23,0.14)] backdrop-blur dark:border-stone-700/80 dark:shadow-[0_30px_80px_rgba(0,0,0,0.28)] sm:p-6">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-24 dark:opacity-20"
+              style={{ backgroundImage: `url(${HERO_TRUST_STOCK_BACKGROUND_URL})` }}
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(255,255,255,0.86),_rgba(248,245,239,0.94))] dark:bg-[linear-gradient(180deg,_rgba(28,25,23,0.86),_rgba(28,25,23,0.94))]"
+            />
+
+            <h2 className="relative z-10 text-sm font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
+              {trustTitle}
+            </h2>
+            <ul className="relative z-10 mt-6 grid gap-4" aria-label={trustTitle}>
+              {trustItems.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-2xl border border-stone-200 bg-stone-100/96 px-4 py-4 text-sm leading-6 text-stone-800 dark:border-stone-700/80 dark:bg-stone-700/72 dark:text-stone-100"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

@@ -68,14 +68,14 @@ export function HomePackagesSection({
   return (
     <RevealOnScroll
       as="section"
-      id="pakete"
-      className="border-t border-stone-200/85 px-4 pb-16 pt-10 dark:border-stone-700/80 sm:px-6 sm:py-20 lg:px-10"
+      id="preise"
+      className="border-t border-stone-200/85 bg-[linear-gradient(180deg,_rgba(250,247,241,0.7),_rgba(248,245,239,0.5))] px-4 py-20 dark:border-stone-700/80 dark:bg-[linear-gradient(180deg,_rgba(24,24,27,0.5),_rgba(24,24,27,0.2))] sm:px-6 sm:py-24 lg:px-10"
     >
       <div className="mx-auto max-w-7xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
+        <p className="text-center text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
           {title}
         </p>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => {
             const { priceLine, details } = splitPriceFromDescription(
               item.description
@@ -89,9 +89,9 @@ export function HomePackagesSection({
                 as="article"
                 key={item.name}
                 delayMs={80 + index * 90}
-                className={`min-w-0 overflow-hidden rounded-[1.9rem] border p-6 ${
+                className={`min-w-0 overflow-hidden rounded-[1.25rem] border p-8 ${
                   index === 1
-                    ? 'border-amber-300 bg-[linear-gradient(180deg,_#fff7e6,_#f6e7c8)] shadow-[0_20px_70px_rgba(245,158,11,0.18)] dark:border-amber-500 dark:bg-[linear-gradient(180deg,_#5c2b0e,_#3d1d09)]'
+                    ? 'border-amber-300 bg-[linear-gradient(180deg,_#fff7e6,_#f6e7c8)] shadow-[0_20px_70px_rgba(245,158,11,0.18)] dark:border-amber-500 dark:bg-[linear-gradient(180deg,_#5c2b0e,_#3d1d09)] md:scale-[1.02]'
                     : 'border-stone-200/90 bg-stone-50/95 dark:border-stone-700 dark:bg-stone-900'
                 }`}
               >
@@ -152,7 +152,7 @@ export function HomePackagesSection({
             );
           })}
         </div>
-        <p className="mt-16 max-w-3xl text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
+        <p className="mx-auto mt-14 max-w-3xl text-center text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base sm:leading-7">
           {note}
         </p>
       </div>

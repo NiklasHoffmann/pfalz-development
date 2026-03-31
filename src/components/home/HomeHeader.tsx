@@ -18,9 +18,9 @@ export function HomeHeader({
   return (
     <header
       id="home-header"
-      className="surface-header fixed inset-x-0 top-0 z-40 border-b border-stone-300/80 backdrop-blur-xl dark:border-stone-600/90"
+      className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4 sm:px-6"
     >
-      <div className="mx-auto min-h-[50px] max-w-7xl px-4 py-[9px] sm:min-h-[58px] sm:px-6 lg:px-10">
+      <div className="surface-header mx-auto min-h-[50px] max-w-7xl rounded-full border border-stone-300/80 px-4 py-[9px] shadow-[0_10px_34px_rgba(28,25,23,0.08)] backdrop-blur-xl dark:border-stone-600/90 sm:min-h-[58px] sm:px-6 lg:px-10">
         <div className="flex items-center justify-between gap-2 sm:gap-3 lg:gap-6">
           <a
             href={brandHref}
