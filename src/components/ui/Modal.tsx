@@ -12,6 +12,7 @@ export interface ModalProps {
   description?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   contentId?: string;
+  contentClassName?: string;
 }
 
 const sizeClasses = {
@@ -30,6 +31,7 @@ export default function Modal({
   description,
   size = 'md',
   contentId,
+  contentClassName,
 }: ModalProps) {
   const lockedScrollYRef = useRef(0);
 
@@ -101,7 +103,7 @@ export default function Modal({
       <Dialog.Portal>
         <div
           className={cn(
-            'fixed inset-0 z-50 bg-black/50 transition-opacity',
+            'fixed inset-0 z-50 bg-black/50 backdrop-blur-[3px] transition-opacity',
             'ease-[cubic-bezier(0.22,1,0.36,1)]',
             open
               ? 'opacity-100 duration-[420ms]'
@@ -114,13 +116,14 @@ export default function Modal({
           id={contentId}
           className={cn(
             'fixed left-1/2 top-1/2 z-[60] w-full -translate-x-1/2 -translate-y-1/2',
-            'rounded-lg border border-gray-200 bg-white p-6 shadow-lg',
-            'dark:border-gray-700 dark:bg-gray-800',
+            'rounded-lg bg-white p-6 shadow-lg',
+            'dark:bg-gray-800',
             'transition-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)]',
             open
               ? 'scale-100 opacity-100 duration-[420ms]'
               : 'pointer-events-none scale-[0.99] opacity-0 duration-[360ms]',
-            sizeClasses[size]
+            sizeClasses[size],
+            contentClassName
           )}
         >
           {title ? (
@@ -138,7 +141,10 @@ export default function Modal({
             <Dialog.Title className="sr-only">{accessibleTitle}</Dialog.Title>
           )}
           {children}
-          <Dialog.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-gray-100 dark:ring-offset-gray-950 dark:focus:ring-gray-800 dark:data-[state=open]:bg-gray-800">
+          <Dialog.Close
+            type="button"
+            className="absolute right-4 top-4 inline-flex rounded-full p-1.5 text-gray-500 opacity-75 transition-opacity hover:text-gray-800 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/60 disabled:pointer-events-none dark:text-gray-300 dark:hover:text-white dark:focus-visible:ring-gray-600"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"

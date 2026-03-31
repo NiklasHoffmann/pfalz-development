@@ -96,6 +96,7 @@ export type HomePageData = {
     description: string;
     primaryCta: string;
     secondaryCta: string;
+    openFormLabel: string;
     details: ContactDetails;
   };
   footer: {

@@ -26,7 +26,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Welche Inhalte mehr Buchungsanfragen auslösen',
           paragraphs: [
             'Potenzielle Gäste entscheiden schnell. Sie wollen auf einen Blick verstehen, für wen die Unterkunft geeignet ist, was sie besonders macht und wie eine Anfrage funktioniert.',
-            'Deshalb braucht eine gute Ferienwohnungsseite nicht nur schöne Bilder, sondern auch klare Ausstattungsinfos, Lagevorteile, Vertrauenselemente und sichtbare CTA-Bereiche. Wenn Inhalte sauber priorisiert sind, steigt nicht nur die Nutzerfreundlichkeit, sondern auch die Wahrscheinlichkeit für direkte Anfragen.',
+            'Deshalb braucht eine gute Ferienwohnungsseite nicht nur schöne Bilder, sondern auch klare Ausstattungsinfos, Lagevorteile, Vertrauenselemente und gut sichtbare Kontakt-Buttons. Wenn Inhalte sauber priorisiert sind, steigt nicht nur die Nutzerfreundlichkeit, sondern auch die Wahrscheinlichkeit für direkte Anfragen.',
           ],
         },
         {
@@ -40,7 +40,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Mehrsprachigkeit, Anfrageprozess und technische Basis',
           paragraphs: [
             'Gerade in touristischen Regionen ist Mehrsprachigkeit ein direkter Hebel. Inhalte in Deutsch und Englisch können von Anfang an sinnvoll geplant werden, damit internationale Gäste dein Angebot schnell verstehen.',
-            'Technisch umfasst die Umsetzung schnelle Ladezeiten, saubere Metadaten, mobile Optimierung und eine wartbare Struktur. So bleiben saisonale Änderungen, Preisupdates oder lokale Empfehlungen jederzeit einfach pflegbar.',
+            'Technisch umfasst die Umsetzung schnelle Ladezeiten, klare Seitentitel für Suchmaschinen, eine gute Darstellung auf dem Handy und eine leicht pflegbare Struktur. So bleiben saisonale Änderungen, Preisupdates oder lokale Empfehlungen jederzeit einfach pflegbar.',
           ],
         },
       ],
@@ -199,7 +199,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Welche Inhalte meh Buchungsaafrooche ausloese',
           paragraphs: [
             'Potenzielle Geste entscheide schnell. Sie wolle uff en Blick verstehe, fer wen die Unterkunft passt, was sie besonders macht un wie se dich erreiche koenne.',
-            'Deshalb braucht en gute Feriewohnungsseite net bloos scheene Bilder, sondern aa klare Infos zu Ausstattung, Lagevorteile, Vertrauenselemente un sichtbare CTA-Bereiche. Wenn die Inhalte gut sortiert sinn, steigt Nutzerfreundlichkeit un Aafroochquote gleichzeitig.',
+            'Deshalb braucht en gute Feriewohnungsseite net bloos scheene Bilder, sondern aa klare Infos zu Ausstattung, Lagevorteile, Vertrauenselemente un gut sichtbare Kontakt-Buttons. Wenn die Inhalte gut sortiert sinn, steigt Nutzerfreundlichkeit un Aafroochquote gleichzeitig.',
           ],
         },
         {
@@ -213,7 +213,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Mehrsprachigkeit, Aafroochprozess un Technik',
           paragraphs: [
             'Grad in touristische Regionen is Mehrsprachigkeit en direkter Hebel. Deitsche un englische Inhalte koenne von Anfang aa sauber mitgeplant werre, damit internationale Geste dei Angebot schnell verstehe.',
-            'Technisch gehoere schnelle Ladezeit, saubere Metadate, mobile Optimierung un en wartbare Struktur dazu. So bleiwe Saison-Aenderunge, Preisupdates oder lokale Tipps jederzeit einfach pflegbar.',
+            'Technisch gehoere schnelle Ladezeit, klare Seitentitel fer Suchmaschine, e guude Darstellung uff em Handy un en wartbare Struktur dazu. So bleiwe Saison-Aenderunge, Preisupdates oder lokale Tipps jederzeit einfach pflegbar.',
           ],
         },
       ],

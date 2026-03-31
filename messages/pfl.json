@@ -70,7 +70,7 @@
               "Individuelle Schtardtseid mit klarem Fokus uff dei Leischdunge",
               "Bis zu 5 Inhaldsseide inklusive sauber strukturierde Texte",
               "Kontakdformular, Imbressum un Datenschutz sauber eingebunne",
-              "Technische Basis mit responsivem Design un schneller Ladezeit"
+              "Technische Basis, die uff Handy un Rechner gut aussieht un schnell laaft"
             ]
           },
           {
@@ -79,7 +79,7 @@
             "highlights": [
               "Schtory-basierte Schtardtseid mit Fokus uff Vertraue un Aafrooche",
               "Bis zu 8 Seide inklusive Unterkunft, Umgebing un Ausstatting",
-              "Aafrooch-Logik mit klaren Call-to-Actions",
+              "Aafrooch-Weg mit klare Buttons fer schnelle Kontaktaufnahme",
               "Mehrsprachige Struktur fer Deitsch un Englisch vorbereitet"
             ]
           },
@@ -89,7 +89,7 @@
             "highlights": [
               "Maßgschneiderde Seitenstruktur fer komplexere Inhalde",
               "Individuelle Funktionsmodule wie Download-Bereiche odder Spezial-Formulare",
-              "Erweiderde SEO- un Tracking-Basis fer langfristigs Wachsdum",
+              "Grundlage, dass mer dich bei Google besser findet un du siehsch, was gut laaft",
               "Projektbegleitung mit mehrrere Feedback- un Optimierungsrunde"
             ]
           }
@@ -98,10 +98,10 @@
       "process": {
         "title": "So laaft die Zammeaarwet ab",
         "steps": [
-          "Kurzes Erschtgspräch",
-          "Ziel, Umfang un Inhalde kläre",
-          "Strukdur un Design abstimme",
-          "Umsetzung, Korrekdure un Veröffentlischung"
+          "Im kurze Erschtgspräch gucke mer, was dei Betrieb wirklich braucht un was die Website erreiche soll.",
+          "Danach klaere mer Umfang, Inhalte un Prioritaete, damit vun Anfang aa alles uebersichtlich un planbar bleibt.",
+          "Druff basierend stimme mer Struktur un Design so ab, dass Bsucher sich schnell zurechtfinde un Vertraue fasse.",
+          "Zum Schluss setz isch alles um, bau dei Feedback ei un veroeffentlich die Website technisch sauber un startklar."
         ]
       },
       "faq": {
@@ -122,7 +122,7 @@
         ]
       },
       "contact": {
-        "title": "Lass uns iwwer doi Projekt babble",
+        "title": "Babbel mit mir iwwer doi Projekt",
         "description": "Wann de in de Palz e Website fer doin Betrieb brauchsch, meldsch dich ääfach per Formular odder Mail.",
         "primaryCta": "E-Mail schreiwe",
         "secondaryCta": "Aarufe",
@@ -139,6 +139,8 @@
           "eyebrow": "Kontakdformular",
           "title": "Direkt aafrooche",
           "description": "Schick mir kurz e paar Infos zu deim Projekd. Isch meld mich dann bei dir zrick.",
+          "openCta": "Nachricht schicke",
+          "closeCta": "Zumache",
           "submit": "Aafrooch abschicke",
           "privacyNote": "Mit em Abschicke werd dei Aafrooch zur Bearbeitung an mich iwwertrache.",
           "privacyLinkLabel": "Datenschutzhinweise",

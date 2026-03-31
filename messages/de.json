@@ -70,7 +70,7 @@
               "Individuelle Startseite mit klarem Leistungsfokus",
               "Bis zu 5 Inhaltsseiten inklusive strukturierter Texte",
               "Kontaktformular, Impressum und Datenschutz rechtssicher eingebunden",
-              "Technische Basis mit responsivem Design und schneller Ladezeit"
+              "Technische Basis, die auf Handy und Rechner gut aussieht und schnell lädt"
             ]
           },
           {
@@ -79,7 +79,7 @@
             "highlights": [
               "Story-basierte Startseite mit Fokus auf Vertrauen und Buchungsanfragen",
               "Bis zu 8 Seiten inklusive Unterkunft, Umgebung und Ausstattung",
-              "Anfrage- und Belegungslogik mit klaren Call-to-Actions",
+              "Anfrage- und Belegungsweg mit klaren Buttons zur Kontaktaufnahme",
               "Mehrsprachige Struktur für Deutsch und Englisch vorbereitet"
             ]
           },
@@ -89,7 +89,7 @@
             "highlights": [
               "Maßgeschneiderte Seitenarchitektur für komplexe Inhalte",
               "Individuelle Funktionsmodule wie Download-Bereiche oder spezielle Formulare",
-              "Erweiterte SEO- und Tracking-Grundlagen für skalierbares Wachstum",
+              "Grundlagen, damit du bei Google besser gefunden wirst und siehst, was gut funktioniert",
               "Projektbegleitung mit mehreren Feedback- und Optimierungsrunden"
             ]
           }
@@ -98,10 +98,10 @@
       "process": {
         "title": "So läuft die Zusammenarbeit ab",
         "steps": [
-          "Kurzes Erstgespräch",
-          "Ziel, Umfang und Inhalte klären",
-          "Struktur und Design abstimmen",
-          "Umsetzung, Korrekturen und Veröffentlichung"
+          "Im kurzen Erstgespräch schauen wir, was dein Betrieb braucht und welche Ziele die Website erreichen soll.",
+          "Danach klären wir gemeinsam Umfang, Seiteninhalte und Prioritäten, damit der Ablauf von Anfang an planbar ist.",
+          "Auf dieser Basis stimmen wir Struktur und Design so ab, dass Besucher sich schnell orientieren und Vertrauen aufbauen.",
+          "Anschließend setze ich alles um, arbeite dein Feedback ein und veröffentliche die Website technisch sauber und startklar."
         ]
       },
       "faq": {
@@ -122,7 +122,7 @@
         ]
       },
       "contact": {
-        "title": "Lass uns über dein Projekt sprechen",
+        "title": "Sprich mit mir über dein Projekt",
         "description": "Wenn du in der Pfalz eine Website für deinen Betrieb brauchst, melde dich einfach per Formular oder E-Mail.",
         "primaryCta": "E-Mail schreiben",
         "secondaryCta": "Anrufen",
@@ -139,6 +139,8 @@
           "eyebrow": "Kontaktformular",
           "title": "Direkt anfragen",
           "description": "Schick mir kurz ein paar Infos zu deinem Projekt. Ich melde mich dann bei dir zurück.",
+          "openCta": "Nachricht senden",
+          "closeCta": "Schließen",
           "submit": "Anfrage absenden",
           "privacyNote": "Mit dem Absenden wird deine Anfrage zur Bearbeitung an mich übermittelt.",
           "privacyLinkLabel": "Datenschutzhinweise",

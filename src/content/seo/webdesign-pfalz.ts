@@ -12,7 +12,7 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
       h1: 'Webdesign in der Pfalz, das planbar Anfragen bringt',
       eyebrow: 'Kernleistung',
       intro:
-        'Deine Website entscheidet oft darüber, ob aus einem Besucher ein Kunde wird. Entscheidend ist nicht nur gutes Design, sondern ob Angebot, Nutzen und nächster Schritt sofort verständlich sind. Genau darauf ist mein Webdesign in der Pfalz ausgerichtet: klare Positionierung, schnelle Performance und ein sauber geführter Weg zur Anfrage.',
+        'Deine Website entscheidet oft darüber, ob aus einem Besucher ein Kunde wird. Entscheidend ist nicht nur gutes Design, sondern ob Angebot, Nutzen und nächster Schritt sofort verständlich sind. Genau darauf ist mein Webdesign in der Pfalz ausgerichtet: klare Positionierung, schnelle Ladezeiten und ein sauber geführter Weg zur Anfrage.',
 
       sections: [
         {
@@ -25,15 +25,15 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
         {
           title: 'So läuft die Zusammenarbeit ab',
           paragraphs: [
-            'Zu Beginn klären wir Zielgruppe, Angebot und Geschäftsziel. Daraus entsteht eine Seitenstruktur, die typische Fragen beantwortet und Einwände bereits vor dem Erstkontakt auflöst.',
-            'Nach der Freigabe setze ich die Website technisch sauber um – optimiert für Ladezeit, mobile Nutzung und Conversion. Zum Launch erhältst du eine klare Grundlage, die direkt für Kundengewinnung arbeitet.',
+            'Zu Beginn kläre ich mit dir Zielgruppe, Angebot und Geschäftsziel. Daraus entsteht eine Seitenstruktur, die typische Fragen beantwortet und Einwände bereits vor dem Erstkontakt auflöst.',
+            'Nach der Freigabe setze ich die Website technisch sauber um – optimiert für Ladezeit, mobile Nutzung und mehr Anfragen. Zum Start erhältst du eine klare Grundlage, die direkt für Kundengewinnung arbeitet.',
           ],
         },
         {
           title: 'Für wen dieses Webdesign besonders sinnvoll ist',
           paragraphs: [
             'Ideal ist das Angebot für lokale Dienstleister, Handwerksbetriebe, Winzer, Weingüter, Sektgüter und Gastgeber, die online professioneller auftreten und gezielt mehr passende Anfragen gewinnen möchten.',
-            'Wenn deine aktuelle Website veraltet ist, auf dem Smartphone schlecht funktioniert oder kaum Anfragen bringt, sorgt ein fokussierter Relaunch meist für den schnellsten spürbaren Effekt.',
+            'Wenn deine aktuelle Website veraltet ist, auf dem Smartphone schlecht funktioniert oder kaum Anfragen bringt, sorgt ein klarer Neuaufbau meist für den schnellsten spürbaren Effekt.',
           ],
         },
         {
@@ -63,9 +63,10 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
             'Gerade kleinere Betriebe profitieren stark von klarer Positionierung und einem professionellen Online-Auftritt, der Vertrauen schafft und Anfragen erleichtert.',
         },
         {
-          question: 'Sind SEO-Grundlagen enthalten?',
+          question:
+            'Wird die Seite so vorbereitet, dass sie bei Google besser gefunden wird?',
           answer:
-            'Ja. Struktur, Metadaten, interne Verlinkung und ein technisch sauberes Setup sind von Anfang an integriert.',
+            'Ja. Die Seite bekommt eine klare Struktur, passende Seitentitel, gute interne Verlinkungen und eine saubere technische Basis.',
         },
       ],
 
@@ -111,7 +112,7 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
         {
           title: 'How the collaboration works',
           paragraphs: [
-            'We start with a focused briefing around your audience, offer, and business goals. From there, I create a page structure that answers key questions and removes friction before the first contact.',
+            'I start with a focused briefing around your audience, offer, and business goals. From there, I create a page structure that answers key questions and removes friction before the first contact.',
             'After approval, the website is implemented with a strong focus on performance, responsive behavior, and conversion flow. At launch, you have a solid foundation that actively supports customer acquisition.',
           ],
         },
@@ -205,7 +206,7 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
           title: 'Fer wen des besonders passt',
           paragraphs: [
             'Besonders sinnvoll fer Dinschdleischder, Handwerk, Winzer, Woigieder, Sekdgieder un Gastgeber, die online besser wirke wolle un meh passendi Aafrooche brauche.',
-            'Wenn dei aktuelle Seit veraltet is oder nix bringt, sorgt en Relaunch oft fer en schnellen Unterschied.',
+            'Wenn dei aktuelle Seit veraltet is oder nix bringt, sorgt en klarer Neuaufbau oft fer en schnellen Unterschied.',
           ],
         },
         {
@@ -235,7 +236,8 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
             'Ajo, grad do bringt’s oft am meischte, weil klare Positionierung viel ausmacht.',
         },
         {
-          question: 'Is SEO mit drin?',
+          question:
+            'Werd die Seit so vorbereitet, dass mer se bei Google besser findet?',
           answer:
             'Ajo. Struktur, Metadate un Technik sin direkt sauber umgesetzt.',
         },

@@ -124,10 +124,10 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
           'Industry page for restaurants focused on clear guest information and direct reservation inquiries.',
       },
       {
-        label: 'View all industries',
-        href: '/branchen',
+        label: 'Website for Wineries and Sparkling Wine Estates',
+        href: '/branchen/weingut-sektgut-website',
         description:
-          'Overview page with all current industry pages, including wineries and sparkling wine estates.',
+          'Industry page for wine businesses with focus on events, tastings, and direct inquiries.',
       },
     ];
   }
@@ -147,10 +147,10 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
           'Brancheseid fer Restaurants mit Fokus uff klare Gaste-Info un direkte Reservierungsaafrooche.',
       },
       {
-        label: "Alle Branche aa'gugge",
-        href: '/branchen',
+        label: 'Website fer Winzer un Sekdgieder',
+        href: '/branchen/weingut-sektgut-website',
         description:
-          'Uebersichtsseid mit alle Branchen, aa Winzer, Woigieder un Sekdgieder.',
+          'Brancheseid fer Weinbetriewe mit Fokus uff Termine, Proobe un direkte Aafrooche.',
       },
     ];
   }
@@ -169,10 +169,10 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
         'Branchenseite für Restaurants mit Fokus auf Reservierungsanfragen und klare Gäste-Kommunikation.',
     },
     {
-      label: 'Alle Branchen ansehen',
-      href: '/branchen',
+      label: 'Website für Winzer und Sektgüter',
+      href: '/branchen/weingut-sektgut-website',
       description:
-        'Übersichtsseite mit allen Branchen, inklusive Winzer, Weingüter und Sektgüter.',
+        'Branchenseite für Weinbetriebe mit Fokus auf Weinproben, Veranstaltungen und Direktanfragen.',
     },
   ];
 }
@@ -346,6 +346,7 @@ export default async function HomePage({ params }: HomePageProps) {
       description: t('home.contact.description'),
       primaryCta: t('home.contact.primaryCta'),
       secondaryCta: t('home.contact.secondaryCta'),
+      openFormLabel: t('home.contact.form.openCta'),
       details: contactDetails,
     },
     footer: {

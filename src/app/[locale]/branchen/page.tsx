@@ -172,7 +172,6 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
         note={legalT('footerNote')}
         imprintLabel={legalT('imprint.title')}
         privacyLabel={legalT('privacy.title')}
-        quickLinks={navItems}
       />
     </div>
   );

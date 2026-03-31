@@ -71,13 +71,13 @@ export function HomePageView({ data }: HomePageViewProps) {
           description={data.contact.description}
           primaryCta={data.contact.primaryCta}
           secondaryCta={data.contact.secondaryCta}
+          openFormLabel={data.contact.openFormLabel}
           details={data.contact.details}
         />
         <HomeFooter
           note={data.footer.note}
           imprintLabel={data.footer.imprintLabel}
           privacyLabel={data.footer.privacyLabel}
-          quickLinks={data.navItems}
         />
       </main>
     </>

@@ -1,5 +1,9 @@
+'use client';
+
+import { useState } from 'react';
 import { LazyContactForm } from './LazyContactForm';
 import type { ContactDetails } from './types';
+import Modal from '@/components/ui/Modal';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 interface HomeContactSectionProps {
@@ -8,6 +12,7 @@ interface HomeContactSectionProps {
   description: string;
   primaryCta: string;
   secondaryCta: string;
+  openFormLabel: string;
   details: ContactDetails;
 }
 
@@ -17,8 +22,11 @@ export function HomeContactSection({
   description,
   primaryCta,
   secondaryCta,
+  openFormLabel,
   details,
 }: HomeContactSectionProps) {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const contactDialogId = 'contact-form-dialog';
   const phoneHref = details.phoneValue.replace(/\s+/g, '');
   const phoneDisplay =
     phoneHref.startsWith('0') && phoneHref.length > 5
@@ -30,88 +38,108 @@ export function HomeContactSection({
       as="section"
       id="kontakt"
       aria-labelledby="home-contact-title"
-      className="px-4 pb-16 pt-4 sm:px-6 sm:pb-20 sm:pt-8 lg:px-10 lg:pb-24"
+      className="surface-section-muted px-4 py-20 sm:px-6 sm:py-24 lg:px-10"
     >
-      <div className="surface-contact dark:border-amber-300/18 mx-auto max-w-7xl overflow-hidden rounded-[2rem] px-5 pb-[2.75rem] pt-5 text-stone-50 dark:border sm:px-8 sm:pb-12 sm:pt-8 lg:px-12 lg:pb-16 lg:pt-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-200 dark:text-amber-200">
+      <div className="mx-auto max-w-7xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
           {navLabel}
         </p>
-        <div className="mt-6 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div className="min-w-0">
             <h2
               id="home-contact-title"
-              className="text-3xl font-black tracking-tight md:text-4xl"
+              className="text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 md:text-4xl"
             >
               {title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-stone-200/95 dark:text-stone-200/95">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-stone-700 dark:text-stone-200">
               {description}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={`mailto:${details.emailValue}`}
-                className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-stone-950 transition hover:bg-stone-200 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition hover:bg-stone-800 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
               >
                 {primaryCta}
               </a>
               <a
                 href={`tel:${phoneHref}`}
-                className="inline-flex w-full items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-stone-50 transition hover:bg-white/10 dark:border-stone-600/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition hover:bg-white dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
               >
                 {secondaryCta}
               </a>
+              <button
+                type="button"
+                onClick={() => setIsFormOpen(true)}
+                aria-haspopup="dialog"
+                aria-controls={contactDialogId}
+                aria-expanded={isFormOpen}
+                className="inline-flex w-full items-center justify-center rounded-full border border-amber-500/60 bg-amber-100/70 px-6 py-3 text-sm font-semibold text-stone-900 transition hover:bg-amber-100 dark:border-amber-300/60 dark:bg-amber-200/10 dark:text-amber-100 dark:hover:bg-amber-200/20 sm:w-auto"
+              >
+                {openFormLabel}
+              </button>
             </div>
 
-            <div className="mt-8 grid gap-4 border-t border-white/15 pt-8 dark:border-stone-600/70">
-              <div className="rounded-2xl bg-white/10 px-5 py-4 dark:bg-white/10">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-200 dark:text-stone-200">
+            <p className="mt-8 text-sm text-stone-600 dark:text-stone-300">
+              {details.regionNote}
+            </p>
+          </div>
+
+          <div className="rounded-[1.25rem] border border-stone-300/70 bg-white/65 p-5 shadow-[0_10px_30px_rgba(28,25,23,0.07)] backdrop-blur-sm dark:border-stone-600/80 dark:bg-stone-900/45 sm:p-6">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
                   {details.personLabel}
                 </p>
-                <p className="mt-3 break-words text-base font-semibold text-stone-50">
+                <p className="mt-2 break-words text-base font-semibold text-stone-900 dark:text-stone-50">
                   {details.ownerName}
                 </p>
               </div>
-              <div className="rounded-2xl bg-white/10 px-5 py-4 dark:bg-white/10">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-200 dark:text-stone-200">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
                   {details.emailLabel}
                 </p>
                 <a
                   href={`mailto:${details.emailValue}`}
-                  className="mt-3 block break-all text-sm font-semibold text-stone-50 hover:underline sm:text-base"
+                  className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
                 >
                   {details.emailValue}
                 </a>
               </div>
-              <div className="rounded-2xl bg-white/10 px-5 py-4 dark:bg-white/10">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-200 dark:text-stone-200">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
                   {details.phoneLabel}
                 </p>
                 <a
                   href={`tel:${phoneHref}`}
-                  className="mt-3 block break-all text-sm font-semibold text-stone-50 hover:underline sm:text-base"
+                  className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
                 >
                   {phoneDisplay}
                 </a>
               </div>
-              <address className="rounded-2xl bg-white/10 px-5 py-4 not-italic dark:bg-white/10">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-200 dark:text-stone-200">
+              <address className="not-italic">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
                   {details.addressLabel}
                 </p>
-                <div className="mt-3 space-y-1 break-words text-base font-semibold text-stone-50">
+                <div className="mt-2 space-y-1 break-words text-base font-semibold text-stone-900 dark:text-stone-50">
                   {details.addressLines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
                 </div>
               </address>
             </div>
-
-            <p className="mt-6 text-sm text-stone-200 dark:text-stone-200">
-              {details.regionNote}
-            </p>
           </div>
-
-          <LazyContactForm />
         </div>
+
+        <Modal
+          open={isFormOpen}
+          onOpenChange={setIsFormOpen}
+          size="xl"
+          contentId={contactDialogId}
+          contentClassName="bg-transparent p-0 shadow-none dark:bg-transparent"
+        >
+          <LazyContactForm />
+        </Modal>
       </div>
     </RevealOnScroll>
   );

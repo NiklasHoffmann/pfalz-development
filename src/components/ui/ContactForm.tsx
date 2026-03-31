@@ -74,7 +74,7 @@ export function ContactForm() {
   });
 
   return (
-    <div className="rounded-[1.75rem] bg-white p-6 text-stone-900 shadow-[0_25px_80px_rgba(0,0,0,0.18)] dark:border dark:border-stone-600/90 dark:bg-stone-900 dark:text-stone-100 dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+    <div className="rounded-[1.75rem] bg-white p-6 text-stone-900 shadow-[0_25px_80px_rgba(0,0,0,0.18)] dark:bg-stone-800 dark:text-stone-100 dark:shadow-[0_28px_85px_rgba(0,0,0,0.55)]">
       <div className="mb-6">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-200">
           {t('eyebrow')}

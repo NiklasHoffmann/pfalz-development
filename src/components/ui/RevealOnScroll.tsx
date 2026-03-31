@@ -21,8 +21,8 @@ export function RevealOnScroll({
   style,
   delayMs = 0,
   once = true,
-  threshold = 0.14,
-  rootMargin = '0px 0px -10% 0px',
+  threshold = 0.08,
+  rootMargin = '0px 0px 12% 0px',
   ...rest
 }: RevealOnScrollProps) {
   const [isVisible, setIsVisible] = useState(() => {

@@ -1,10 +1,8 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useSyncExternalStore } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-
-type ThemeMode = 'light' | 'dark' | 'system';
 
 function SunIcon() {
   return (
@@ -32,19 +30,15 @@ function MoonIcon() {
 }
 
 export function ThemeToggle() {
-  const mounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false
-  );
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
   const t = useTranslations('theme');
 
-  const effectiveTheme: Exclude<ThemeMode, 'system'> =
-    mounted &&
-    (theme === 'dark' || (theme === 'system' && resolvedTheme === 'dark'))
-      ? 'dark'
-      : 'light';
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const effectiveTheme = mounted && resolvedTheme === 'dark' ? 'dark' : 'light';
 
   const options = [
     { mode: 'light' as const, label: t('light'), icon: <SunIcon /> },
@@ -77,10 +71,10 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={handleThemeToggle}
-      aria-label={`${t('toggle')} (${t(effectiveTheme)})`}
-      aria-pressed={isDark}
-      disabled={!mounted}
-      aria-disabled={!mounted}
+      aria-label={
+        mounted ? `${t('toggle')} (${t(effectiveTheme)})` : t('toggle')
+      }
+      aria-pressed={mounted ? isDark : undefined}
       className="relative inline-flex h-8 w-14 items-center overflow-hidden rounded-full border border-stone-400/80 bg-[linear-gradient(180deg,rgba(241,235,226,0.95),rgba(232,225,214,0.95))] p-1 text-stone-900 shadow-[inset_0_2px_3px_rgba(28,25,23,0.2),inset_0_-1px_2px_rgba(255,255,255,0.45),0_1px_3px_rgba(28,25,23,0.08)] backdrop-blur transition-[background-color,border-color,color] duration-[260ms] ease-linear focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:border-stone-600/90 dark:bg-[linear-gradient(180deg,rgba(49,43,40,0.94),rgba(39,35,32,0.94))] dark:text-stone-50 dark:shadow-[inset_0_2px_3px_rgba(0,0,0,0.55),inset_0_-1px_2px_rgba(255,255,255,0.05),0_1px_3px_rgba(0,0,0,0.22)] dark:focus-visible:ring-amber-300 sm:h-10 sm:w-[4.5rem]"
     >
       <span
@@ -90,31 +84,30 @@ export function ThemeToggle() {
 
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 left-1 z-10 my-auto inline-flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-stone-50 shadow-[0_1px_2px_rgba(28,25,23,0.4)] transition-[transform,background-color,box-shadow] duration-200 ease-linear dark:bg-amber-300 dark:text-stone-950 dark:shadow-[0_1px_2px_rgba(0,0,0,0.35)] sm:h-8 sm:w-8 ${
-          isDark ? 'translate-x-6 sm:translate-x-8' : 'translate-x-0'
-        }`}
+        className="pointer-events-none absolute inset-y-0 left-1 z-10 my-auto inline-flex h-6 w-6 translate-x-0 items-center justify-center rounded-full bg-stone-900 text-stone-50 shadow-[0_1px_2px_rgba(28,25,23,0.4)] transition-[transform,background-color,box-shadow] duration-200 ease-linear dark:translate-x-6 dark:bg-amber-300 dark:text-stone-950 dark:shadow-[0_1px_2px_rgba(0,0,0,0.35)] sm:h-8 sm:w-8 sm:dark:translate-x-8"
       >
-        {isDark ? <MoonIcon /> : <SunIcon />}
+        <span className="inline-flex dark:hidden">
+          <SunIcon />
+        </span>
+        <span className="hidden dark:inline-flex">
+          <MoonIcon />
+        </span>
       </span>
 
       <span className="relative z-0 grid w-full grid-cols-2 place-items-center">
-        {options.map((option) => {
-          const isActive = option.mode === effectiveTheme;
-
-          return (
-            <span
-              key={option.mode}
-              aria-hidden="true"
-              className={`inline-flex items-center justify-center ${
-                isActive
-                  ? 'text-transparent'
-                  : 'text-stone-700/85 dark:text-stone-200/90'
-              }`}
-            >
-              {option.icon}
-            </span>
-          );
-        })}
+        {options.map((option) => (
+          <span
+            key={option.mode}
+            aria-hidden="true"
+            className={`inline-flex items-center justify-center ${
+              option.mode === 'light'
+                ? 'text-transparent dark:text-stone-200/90'
+                : 'text-stone-700/85 dark:text-transparent'
+            }`}
+          >
+            {option.icon}
+          </span>
+        ))}
       </span>
     </button>
   );

@@ -31,21 +31,19 @@ export function HomeServicesSection({
       />
 
       <div className="mx-auto max-w-7xl">
-        <div className="text-center">
-          <h2
-            id="home-services-title"
-            className="inline-flex rounded-full bg-stone-50/92 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 shadow-sm dark:bg-stone-900/90 dark:text-amber-100"
-          >
-            {title}
-          </h2>
-        </div>
+        <h2
+          id="home-services-title"
+          className="bg-stone-50/92 inline-flex rounded-full px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 shadow-sm dark:bg-stone-900/90 dark:text-amber-100"
+        >
+          {title}
+        </h2>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (
             <RevealOnScroll
               as="article"
               key={item.title}
               delayMs={80 + index * 90}
-              className="min-w-0 overflow-hidden rounded-[1.25rem] border border-stone-200/90 bg-stone-50/96 p-8 shadow-[0_18px_45px_rgba(28,25,23,0.06)] backdrop-blur-[1px] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_55px_rgba(28,25,23,0.1)] dark:border-stone-700 dark:bg-stone-900/92 dark:shadow-[0_20px_50px_rgba(0,0,0,0.32)]"
+              className="bg-stone-50/96 flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-stone-200/90 p-8 shadow-[0_18px_45px_rgba(28,25,23,0.06)] backdrop-blur-[1px] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_55px_rgba(28,25,23,0.1)] dark:border-stone-700 dark:bg-stone-900/90 dark:shadow-[0_20px_50px_rgba(0,0,0,0.32)]"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-300">
                 0{index + 1}
@@ -53,7 +51,7 @@ export function HomeServicesSection({
               <h3 className="mt-4 text-2xl font-bold text-stone-950 dark:text-white">
                 {item.title}
               </h3>
-              <p className="mt-4 text-base leading-7 text-stone-800 dark:text-stone-100">
+              <p className="mt-4 flex-1 text-base leading-7 text-stone-800 dark:text-stone-100">
                 {item.description}
               </p>
             </RevealOnScroll>

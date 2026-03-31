@@ -162,7 +162,6 @@ export async function SeoLandingPage({
         note={legalT('footerNote')}
         imprintLabel={legalT('imprint.title')}
         privacyLabel={legalT('privacy.title')}
-        quickLinks={navItems}
       />
     </div>
   );

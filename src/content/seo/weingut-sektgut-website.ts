@@ -33,13 +33,13 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Typische Probleme auf bestehenden Weingut-Websites',
           paragraphs: [
             'Häufige Schwächen sind veraltete Inhalte, unübersichtliche PDF-Listen, fehlende mobile Optimierung und uneinheitliche Kommunikation zwischen Wein, Event und Gastfreundschaft.',
-            'Ein Relaunch mit klarem Fokus löst genau diese Reibungspunkte und macht aus einer reinen Informationsseite einen aktiven Vertriebskanal.',
+            'Ein klarer Neuaufbau löst genau diese Reibungspunkte und macht aus einer reinen Informationsseite einen aktiven Kanal für Anfragen und Verkauf.',
           ],
         },
         {
           title: 'Technische Basis, Pflege und Weiterentwicklung',
           paragraphs: [
-            'Die Umsetzung umfasst schnelle Ladezeiten, saubere Metadaten, strukturierte Inhalte und eine wartbare technische Grundlage. Dadurch bleibt die Website auch bei saisonalen Änderungen flexibel.',
+            'Die Umsetzung umfasst schnelle Ladezeiten, klare Seitentitel für Suchmaschinen, strukturierte Inhalte und eine wartbare technische Grundlage. Dadurch bleibt die Website auch bei saisonalen Änderungen flexibel.',
             'Neue Jahrgänge, Veranstaltungen oder Aktionszeiträume lassen sich ohne großen Aufwand ergänzen. So bleibt dein Auftritt dauerhaft aktuell und professionell.',
           ],
         },
@@ -51,7 +51,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
           question:
             'Kann die Website auf Weinproben und Veranstaltungen optimiert werden?',
           answer:
-            'Ja. Termine, Anmeldehinweise und klare Kontakt-CTAs werden so integriert, dass Besucher schnell eine Anfrage stellen können.',
+            'Ja. Termine, Anmeldehinweise und gut sichtbare Kontakt-Buttons werden so integriert, dass Besucher schnell eine Anfrage stellen können.',
         },
         {
           question:
@@ -211,13 +211,13 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Typische Probleme uff bestehende Weingutsseite',
           paragraphs: [
             'Haeufig sinn Inhalte veraltet, PDF-Listen unuebersichtlich, mobile Darstellung schwach un die Kommunikation zwischen Wein, Event un Gastfreundschaft net einheitlich.',
-            'En fokussierter Relaunch nimmt genau die Reibung raus un macht aus ere Infoseid en aktive Vertriebskanal.',
+            'En klarer Neuaufbau nimmt genau die Reibung raus un macht aus ere Infoseid en aktiver Kanal fer Aafrooche un Verkauf.',
           ],
         },
         {
           title: 'Technik, Pflege un Weiterentwicklung',
           paragraphs: [
-            'Dazu gehoere schnelle Ladezeit, saubere Metadate, strukturierte Inhalte un en wartbare technische Basis. So bleibt die Website aa bei saisonale Aenderunge flexibel.',
+            'Dazu gehoere schnelle Ladezeit, klare Seitentitel fer Suchmaschine, strukturierte Inhalte un en wartbare technische Basis. So bleibt die Website aa bei saisonale Aenderunge flexibel.',
             'Neie Johrgaeng, Termine un Aktionszeiträume kannsch schnell nachziehe. Dadurch bleibt dei Auftritt dauerhaft aktuell un professionell.',
           ],
         },
@@ -229,7 +229,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
           question:
             'Kann die Website uff Woiproobe un Termine optimiert werre?',
           answer:
-            'Ajo. Termine, Infos zur Anmeldung un klare Kontakt-CTAs werre so eingebunne, dass Bsucher schnell aafrooche koenne.',
+            'Ajo. Termine, Infos zur Anmeldung un gut sichtbare Kontakt-Buttons werre so eingebunne, dass Bsucher schnell aafrooche koenne.',
         },
         {
           question: 'Kann isch Johrgaeng un Preise spaeter selbst aapasse?',

@@ -33,13 +33,13 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Typische Schwächen bestehender Gastro-Seiten',
           paragraphs: [
             'Häufig sind Inhalte veraltet, PDF-Karten schwer lesbar oder Kontaktinformationen auf mehreren Unterseiten verstreut. Besonders mobil führt das zu unnötiger Reibung.',
-            'Ein fokussierter Relaunch beseitigt diese Brüche und macht aus der Website ein klares Werkzeug für bessere Sichtbarkeit und mehr Anfragen.',
+            'Ein klarer Neuaufbau beseitigt diese Brüche und macht aus der Website ein klares Werkzeug für bessere Sichtbarkeit und mehr Anfragen.',
           ],
         },
         {
           title: 'Technische Basis und laufende Pflege',
           paragraphs: [
-            'Die Umsetzung umfasst schnelle Ladezeiten, saubere Struktur und ein wartbares Setup. Damit können saisonale Menüs, Events oder geänderte Zeiten schnell angepasst werden.',
+            'Die Umsetzung umfasst schnelle Ladezeiten, saubere Struktur und eine leicht pflegbare technische Basis. Damit können saisonale Menüs, Events oder geänderte Zeiten schnell angepasst werden.',
             'So bleibt dein Auftritt verlässlich aktuell und unterstützt den Betrieb dauerhaft statt nur punktuell zu funktionieren.',
           ],
         },
@@ -207,7 +207,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Typische Schwaeche bei Gastro-Seide',
           paragraphs: [
             'Haeufig sinn Inhalte veraltet, PDF-Karde schwer lesbar oder Kontaktdaten uff mehrere Seide verteilt. Grad mobil sorgt des fer unnötige Reibung.',
-            'En fokussierter Relaunch nimmt die Bruech raus un macht aus de Website en staerkeres Werkzeug fer Sichtbarkeit un Aafrooche.',
+            'En klarer Neuaufbau nimmt die Bruech raus un macht aus de Website en staerkeres Werkzeug fer Sichtbarkeit un Aafrooche.',
           ],
         },
         {
