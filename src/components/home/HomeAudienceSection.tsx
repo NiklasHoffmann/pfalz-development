@@ -78,25 +78,25 @@ export function HomeAudienceSection({
                 as="li"
                 key={item}
                 delayMs={70 + index * 55}
-                className="relative min-h-56 overflow-hidden rounded-[1.25rem] border border-stone-300/70 bg-stone-900 px-6 py-7"
+                className="relative min-h-56 overflow-hidden rounded-[1.25rem] border border-stone-300/70 bg-stone-900 px-6 py-7 dark:border-stone-500/60"
               >
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat [filter:brightness(0.78)_saturate(0.95)]"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat [filter:brightness(0.78)_saturate(0.95)] dark:[filter:brightness(0.88)_saturate(1.02)]"
                   style={{
                     backgroundImage: `url(${getAudienceBackgroundImage(item, index)})`,
                   }}
                 />
                 <div
                   aria-hidden="true"
-                  className="from-black/72 via-black/42 to-black/18 absolute inset-0 bg-gradient-to-t"
+                  className="from-black/72 via-black/42 to-black/18 absolute inset-0 bg-gradient-to-t dark:from-black/58 dark:via-black/26 dark:to-black/8"
                 />
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.3),transparent_58%)]"
+                  className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.3),transparent_58%)] dark:bg-[radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.2),transparent_62%)]"
                 />
                 <div className="relative flex h-full items-end">
-                  <p className="bg-black/68 w-full rounded-xl border border-white/25 px-3 py-2.5 text-xl font-extrabold text-white shadow-[0_10px_22px_rgba(0,0,0,0.5)] backdrop-blur-[2px] [text-shadow:0_1px_2px_rgba(0,0,0,0.9)] sm:text-2xl">
+                  <p className="bg-black/68 w-full rounded-xl border border-white/25 px-3 py-2.5 text-xl font-extrabold text-white shadow-[0_10px_22px_rgba(0,0,0,0.5)] backdrop-blur-[2px] [text-shadow:0_1px_2px_rgba(0,0,0,0.9)] sm:text-2xl dark:bg-stone-900/50 dark:border-white/35 dark:shadow-[0_10px_22px_rgba(0,0,0,0.34)]">
                     {item}
                   </p>
                 </div>

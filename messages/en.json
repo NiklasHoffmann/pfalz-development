@@ -147,7 +147,9 @@
           "status": {
             "loading": "Sending...",
             "success": "Your inquiry was sent successfully.",
-            "error": "Your inquiry could not be sent right now."
+            "error": "Your inquiry could not be sent right now.",
+            "botCheckPending": "Spam protection is still loading. Please try again in a moment.",
+            "botCheckFailed": "Spam protection verification failed. Please try again."
           },
           "validation": {
             "nameMin": "Name must be at least 2 characters long.",

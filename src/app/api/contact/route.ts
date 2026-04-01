@@ -8,6 +8,7 @@ import {
 import { sendContactMail } from '@/lib/email';
 import { logger } from '@/lib/logger';
 import { rateLimit } from '@/lib/rate-limit';
+import { isTurnstileEnabled, verifyTurnstileToken } from '@/lib/turnstile';
 import { contactSchema } from '@/schemas/contact.schema';
 
 function getClientIp(request: NextRequest): string {
@@ -43,6 +44,27 @@ export async function POST(request: NextRequest) {
 
     if (submission.website) {
       return successResponse({ received: true }, 'Message received');
+    }
+
+    if (isTurnstileEnabled()) {
+      if (!submission.turnstileToken) {
+        logger.warn(
+          `Turnstile token missing (ipfp=${ipFingerprint(ip)})`
+        );
+        return errorResponse('Spam protection verification failed', 400);
+      }
+
+      const isTurnstileValid = await verifyTurnstileToken(
+        submission.turnstileToken,
+        ip
+      );
+
+      if (!isTurnstileValid) {
+        logger.warn(
+          `Contact request blocked by Turnstile (ipfp=${ipFingerprint(ip)})`
+        );
+        return errorResponse('Spam protection verification failed', 400);
+      }
     }
 
     logger.info(

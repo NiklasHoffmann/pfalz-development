@@ -58,13 +58,13 @@ export function HomeContactSection({
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={`mailto:${details.emailValue}`}
-                className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition hover:bg-stone-800 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-stone-800 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
               >
                 {primaryCta}
               </a>
               <a
                 href={`tel:${phoneHref}`}
-                className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition hover:bg-white dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-white dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
               >
                 {secondaryCta}
               </a>
@@ -74,7 +74,7 @@ export function HomeContactSection({
                 aria-haspopup="dialog"
                 aria-controls={contactDialogId}
                 aria-expanded={isFormOpen}
-                className="inline-flex w-full items-center justify-center rounded-full border border-amber-500/60 bg-amber-100/70 px-6 py-3 text-sm font-semibold text-stone-900 transition hover:bg-amber-100 dark:border-amber-300/60 dark:bg-amber-200/10 dark:text-amber-100 dark:hover:bg-amber-200/20 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full border border-amber-500/65 bg-amber-100/80 px-6 py-3 text-sm font-semibold text-stone-900 shadow-[0_1px_2px_rgba(146,64,14,0.08)] transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-amber-100 dark:border-amber-300/65 dark:bg-amber-950/55 dark:text-amber-50 dark:hover:bg-amber-900/70 sm:w-auto"
               >
                 {openFormLabel}
               </button>
@@ -136,7 +136,8 @@ export function HomeContactSection({
           onOpenChange={setIsFormOpen}
           size="xl"
           contentId={contactDialogId}
-          contentClassName="bg-transparent p-0 shadow-none dark:bg-transparent"
+          contentClassName="overflow-hidden rounded-[1.75rem] bg-white p-0 shadow-[0_28px_90px_rgba(0,0,0,0.22)] dark:bg-stone-800 dark:shadow-[0_30px_100px_rgba(0,0,0,0.52)]"
+          scrollBody={false}
         >
           <LazyContactForm />
         </Modal>

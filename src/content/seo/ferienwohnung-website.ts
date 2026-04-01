@@ -12,7 +12,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites für Ferienwohnungen in der Pfalz, die mehr Direktanfragen bringen',
       eyebrow: 'Branchenlösung',
       intro:
-        'Viele Ferienwohnungen werden fast ausschließlich über Buchungsplattformen gefunden. Das bringt Sichtbarkeit, kostet aber Marge und macht abhängig von fremden Regeln. Eine eigene Website schafft mehr Kontrolle, präsentiert deine Unterkunft professionell und führt Interessenten direkt zur Anfrage. Genau darauf ist diese Lösung ausgelegt: klare Inhalte, starke Vertrauenssignale und ein einfacher Weg zur Buchungsanfrage.',
+        'Viele Ferienwohnungen werden fast ausschließlich über Buchungsplattformen gefunden. Das bringt Sichtbarkeit, kostet aber Marge und macht abhängig von fremden Regeln. Eine eigene Website schafft mehr Kontrolle, präsentiert deine Unterkunft professionell und führt Interessenten direkt zur Anfrage. Ich setze die Lösung dafür komplett um: klare Inhalte, starke Vertrauenssignale und ein einfacher Weg zur Buchungsanfrage.',
 
       sections: [
         {
@@ -34,6 +34,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
           paragraphs: [
             'Häufige Probleme sind zu viele Informationen ohne klare Reihenfolge, schwache mobile Darstellung, unübersichtliche Galerien und ein Kontaktweg, der unnötig Reibung erzeugt. Dazu kommt oft, dass ähnliche Unterkünfte in der Region kaum klar voneinander abgegrenzt werden.',
             'Eine starke Seitenstruktur löst genau diese Probleme: Sie macht Vorteile verständlich, reduziert Unsicherheit und führt Besucher Schritt für Schritt zur Kontaktaufnahme.',
+            'So wird aus einer reinen Informationsseite ein aktiver Direktkanal, der bessere Anfragen vorbereitet.',
           ],
         },
         {
@@ -67,13 +68,18 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
           answer:
             'Ja. Preise, Saisonzeiten, Ausstattungsdetails oder lokale Tipps lassen sich jederzeit anpassen.',
         },
+        {
+          question: 'Übernimmst du Konzeption, Umsetzung und spätere Betreuung?',
+          answer:
+            'Ja. Von Struktur und Textführung bis zur technischen Umsetzung und laufenden Pflege kann alles aus einer Hand umgesetzt werden.',
+        },
       ],
 
       cta: {
-        primaryLabel: 'Kostenlose Website-Erstberatung anfragen',
+        primaryLabel: 'Kostenlose Website-Erstberatung sichern',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Zur Leistungsseite Webdesign Pfalz',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'Alle Leistungen ansehen',
+        secondaryHref: '/leistungen',
       },
 
       related: {
@@ -99,7 +105,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Holiday rental websites in the Palatinate that drive more direct inquiries',
       eyebrow: 'Industry Solution',
       intro:
-        'Many holiday rentals depend heavily on booking platforms for visibility. That can bring reach, but it also reduces margins and limits control. A dedicated website gives you more independence, presents your property professionally, and guides potential guests directly to an inquiry. This solution is built for exactly that: clear content, strong trust signals, and a frictionless path to booking requests.',
+        'Many holiday rentals depend heavily on booking platforms for visibility. That can bring reach, but it also reduces margins and limits control. A dedicated website gives you more independence, presents your property professionally, and guides potential guests directly to an inquiry. I implement this setup end to end: clear content, strong trust signals, and a frictionless path to booking requests.',
 
       sections: [
         {
@@ -159,8 +165,8 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
       cta: {
         primaryLabel: 'Request a free website consultation',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Go to the web design service page',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'View all services',
+        secondaryHref: '/leistungen',
       },
 
       related: {
@@ -185,7 +191,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites fer Feriewohnunge in de Palz, die meh Direktaafrooche bringe',
       eyebrow: 'Branche-Loesung',
       intro:
-        'Viele Feriewohnunge werre heit fast nur iwwer Buchungsplattforme gefunne. Des bringt Sichtbarkeit, kostet awer Marge un macht abhaengisch vun fremde Regeln. E eigene Website gibt dir meh Kontrolle, zeigt dei Unterkunft professionell un fuehrt Interessente direkt zur Aafrooch. Genau do setzt die Loesung aa: klare Inhalte, starke Vertrauenssignale un en einfacher Weg zur Buchungsaafrooch.',
+        'Viele Feriewohnunge werre heit fast nur iwwer Buchungsplattforme gefunne. Des bringt Sichtbarkeit, kostet awer Marge un macht abhaengisch vun fremde Regeln. E eigene Website gibt dir meh Kontrolle, zeigt dei Unterkunft professionell un fuehrt Interessente direkt zur Aafrooch. Genau do setzt die Loesung aa, un isch iwernehm die Umsetzung komplett: klare Inhalte, starke Vertrauenssignale un en einfacher Weg zur Buchungsaafrooch.',
 
       sections: [
         {
@@ -245,8 +251,8 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
       cta: {
         primaryLabel: 'Kostenlose Website-Erstberatung sichere',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Zur Leistungsseid Webdesign Palz',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'Alle Leischdunge aa gugge',
+        secondaryHref: '/leistungen',
       },
 
       related: {

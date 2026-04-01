@@ -258,7 +258,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const mobileShortLabels = localeToMobileShortLabels(locale);
   const navItems = [
     { label: navT('home'), href: homeHref },
-    { label: navT('about'), href: `${basePath}/leistungen/webdesign-pfalz` },
+    { label: navT('about'), href: `${basePath}/leistungen` },
     {
       label: industryLabel,
       href: `${basePath}/branchen`,
@@ -273,7 +273,7 @@ export default async function HomePage({ params }: HomePageProps) {
     },
     {
       label: navT('about'),
-      href: `${basePath}/leistungen/webdesign-pfalz`,
+      href: `${basePath}/leistungen`,
       shortLabel: mobileShortLabels.service,
     },
     {

@@ -7,6 +7,7 @@ export type ContactFormValues = {
   phone?: string;
   message: string;
   website?: string;
+  turnstileToken?: string;
 };
 
 export function createContactSchema(
@@ -33,6 +34,7 @@ export function createContactSchema(
       .or(z.literal('')),
     message: z.string().trim().min(20, t('validation.messageMin')),
     website: z.string().max(0).optional().or(z.literal('')),
+    turnstileToken: z.string().trim().optional().or(z.literal('')),
   });
 }
 

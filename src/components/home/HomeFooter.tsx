@@ -34,13 +34,13 @@ export function HomeFooter({
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/impressum"
-              className="inline-flex items-center rounded-full border border-stone-300/80 bg-white/80 px-4 py-2 text-sm font-semibold text-stone-800 transition hover:border-stone-400 hover:bg-white dark:border-stone-500/80 dark:bg-stone-800/80 dark:text-stone-100 dark:hover:border-stone-400 dark:hover:bg-stone-800"
+              className="inline-flex items-center rounded-full border border-stone-300/80 bg-white/80 px-4 py-2 text-sm font-semibold text-stone-800 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:border-stone-400 hover:bg-white dark:border-stone-500/80 dark:bg-stone-800/80 dark:text-stone-100 dark:hover:border-stone-400 dark:hover:bg-stone-800"
             >
               {imprintLabel}
             </Link>
             <Link
               href="/datenschutz"
-              className="inline-flex items-center rounded-full border border-stone-300/80 bg-white/80 px-4 py-2 text-sm font-semibold text-stone-800 transition hover:border-stone-400 hover:bg-white dark:border-stone-500/80 dark:bg-stone-800/80 dark:text-stone-100 dark:hover:border-stone-400 dark:hover:bg-stone-800"
+              className="inline-flex items-center rounded-full border border-stone-300/80 bg-white/80 px-4 py-2 text-sm font-semibold text-stone-800 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:border-stone-400 hover:bg-white dark:border-stone-500/80 dark:bg-stone-800/80 dark:text-stone-100 dark:hover:border-stone-400 dark:hover:bg-stone-800"
             >
               {privacyLabel}
             </Link>

@@ -239,4 +239,40 @@
       rgba(38, 50, 64, 0.96)
     );
   }
+
+  .modal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(120, 113, 108, 0.55) transparent;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    background-clip: padding-box;
+    background-color: rgba(120, 113, 108, 0.42);
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(87, 83, 78, 0.58);
+  }
+
+  .dark .modal-scrollbar {
+    scrollbar-color: rgba(214, 211, 209, 0.4) transparent;
+  }
+
+  .dark .modal-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(214, 211, 209, 0.28);
+  }
+
+  .dark .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(245, 245, 244, 0.42);
+  }
 }

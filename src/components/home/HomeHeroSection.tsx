@@ -44,13 +44,13 @@ export function HomeHeroSection({
           <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="#kontakt"
-              className="inline-flex items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition hover:bg-stone-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 dark:focus-visible:ring-amber-200"
+              className="inline-flex items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-stone-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 dark:focus-visible:ring-amber-200"
             >
               {primaryCta}
             </a>
             <a
               href="#leistungen"
-              className="inline-flex items-center justify-center rounded-full border border-stone-400/80 bg-stone-50/90 px-6 py-3 text-sm font-semibold text-stone-950 shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 dark:border-stone-700/90 dark:bg-stone-800/85 dark:text-stone-100 dark:hover:bg-stone-700 dark:focus-visible:ring-amber-200"
+              className="inline-flex items-center justify-center rounded-full border border-stone-400/80 bg-stone-50/90 px-6 py-3 text-sm font-semibold text-stone-950 shadow-sm backdrop-blur transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 dark:border-stone-700/90 dark:bg-stone-800/85 dark:text-stone-100 dark:hover:bg-stone-700 dark:focus-visible:ring-amber-200"
             >
               {secondaryCta}
             </a>

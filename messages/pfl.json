@@ -147,7 +147,9 @@
           "status": {
             "loading": "Wird verschickt...",
             "success": "Dei Aafrooch is erfolgreich iwwertrache worre.",
-            "error": "Dei Aafrooch hot grad net verschickt werre kenne."
+            "error": "Dei Aafrooch hot grad net verschickt werre kenne.",
+            "botCheckPending": "De Spam-Schutz laaft grad aa. Probier's in eme kurze Momend noch emol.",
+            "botCheckFailed": "Die Spam-Schutz-Priefung hot net geklappt. Probier's noch emol."
           },
           "validation": {
             "nameMin": "De Name muss mindestens 2 Zeiche lang sei.",

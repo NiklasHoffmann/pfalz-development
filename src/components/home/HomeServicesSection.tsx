@@ -27,7 +27,7 @@ export function HomeServicesSection({
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,_rgba(250,247,241,0.95),_rgba(248,245,239,0.9))] dark:bg-[linear-gradient(180deg,_rgba(24,24,27,0.9),_rgba(24,24,27,0.84))]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,_rgba(250,247,241,0.95),_rgba(248,245,239,0.9))] dark:bg-[linear-gradient(180deg,_rgba(54,45,40,0.84),_rgba(37,49,63,0.72))]"
       />
 
       <div className="mx-auto max-w-7xl">
@@ -43,7 +43,7 @@ export function HomeServicesSection({
               as="article"
               key={item.title}
               delayMs={80 + index * 90}
-              className="bg-stone-50/96 flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-stone-200/90 p-8 shadow-[0_18px_45px_rgba(28,25,23,0.06)] backdrop-blur-[1px] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_55px_rgba(28,25,23,0.1)] dark:border-stone-700 dark:bg-stone-900/90 dark:shadow-[0_20px_50px_rgba(0,0,0,0.32)]"
+              className="bg-stone-50/96 flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-stone-200/90 p-8 shadow-[0_18px_45px_rgba(28,25,23,0.06)] backdrop-blur-[1px] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_55px_rgba(28,25,23,0.1)] dark:border-stone-500/65 dark:bg-stone-800/75 dark:shadow-[0_20px_50px_rgba(0,0,0,0.22)]"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-300">
                 0{index + 1}

@@ -10,6 +10,8 @@ const envSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   NEXT_PUBLIC_APP_URL: z.string().url().default('http://localhost:3000'),
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().optional(),
+  TURNSTILE_SECRET_KEY: z.string().optional(),
 
   // Logging
   LOG_LEVEL: z
@@ -37,6 +39,20 @@ const envSchema = z.object({
   SMTP_FROM_EMAIL: z.string().email().optional(),
   CONTACT_FROM_EMAIL: z.string().email().optional(),
   CONTACT_TO_EMAIL: z.string().email().optional(),
+}).superRefine((value, ctx) => {
+  const hasTurnstileSiteKey = Boolean(value.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim());
+  const hasTurnstileSecretKey = Boolean(value.TURNSTILE_SECRET_KEY?.trim());
+
+  if (hasTurnstileSiteKey === hasTurnstileSecretKey) {
+    return;
+  }
+
+  ctx.addIssue({
+    code: z.ZodIssueCode.custom,
+    message:
+      'NEXT_PUBLIC_TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY must either both be set or both be omitted.',
+    path: ['NEXT_PUBLIC_TURNSTILE_SITE_KEY'],
+  });
 });
 
 // Validate environment variables

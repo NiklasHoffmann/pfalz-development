@@ -12,7 +12,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites für Winzer, Weingüter und Sektgüter in der Pfalz',
       eyebrow: 'Branchenlösung',
       intro:
-        'Gerade in der Pfalz entscheidet der digitale Ersteindruck oft darüber, ob aus Interesse ein Besuch, eine Bestellung oder eine Anfrage wird. Eine starke Website zeigt Sortiment, Philosophie und Angebote klar strukturiert und führt Besucher gezielt zum nächsten Schritt. Genau darauf ist diese Branchenlösung ausgerichtet.',
+        'Gerade in der Pfalz entscheidet der digitale Ersteindruck oft darüber, ob aus Interesse ein Besuch, eine Bestellung oder eine Anfrage wird. Eine starke Website zeigt Sortiment, Philosophie und Angebote klar strukturiert und führt Besucher gezielt zum nächsten Schritt. Genau darauf ist diese Branchenlösung ausgerichtet, inklusive kompletter Umsetzung aus einer Hand.',
 
       sections: [
         {
@@ -41,6 +41,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
           paragraphs: [
             'Die Umsetzung umfasst schnelle Ladezeiten, klare Seitentitel für Suchmaschinen, strukturierte Inhalte und eine wartbare technische Grundlage. Dadurch bleibt die Website auch bei saisonalen Änderungen flexibel.',
             'Neue Jahrgänge, Veranstaltungen oder Aktionszeiträume lassen sich ohne großen Aufwand ergänzen. So bleibt dein Auftritt dauerhaft aktuell und professionell.',
+            'Das sorgt für weniger internen Pflegeaufwand und gleichzeitig für mehr Konsistenz in deiner Außenwirkung.',
           ],
         },
       ],
@@ -70,13 +71,18 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
           answer:
             'Ja. Hosting, Pflege und technische Weiterentwicklung können dauerhaft übernommen werden.',
         },
+        {
+          question: 'Übernimmst du auch Struktur, Inhalte und Anfrageführung?',
+          answer:
+            'Ja. Ich übernehme Konzeption, Inhaltsstruktur, technische Umsetzung und klare Kontaktstrecken für Weinproben, Events und Direktanfragen.',
+        },
       ],
 
       cta: {
-        primaryLabel: 'Kostenlose Website-Erstberatung anfragen',
+        primaryLabel: 'Kostenlose Website-Erstberatung sichern',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Zur Leistungsseite Webdesign Pfalz',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'Alle Leistungen ansehen',
+        secondaryHref: '/leistungen',
       },
 
       related: {
@@ -102,7 +108,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites for Winegrowers, Wineries, and Sparkling Wine Estates',
       eyebrow: 'Industry Solution',
       intro:
-        'In the Palatinate, your digital first impression often decides whether interest turns into visits, orders, or inquiries. A strong website presents your wines, story, and offers in a clear structure and guides visitors to the next step. That is exactly what this industry page is designed for.',
+        'In the Palatinate, your digital first impression often decides whether interest turns into visits, orders, or inquiries. A strong website presents your wines, story, and offers in a clear structure and guides visitors to the next step. I implement this in a practical, business-ready way from strategy to launch.',
 
       sections: [
         {
@@ -164,8 +170,8 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       cta: {
         primaryLabel: 'Request a free website consultation',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Go to the web design service page',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'View all services',
+        secondaryHref: '/leistungen',
       },
 
       related: {
@@ -190,7 +196,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites fer Winzer, Woigieder un Sekdgieder in de Palz',
       eyebrow: 'Branche-Loesung',
       intro:
-        'In de Palz entscheidet de erschte digitale Eindruck oft, ob aus Interesse en Besuch, en Bestellung oder en Aafrooch wird. En starke Website zeigt Sortiment, Betriebsgschicht un Agebote klar un fuehrt Besucher gezielt zum neggschde Schritt.',
+        'In de Palz entscheidet de erschte digitale Eindruck oft, ob aus Interesse en Besuch, en Bestellung oder en Aafrooch wird. En starke Website zeigt Sortiment, Betriebsgschicht un Agebote klar un fuehrt Besucher gezielt zum neggschde Schritt. Isch iwernehm do die komplette Umsetzung.',
 
       sections: [
         {
@@ -251,8 +257,8 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       cta: {
         primaryLabel: 'Kostenlose Website-Erstberatung sichere',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Zur Leistungsseid Webdesign Palz',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'Alle Leischdunge aa gugge',
+        secondaryHref: '/leistungen',
       },
 
       related: {

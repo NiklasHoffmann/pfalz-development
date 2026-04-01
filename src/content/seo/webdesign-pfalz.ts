@@ -6,41 +6,46 @@ import {
 export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
   parseLocalizedSeoPageContent({
     de: {
-      title: 'Webdesign Pfalz für Unternehmen | Pfalz Development',
+      title:
+        'Webdesign Pfalz: Moderne Website, die Anfragen bringt | Pfalz Development',
       description:
-        'Webdesign in der Pfalz für lokale Unternehmen: klare Positionierung, schnelle Ladezeiten und Websites, die gezielt Anfragen generieren.',
-      h1: 'Webdesign in der Pfalz, das planbar Anfragen bringt',
+        'Webdesign in der Pfalz mit allem, was heute wichtig ist: klare Botschaft, schnelle Website, gute Darstellung auf dem Handy und ein einfacher Weg zur Kontaktanfrage.',
+      h1: 'Webdesign in der Pfalz, das heute alle wichtigen Standards erfüllt',
       eyebrow: 'Kernleistung',
       intro:
-        'Deine Website entscheidet oft darüber, ob aus einem Besucher ein Kunde wird. Entscheidend ist nicht nur gutes Design, sondern ob Angebot, Nutzen und nächster Schritt sofort verständlich sind. Genau darauf ist mein Webdesign in der Pfalz ausgerichtet: klare Positionierung, schnelle Ladezeiten und ein sauber geführter Weg zur Anfrage.',
+        'Deine Website entscheidet oft darüber, ob aus einem Besucher ein Kunde wird. Entscheidend ist nicht nur gutes Design, sondern ob Angebot, Vertrauen und nächster Schritt sofort klar sind. Ich übernehme die Umsetzung für dich komplett: von Aufbau und Texten bis zur technischen Umsetzung und einem klaren Weg zur Anfrage.',
 
       sections: [
         {
-          title: 'Was eine Website heute wirklich leisten muss',
+          title: 'Was heute auf keiner guten Website fehlen darf',
           paragraphs: [
-            'Bevor sich jemand meldet, wird dein Unternehmen online geprüft. Wenn nicht innerhalb weniger Sekunden klar ist, was du anbietest und wie eine Zusammenarbeit abläuft, springen potenzielle Kunden ab.',
-            'Deshalb liegt der Fokus auf klar verständlichen Leistungsseiten, mobiler Lesbarkeit und sichtbaren Kontaktpunkten. Besucher werden nicht nur informiert, sondern gezielt zur Anfrage geführt – ohne Umwege oder Reibung.',
+            'Bevor sich jemand meldet, wird dein Unternehmen online geprüft. In wenigen Sekunden muss klar sein, was du anbietest, für wen es passt und wie der nächste Schritt aussieht.',
+            'Dazu gehören heute eine gute Darstellung auf dem Smartphone, schnelle Ladezeiten, klar verständliche Leistungsseiten und gut sichtbare Kontaktmöglichkeiten.',
+            'Statt nur schön auszusehen, muss die Seite Orientierung geben und Besucher strukturiert zur Anfrage führen.',
           ],
         },
         {
-          title: 'So läuft die Zusammenarbeit ab',
+          title: 'Ich setze die Umsetzung für dich komplett um',
           paragraphs: [
-            'Zu Beginn kläre ich mit dir Zielgruppe, Angebot und Geschäftsziel. Daraus entsteht eine Seitenstruktur, die typische Fragen beantwortet und Einwände bereits vor dem Erstkontakt auflöst.',
-            'Nach der Freigabe setze ich die Website technisch sauber um – optimiert für Ladezeit, mobile Nutzung und mehr Anfragen. Zum Start erhältst du eine klare Grundlage, die direkt für Kundengewinnung arbeitet.',
+            'Zu Beginn klären wir Zielgruppe, Angebot und Geschäftsziel. Daraus entsteht eine klare Seitenstruktur mit eindeutigen Botschaften, die typische Fragen früh beantwortet.',
+            'Anschließend übernehme ich Konzeption, Design und technische Umsetzung. Du bekommst keine lose Vorlage, sondern eine einsatzbereite Website, die professionell wirkt und im Alltag funktioniert.',
+            'Auch Kontaktformular, Seiteninhalte und Reihenfolge werden so aufgebaut, dass aus Besuchern häufiger passende Anfragen werden.',
           ],
         },
         {
-          title: 'Für wen dieses Webdesign besonders sinnvoll ist',
+          title: 'Technik, SEO-Basis und Sicherheit sind direkt integriert',
           paragraphs: [
-            'Ideal ist das Angebot für lokale Dienstleister, Handwerksbetriebe, Winzer, Weingüter, Sektgüter und Gastgeber, die online professioneller auftreten und gezielt mehr passende Anfragen gewinnen möchten.',
-            'Wenn deine aktuelle Website veraltet ist, auf dem Smartphone schlecht funktioniert oder kaum Anfragen bringt, sorgt ein klarer Neuaufbau meist für den schnellsten spürbaren Effekt.',
+            'Von Anfang an wird auf eine schnelle, stabile Website geachtet. Dazu gehören saubere Seitenstruktur, klare Überschriften und Einstellungen, damit Google die Inhalte gut versteht.',
+            'Ebenso wichtig: DSGVO-konforme Kontaktprozesse, technische Stabilität, Basisschutz gegen Spam sowie eine wartbare Struktur für künftige Erweiterungen.',
+            'So startest du nicht mit einer Baustelle, sondern mit einer belastbaren Grundlage für Sichtbarkeit und Kundengewinnung.',
           ],
         },
         {
-          title: 'Projektumfang und transparente Kosten',
+          title: 'Nach dem Launch wird der Erfolg messbar weiterentwickelt',
           paragraphs: [
-            'Die meisten Projekte starten als kompakte Unternehmenswebsite mit klaren Leistungsseiten, FAQ-Bereich und einem strukturierten Anfrageprozess. Bei Bedarf kann die Seite gezielt erweitert werden – zum Beispiel um Branchen- oder Ortsseiten.',
-            'Umfang, Zeitplan und Budget werden vorab klar definiert. So bleibt das Projekt planbar und du weißt jederzeit, woran du bist.',
+            'Nach dem Start ist die Arbeit nicht vorbei: Wir schauen uns an, wie viele Anfragen ankommen und wie sich Besucher auf der Seite bewegen.',
+            'Auf dieser Basis können Inhalte, Seitenaufbau und Kontakt-Buttons Schritt für Schritt verbessert werden.',
+            'Umfang, Zeitplan und Budget sind dabei vorab klar definiert, damit du jederzeit weißt, was umgesetzt wird und was als nächster Schritt sinnvoll ist.',
           ],
         },
       ],
@@ -51,6 +56,11 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
           question: 'Wie lange dauert ein Webdesign-Projekt?',
           answer:
             'Mit vorbereiteten Inhalten und kurzen Feedbackschleifen kann eine fokussierte Unternehmenswebsite oft innerhalb von 2 bis 6 Wochen live gehen.',
+        },
+        {
+          question: 'Übernimmst du auch Struktur, Inhalte und Anfrageführung?',
+          answer:
+            'Ja. Ich übernehme nicht nur das Design, sondern auch Seitenstruktur, Priorisierung der Inhalte und klare Kontaktwege, damit die Website im Alltag wirklich Anfragen unterstützt.',
         },
         {
           question: 'Gibt es Betreuung nach dem Launch?',
@@ -66,14 +76,14 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
           question:
             'Wird die Seite so vorbereitet, dass sie bei Google besser gefunden wird?',
           answer:
-            'Ja. Die Seite bekommt eine klare Struktur, passende Seitentitel, gute interne Verlinkungen und eine saubere technische Basis.',
+            'Ja. Die Seite wird so aufgebaut, dass Google die Inhalte gut einordnen kann: mit klarer Struktur, passenden Seitentiteln und einer sauberen technischen Grundlage.',
         },
       ],
 
       cta: {
-        primaryLabel: 'Kostenlose Website-Erstberatung anfragen',
+        primaryLabel: 'Kostenlose Website-Erstberatung sichern',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Beispiel: Website für Ferienwohnungen ansehen',
+        secondaryLabel: 'Beispielprojekt für Ferienwohnungen ansehen',
         secondaryHref: '/branchen/ferienwohnung-website',
       },
 

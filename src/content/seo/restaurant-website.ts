@@ -12,7 +12,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites für Restaurants in der Pfalz, die Anfragen fördern',
       eyebrow: 'Branchenlösung',
       intro:
-        'Bei Restaurants entscheidet oft in wenigen Sekunden, ob ein Besucher bleibt oder abspringt. Wenn Speisekarte, Öffnungszeiten, Kontakt und Reservierung nicht sofort auffindbar sind, geht Potenzial verloren. Diese Branchenlösung ist darauf ausgelegt, Gäste klar zu führen und Anfragen planbar zu steigern.',
+        'Bei Restaurants entscheidet oft in wenigen Sekunden, ob ein Besucher bleibt oder abspringt. Wenn Speisekarte, Öffnungszeiten, Kontakt und Reservierung nicht sofort auffindbar sind, geht Potenzial verloren. Diese Branchenlösung ist darauf ausgelegt, Gäste klar zu führen und Anfragen planbar zu steigern. Ich übernehme die Umsetzung so, dass die Seite im Tagesgeschäft wirklich arbeitet.',
 
       sections: [
         {
@@ -41,6 +41,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
           paragraphs: [
             'Die Umsetzung umfasst schnelle Ladezeiten, saubere Struktur und eine leicht pflegbare technische Basis. Damit können saisonale Menüs, Events oder geänderte Zeiten schnell angepasst werden.',
             'So bleibt dein Auftritt verlässlich aktuell und unterstützt den Betrieb dauerhaft statt nur punktuell zu funktionieren.',
+            'Gerade bei häufigen Änderungen sorgt diese Struktur dafür, dass Aktualisierungen schnell online sind und Reservierungsanfragen nicht verloren gehen.',
           ],
         },
       ],
@@ -69,13 +70,18 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
           answer:
             'Ja. Hosting, Pflege und technische Weiterentwicklung sind möglich.',
         },
+        {
+          question: 'Übernimmst du auch Struktur, Inhalte und Reservierungslogik?',
+          answer:
+            'Ja. Ich übernehme Konzeption, Seitenstruktur und technische Umsetzung inklusive klarer Kontakt- und Reservierungsführung.',
+        },
       ],
 
       cta: {
-        primaryLabel: 'Kostenlose Website-Erstberatung anfragen',
+        primaryLabel: 'Kostenlose Website-Erstberatung sichern',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Zur Leistungsseite Webdesign Pfalz',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'Alle Leistungen ansehen',
+        secondaryHref: '/leistungen',
       },
 
       related: {
@@ -100,7 +106,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Restaurant websites in the Palatinate that increase inquiries',
       eyebrow: 'Industry Solution',
       intro:
-        'For restaurants, visitors decide in seconds whether they stay or leave. If menu, opening hours, contact, and reservation options are not instantly clear, opportunities are lost. This page is designed to guide guests clearly and improve direct inquiries.',
+        'For restaurants, visitors decide in seconds whether they stay or leave. If menu, opening hours, contact, and reservation options are not instantly clear, opportunities are lost. I implement this setup so guests are guided clearly and direct inquiries improve measurably.',
 
       sections: [
         {
@@ -159,8 +165,8 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       cta: {
         primaryLabel: 'Request a free website consultation',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Go to the web design service page',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'View all services',
+        secondaryHref: '/leistungen',
       },
 
       related: {
@@ -186,7 +192,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites fer Restaurants in de Palz, die Aafrooche foerdere',
       eyebrow: 'Branche-Loesung',
       intro:
-        'Im Restaurant entscheidet oft in paar Sekunne, ob en Besucher bleibt oder geht. Wenn Speisekard, Oeffnungszeiten, Kontakt un Reservierung net sofort zu finne sinn, geht Potenzial verlore. Die Loesung fuehrt Geste klar un macht direkte Aafrooche planbarer.',
+        'Im Restaurant entscheidet oft in paar Sekunne, ob en Besucher bleibt oder geht. Wenn Speisekard, Oeffnungszeiten, Kontakt un Reservierung net sofort zu finne sinn, geht Potenzial verlore. Die Loesung fuehrt Geste klar un macht direkte Aafrooche planbarer, un isch setz des komplett um.',
 
       sections: [
         {
@@ -248,8 +254,8 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       cta: {
         primaryLabel: 'Kostenlose Website-Erstberatung sichere',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Zur Leistungsseid Webdesign Palz',
-        secondaryHref: '/leistungen/webdesign-pfalz',
+        secondaryLabel: 'Alle Leischdunge aa gugge',
+        secondaryHref: '/leistungen',
       },
 
       related: {

@@ -13,6 +13,7 @@ export interface ModalProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   contentId?: string;
   contentClassName?: string;
+  scrollBody?: boolean;
 }
 
 const sizeClasses = {
@@ -32,8 +33,10 @@ export default function Modal({
   size = 'md',
   contentId,
   contentClassName,
+  scrollBody = true,
 }: ModalProps) {
   const lockedScrollYRef = useRef(0);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!open) {
@@ -49,6 +52,11 @@ export default function Modal({
     };
 
     const preventPointerScroll = (event: WheelEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+      if (target && contentRef.current?.contains(target)) {
+        return;
+      }
+
       event.preventDefault();
     };
 
@@ -68,6 +76,10 @@ export default function Modal({
       }
 
       const target = event.target as HTMLElement | null;
+      if (target && contentRef.current?.contains(target)) {
+        return;
+      }
+
       if (
         target &&
         (target.tagName === 'INPUT' ||
@@ -97,6 +109,8 @@ export default function Modal({
   }, [open]);
 
   const accessibleTitle = title?.trim() || 'Dialog';
+  const accessibleDescription =
+    description?.trim() || 'Dialog content and actions.';
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -114,8 +128,9 @@ export default function Modal({
         />
         <Dialog.Content
           id={contentId}
+          ref={contentRef}
           className={cn(
-            'fixed left-1/2 top-1/2 z-[60] w-full -translate-x-1/2 -translate-y-1/2',
+            'fixed left-1/2 top-1/2 z-[60] flex w-[calc(100%-2rem)] max-h-[calc(100dvh-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden overscroll-contain sm:w-full sm:max-h-[calc(100dvh-3rem)]',
             'rounded-lg bg-white p-6 shadow-lg',
             'dark:bg-gray-800',
             'transition-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)]',
@@ -127,23 +142,38 @@ export default function Modal({
           )}
         >
           {title ? (
-            <div className="mb-4">
+            <div className="mb-4 shrink-0 pr-10">
               <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-white">
                 {title}
               </Dialog.Title>
-              {description && (
+              {description ? (
                 <Dialog.Description className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                   {description}
+                </Dialog.Description>
+              ) : (
+                <Dialog.Description className="sr-only">
+                  {accessibleDescription}
                 </Dialog.Description>
               )}
             </div>
           ) : (
-            <Dialog.Title className="sr-only">{accessibleTitle}</Dialog.Title>
+            <>
+              <Dialog.Title className="sr-only">{accessibleTitle}</Dialog.Title>
+              <Dialog.Description className="sr-only">
+                {accessibleDescription}
+              </Dialog.Description>
+            </>
           )}
-          {children}
+          {scrollBody ? (
+            <div className="modal-scrollbar min-h-0 flex-1 overflow-y-auto pr-1">
+              {children}
+            </div>
+          ) : (
+            <div className="min-h-0 flex-1">{children}</div>
+          )}
           <Dialog.Close
             type="button"
-            className="absolute right-4 top-4 inline-flex rounded-full p-1.5 text-gray-500 opacity-75 transition-opacity hover:text-gray-800 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/60 disabled:pointer-events-none dark:text-gray-300 dark:hover:text-white dark:focus-visible:ring-gray-600"
+            className="absolute right-4 top-4 z-10 inline-flex rounded-full p-1.5 text-gray-500 opacity-75 transition-opacity hover:text-gray-800 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/60 disabled:pointer-events-none dark:text-gray-300 dark:hover:text-white dark:focus-visible:ring-gray-600"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
