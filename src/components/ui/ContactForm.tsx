@@ -108,7 +108,7 @@ export function ContactForm() {
         <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-stone-300">
           {t('description')}
         </p>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 via-white/72 to-white dark:from-stone-800/0 dark:via-stone-800/76 dark:to-stone-800" />
+        <div className="via-white/72 dark:via-stone-800/76 pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white dark:from-stone-800/0 dark:to-stone-800" />
       </div>
 
       <form
@@ -116,8 +116,8 @@ export function ContactForm() {
         className="flex min-h-0 flex-1 flex-col"
         aria-describedby="contact-form-status"
       >
-        <div className="modal-scrollbar min-h-0 flex-1 overflow-y-auto bg-gradient-to-b from-stone-100/78 via-stone-50/58 to-stone-100/44 px-6 pb-5 pt-5 dark:from-stone-900/52 dark:via-stone-900/28 dark:to-stone-900/12">
-          <div className="rounded-[1.6rem] border border-stone-300/70 bg-gradient-to-b from-stone-50/94 via-stone-100/90 to-stone-100/82 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.52),0_16px_36px_-32px_rgba(28,25,23,0.22)] dark:border-stone-700/75 dark:bg-gradient-to-b dark:from-stone-800/96 dark:via-stone-800/94 dark:to-stone-900/84 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_16px_36px_-32px_rgba(0,0,0,0.4)] sm:p-5">
+        <div className="modal-scrollbar from-stone-100/78 via-stone-50/58 to-stone-100/44 dark:from-stone-900/52 dark:via-stone-900/28 dark:to-stone-900/12 min-h-0 flex-1 overflow-y-auto bg-gradient-to-b px-6 pb-5 pt-5">
+          <div className="from-stone-50/94 to-stone-100/82 dark:from-stone-800/96 dark:via-stone-800/94 dark:to-stone-900/84 rounded-[1.6rem] border border-stone-300/70 bg-gradient-to-b via-stone-100/90 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.52),0_16px_36px_-32px_rgba(28,25,23,0.22)] dark:border-stone-700/75 dark:bg-gradient-to-b dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_16px_36px_-32px_rgba(0,0,0,0.4)] sm:p-5">
             <fieldset disabled={isSubmitting} className="space-y-4">
               <input
                 type="text"
@@ -192,7 +192,7 @@ export function ContactForm() {
         </div>
 
         <div className="relative z-10 shrink-0 bg-white px-6 pb-6 pt-4 shadow-[0_-20px_34px_-30px_rgba(28,25,23,0.45)] dark:bg-stone-800 dark:shadow-[0_-20px_34px_-28px_rgba(0,0,0,0.72)]">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 via-white/72 to-white dark:from-stone-800/0 dark:via-stone-800/76 dark:to-stone-800" />
+          <div className="via-white/72 dark:via-stone-800/76 pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white dark:from-stone-800/0 dark:to-stone-800" />
           {statusMessage ? (
             <p
               id="contact-form-status"
@@ -207,7 +207,11 @@ export function ContactForm() {
               {statusMessage}
             </p>
           ) : (
-            <p id="contact-form-status" className="sr-only" aria-live="polite" />
+            <p
+              id="contact-form-status"
+              className="sr-only"
+              aria-live="polite"
+            />
           )}
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

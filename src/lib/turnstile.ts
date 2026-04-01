@@ -7,7 +7,8 @@ type TurnstileVerificationResponse = {
 
 export function isTurnstileEnabled(): boolean {
   return Boolean(
-    env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() && env.TURNSTILE_SECRET_KEY?.trim()
+    env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() &&
+    env.TURNSTILE_SECRET_KEY?.trim()
   );
 }
 

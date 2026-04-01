@@ -91,7 +91,8 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
           label: 'See service modules',
         },
       ],
-      problemTitle: 'Typical website challenges before relaunch or optimization',
+      problemTitle:
+        'Typical website challenges before relaunch or optimization',
       problemIntro:
         'Most projects start with one of these blockers. I resolve them systematically in the implementation.',
       problems: [
@@ -387,7 +388,10 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
     { label: navT('about'), href: leistungenHref },
-    { label: locale === 'en' ? 'Industry' : 'Branche', href: `${basePath}/branchen` },
+    {
+      label: locale === 'en' ? 'Industry' : 'Branche',
+      href: `${basePath}/branchen`,
+    },
     { label: navT('contact'), href: `${homeHref}#kontakt` },
   ];
 
@@ -414,14 +418,14 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
             <SectionSpyNav
               title={copy.navTitle}
               items={sectionLinks}
-              className="lg:fixed lg:top-28 lg:w-[240px] lg:max-h-[calc(100vh-8rem)] lg:overflow-auto lg:right-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] rounded-2xl border border-stone-200/80 bg-white/65 p-4 dark:border-stone-700 dark:bg-stone-900/35"
+              className="rounded-2xl border border-stone-200/80 bg-white/65 p-4 dark:border-stone-700 dark:bg-stone-900/35 lg:fixed lg:right-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:w-[240px] lg:overflow-auto"
             />
           </aside>
 
           <div className="pt-28 sm:pt-32 lg:col-start-1 lg:row-start-1">
             <section className="pt-2 sm:pt-4">
               <div className="pl-1 sm:pl-2 lg:pl-4">
-                <h1 className="max-w-5xl pl-[0.28em] -indent-[0.28em] text-4xl font-black tracking-tight [text-wrap:balance] text-stone-950 dark:text-stone-50 sm:text-5xl lg:text-6xl">
+                <h1 className="max-w-5xl pl-[0.28em] -indent-[0.28em] text-4xl font-black tracking-tight text-stone-950 [text-wrap:balance] dark:text-stone-50 sm:text-5xl lg:text-6xl">
                   {copy.title}
                 </h1>
                 <p className="mt-5 max-w-3xl text-base leading-7 text-stone-700 dark:text-stone-200 sm:text-lg">
@@ -447,7 +451,9 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                       key={entry.title}
                       className="flex h-full flex-col rounded-2xl border border-stone-200/90 bg-stone-50/90 p-5 dark:border-stone-700 dark:bg-stone-800/65"
                     >
-                      <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">{entry.title}</h3>
+                      <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                        {entry.title}
+                      </h3>
                       <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">
                         {entry.description}
                       </p>

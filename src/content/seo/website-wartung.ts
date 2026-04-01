@@ -86,7 +86,8 @@ export const websiteWartungContentByLocale: LocalizedSeoPageContent =
     },
 
     en: {
-      title: 'Website Maintenance and Growth in the Palatinate | Pfalz Development',
+      title:
+        'Website Maintenance and Growth in the Palatinate | Pfalz Development',
       description:
         'Website maintenance and growth for businesses in the Palatinate: technical stability, updated content, and measurable optimization.',
       h1: 'Website maintenance and growth to keep performance high after launch',

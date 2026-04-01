@@ -125,7 +125,7 @@ export function TurnstileWidget({
           <div className="mx-auto flex max-w-[320px] justify-center">
             <div
               ref={containerRef}
-              className="w-full min-h-[65px]"
+              className="min-h-[65px] w-full"
               aria-hidden="true"
             />
           </div>

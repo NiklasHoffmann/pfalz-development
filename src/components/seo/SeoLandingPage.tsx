@@ -55,8 +55,7 @@ export async function SeoLandingPage({
 
   let activeHref: string | undefined;
   if (activeNav === 'home') activeHref = homeHref;
-  if (activeNav === 'service')
-    activeHref = `${basePath}/leistungen`;
+  if (activeNav === 'service') activeHref = `${basePath}/leistungen`;
   if (activeNav === 'industry') {
     activeHref = `${basePath}/branchen`;
   }
@@ -72,15 +71,15 @@ export async function SeoLandingPage({
       />
 
       <main className="relative flex-1 overflow-hidden bg-[radial-gradient(circle_at_top_left,#fffbeb_0%,#f5f5f4_42%,#e7e5e4_100%)] px-5 pb-14 pt-28 text-stone-900 dark:bg-[radial-gradient(circle_at_top_left,#3a2f28_0%,#332b26_44%,#24303d_100%)] dark:text-stone-100 sm:px-8 sm:pt-32 lg:px-10">
-        <div className="pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-amber-300/30 blur-3xl dark:bg-amber-400/24" />
-        <div className="pointer-events-none absolute -right-12 top-40 h-64 w-64 rounded-full bg-stone-300/45 blur-3xl dark:bg-stone-300/18" />
+        <div className="dark:bg-amber-400/24 pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-amber-300/30 blur-3xl" />
+        <div className="dark:bg-stone-300/18 pointer-events-none absolute -right-12 top-40 h-64 w-64 rounded-full bg-stone-300/45 blur-3xl" />
 
         <article className="relative mx-auto max-w-5xl py-2 sm:py-4">
           <div className="rounded-[1.75rem] border border-stone-200/70 bg-[linear-gradient(120deg,rgba(255,251,235,0.95),rgba(255,255,255,0.88),rgba(250,245,235,0.92))] p-6 shadow-[0_20px_56px_rgba(28,25,23,0.14)] dark:border-stone-500/70 dark:bg-[linear-gradient(120deg,rgba(72,61,54,0.9),rgba(50,43,38,0.88),rgba(39,53,68,0.86))] dark:shadow-[0_24px_64px_rgba(0,0,0,0.26)] sm:p-8 lg:p-10">
             <p className="inline-flex rounded-full border border-amber-300/60 bg-amber-100/85 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
               {content.eyebrow}
             </p>
-            <h1 className="mt-5 max-w-4xl text-3xl font-black leading-tight tracking-tight [text-wrap:balance] text-stone-950 dark:text-stone-50 sm:text-4xl lg:text-5xl">
+            <h1 className="mt-5 max-w-4xl text-3xl font-black leading-tight tracking-tight text-stone-950 [text-wrap:balance] dark:text-stone-50 sm:text-4xl lg:text-5xl">
               {content.h1}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-stone-700 dark:text-stone-200 sm:max-w-2xl sm:text-lg">
@@ -124,8 +123,12 @@ export async function SeoLandingPage({
                       {section.paragraphs.length > 2 ? (
                         <details className="group pt-1">
                           <summary className="cursor-pointer list-none text-sm font-semibold text-amber-800 marker:content-none hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100">
-                            <span className="group-open:hidden">{moreLabel}</span>
-                            <span className="hidden group-open:inline">{lessLabel}</span>
+                            <span className="group-open:hidden">
+                              {moreLabel}
+                            </span>
+                            <span className="hidden group-open:inline">
+                              {lessLabel}
+                            </span>
                           </summary>
                           <div className="mt-3 space-y-4">
                             {section.paragraphs.slice(2).map((paragraph) => (

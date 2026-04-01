@@ -18,7 +18,10 @@ function getSectionId(href: string): string {
 }
 
 export function SectionSpyNav({ title, items, className }: SectionSpyNavProps) {
-  const sectionIds = useMemo(() => items.map((item) => getSectionId(item.href)), [items]);
+  const sectionIds = useMemo(
+    () => items.map((item) => getSectionId(item.href)),
+    [items]
+  );
   const [activeId, setActiveId] = useState(sectionIds[0] ?? '');
 
   useEffect(() => {
@@ -44,8 +47,7 @@ export function SectionSpyNav({ title, items, className }: SectionSpyNavProps) {
         if (hashSection) {
           const top = hashSection.getBoundingClientRect().top;
           const bottom = hashSection.getBoundingClientRect().bottom;
-          const withinTargetWindow =
-            top <= midLine && bottom >= midLine;
+          const withinTargetWindow = top <= midLine && bottom >= midLine;
 
           // Keep clicked hash active while it intersects the viewport middle line.
           if (withinTargetWindow) {

@@ -22,13 +22,11 @@ export function HomeHeader({
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-3 h-[7rem] bg-transparent backdrop-blur-md [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.58)_24%,rgba(0,0,0,0.22)_52%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.58)_24%,rgba(0,0,0,0.22)_52%,transparent_100%)] sm:-top-4 sm:h-32"
+        className="pointer-events-none absolute inset-x-0 -top-3 h-[7rem] bg-transparent backdrop-blur-md [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.58)_24%,rgba(0,0,0,0.22)_52%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.58)_24%,rgba(0,0,0,0.22)_52%,transparent_100%)] sm:-top-4 sm:h-32"
       />
 
       <div>
-        <div
-          className="surface-header relative mx-auto min-h-[50px] max-w-7xl rounded-full border border-stone-300/80 px-4 py-[9px] shadow-[0_10px_34px_rgba(28,25,23,0.08)] backdrop-blur-xl dark:border-stone-600/90 sm:min-h-[58px] sm:px-6 lg:px-10"
-        >
+        <div className="surface-header relative mx-auto min-h-[50px] max-w-7xl rounded-full border border-stone-300/80 px-4 py-[9px] shadow-[0_10px_34px_rgba(28,25,23,0.08)] backdrop-blur-xl dark:border-stone-600/90 sm:min-h-[58px] sm:px-6 lg:px-10">
           <div className="flex items-center justify-between gap-2 sm:gap-3 lg:gap-6">
             <a
               href={brandHref}

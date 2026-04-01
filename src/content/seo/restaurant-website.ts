@@ -71,7 +71,8 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
             'Ja. Hosting, Pflege und technische Weiterentwicklung sind möglich.',
         },
         {
-          question: 'Übernimmst du auch Struktur, Inhalte und Reservierungslogik?',
+          question:
+            'Übernimmst du auch Struktur, Inhalte und Reservierungslogik?',
           answer:
             'Ja. Ich übernehme Konzeption, Seitenstruktur und technische Umsetzung inklusive klarer Kontakt- und Reservierungsführung.',
         },

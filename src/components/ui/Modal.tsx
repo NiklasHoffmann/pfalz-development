@@ -130,7 +130,7 @@ export default function Modal({
           id={contentId}
           ref={contentRef}
           className={cn(
-            'fixed left-1/2 top-1/2 z-[60] flex w-[calc(100%-2rem)] max-h-[calc(100dvh-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden overscroll-contain sm:w-full sm:max-h-[calc(100dvh-3rem)]',
+            'fixed left-1/2 top-1/2 z-[60] flex max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden overscroll-contain sm:max-h-[calc(100dvh-3rem)] sm:w-full',
             'rounded-lg bg-white p-6 shadow-lg',
             'dark:bg-gray-800',
             'transition-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)]',

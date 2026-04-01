@@ -69,7 +69,8 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
             'Ja. Preise, Saisonzeiten, Ausstattungsdetails oder lokale Tipps lassen sich jederzeit anpassen.',
         },
         {
-          question: 'Übernimmst du Konzeption, Umsetzung und spätere Betreuung?',
+          question:
+            'Übernimmst du Konzeption, Umsetzung und spätere Betreuung?',
           answer:
             'Ja. Von Struktur und Textführung bis zur technischen Umsetzung und laufenden Pflege kann alles aus einer Hand umgesetzt werden.',
         },

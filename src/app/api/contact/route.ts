@@ -48,9 +48,7 @@ export async function POST(request: NextRequest) {
 
     if (isTurnstileEnabled()) {
       if (!submission.turnstileToken) {
-        logger.warn(
-          `Turnstile token missing (ipfp=${ipFingerprint(ip)})`
-        );
+        logger.warn(`Turnstile token missing (ipfp=${ipFingerprint(ip)})`);
         return errorResponse('Spam protection verification failed', 400);
       }
 

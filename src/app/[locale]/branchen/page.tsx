@@ -65,7 +65,8 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
       gridTitle: 'Choose your industry route',
       gridText:
         'Use the overview to jump directly to the page that matches your business model and inquiry goals.',
-      playbookTitle: 'Each industry follows a standardized performance playbook',
+      playbookTitle:
+        'Each industry follows a standardized performance playbook',
       playbookText:
         'You get a comparable setup quality across industries while keeping wording, trust elements, and CTA logic market-specific.',
       playbookLabels: {
@@ -361,7 +362,8 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
     { href: '#support', label: copy.nav.support },
   ];
 
-  const getCardId = (href: string) => href.split('/').filter(Boolean).pop() ?? href;
+  const getCardId = (href: string) =>
+    href.split('/').filter(Boolean).pop() ?? href;
 
   return (
     <div className="surface-page flex min-h-screen flex-col">
@@ -378,14 +380,14 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
             <SectionSpyNav
               title={copy.navTitle}
               items={sectionLinks}
-              className="lg:fixed lg:top-28 lg:w-[240px] lg:max-h-[calc(100vh-8rem)] lg:overflow-auto lg:right-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] rounded-2xl border border-stone-200/80 bg-white/65 p-4 dark:border-stone-700 dark:bg-stone-900/35"
+              className="rounded-2xl border border-stone-200/80 bg-white/65 p-4 dark:border-stone-700 dark:bg-stone-900/35 lg:fixed lg:right-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:w-[240px] lg:overflow-auto"
             />
           </aside>
 
           <div className="pt-28 sm:pt-32 lg:col-start-1 lg:row-start-1">
             <section className="pt-2 sm:pt-4">
               <div className="pl-1 sm:pl-2 lg:pl-4">
-                <h1 className="max-w-5xl pl-[0.28em] -indent-[0.28em] text-4xl font-black tracking-tight [text-wrap:balance] text-stone-950 dark:text-stone-50 sm:text-5xl lg:text-6xl">
+                <h1 className="max-w-5xl pl-[0.28em] -indent-[0.28em] text-4xl font-black tracking-tight text-stone-950 [text-wrap:balance] dark:text-stone-50 sm:text-5xl lg:text-6xl">
                   {copy.title}
                 </h1>
                 <p className="mt-5 max-w-3xl text-base leading-7 text-stone-700 dark:text-stone-200 sm:text-lg">
