@@ -23,7 +23,9 @@ export function RevealOnScroll({
   ...rest
 }: RevealOnScrollProps) {
   const Element = as;
-  const mergedClassName = ['reveal-on-scroll', className ?? ''].join(' ').trim();
+  const mergedClassName = ['reveal-on-scroll', className ?? '']
+    .join(' ')
+    .trim();
 
   const mergedStyle: CSSProperties = {
     ...style,
