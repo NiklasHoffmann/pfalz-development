@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PackageItem } from './types';
-import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 const Modal = dynamic(() => import('@/components/ui/Modal'), {
   loading: () => null,
@@ -72,8 +71,7 @@ export function HomePackagesSection({
   }, []);
 
   return (
-    <RevealOnScroll
-      as="section"
+    <section
       id="preise"
       className="surface-section-muted border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
@@ -97,10 +95,8 @@ export function HomePackagesSection({
               : null;
 
             return (
-              <RevealOnScroll
-                as="article"
+              <article
                 key={item.name}
-                delayMs={80 + index * 90}
                 className={`flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border p-8 text-center ${
                   index === 1
                     ? 'border-amber-300 bg-[linear-gradient(180deg,_#fff7e6,_#f6e7c8)] shadow-[0_20px_70px_rgba(245,158,11,0.18)] dark:border-amber-500 dark:bg-[linear-gradient(180deg,_#5c2b0e,_#3d1d09)] md:scale-[1.01]'
@@ -161,7 +157,7 @@ export function HomePackagesSection({
                 >
                   {detailsCta}
                 </button>
-              </RevealOnScroll>
+              </article>
             );
           })}
         </div>
@@ -218,6 +214,6 @@ export function HomePackagesSection({
           ) : null}
         </Modal>
       ) : null}
-    </RevealOnScroll>
+    </section>
   );
 }

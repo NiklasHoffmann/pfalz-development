@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import type { ContactDetails, ContactFormCopy } from './types';
-import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 const ContactForm = dynamic(
   () =>
@@ -64,8 +63,7 @@ export function HomeContactSection({
   }
 
   return (
-    <RevealOnScroll
-      as="section"
+    <section
       id="kontakt"
       aria-labelledby="home-contact-title"
       className="border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
@@ -183,6 +181,6 @@ export function HomeContactSection({
           </Modal>
         ) : null}
       </div>
-    </RevealOnScroll>
+    </section>
   );
 }

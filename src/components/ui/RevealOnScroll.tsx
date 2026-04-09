@@ -1,7 +1,4 @@
-'use client';
-
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
-import { useEffect, useRef, useState } from 'react';
 
 type RevealTag = 'div' | 'section' | 'article' | 'p' | 'span' | 'li';
 
@@ -20,71 +17,13 @@ export function RevealOnScroll({
   className,
   style,
   delayMs = 0,
-  once = true,
-  threshold = 0.08,
-  rootMargin = '0px 0px 12% 0px',
+  once: _once = true,
+  threshold: _threshold = 0.08,
+  rootMargin: _rootMargin = '0px 0px 12% 0px',
   ...rest
 }: RevealOnScrollProps) {
-  const [isVisible, setIsVisible] = useState(() => {
-    if (typeof window === 'undefined') {
-      return false;
-    }
-
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  });
-  const elementRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const node = elementRef.current;
-    if (!node) {
-      return;
-    }
-
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (!entry) {
-          return;
-        }
-
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (once) {
-            observer.unobserve(entry.target);
-          }
-        } else if (!once) {
-          setIsVisible(false);
-        }
-      },
-      {
-        threshold,
-        rootMargin,
-      }
-    );
-
-    observer.observe(node);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [once, threshold, rootMargin]);
-
   const Element = as;
-  const mergedClassName = [
-    'reveal-on-scroll',
-    isVisible ? 'is-visible' : '',
-    className ?? '',
-  ]
-    .join(' ')
-    .trim();
+  const mergedClassName = ['reveal-on-scroll', className ?? ''].join(' ').trim();
 
   const mergedStyle: CSSProperties = {
     ...style,
@@ -92,12 +31,7 @@ export function RevealOnScroll({
   } as CSSProperties;
 
   return (
-    <Element
-      ref={elementRef as never}
-      className={mergedClassName}
-      style={mergedStyle}
-      {...rest}
-    >
+    <Element className={mergedClassName} style={mergedStyle} {...rest}>
       {children}
     </Element>
   );
