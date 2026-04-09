@@ -491,16 +491,19 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
 
           <div className="pt-28 sm:pt-32 lg:col-start-1 lg:row-start-1">
             <section className="pt-2 sm:pt-4">
-              <div className="pl-1 sm:pl-2 lg:pl-4">
-                <h1 className="max-w-5xl pl-[0.28em] -indent-[0.28em] text-4xl font-black tracking-tight text-stone-950 [text-wrap:balance] dark:text-stone-50 sm:text-5xl lg:text-6xl">
-                  {copy.title}
-                </h1>
-                <p className="mt-5 max-w-3xl text-base leading-7 text-stone-700 dark:text-stone-200 sm:text-lg">
-                  {copy.intro}
-                </p>
-                <p className="mt-3 max-w-3xl text-sm leading-7 text-stone-600 dark:text-stone-300 sm:text-base">
-                  {copy.highlight}
-                </p>
+              <div className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 px-5 py-7 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:px-7 sm:py-8 lg:px-10 lg:py-10">
+                <div className="pointer-events-none absolute -right-20 -top-16 h-56 w-56 rounded-full bg-amber-500/12 blur-3xl" />
+                <div className="relative pl-1 sm:pl-2 lg:pl-4">
+                  <h1 className="max-w-5xl pl-[0.28em] -indent-[0.28em] text-4xl font-black tracking-tight text-stone-950 [text-wrap:balance] dark:text-stone-50 sm:text-5xl lg:text-6xl">
+                    {copy.title}
+                  </h1>
+                  <p className="mt-5 max-w-3xl text-base leading-7 text-stone-700 dark:text-stone-200 sm:text-lg">
+                    {copy.intro}
+                  </p>
+                  <p className="mt-3 max-w-3xl text-sm leading-7 text-stone-600 dark:text-stone-300 sm:text-base">
+                    {copy.highlight}
+                  </p>
+                </div>
               </div>
             </section>
 
