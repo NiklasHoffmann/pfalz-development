@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 const HEADER_ID = 'home-header';
 const OFFSET_VAR = '--home-scroll-offset';
 const EXTRA_SPACING_PX = 0;
+const AUTO_SCROLL_CORRECTION_THRESHOLD_PX = 12;
 
 export function HomeScrollOffsetSync() {
   useEffect(() => {
@@ -46,6 +47,13 @@ export function HomeScrollOffsetSync() {
         0,
         window.scrollY + element.getBoundingClientRect().top - offset
       );
+
+      if (
+        behavior === 'auto' &&
+        Math.abs(window.scrollY - top) <= AUTO_SCROLL_CORRECTION_THRESHOLD_PX
+      ) {
+        return;
+      }
 
       window.scrollTo({
         top,
@@ -92,12 +100,6 @@ export function HomeScrollOffsetSync() {
     };
 
     updateOffset();
-
-    if (window.location.hash) {
-      requestAnimationFrame(() => {
-        handleHashChange();
-      });
-    }
 
     const resizeObserver = new ResizeObserver(() => {
       updateOffset();

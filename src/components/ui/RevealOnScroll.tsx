@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 type RevealTag = 'div' | 'section' | 'article' | 'p' | 'span' | 'li';
 
-const ROUTE_REVEAL_STORAGE_PREFIX = 'pfalz-development:revealed-route:';
+const REVEAL_STORAGE_PREFIX = 'pfalz-development:reveal:';
 
 interface RevealOnScrollProps extends HTMLAttributes<HTMLElement> {
   as?: RevealTag;
@@ -13,6 +13,7 @@ interface RevealOnScrollProps extends HTMLAttributes<HTMLElement> {
   delayMs?: number;
   once?: boolean;
   revealOncePerPath?: boolean;
+  revealKey?: string;
   threshold?: number;
   rootMargin?: string;
 }
@@ -25,6 +26,7 @@ export function RevealOnScroll({
   delayMs = 0,
   once = true,
   revealOncePerPath = true,
+  revealKey,
   threshold = 0.16,
   rootMargin = '0px 0px -4% 0px',
   ...rest
@@ -47,7 +49,16 @@ export function RevealOnScroll({
     }
 
     const shouldPersistByPath = once && revealOncePerPath;
-    const routeRevealStorageKey = `${ROUTE_REVEAL_STORAGE_PREFIX}${window.location.pathname}`;
+    const restId = typeof rest.id === 'string' ? rest.id : '';
+    const storageKeySource = [
+      window.location.pathname,
+      Element,
+      revealKey ?? '',
+      restId,
+      className ?? '',
+      String(delayMs),
+    ].join('|');
+    const routeRevealStorageKey = `${REVEAL_STORAGE_PREFIX}${storageKeySource}`;
 
     const readRouteRevealState = () => {
       if (!shouldPersistByPath) {
