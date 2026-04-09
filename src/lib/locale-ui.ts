@@ -9,7 +9,9 @@ export function getCurrentLocale(locale: string): SupportedLocale {
 }
 
 export function localeToBasePath(locale: string): string {
-  return getCurrentLocale(locale) === 'de' ? '' : `/${getCurrentLocale(locale)}`;
+  return getCurrentLocale(locale) === 'de'
+    ? ''
+    : `/${getCurrentLocale(locale)}`;
 }
 
 export function getIndustryNavLabel(locale: string): string {
