@@ -64,6 +64,30 @@ function getPrimaryNavigationLabel(locale: string, appName: string): string {
   return `${appName} Hauptnavigation`;
 }
 
+function getBranchenMetaTitle(locale: string): string {
+  if (locale === 'en') {
+    return 'Industry Websites for Holiday Rentals, Restaurants, and Wineries | Pfalz Development';
+  }
+
+  if (locale === 'pfl') {
+    return 'Branche-Websites fer Gastgeber, Restaurants un Winzer | Pfalz Development';
+  }
+
+  return 'Branchen-Websites für Ferienwohnungen, Restaurants und Weingüter | Pfalz Development';
+}
+
+function getBranchenMetaDescription(locale: string): string {
+  if (locale === 'en') {
+    return 'Industry-specific websites for holiday rentals, restaurants, wineries, and similar businesses in the Palatinate with clear structure, trust signals, and qualified inquiry paths.';
+  }
+
+  if (locale === 'pfl') {
+    return 'Branche-Websites fer Gastgeber, Restaurants, Winzer un aehnliche Betriewe in de Palz mit klarer Struktur, Vertrauen un passendem Aafrooch-Weg.';
+  }
+
+  return 'Branchenspezifische Websites für Ferienwohnungen, Restaurants, Winzer und ähnliche Betriebe in der Pfalz mit klarer Struktur, Vertrauen und qualifizierten Anfragewegen.';
+}
+
 function getBranchenCopy(locale: string): BranchenPageCopy {
   if (locale === 'en') {
     return {
@@ -357,7 +381,6 @@ export async function generateMetadata({
   params,
 }: BranchenPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const copy = getBranchenCopy(locale);
   const canonicalPath =
     pathByLocale[locale as keyof typeof pathByLocale] ?? pathByLocale.de;
 
@@ -370,8 +393,8 @@ export async function generateMetadata({
       [PALATINATE_HREFLANG]: pathByLocale.pfl,
       'x-default': pathByLocale.de,
     },
-    title: copy.title,
-    description: copy.intro,
+    title: getBranchenMetaTitle(locale),
+    description: getBranchenMetaDescription(locale),
   });
 }
 

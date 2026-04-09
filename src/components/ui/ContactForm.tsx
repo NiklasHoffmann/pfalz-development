@@ -44,8 +44,9 @@ export function ContactForm() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, submitCount },
   } = form;
+  const shouldShowValidationErrors = submitCount > 0;
 
   const onSubmit = handleSubmit(async (values) => {
     setStatusMessage('');
@@ -131,7 +132,7 @@ export function ContactForm() {
               <Input
                 label={t('fields.name.label')}
                 placeholder={t('fields.name.placeholder')}
-                error={errors.name?.message}
+                error={shouldShowValidationErrors ? errors.name?.message : undefined}
                 className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
                 required
                 autoComplete="name"
@@ -141,7 +142,7 @@ export function ContactForm() {
               <Input
                 label={t('fields.business.label')}
                 placeholder={t('fields.business.placeholder')}
-                error={errors.business?.message}
+                error={shouldShowValidationErrors ? errors.business?.message : undefined}
                 className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
                 autoComplete="organization"
                 {...register('business')}
@@ -152,7 +153,7 @@ export function ContactForm() {
                   type="email"
                   label={t('fields.email.label')}
                   placeholder={t('fields.email.placeholder')}
-                  error={errors.email?.message}
+                  error={shouldShowValidationErrors ? errors.email?.message : undefined}
                   className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
                   required
                   autoComplete="email"
@@ -163,7 +164,7 @@ export function ContactForm() {
                   type="tel"
                   label={t('fields.phone.label')}
                   placeholder={t('fields.phone.placeholder')}
-                  error={errors.phone?.message}
+                  error={shouldShowValidationErrors ? errors.phone?.message : undefined}
                   className="rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
                   autoComplete="tel"
                   inputMode="tel"
@@ -174,7 +175,7 @@ export function ContactForm() {
               <Textarea
                 label={t('fields.message.label')}
                 placeholder={t('fields.message.placeholder')}
-                error={errors.message?.message}
+                error={shouldShowValidationErrors ? errors.message?.message : undefined}
                 className="min-h-36 rounded-2xl border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 focus:border-amber-500 focus:ring-amber-500 dark:border-stone-600/90 dark:bg-stone-800/95 dark:text-stone-50 dark:placeholder-stone-300"
                 required
                 {...register('message')}

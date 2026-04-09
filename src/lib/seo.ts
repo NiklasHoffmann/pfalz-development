@@ -50,7 +50,9 @@ export function createPageMetadata({
   description: string;
 }): Metadata {
   return {
-    title,
+    title: {
+      absolute: title,
+    },
     description,
     alternates: {
       canonical: canonicalPath,

@@ -4,6 +4,20 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 const useStandaloneOutput = process.env.NEXT_OUTPUT_STANDALONE === '1';
+const publicAppUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+const parsedPublicAppUrl = (() => {
+  try {
+    return new URL(publicAppUrl);
+  } catch {
+    return null;
+  }
+})();
+const isLocalHostname =
+  parsedPublicAppUrl?.hostname === 'localhost' ||
+  parsedPublicAppUrl?.hostname === '127.0.0.1';
+const shouldEnforceHttpsHeaders =
+  parsedPublicAppUrl?.protocol === 'https:' && !isLocalHostname;
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -16,7 +30,7 @@ const contentSecurityPolicy = [
   "font-src 'self' data: https:",
   "connect-src 'self' https://challenges.cloudflare.com https:",
   "frame-src 'self' https://challenges.cloudflare.com",
-  'upgrade-insecure-requests',
+  ...(shouldEnforceHttpsHeaders ? ['upgrade-insecure-requests'] : []),
 ].join('; ');
 
 const nextConfig: NextConfig = {
@@ -44,10 +58,14 @@ const nextConfig: NextConfig = {
       {
         source: '/:path*',
         headers: [
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains; preload',
-          },
+          ...(shouldEnforceHttpsHeaders
+            ? [
+                {
+                  key: 'Strict-Transport-Security',
+                  value: 'max-age=31536000; includeSubDomains; preload',
+                },
+              ]
+            : []),
           {
             key: 'Content-Security-Policy',
             value: contentSecurityPolicy,

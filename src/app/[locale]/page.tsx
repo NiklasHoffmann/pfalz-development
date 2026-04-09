@@ -105,6 +105,18 @@ function localeToSeoTitle(locale: string): string {
   return 'Webdesign Pfalz für Unternehmen | Pfalz Development';
 }
 
+function localeToSeoDescription(locale: string): string {
+  if (locale === 'en') {
+    return 'Web design, development, relaunches, and website support for businesses in the Palatinate, including Neustadt, Landau, and the surrounding region.';
+  }
+
+  if (locale === 'pfl') {
+    return 'Webdesign, Umsetzung, Relaunch un Website-Pflege fer Betriewe in de Palz, rund um Neustadt, Landau un die Region.';
+  }
+
+  return 'Webdesign, Website-Erstellung, Relaunch und laufende Betreuung für Unternehmen in der Pfalz, rund um Neustadt an der Weinstraße, Landau und Umgebung.';
+}
+
 function localeToSeoLinksTitle(locale: string): string {
   if (locale === 'en') {
     return 'Industries in focus';
@@ -136,19 +148,19 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
         label: 'Website for Holiday Rentals',
         href: '/branchen/ferienwohnung-website',
         description:
-          'Industry page for hosts who want more direct and qualified booking inquiries.',
+          'For hosts who want more direct booking inquiries, clearer trust signals, and a stronger website presence beyond booking platforms.',
       },
       {
         label: 'Website for Restaurants',
         href: '/branchen/restaurant-website',
         description:
-          'Industry page for restaurants focused on clear guest information and direct reservation inquiries.',
+          'For restaurants that need clear guest information, strong mobile usability, and direct reservation inquiries through their own website.',
       },
       {
         label: 'Website for Wineries and Sparkling Wine Estates',
         href: '/branchen/weingut-sektgut-website',
         description:
-          'Industry page for wine businesses with focus on events, tastings, and direct inquiries.',
+          'For wineries and sparkling wine estates that want to present wines, tastings, events, and direct inquiries in a structured way.',
       },
     ];
   }
@@ -159,19 +171,19 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
         label: 'Website fer Feriewohnunge',
         href: '/branchen/ferienwohnung-website',
         description:
-          'Brancheseid fer Gaschdgewwer, die meh direkte un passendi Buchungsafrooche wolle.',
+          'Fer Gaschdgewwer, die meh direkte Buchungsafrooche, klares Vertrauen un en staerkere eigne Online-Praesenz wolle.',
       },
       {
         label: 'Website fer Restaurants',
         href: '/branchen/restaurant-website',
         description:
-          'Brancheseid fer Restaurants mit Fokus uff klare Gaste-Info un direkte Reservierungsaafrooche.',
+          'Fer Restaurants mit Fokus uff klare Gaste-Info, gute Handy-Nutzbarkeit un direkte Reservierungsaafrooche.',
       },
       {
         label: 'Website fer Winzer un Sekdgieder',
         href: '/branchen/weingut-sektgut-website',
         description:
-          'Brancheseid fer Weinbetriewe mit Fokus uff Termine, Proobe un direkte Aafrooche.',
+          'Fer Weinbetriewe, die Weine, Proobe, Termine un direkte Aafrooche uebersichtlich un professionell zeige wolle.',
       },
     ];
   }
@@ -181,19 +193,19 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
       label: 'Website für Ferienwohnungen',
       href: '/branchen/ferienwohnung-website',
       description:
-        'Branchenseite für Gastgeber, die mehr Direktanfragen statt Plattformabhängigkeit suchen.',
+        'Für Gastgeber, die mehr Direktanfragen, klare Vertrauenselemente und weniger Abhängigkeit von Buchungsplattformen möchten.',
     },
     {
       label: 'Website für Restaurants',
       href: '/branchen/restaurant-website',
       description:
-        'Branchenseite für Restaurants mit Fokus auf Reservierungsanfragen und klare Gäste-Kommunikation.',
+        'Für Restaurants mit Fokus auf klare Gäste-Kommunikation, gute mobile Nutzung und direkte Reservierungsanfragen.',
     },
     {
       label: 'Website für Winzer und Sektgüter',
       href: '/branchen/weingut-sektgut-website',
       description:
-        'Branchenseite für Weinbetriebe mit Fokus auf Weinproben, Veranstaltungen und Direktanfragen.',
+        'Für Weinbetriebe mit Fokus auf Weinproben, Veranstaltungen, Produktdarstellung und direkte Anfragen über die eigene Website.',
     },
   ];
 }
@@ -202,14 +214,14 @@ export async function generateMetadata({
   params,
 }: HomePageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'common.home' });
   const canonicalPath = localeToPath(locale);
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
   const seoTitle = localeToSeoTitle(locale);
+  const seoDescription = localeToSeoDescription(locale);
 
   return {
     title: seoTitle,
-    description: t('subheadline'),
+    description: seoDescription,
     keywords: [
       'Website erstellen lassen Pfalz',
       'Webdesign Neustadt an der Weinstraße',
@@ -238,7 +250,7 @@ export async function generateMetadata({
       locale: localeToOgLocale(locale),
       url: canonicalUrl,
       title: seoTitle,
-      description: t('subheadline'),
+      description: seoDescription,
       siteName: siteConfig.name,
       images: [
         {
@@ -252,7 +264,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title: seoTitle,
-      description: t('subheadline'),
+      description: seoDescription,
       images: [siteConfig.ogImage],
     },
   };

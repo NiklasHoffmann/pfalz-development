@@ -122,28 +122,14 @@ export default function Modal({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <div
-          className={cn(
-            'fixed inset-0 z-50 bg-black/50 backdrop-blur-[3px] transition-opacity',
-            'ease-[cubic-bezier(0.22,1,0.36,1)]',
-            open
-              ? 'opacity-100 duration-[420ms]'
-              : 'pointer-events-none opacity-0 duration-[360ms]'
-          )}
-          aria-hidden="true"
-          onClick={() => onOpenChange(false)}
-        />
+        <Dialog.Overlay className="modal-overlay-surface fixed inset-0 z-50 bg-black/50 backdrop-blur-[3px]" />
         <Dialog.Content
           id={contentId}
           ref={contentRef}
           className={cn(
-            'fixed left-1/2 top-1/2 z-[60] flex max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden overscroll-contain sm:max-h-[calc(100dvh-3rem)] sm:w-full',
+            'modal-content-surface fixed left-1/2 top-1/2 z-[60] flex max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] flex-col overflow-hidden overscroll-contain sm:max-h-[calc(100dvh-3rem)] sm:w-full',
             'rounded-lg bg-white p-6 shadow-lg',
             'dark:bg-gray-800',
-            'transition-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)]',
-            open
-              ? 'scale-100 opacity-100 duration-[420ms]'
-              : 'pointer-events-none scale-[0.99] opacity-0 duration-[360ms]',
             sizeClasses[size],
             contentClassName
           )}

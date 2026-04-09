@@ -15,8 +15,14 @@
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-gutter: stable;
+    --scrollbar-size: 12px;
+    --scrollbar-track: rgba(245, 239, 228, 0.92);
+    --scrollbar-thumb: rgba(146, 64, 14, 0.42);
+    --scrollbar-thumb-hover: rgba(120, 53, 15, 0.6);
     --home-scroll-offset: calc(5.625rem + 1px);
     scroll-padding-top: var(--home-scroll-offset);
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 
   @media (min-width: 640px) {
@@ -34,6 +40,33 @@
   html.dark {
     color-scheme: dark;
     background-color: #1c1917;
+    --scrollbar-track: rgba(51, 43, 38, 0.94);
+    --scrollbar-thumb: rgba(251, 191, 36, 0.26);
+    --scrollbar-thumb-hover: rgba(251, 191, 36, 0.44);
+  }
+
+  html::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+  }
+
+  html::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    background-clip: padding-box;
+    background-color: var(--scrollbar-thumb);
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  html::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   /* Disable transitions on page load */
@@ -54,6 +87,24 @@
     margin-right: 0 !important;
     padding-right: 0 !important;
     --removed-body-scroll-bar-size: 0px !important;
+  }
+
+  html body[data-scroll-locked] {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    --removed-body-scroll-bar-size: 0px !important;
+  }
+
+  html .with-scroll-bars-hidden {
+    padding-right: 0 !important;
+  }
+
+  html .width-before-scroll-bar {
+    margin-right: 0 !important;
+  }
+
+  html .right-scroll-bar-position {
+    right: 0 !important;
   }
 
   a:focus-visible,
@@ -242,11 +293,11 @@
 
   .modal-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: rgba(120, 113, 108, 0.55) transparent;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
   }
 
   .modal-scrollbar::-webkit-scrollbar {
-    width: 10px;
+    width: var(--scrollbar-size);
   }
 
   .modal-scrollbar::-webkit-scrollbar-track {
@@ -257,22 +308,89 @@
     border: 2px solid transparent;
     border-radius: 9999px;
     background-clip: padding-box;
-    background-color: rgba(120, 113, 108, 0.42);
+    background-color: var(--scrollbar-thumb);
   }
 
   .modal-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(87, 83, 78, 0.58);
+    background-color: var(--scrollbar-thumb-hover);
   }
 
-  .dark .modal-scrollbar {
-    scrollbar-color: rgba(214, 211, 209, 0.4) transparent;
+  @keyframes modal-overlay-enter {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
-  .dark .modal-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(214, 211, 209, 0.28);
+  @keyframes modal-overlay-exit {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
   }
 
-  .dark .modal-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(245, 245, 244, 0.42);
+  @keyframes modal-content-enter {
+    from {
+      opacity: 0;
+      transform: translate3d(-50%, calc(-50% + 18px), 0) scale(0.965);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+  }
+
+  @keyframes modal-content-exit {
+    from {
+      opacity: 1;
+      transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+
+    to {
+      opacity: 0;
+      transform: translate3d(-50%, calc(-50% + 10px), 0) scale(0.985);
+    }
+  }
+
+  .modal-overlay-surface {
+    opacity: 0;
+    animation-duration: 320ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .modal-overlay-surface[data-state='open'] {
+    animation-name: modal-overlay-enter;
+  }
+
+  .modal-overlay-surface[data-state='closed'] {
+    animation-name: modal-overlay-exit;
+    pointer-events: none;
+  }
+
+  .modal-content-surface {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center;
+    will-change: opacity, transform;
+    animation-duration: 420ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .modal-content-surface[data-state='open'] {
+    animation-name: modal-content-enter;
+  }
+
+  .modal-content-surface[data-state='closed'] {
+    animation-name: modal-content-exit;
+    pointer-events: none;
   }
 }

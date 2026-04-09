@@ -1,15 +1,9 @@
 'use client';
 
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  useTransition,
-} from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
-import { routing, usePathname, useRouter } from '@/routing';
+import { getPathname, routing, usePathname } from '@/routing';
 
 type SupportedLocale = (typeof routing.locales)[number];
 const LOCALE_SCROLL_RESTORE_KEY = 'locale-switch-scroll-restore';
@@ -61,14 +55,15 @@ function ChevronIcon({ open }: { open: boolean }) {
 export function LanguageToggle() {
   const locale = useLocale() as SupportedLocale;
   const t = useTranslations('language');
-  const router = useRouter();
   const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [optimisticLocale, setOptimisticLocale] =
-    useState<SupportedLocale>(locale);
+  const [pendingLocale, setPendingLocale] = useState<SupportedLocale | null>(
+    null
+  );
   const menuRef = useRef<HTMLDivElement>(null);
   const optionsId = 'language-switcher-options';
+  const displayedLocale = pendingLocale ?? locale;
 
   useLayoutEffect(() => {
     const raw = sessionStorage.getItem(LOCALE_SCROLL_RESTORE_KEY);
@@ -108,10 +103,6 @@ export function LanguageToggle() {
   }, [locale]);
 
   useEffect(() => {
-    setOptimisticLocale(locale);
-  }, [locale]);
-
-  useEffect(() => {
     function handlePointerDown(event: PointerEvent) {
       if (!menuRef.current?.contains(event.target as Node)) {
         setIsOpen(false);
@@ -139,7 +130,7 @@ export function LanguageToggle() {
       return;
     }
 
-    setOptimisticLocale(nextLocale);
+    setPendingLocale(nextLocale);
     setIsOpen(false);
 
     sessionStorage.setItem(
@@ -147,9 +138,16 @@ export function LanguageToggle() {
       JSON.stringify({ y: window.scrollY })
     );
 
-    startTransition(() => {
-      router.replace(pathname, { locale: nextLocale, scroll: false });
+    setIsPending(true);
+
+    const targetPathname = getPathname({
+      href: pathname,
+      locale: nextLocale,
     });
+    const search = window.location.search;
+    const hash = window.location.hash;
+
+    window.location.assign(`${targetPathname}${search}${hash}`);
   }
 
   return (
@@ -169,8 +167,8 @@ export function LanguageToggle() {
         aria-busy={isPending}
       >
         <span className="flex items-center gap-2">
-          <FlagSwatch locale={optimisticLocale} />
-          <span className="hidden sm:inline">{t(optimisticLocale)}</span>
+          <FlagSwatch locale={displayedLocale} />
+          <span className="hidden sm:inline">{t(displayedLocale)}</span>
         </span>
         <ChevronIcon open={isOpen} />
       </button>
@@ -179,7 +177,7 @@ export function LanguageToggle() {
         <div className="absolute right-0 top-[calc(100%+0.55rem)] z-50 min-w-[10.5rem] overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white p-1.5 shadow-[0_24px_60px_rgba(28,25,23,0.16)] backdrop-blur-xl dark:border-stone-600/90 dark:bg-stone-800 sm:min-w-full">
           <div id={optionsId} className="space-y-1" aria-label={t('toggle')}>
             {routing.locales.map((supportedLocale) => {
-              const isActive = supportedLocale === optimisticLocale;
+              const isActive = supportedLocale === displayedLocale;
 
               return (
                 <button

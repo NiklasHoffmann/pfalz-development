@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { LazyContactForm } from './LazyContactForm';
 import type { ContactDetails } from './types';
+import { ContactForm } from '@/components/ui/ContactForm';
 import Modal from '@/components/ui/Modal';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
@@ -26,12 +26,22 @@ export function HomeContactSection({
   details,
 }: HomeContactSectionProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [formSessionKey, setFormSessionKey] = useState(0);
   const contactDialogId = 'contact-form-dialog';
+
   const phoneHref = details.phoneValue.replace(/\s+/g, '');
   const phoneDisplay =
     phoneHref.startsWith('0') && phoneHref.length > 5
       ? `${phoneHref.slice(0, 5)} ${phoneHref.slice(5)}`
       : details.phoneValue;
+
+  function handleFormOpenChange(open: boolean) {
+    setIsFormOpen(open);
+
+    if (!open) {
+      setFormSessionKey((current) => current + 1);
+    }
+  }
 
   return (
     <RevealOnScroll
@@ -133,7 +143,7 @@ export function HomeContactSection({
 
         <Modal
           open={isFormOpen}
-          onOpenChange={setIsFormOpen}
+          onOpenChange={handleFormOpenChange}
           screenReaderTitle={openFormLabel}
           screenReaderDescription={title}
           size="xl"
@@ -141,7 +151,7 @@ export function HomeContactSection({
           contentClassName="overflow-hidden rounded-[1.75rem] bg-white p-0 shadow-[0_28px_90px_rgba(0,0,0,0.22)] dark:bg-stone-800 dark:shadow-[0_30px_100px_rgba(0,0,0,0.52)]"
           scrollBody={false}
         >
-          <LazyContactForm />
+          <ContactForm key={formSessionKey} />
         </Modal>
       </div>
     </RevealOnScroll>

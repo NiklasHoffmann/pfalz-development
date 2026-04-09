@@ -73,6 +73,30 @@ function getPrimaryNavigationLabel(locale: string, appName: string): string {
   return `${appName} Hauptnavigation`;
 }
 
+function getLeistungenMetaTitle(locale: string): string {
+  if (locale === 'en') {
+    return 'Web Design, Relaunch, and Website Support in the Palatinate | Pfalz Development';
+  }
+
+  if (locale === 'pfl') {
+    return 'Webdesign, Relaunch un Website-Pflege in de Palz | Pfalz Development';
+  }
+
+  return 'Webdesign, Relaunch und Website-Betreuung in der Pfalz | Pfalz Development';
+}
+
+function getLeistungenMetaDescription(locale: string): string {
+  if (locale === 'en') {
+    return 'Overview of web design, website relaunch, and ongoing website support for businesses in the Palatinate with clear structure, SEO basics, and inquiry-focused implementation.';
+  }
+
+  if (locale === 'pfl') {
+    return 'Iwwersicht zu Webdesign, Website-Relaunch un laufender Website-Pflege fer Betriewe in de Palz mit klarer Struktur, Google-Grundlage un Aafrooch-Fokus.';
+  }
+
+  return 'Überblick zu Webdesign, Website-Relaunch und laufender Website-Betreuung für Unternehmen in der Pfalz mit klarer Struktur, SEO-Basis und anfrageorientierter Umsetzung.';
+}
+
 function getLeistungenCopy(locale: string): LeistungenPageCopy {
   if (locale === 'en') {
     return {
@@ -393,7 +417,6 @@ export async function generateMetadata({
   params,
 }: LeistungenPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const copy = getLeistungenCopy(locale);
   const canonicalPath =
     pathByLocale[locale as keyof typeof pathByLocale] ?? pathByLocale.de;
 
@@ -406,8 +429,8 @@ export async function generateMetadata({
       [PALATINATE_HREFLANG]: pathByLocale.pfl,
       'x-default': pathByLocale.de,
     },
-    title: copy.title,
-    description: copy.intro,
+    title: getLeistungenMetaTitle(locale),
+    description: getLeistungenMetaDescription(locale),
   });
 }
 
