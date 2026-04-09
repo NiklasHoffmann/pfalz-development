@@ -11,7 +11,7 @@ interface HomeHeroSectionProps {
 }
 
 const HERO_TRUST_STOCK_BACKGROUND_URL =
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=70';
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1100&q=65';
 
 export function HomeHeroSection({
   eyebrow,
@@ -67,9 +67,10 @@ export function HomeHeroSection({
               alt=""
               aria-hidden="true"
               fill
-              priority
+              preload
+              fetchPriority="high"
               sizes="(max-width: 1024px) calc(100vw - 2.5rem), 42vw"
-              quality={60}
+              quality={50}
               className="opacity-24 absolute inset-0 h-full w-full object-cover dark:opacity-20"
             />
             <div

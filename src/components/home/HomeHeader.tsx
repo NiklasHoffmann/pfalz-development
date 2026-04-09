@@ -44,7 +44,7 @@ export function HomeHeader({
                   width={360}
                   height={163}
                   sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
-                  quality={60}
+                  quality={45}
                   priority
                   className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-100 transition-opacity duration-200 ease-linear dark:opacity-0 sm:h-[4.25rem] lg:h-[4.64rem]"
                 />
@@ -54,7 +54,7 @@ export function HomeHeader({
                   width={360}
                   height={163}
                   sizes="(max-width: 640px) 132px, (max-width: 1024px) 154px, 172px"
-                  quality={60}
+                  quality={45}
                   className="pointer-events-none col-start-1 row-start-1 h-[3.81rem] w-auto object-contain opacity-0 transition-opacity duration-200 ease-linear dark:opacity-100 sm:h-[4.25rem] lg:h-[4.64rem]"
                 />
               </span>

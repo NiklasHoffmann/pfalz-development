@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { CardItem } from './types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
@@ -7,7 +8,7 @@ interface HomeServicesSectionProps {
 }
 
 const SERVICES_STOCK_BACKGROUND_URL =
-  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1920&q=80';
+  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=65';
 
 export function HomeServicesSection({
   title,
@@ -20,10 +21,14 @@ export function HomeServicesSection({
       aria-labelledby="home-services-title"
       className="relative isolate overflow-hidden border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
-      <div
+      <Image
+        src={SERVICES_STOCK_BACKGROUND_URL}
+        alt=""
         aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${SERVICES_STOCK_BACKGROUND_URL})` }}
+        fill
+        sizes="100vw"
+        quality={50}
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
       <div
         aria-hidden="true"
