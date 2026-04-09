@@ -74,7 +74,10 @@ function localeToMobileShortLabels(locale: string): {
   };
 }
 
-function localeToPrimaryNavigationLabel(locale: string, appName: string): string {
+function localeToPrimaryNavigationLabel(
+  locale: string,
+  appName: string
+): string {
   if (locale === 'en') {
     return `${appName} primary navigation`;
   }

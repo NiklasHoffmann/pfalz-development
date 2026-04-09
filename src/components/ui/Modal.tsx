@@ -112,7 +112,8 @@ export default function Modal({
     };
   }, [open]);
 
-  const accessibleTitle = title?.trim() || screenReaderTitle?.trim() || 'Dialog';
+  const accessibleTitle =
+    title?.trim() || screenReaderTitle?.trim() || 'Dialog';
   const accessibleDescription =
     description?.trim() ||
     screenReaderDescription?.trim() ||
