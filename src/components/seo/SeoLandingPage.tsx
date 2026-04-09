@@ -97,9 +97,7 @@ export async function SeoLandingPage({
 
       <main className="flex-1 px-4 pb-28 pt-28 text-stone-900 dark:text-stone-100 sm:px-6 sm:pt-32 md:pb-16 lg:px-10">
         <article className="mx-auto max-w-7xl py-2 sm:py-4">
-          <RevealOnScroll
-            className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 p-6 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:p-8 lg:p-10"
-          >
+          <RevealOnScroll className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 p-6 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:p-8 lg:p-10">
             <p className="inline-flex rounded-full border border-amber-300/60 bg-amber-100/85 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
               {content.eyebrow}
             </p>
