@@ -127,7 +127,7 @@ export async function SeoLandingPage({
             {content.sections.map((section, index) => (
               <section
                 key={section.title}
-                className="rounded-[1.5rem] border border-stone-200/85 bg-white/82 p-6 shadow-[0_16px_34px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] sm:p-8"
+                className="bg-white/82 rounded-[1.5rem] border border-stone-200/85 p-6 shadow-[0_16px_34px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] sm:p-8"
               >
                 <div className="flex items-start gap-4">
                   <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-amber-300/70 bg-amber-100/85 text-xs font-bold text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/20 dark:text-amber-200">
@@ -186,7 +186,7 @@ export async function SeoLandingPage({
             </div>
           </section>
 
-          <section className="mt-16 rounded-[1.5rem] border border-stone-200/85 bg-white/78 p-6 dark:border-stone-700/75 dark:bg-stone-900/45 sm:p-7">
+          <section className="bg-white/78 mt-16 rounded-[1.5rem] border border-stone-200/85 p-6 dark:border-stone-700/75 dark:bg-stone-900/45 sm:p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
               {content.related.label}
             </p>

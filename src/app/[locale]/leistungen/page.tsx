@@ -637,7 +637,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                       {copy.processSteps.map((step) => (
                         <li
                           key={step}
-                          className="rounded-xl bg-stone-50/88 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
+                          className="bg-stone-50/88 rounded-xl px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
                         >
                           {step}
                         </li>
@@ -653,7 +653,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                       {copy.proofPoints.map((point) => (
                         <li
                           key={point}
-                          className="rounded-xl bg-stone-50/88 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
+                          className="bg-stone-50/88 rounded-xl px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
                         >
                           {point}
                         </li>
