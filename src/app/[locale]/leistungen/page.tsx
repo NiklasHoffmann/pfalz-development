@@ -507,29 +507,36 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
               </div>
             </section>
 
-            <section id="einstieg" className="mt-14 scroll-mt-28 sm:mt-16">
-              <div className="surface-section-muted rounded-3xl border border-stone-200/80 p-6 dark:border-stone-700 dark:bg-stone-900/35 sm:p-8">
+            <section id="einstieg" className="mt-20 scroll-mt-28 sm:mt-24">
+              <div className="max-w-3xl">
                 <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
                   {copy.entryTitle}
                 </h2>
-                <p className="mt-3 max-w-3xl text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
+                <p className="mt-3 text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
                   {copy.entryText}
                 </p>
-                <div className="mt-6 grid gap-4 md:grid-cols-2">
-                  {copy.entries.map((entry) => (
+              </div>
+              <div className="mt-8 max-w-5xl border-t border-stone-200/75 dark:border-stone-700/70">
+                <div className="divide-y divide-stone-200/75 dark:divide-stone-700/70">
+                  {copy.entries.map((entry, index) => (
                     <article
                       key={entry.title}
-                      className="flex h-full flex-col rounded-2xl border border-stone-200/90 bg-stone-100/80 p-5 dark:border-stone-700 dark:bg-stone-800/65"
+                      className="grid gap-4 py-5 first:pt-6 last:pb-0 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:gap-6"
                     >
-                      <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">
-                        {entry.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">
-                        {entry.description}
-                      </p>
+                      <div className="bg-amber-500/12 inline-flex h-11 w-11 items-center justify-center rounded-full border border-amber-500/40 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
+                        0{index + 1}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                          {entry.title}
+                        </h3>
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-700 dark:text-stone-200">
+                          {entry.description}
+                        </p>
+                      </div>
                       <a
                         href={entry.href}
-                        className="mt-auto inline-flex items-center gap-1.5 self-end pt-4 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
                       >
                         {entry.label}
                         <span aria-hidden="true">-&gt;</span>
@@ -542,7 +549,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
 
             <section
               id="probleme"
-              className="mt-14 scroll-mt-28 border-t border-stone-200/70 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12"
+              className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
                 {copy.problemTitle}
@@ -550,26 +557,31 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
               <p className="mt-3 max-w-4xl text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
                 {copy.problemIntro}
               </p>
-              <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {copy.problems.map((problem) => (
-                  <article
+              <ol className="mt-8 grid gap-8" aria-label={copy.problemTitle}>
+                {copy.problems.map((problem, index) => (
+                  <li
                     key={problem.title}
-                    className="rounded-2xl border border-stone-200/80 bg-stone-50/80 p-5 dark:border-stone-700 dark:bg-stone-900/35"
+                    className="grid gap-4 border-t border-stone-200/75 pt-6 first:border-t-0 first:pt-0 dark:border-stone-700/70 md:grid-cols-[auto_minmax(0,1fr)] md:gap-6"
                   >
-                    <h3 className="text-base font-bold text-stone-950 dark:text-stone-50">
-                      {problem.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">
-                      {problem.description}
-                    </p>
-                  </article>
+                    <div className="bg-amber-500/12 inline-flex h-11 w-11 items-center justify-center rounded-full border border-amber-500/40 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
+                      0{index + 1}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                        {problem.title}
+                      </h3>
+                      <p className="mt-2 max-w-3xl text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
+                        {problem.description}
+                      </p>
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </section>
 
             <section
               id="loesungen"
-              className="mt-14 scroll-mt-28 border-t border-stone-200/70 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12"
+              className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
                 {copy.solutionTitle}
@@ -581,7 +593,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                 {copy.cards.map((card) => (
                   <article
                     key={card.href}
-                    className="flex h-full flex-col rounded-2xl border border-stone-200/90 bg-stone-100/80 p-5 dark:border-stone-700 dark:bg-stone-800/65"
+                    className="flex h-full flex-col rounded-[1.35rem] border border-stone-200/90 bg-stone-50/95 p-5 shadow-[0_12px_26px_rgba(28,25,23,0.05)] dark:border-stone-700 dark:bg-stone-800/65"
                   >
                     <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
                       {card.badge}
@@ -606,7 +618,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
 
             <section
               id="beweis"
-              className="mt-14 scroll-mt-28 border-t border-stone-200/70 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12"
+              className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <div className="surface-section-muted rounded-3xl border border-stone-200/80 p-6 dark:border-stone-700 dark:bg-stone-900/35 sm:p-8">
                 <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
@@ -625,7 +637,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                       {copy.processSteps.map((step) => (
                         <li
                           key={step}
-                          className="rounded-xl bg-stone-100/80 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
+                          className="rounded-xl bg-stone-50/88 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
                         >
                           {step}
                         </li>
@@ -641,7 +653,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                       {copy.proofPoints.map((point) => (
                         <li
                           key={point}
-                          className="rounded-xl bg-stone-100/80 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
+                          className="rounded-xl bg-stone-50/88 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-800/70 dark:text-stone-100"
                         >
                           {point}
                         </li>
@@ -652,7 +664,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
               </div>
             </section>
 
-            <section className="mt-14 border-t border-stone-200/70 pb-4 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12">
+            <section className="mt-20 border-t border-stone-200/70 pb-4 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16">
               <h2 className="text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl">
                 {copy.finalTitle}
               </h2>

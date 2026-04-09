@@ -53,10 +53,13 @@ export function HomeIntroductionSection({
             >
               <div className="h-full rounded-[1.5rem] border border-amber-200/75 bg-[linear-gradient(180deg,rgba(255,251,235,0.96),rgba(255,255,255,0.9))] p-5 shadow-[0_18px_44px_rgba(120,53,15,0.08)] dark:border-amber-300/20 dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.92),rgba(28,25,23,0.84))] dark:shadow-[0_20px_48px_rgba(0,0,0,0.24)] sm:p-6">
                 <div className="flex items-center justify-center gap-3 xl:justify-start">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/12 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
+                  <div className="bg-amber-500/12 inline-flex h-11 w-11 items-center justify-center rounded-full border border-amber-500/40 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
                     0{index + 1}
                   </div>
-                  <div aria-hidden="true" className="h-px w-16 bg-amber-500/35 dark:bg-amber-300/30" />
+                  <div
+                    aria-hidden="true"
+                    className="h-px w-16 bg-amber-500/35 dark:bg-amber-300/30"
+                  />
                 </div>
                 <p className="mt-5 text-center text-base leading-7 text-stone-800 dark:text-stone-100 xl:text-left">
                   {point}

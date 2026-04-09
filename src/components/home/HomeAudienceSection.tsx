@@ -153,9 +153,9 @@ export function HomeAudienceSection({
                 delayMs={110 + index * 70}
                 className={`min-w-0 ${index % 2 === 1 ? 'md:translate-y-4' : ''}`}
               >
-                <div className="h-full rounded-[1.5rem] border border-stone-200/85 bg-white/82 p-6 shadow-[0_16px_34px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)]">
+                <div className="bg-white/82 h-full rounded-[1.5rem] border border-stone-200/85 p-6 shadow-[0_16px_34px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)]">
                   <div className="flex items-center gap-4">
-                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/12 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
+                    <div className="bg-amber-500/12 inline-flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/40 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
                       0{index + 1}
                     </div>
                     <div

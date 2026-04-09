@@ -99,7 +99,7 @@ export function HomeContactSection({
             </p>
           </div>
 
-          <div className="rounded-[1.5rem] border border-white/65 bg-white/72 p-5 shadow-[0_14px_36px_rgba(28,25,23,0.08)] backdrop-blur-sm dark:border-stone-600/70 dark:bg-stone-950/38 sm:p-6">
+          <div className="bg-white/72 dark:bg-stone-950/38 rounded-[1.5rem] border border-white/65 p-5 shadow-[0_14px_36px_rgba(28,25,23,0.08)] backdrop-blur-sm dark:border-stone-600/70 sm:p-6">
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">

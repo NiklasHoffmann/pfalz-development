@@ -22,7 +22,7 @@ export function HomeSeoLinksSection({
             <a
               key={item.href}
               href={item.href}
-              className="group flex h-full min-w-0 flex-col rounded-[1.35rem] border border-stone-200/90 bg-stone-50/92 p-5 shadow-[0_10px_24px_rgba(28,25,23,0.04)] transition hover:-translate-y-0.5 hover:border-amber-500/55 hover:bg-white dark:border-stone-700/80 dark:bg-stone-900/65 dark:hover:border-amber-300/55 dark:hover:bg-stone-800/85"
+              className="bg-stone-50/92 group flex h-full min-w-0 flex-col rounded-[1.35rem] border border-stone-200/90 p-5 shadow-[0_10px_24px_rgba(28,25,23,0.04)] transition hover:-translate-y-0.5 hover:border-amber-500/55 hover:bg-white dark:border-stone-700/80 dark:bg-stone-900/65 dark:hover:border-amber-300/55 dark:hover:bg-stone-800/85"
             >
               <p className="text-base font-bold text-stone-950 transition group-hover:text-amber-800 dark:text-stone-50 dark:group-hover:text-amber-200">
                 {item.label}

@@ -1,4 +1,9 @@
 import type { Metadata } from 'next';
+import { HomeFooter } from '@/components/home/HomeFooter';
+import { HomeHeader } from '@/components/home/HomeHeader';
+import type { NavItem } from '@/components/home/types';
+import { siteConfig } from '@/config/site';
+import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { getTranslations } from 'next-intl/server';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 
@@ -11,6 +16,17 @@ const pathByLocale = {
   en: '/en/datenschutz',
   pfl: '/pfl/datenschutz',
 } as const;
+
+function getIndustryNavLabel(locale: string): string {
+  if (locale === 'en') return 'Industry';
+  if (locale === 'pfl') return 'Branche';
+  return 'Branche';
+}
+
+function getPrimaryNavigationLabel(locale: string, appName: string): string {
+  if (locale === 'en') return `${appName} primary navigation`;
+  return `${appName} Hauptnavigation`;
+}
 
 export async function generateMetadata({
   params,
@@ -37,27 +53,43 @@ export async function generateMetadata({
 export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal' });
+  const navT = await getTranslations({ locale, namespace: 'navigation' });
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
+  const basePath = locale === 'de' ? '' : `/${locale}`;
+  const navItems: NavItem[] = [
+    { label: navT('home'), href: homeHref },
+    { label: navT('about'), href: `${basePath}/leistungen` },
+    { label: getIndustryNavLabel(locale), href: `${basePath}/branchen` },
+    { label: navT('contact'), href: `${homeHref}#kontakt` },
+  ];
 
   return (
-    <main className="min-h-screen bg-stone-50 px-6 py-16 text-stone-900 dark:bg-stone-950 dark:text-stone-100 lg:px-10">
-      <div className="mx-auto max-w-4xl">
-        <a
-          href={homeHref}
-          className="text-sm font-medium text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
-        >
-          {t('backToHome')}
-        </a>
+    <div className="surface-page flex min-h-screen flex-col">
+      <HomeHeader
+        appName={siteConfig.name}
+        navItems={navItems}
+        brandHref={homeHref}
+        navAriaLabel={getPrimaryNavigationLabel(locale, siteConfig.name)}
+        controls={getHeaderControlsCopy(locale)}
+      />
+      <main className="flex-1 px-4 pb-28 pt-28 text-stone-900 dark:text-stone-100 sm:px-6 sm:pt-32 md:pb-16 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl rounded-[2rem] border border-stone-200/80 bg-white/88 p-8 shadow-[0_20px_56px_rgba(28,25,23,0.08)] dark:border-stone-700/80 dark:bg-stone-900/55 dark:shadow-[0_24px_64px_rgba(0,0,0,0.28)] sm:p-10">
+            <a
+              href={homeHref}
+              className="text-sm font-medium text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
+            >
+              {t('backToHome')}
+            </a>
 
-        <div className="mt-6 rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm dark:border-stone-800 dark:bg-stone-900">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-300">
-            {t('privacy.eyebrow')}
-          </p>
-          <h1 className="mt-4 text-4xl font-black tracking-tight">
-            {t('privacy.title')}
-          </h1>
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-300">
+              {t('privacy.eyebrow')}
+            </p>
+            <h1 className="mt-4 text-4xl font-black tracking-tight text-stone-950 dark:text-stone-50">
+              {t('privacy.title')}
+            </h1>
 
-          <div className="mt-8 space-y-8 text-sm leading-7 text-stone-700 dark:text-stone-300">
+            <div className="mt-10 space-y-8 text-sm leading-7 text-stone-700 dark:text-stone-300">
             <section>
               <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                 {t('privacy.overviewTitle')}
@@ -187,9 +219,17 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
               </h2>
               <p className="mt-3">{t('privacy.statusText')}</p>
             </section>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <HomeFooter
+        note={t('footerNote')}
+        imprintLabel={t('imprint.title')}
+        privacyLabel={t('privacy.title')}
+        imprintHref={`${basePath}/impressum`}
+        privacyHref={`${basePath}/datenschutz`}
+      />
+    </div>
   );
 }

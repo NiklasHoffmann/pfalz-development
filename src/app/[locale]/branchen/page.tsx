@@ -487,50 +487,50 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
 
             <section
               id="ueberblick"
-              className="mt-14 scroll-mt-28 border-t border-stone-200/70 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12"
+              className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
-              <div className="surface-section-muted rounded-3xl border border-stone-200/80 p-6 dark:border-stone-700 dark:bg-stone-900/35 sm:p-8">
+              <div className="max-w-4xl">
                 <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
                   {copy.gridTitle}
                 </h2>
-                <p className="mt-3 max-w-4xl text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
+                <p className="mt-3 text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
                   {copy.gridText}
                 </p>
-                <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  {copy.cards.map((card) => {
-                    const id = getCardId(card.href);
+              </div>
+              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {copy.cards.map((card) => {
+                  const id = getCardId(card.href);
 
-                    return (
-                      <article
-                        key={card.href}
-                        className="flex h-full flex-col rounded-2xl border border-stone-200/90 bg-stone-100/80 p-5 dark:border-stone-700 dark:bg-stone-800/65"
+                  return (
+                    <article
+                      key={card.href}
+                      className="flex h-full flex-col rounded-[1.35rem] border border-stone-200/90 bg-stone-50/95 p-5 shadow-[0_12px_26px_rgba(28,25,23,0.05)] dark:border-stone-700 dark:bg-stone-800/65"
+                    >
+                      <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
+                        {card.badge}
+                      </p>
+                      <h3 className="mt-3 text-lg font-bold text-stone-950 dark:text-stone-50">
+                        {card.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">
+                        {card.description}
+                      </p>
+                      <a
+                        href={`#${id}`}
+                        className="mt-auto inline-flex items-center gap-1.5 self-end pt-4 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
                       >
-                        <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
-                          {card.badge}
-                        </p>
-                        <h3 className="mt-3 text-lg font-bold text-stone-950 dark:text-stone-50">
-                          {card.title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">
-                          {card.description}
-                        </p>
-                        <a
-                          href={`#${id}`}
-                          className="mt-auto inline-flex items-center gap-1.5 self-end pt-4 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
-                        >
-                          {copy.playbookLabels.scenario}
-                          <span aria-hidden="true">-&gt;</span>
-                        </a>
-                      </article>
-                    );
-                  })}
-                </div>
+                        {copy.playbookLabels.scenario}
+                        <span aria-hidden="true">-&gt;</span>
+                      </a>
+                    </article>
+                  );
+                })}
               </div>
             </section>
 
             <section
               id="playbook"
-              className="mt-14 scroll-mt-28 border-t border-stone-200/70 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12"
+              className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
                 {copy.playbookTitle}
@@ -539,7 +539,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                 {copy.playbookText}
               </p>
 
-              <div className="mt-6 space-y-8">
+              <div className="mt-8 space-y-12">
                 {copy.cards.map((card) => {
                   const id = getCardId(card.href);
 
@@ -547,54 +547,66 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                     <article
                       key={card.href}
                       id={id}
-                      className="scroll-mt-28 rounded-2xl border border-stone-200/90 bg-stone-100/80 p-5 dark:border-stone-700 dark:bg-stone-800/65"
+                      className="scroll-mt-28 border-t border-stone-200/75 pt-8 first:border-t-0 first:pt-0 dark:border-stone-700/70"
                     >
-                      <div className="flex flex-wrap items-center gap-2">
-                        <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
-                          {card.badge}
-                        </p>
-                        <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">
-                          {card.title}
-                        </h3>
-                      </div>
+                      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10">
+                        <div className="min-w-0">
+                          <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
+                            {card.badge}
+                          </p>
+                          <h3 className="mt-4 text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
+                            {card.title}
+                          </h3>
+                          <p className="mt-4 max-w-xl text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
+                            {card.description}
+                          </p>
 
-                      <div className="mt-4 grid gap-4 lg:grid-cols-3">
-                        <div className="rounded-xl bg-stone-50/80 p-4 dark:bg-stone-900/45">
-                          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
-                            {copy.playbookLabels.scenario}
-                          </p>
-                          <ul className="mt-3 space-y-2 text-sm text-stone-700 dark:text-stone-200">
-                            {card.scenario.map((item) => (
-                              <li key={item}>{item}</li>
-                            ))}
-                          </ul>
-                        </div>
+                          <div className="mt-6 rounded-[1.35rem] border border-amber-200/80 bg-amber-50/85 p-4 dark:border-amber-300/25 dark:bg-amber-950/20 sm:p-5">
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
+                              {copy.playbookLabels.result}
+                            </p>
+                            <p className="mt-3 text-sm leading-7 text-stone-700 dark:text-stone-200">
+                              {card.outcome}
+                            </p>
+                          </div>
 
-                        <div className="rounded-xl bg-stone-50/80 p-4 dark:bg-stone-900/45">
-                          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
-                            {copy.playbookLabels.focus}
-                          </p>
-                          <ul className="mt-3 space-y-2 text-sm text-stone-700 dark:text-stone-200">
-                            {card.focus.map((item) => (
-                              <li key={item}>{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="flex h-full flex-col rounded-xl bg-stone-50/80 p-4 dark:bg-stone-900/45">
-                          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
-                            {copy.playbookLabels.result}
-                          </p>
-                          <p className="mt-3 text-sm leading-6 text-stone-700 dark:text-stone-200">
-                            {card.outcome}
-                          </p>
                           <a
                             href={card.href}
-                            className="mt-auto inline-flex items-center gap-1.5 self-end pt-4 text-sm font-semibold text-amber-800 hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
+                            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
                           >
                             {copy.cta}
                             <span aria-hidden="true">-&gt;</span>
                           </a>
+                        </div>
+
+                        <div className="grid gap-6 md:grid-cols-2">
+                          <div className="border-l-2 border-stone-200/80 pl-4 dark:border-stone-700/70">
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
+                              {copy.playbookLabels.scenario}
+                            </p>
+                            <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-700 dark:text-stone-200">
+                              {card.scenario.map((item) => (
+                                <li key={item} className="flex gap-3">
+                                  <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-600 dark:bg-amber-300" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="border-l-2 border-stone-200/80 pl-4 dark:border-stone-700/70">
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
+                              {copy.playbookLabels.focus}
+                            </p>
+                            <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-700 dark:text-stone-200">
+                              {card.focus.map((item) => (
+                                <li key={item} className="flex gap-3">
+                                  <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-600 dark:bg-amber-300" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -605,7 +617,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
 
             <section
               id="support"
-              className="mt-14 scroll-mt-28 border-t border-stone-200/70 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12"
+              className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl">
                 {copy.supportTitle}

@@ -84,7 +84,7 @@ export async function SeoLandingPage({
   if (activeNav === 'contact') activeHref = `${homeHref}#kontakt`;
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="surface-page flex min-h-screen flex-col">
       <HomeHeader
         appName={siteConfig.name}
         navItems={navItems}
@@ -94,12 +94,9 @@ export async function SeoLandingPage({
         controls={getHeaderControlsCopy(locale)}
       />
 
-      <main className="relative flex-1 overflow-hidden bg-[radial-gradient(circle_at_top_left,#fffbeb_0%,#f5f5f4_42%,#e7e5e4_100%)] px-5 pb-28 pt-28 text-stone-900 dark:bg-[radial-gradient(circle_at_top_left,#3a2f28_0%,#332b26_44%,#24303d_100%)] dark:text-stone-100 sm:px-8 sm:pt-32 md:pb-14 lg:px-10">
-        <div className="dark:bg-amber-400/24 pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-amber-300/30 blur-3xl" />
-        <div className="dark:bg-stone-300/18 pointer-events-none absolute -right-12 top-40 h-64 w-64 rounded-full bg-stone-300/45 blur-3xl" />
-
-        <article className="relative mx-auto max-w-5xl py-2 sm:py-4">
-          <div className="rounded-[1.75rem] border border-stone-200/70 bg-[linear-gradient(120deg,rgba(255,251,235,0.95),rgba(255,255,255,0.88),rgba(250,245,235,0.92))] p-6 shadow-[0_20px_56px_rgba(28,25,23,0.14)] dark:border-stone-500/70 dark:bg-[linear-gradient(120deg,rgba(72,61,54,0.9),rgba(50,43,38,0.88),rgba(39,53,68,0.86))] dark:shadow-[0_24px_64px_rgba(0,0,0,0.26)] sm:p-8 lg:p-10">
+      <main className="flex-1 px-4 pb-28 pt-28 text-stone-900 dark:text-stone-100 sm:px-6 sm:pt-32 md:pb-16 lg:px-10">
+        <article className="mx-auto max-w-7xl py-2 sm:py-4">
+          <div className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 p-6 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:p-8 lg:p-10">
             <p className="inline-flex rounded-full border border-amber-300/60 bg-amber-100/85 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
               {content.eyebrow}
             </p>
@@ -126,11 +123,11 @@ export async function SeoLandingPage({
             </div>
           </div>
 
-          <div className="mt-12 divide-y divide-stone-200/75 border-y border-stone-200/75 dark:divide-stone-700/80 dark:border-stone-700/80">
+          <div className="mt-20 grid gap-6">
             {content.sections.map((section, index) => (
               <section
                 key={section.title}
-                className="py-7 first:pt-8 last:pb-8 sm:py-8"
+                className="rounded-[1.5rem] border border-stone-200/85 bg-white/82 p-6 shadow-[0_16px_34px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] sm:p-8"
               >
                 <div className="flex items-start gap-4">
                   <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-amber-300/70 bg-amber-100/85 text-xs font-bold text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/20 dark:text-amber-200">
@@ -168,7 +165,7 @@ export async function SeoLandingPage({
             ))}
           </div>
 
-          <section className="mt-12 rounded-2xl border border-stone-200/80 bg-stone-50/85 p-6 dark:border-stone-500/70 dark:bg-stone-700/45 sm:p-7">
+          <section className="surface-section-muted mt-20 rounded-[1.75rem] border border-stone-200/80 p-6 dark:border-stone-700/75 dark:bg-stone-900/35 sm:p-8">
             <h2 className="text-2xl font-bold text-stone-950 dark:text-stone-50">
               {content.faqTitle}
             </h2>
@@ -189,19 +186,19 @@ export async function SeoLandingPage({
             </div>
           </section>
 
-          <section className="mt-10 border-l-4 border-amber-400/70 pl-4 sm:pl-5">
+          <section className="mt-16 rounded-[1.5rem] border border-stone-200/85 bg-white/78 p-6 dark:border-stone-700/75 dark:bg-stone-900/45 sm:p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
               {content.related.label}
             </p>
             <a
               href={localizeHref(content.related.href, locale)}
-              className="mt-2 inline-flex text-base font-bold text-amber-900 underline decoration-amber-500 underline-offset-4 transition hover:text-amber-700 dark:text-amber-100 dark:hover:text-amber-200"
+              className="mt-3 inline-flex text-base font-bold text-amber-900 underline decoration-amber-500 underline-offset-4 transition hover:text-amber-700 dark:text-amber-100 dark:hover:text-amber-200"
             >
               {content.related.pageLabel}
             </a>
           </section>
 
-          <div className="mt-10 border-t border-stone-200/80 pt-6 dark:border-stone-700">
+          <div className="mt-12 border-t border-stone-200/80 pt-8 dark:border-stone-700">
             <a
               href={localizedHomeLinkHref}
               className="text-sm font-semibold text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
