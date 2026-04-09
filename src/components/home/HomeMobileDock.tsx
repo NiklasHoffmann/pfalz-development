@@ -2,9 +2,13 @@ import type { MobileNavItem } from './types';
 
 interface HomeMobileDockProps {
   items: MobileNavItem[];
+  ariaLabel?: string;
 }
 
-export function HomeMobileDock({ items }: HomeMobileDockProps) {
+export function HomeMobileDock({
+  items,
+  ariaLabel = 'Mobile navigation',
+}: HomeMobileDockProps) {
   return (
     <div
       data-mobile-dock="true"
@@ -12,7 +16,7 @@ export function HomeMobileDock({ items }: HomeMobileDockProps) {
     >
       <nav
         className="surface-mobile-dock mx-auto w-full max-w-md overflow-hidden rounded-[1.9rem] border border-stone-300/80 p-2 backdrop-blur-xl dark:border-stone-600/90"
-        aria-label="Mobile Seitennavigation"
+        aria-label={ariaLabel}
       >
         <div className="grid grid-cols-4 gap-2">
           {items.map((item) => (

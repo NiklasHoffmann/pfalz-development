@@ -7,6 +7,7 @@ interface HomeHeaderProps {
   navItems: NavItem[];
   brandHref?: string;
   activeHref?: string;
+  navAriaLabel?: string;
 }
 
 export function HomeHeader({
@@ -14,6 +15,7 @@ export function HomeHeader({
   navItems,
   brandHref = '#start',
   activeHref,
+  navAriaLabel = `${appName} navigation`,
 }: HomeHeaderProps) {
   return (
     <header
@@ -58,7 +60,7 @@ export function HomeHeader({
 
             <nav
               className="hidden items-center gap-5 md:flex lg:gap-6"
-              aria-label={`${appName} Hauptnavigation`}
+              aria-label={navAriaLabel}
             >
               {navItems.map((item) => (
                 <a

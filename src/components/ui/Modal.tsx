@@ -10,6 +10,8 @@ export interface ModalProps {
   children: ReactNode;
   title?: string;
   description?: string;
+  screenReaderTitle?: string;
+  screenReaderDescription?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   contentId?: string;
   contentClassName?: string;
@@ -30,6 +32,8 @@ export default function Modal({
   children,
   title,
   description,
+  screenReaderTitle,
+  screenReaderDescription,
   size = 'md',
   contentId,
   contentClassName,
@@ -108,9 +112,11 @@ export default function Modal({
     };
   }, [open]);
 
-  const accessibleTitle = title?.trim() || 'Dialog';
+  const accessibleTitle = title?.trim() || screenReaderTitle?.trim() || 'Dialog';
   const accessibleDescription =
-    description?.trim() || 'Dialog content and actions.';
+    description?.trim() ||
+    screenReaderDescription?.trim() ||
+    'Dialog content and actions.';
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>

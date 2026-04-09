@@ -45,6 +45,18 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
     return 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1400&q=80';
   }
 
+  if (
+    value.includes('dienstleister') ||
+    value.includes('service provider') ||
+    value.includes('smaller compan') ||
+    value.includes('unternehmen') ||
+    value.includes('company') ||
+    value.includes('dinschdleischder') ||
+    value.includes('unnernehme')
+  ) {
+    return 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80';
+  }
+
   return audienceFallbackImages[index % audienceFallbackImages.length];
 }
 

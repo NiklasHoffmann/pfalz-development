@@ -45,6 +45,8 @@ export type HomePageData = {
   appName: string;
   accessibility: {
     skipToContentLabel: string;
+    primaryNavigationLabel: string;
+    mobileNavigationLabel: string;
   };
   navItems: NavItem[];
   mobileNavItems: MobileNavItem[];

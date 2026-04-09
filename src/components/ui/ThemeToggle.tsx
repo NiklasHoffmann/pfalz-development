@@ -1,7 +1,7 @@
 'use client';
 
+import { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 function SunIcon() {
@@ -30,15 +30,15 @@ function MoonIcon() {
 }
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const t = useTranslations('theme');
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const effectiveTheme = mounted && resolvedTheme === 'dark' ? 'dark' : 'light';
+  const isHydrated = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+  const effectiveTheme =
+    isHydrated && resolvedTheme === 'dark' ? 'dark' : 'light';
 
   const options = [
     { mode: 'light' as const, label: t('light'), icon: <SunIcon /> },
@@ -49,10 +49,6 @@ export function ThemeToggle() {
   const nextTheme: 'light' | 'dark' = isDark ? 'light' : 'dark';
 
   function handleThemeToggle() {
-    if (!mounted) {
-      return;
-    }
-
     const withViewTransition = document as Document & {
       startViewTransition?: (updateCallback: () => void) => void;
     };
@@ -71,10 +67,8 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={handleThemeToggle}
-      aria-label={
-        mounted ? `${t('toggle')} (${t(effectiveTheme)})` : t('toggle')
-      }
-      aria-pressed={mounted ? isDark : undefined}
+      aria-label={`${t('toggle')} (${t(effectiveTheme)})`}
+      aria-pressed={isDark}
       className="relative inline-flex h-8 w-14 items-center overflow-hidden rounded-full border border-stone-400/80 bg-[linear-gradient(180deg,rgba(241,235,226,0.95),rgba(232,225,214,0.95))] p-1 text-stone-900 shadow-[inset_0_2px_3px_rgba(28,25,23,0.2),inset_0_-1px_2px_rgba(255,255,255,0.45),0_1px_3px_rgba(28,25,23,0.08)] backdrop-blur transition-[background-color,border-color,color] duration-[260ms] ease-linear focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:border-stone-600/90 dark:bg-[linear-gradient(180deg,rgba(49,43,40,0.94),rgba(39,35,32,0.94))] dark:text-stone-50 dark:shadow-[inset_0_2px_3px_rgba(0,0,0,0.55),inset_0_-1px_2px_rgba(255,255,255,0.05),0_1px_3px_rgba(0,0,0,0.22)] dark:focus-visible:ring-amber-300 sm:h-10 sm:w-[4.5rem]"
     >
       <span

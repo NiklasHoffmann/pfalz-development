@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 import { localeToPathPrefix } from '@/lib/seo';
 
 interface FerienwohnungWebsiteRedirectPageProps {
@@ -11,5 +11,5 @@ export default async function FerienwohnungWebsiteRedirectPage({
   const { locale } = await params;
   const target = `${localeToPathPrefix(locale)}/branchen/ferienwohnung-website`;
 
-  redirect(target);
+  permanentRedirect(target);
 }

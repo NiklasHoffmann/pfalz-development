@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
 import { siteConfig } from '@/config/site';
+import { PALATINATE_HREFLANG } from '@/lib/seo';
 import type {
   CardItem,
   ContactDetails,
@@ -27,6 +28,7 @@ function localeToPath(locale: string): string {
 
 function localeToLanguageTag(locale: string): string {
   if (locale === 'en') return 'en-US';
+  if (locale === 'pfl') return PALATINATE_HREFLANG;
   return 'de-DE';
 }
 
@@ -70,6 +72,22 @@ function localeToMobileShortLabels(locale: string): {
     industry: 'Branche',
     contact: 'Kontakt',
   };
+}
+
+function localeToPrimaryNavigationLabel(locale: string, appName: string): string {
+  if (locale === 'en') {
+    return `${appName} primary navigation`;
+  }
+
+  return `${appName} Hauptnavigation`;
+}
+
+function localeToMobileNavigationLabel(locale: string): string {
+  if (locale === 'en') {
+    return 'Mobile navigation';
+  }
+
+  return 'Mobile Navigation';
 }
 
 function localeToSeoTitle(locale: string): string {
@@ -208,7 +226,7 @@ export async function generateMetadata({
       languages: {
         de: '/',
         en: '/en',
-        'de-PF': '/pfl',
+        [PALATINATE_HREFLANG]: '/pfl',
         'x-default': '/',
       },
     },
@@ -290,11 +308,18 @@ export default async function HomePage({ params }: HomePageProps) {
   const canonicalPath = localeToPath(locale);
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
   const inLanguage = localeToLanguageTag(locale);
+  const primaryNavigationLabel = localeToPrimaryNavigationLabel(
+    locale,
+    t('appName')
+  );
+  const mobileNavigationLabel = localeToMobileNavigationLabel(locale);
 
   const pageData: HomePageData = {
     appName: t('appName'),
     accessibility: {
       skipToContentLabel: t('accessibility.skipToContent'),
+      primaryNavigationLabel,
+      mobileNavigationLabel,
     },
     navItems,
     mobileNavItems,
@@ -371,7 +396,7 @@ export default async function HomePage({ params }: HomePageProps) {
       email: 'kontakt@pfalz-development.de',
       contactType: 'customer support',
       areaServed: 'DE',
-      availableLanguage: ['de', 'en'],
+      availableLanguage: ['de', 'en', PALATINATE_HREFLANG],
     },
     sameAs: [siteConfig.links.github],
     areaServed: [

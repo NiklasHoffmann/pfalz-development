@@ -134,6 +134,8 @@ export function HomeContactSection({
         <Modal
           open={isFormOpen}
           onOpenChange={setIsFormOpen}
+          screenReaderTitle={openFormLabel}
+          screenReaderDescription={title}
           size="xl"
           contentId={contactDialogId}
           contentClassName="overflow-hidden rounded-[1.75rem] bg-white p-0 shadow-[0_28px_90px_rgba(0,0,0,0.22)] dark:bg-stone-800 dark:shadow-[0_30px_100px_rgba(0,0,0,0.52)]"

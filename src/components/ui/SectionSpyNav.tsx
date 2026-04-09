@@ -107,7 +107,7 @@ export function SectionSpyNav({ title, items, className }: SectionSpyNavProps) {
   }, [sectionIds]);
 
   return (
-    <nav className={className}>
+    <nav className={className} aria-label={title}>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
         {title}
       </p>

@@ -7,6 +7,7 @@ import {
   createSeoSchemas,
   getLocalizedContent,
   localeToPathPrefix,
+  PALATINATE_HREFLANG,
 } from '@/lib/seo';
 import { siteConfig } from '@/config/site';
 
@@ -36,7 +37,7 @@ export async function generateMetadata({
     languages: {
       de: pathByLocale.de,
       en: pathByLocale.en,
-      'de-PF': pathByLocale.pfl,
+      [PALATINATE_HREFLANG]: pathByLocale.pfl,
       'x-default': pathByLocale.de,
     },
     content,

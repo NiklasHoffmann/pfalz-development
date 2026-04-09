@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Link } from '@/routing';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
@@ -5,11 +6,18 @@ import { PageSmoothScroll } from '@/components/ui/PageSmoothScroll';
 import { SectionSpyNav } from '@/components/ui/SectionSpyNav';
 import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
+import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 interface LeistungenPageProps {
   params: Promise<{ locale: string }>;
 }
+
+const pathByLocale = {
+  de: '/leistungen',
+  en: '/en/leistungen',
+  pfl: '/pfl/leistungen',
+} as const;
 
 type LeistungenPageCopy = {
   title: string;
@@ -56,6 +64,14 @@ type LeistungenPageCopy = {
   finalPrimaryLabel: string;
   finalSecondaryLabel: string;
 };
+
+function getPrimaryNavigationLabel(locale: string, appName: string): string {
+  if (locale === 'en') {
+    return `${appName} primary navigation`;
+  }
+
+  return `${appName} Hauptnavigation`;
+}
 
 function getLeistungenCopy(locale: string): LeistungenPageCopy {
   if (locale === 'en') {
@@ -373,6 +389,28 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
   };
 }
 
+export async function generateMetadata({
+  params,
+}: LeistungenPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const copy = getLeistungenCopy(locale);
+  const canonicalPath =
+    pathByLocale[locale as keyof typeof pathByLocale] ?? pathByLocale.de;
+
+  return createPageMetadata({
+    locale,
+    canonicalPath,
+    languages: {
+      de: pathByLocale.de,
+      en: pathByLocale.en,
+      [PALATINATE_HREFLANG]: pathByLocale.pfl,
+      'x-default': pathByLocale.de,
+    },
+    title: copy.title,
+    description: copy.intro,
+  });
+}
+
 export default async function LeistungenPage({ params }: LeistungenPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -384,6 +422,10 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
   const basePath = locale === 'de' ? '' : `/${locale}`;
   const homeHref = basePath || '/';
   const leistungenHref = `${basePath}/leistungen`;
+  const primaryNavigationLabel = getPrimaryNavigationLabel(
+    locale,
+    siteConfig.name
+  );
 
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
@@ -410,6 +452,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
         navItems={navItems}
         brandHref={homeHref}
         activeHref={leistungenHref}
+        navAriaLabel={primaryNavigationLabel}
       />
 
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-16 sm:px-6 lg:px-10">

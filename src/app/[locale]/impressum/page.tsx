@@ -1,21 +1,38 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/routing';
+import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 
 interface ImpressumPageProps {
   params: Promise<{ locale: string }>;
 }
+
+const pathByLocale = {
+  de: '/impressum',
+  en: '/en/impressum',
+  pfl: '/pfl/impressum',
+} as const;
 
 export async function generateMetadata({
   params,
 }: ImpressumPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal' });
+  const canonicalPath =
+    pathByLocale[locale as keyof typeof pathByLocale] ?? pathByLocale.de;
 
-  return {
+  return createPageMetadata({
+    locale,
+    canonicalPath,
+    languages: {
+      de: pathByLocale.de,
+      en: pathByLocale.en,
+      [PALATINATE_HREFLANG]: pathByLocale.pfl,
+      'x-default': pathByLocale.de,
+    },
     title: t('imprint.title'),
     description: t('imprint.noticeText'),
-  };
+  });
 }
 
 export default async function ImpressumPage({ params }: ImpressumPageProps) {

@@ -36,7 +36,7 @@ export function ScrollToTopButton() {
   const locale = useLocale();
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
-  const [hasMobileDock, setHasMobileDock] = useState(false);
+  const hasMobileDock = pathname === '/';
 
   useEffect(() => {
     const onScroll = () => {
@@ -50,12 +50,6 @@ export function ScrollToTopButton() {
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
-
-  useEffect(() => {
-    setHasMobileDock(
-      Boolean(document.querySelector('[data-mobile-dock="true"]'))
-    );
-  }, [pathname]);
 
   function handleClick() {
     window.scrollTo({ top: 0, behavior: 'smooth' });

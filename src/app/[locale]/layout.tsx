@@ -4,6 +4,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 import { siteConfig } from '@/config/site';
+import { localeToHtmlLang } from '@/lib/seo';
 import { routing } from '@/routing';
 import '../globals.css';
 
@@ -64,15 +65,6 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-  },
-  alternates: {
-    canonical: '/',
-    languages: {
-      de: '/',
-      en: '/en',
-      'de-PF': '/pfl',
-      'x-default': '/',
-    },
   },
   robots: {
     index: true,
@@ -145,7 +137,11 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} suppressHydrationWarning className="loading">
+    <html
+      lang={localeToHtmlLang(locale)}
+      suppressHydrationWarning
+      className="loading"
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{

@@ -30,6 +30,11 @@ function getLessLabel(locale: string): string {
   return 'Weniger anzeigen';
 }
 
+function getPrimaryNavigationLabel(locale: string, appName: string): string {
+  if (locale === 'en') return `${appName} primary navigation`;
+  return `${appName} Hauptnavigation`;
+}
+
 export async function SeoLandingPage({
   content,
   locale = 'de',
@@ -40,6 +45,10 @@ export async function SeoLandingPage({
   const industryLabel = getIndustryNavLabel(locale);
   const moreLabel = getMoreLabel(locale);
   const lessLabel = getLessLabel(locale);
+  const primaryNavigationLabel = getPrimaryNavigationLabel(
+    locale,
+    siteConfig.name
+  );
   const basePath = locale === 'de' ? '' : `/${locale}`;
   const homeHref = basePath || '/';
   const homeLinkHref = '/';
@@ -68,6 +77,7 @@ export async function SeoLandingPage({
         navItems={navItems}
         brandHref={homeHref}
         activeHref={activeHref}
+        navAriaLabel={primaryNavigationLabel}
       />
 
       <main className="relative flex-1 overflow-hidden bg-[radial-gradient(circle_at_top_left,#fffbeb_0%,#f5f5f4_42%,#e7e5e4_100%)] px-5 pb-14 pt-28 text-stone-900 dark:bg-[radial-gradient(circle_at_top_left,#3a2f28_0%,#332b26_44%,#24303d_100%)] dark:text-stone-100 sm:px-8 sm:pt-32 lg:px-10">

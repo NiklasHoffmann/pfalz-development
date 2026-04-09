@@ -1,21 +1,38 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/routing';
+import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 
 interface PrivacyPageProps {
   params: Promise<{ locale: string }>;
 }
+
+const pathByLocale = {
+  de: '/datenschutz',
+  en: '/en/datenschutz',
+  pfl: '/pfl/datenschutz',
+} as const;
 
 export async function generateMetadata({
   params,
 }: PrivacyPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal' });
+  const canonicalPath =
+    pathByLocale[locale as keyof typeof pathByLocale] ?? pathByLocale.de;
 
-  return {
+  return createPageMetadata({
+    locale,
+    canonicalPath,
+    languages: {
+      de: pathByLocale.de,
+      en: pathByLocale.en,
+      [PALATINATE_HREFLANG]: pathByLocale.pfl,
+      'x-default': pathByLocale.de,
+    },
     title: t('privacy.title'),
     description: t('privacy.overviewText'),
-  };
+  });
 }
 
 export default async function PrivacyPage({ params }: PrivacyPageProps) {

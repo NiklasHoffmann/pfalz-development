@@ -100,9 +100,18 @@ export function TurnstileWidget({
       return;
     }
 
-    setIsInteractiveVisible(false);
-    onTokenChangeRef.current(null);
-    window.turnstile.reset(widgetIdRef.current);
+    const frameId = window.requestAnimationFrame(() => {
+      setIsInteractiveVisible(false);
+      onTokenChangeRef.current(null);
+
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.reset(widgetIdRef.current);
+      }
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+    };
   }, [resetNonce]);
 
   return (

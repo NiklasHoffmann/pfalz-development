@@ -26,8 +26,15 @@ export function HomePageView({ data }: HomePageViewProps) {
         className="surface-page min-h-screen overflow-x-clip pb-24 md:pb-0"
       >
         <HomeScrollOffsetSync />
-        <HomeHeader appName={data.appName} navItems={data.navItems} />
-        <HomeMobileDock items={data.mobileNavItems} />
+        <HomeHeader
+          appName={data.appName}
+          navItems={data.navItems}
+          navAriaLabel={data.accessibility.primaryNavigationLabel}
+        />
+        <HomeMobileDock
+          items={data.mobileNavItems}
+          ariaLabel={data.accessibility.mobileNavigationLabel}
+        />
         <HomeHeroSection
           eyebrow={data.hero.eyebrow}
           headline={data.hero.headline}

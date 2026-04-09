@@ -2,12 +2,21 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import type { SeoLocale, SeoPageContent } from '@/content/seo/types';
 
+export const PALATINATE_HREFLANG = 'de-x-pfalz';
+
 export function localeToPathPrefix(locale: string): string {
   return locale === 'de' ? '' : `/${locale}`;
 }
 
+export function localeToHtmlLang(locale: string): string {
+  if (locale === 'en') return 'en';
+  if (locale === 'pfl') return PALATINATE_HREFLANG;
+  return 'de';
+}
+
 export function localeToLanguageTag(locale: string): string {
   if (locale === 'en') return 'en-US';
+  if (locale === 'pfl') return PALATINATE_HREFLANG;
   return 'de-DE';
 }
 
@@ -27,6 +36,51 @@ export function getLocalizedContent(
   return localizedContent[toSeoLocale(locale)];
 }
 
+export function createPageMetadata({
+  locale,
+  canonicalPath,
+  languages,
+  title,
+  description,
+}: {
+  locale: string;
+  canonicalPath: string;
+  languages: Record<string, string>;
+  title: string;
+  description: string;
+}): Metadata {
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalPath,
+      languages,
+    },
+    openGraph: {
+      type: 'website',
+      locale: localeToOgLocale(locale),
+      url: `${siteConfig.url}${canonicalPath}`,
+      title,
+      description,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [siteConfig.ogImage],
+    },
+  };
+}
+
 export function createSeoMetadata({
   locale,
   canonicalPath,
@@ -38,36 +92,13 @@ export function createSeoMetadata({
   languages: Record<string, string>;
   content: SeoPageContent;
 }): Metadata {
-  return {
+  return createPageMetadata({
+    locale,
+    canonicalPath,
+    languages,
     title: content.title,
     description: content.description,
-    alternates: {
-      canonical: canonicalPath,
-      languages,
-    },
-    openGraph: {
-      type: 'website',
-      locale: localeToOgLocale(locale),
-      url: `${siteConfig.url}${canonicalPath}`,
-      title: content.title,
-      description: content.description,
-      siteName: siteConfig.name,
-      images: [
-        {
-          url: siteConfig.ogImage,
-          width: 1200,
-          height: 630,
-          alt: content.title,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: content.title,
-      description: content.description,
-      images: [siteConfig.ogImage],
-    },
-  };
+  });
 }
 
 export function createSeoSchemas({
