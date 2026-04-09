@@ -281,6 +281,13 @@ export default async function HomePage({ params }: HomePageProps) {
       trustTitle: t('home.trust.title'),
       trustItems,
     },
+    introduction: {
+      eyebrow: t('home.introduction.eyebrow'),
+      title: t('home.introduction.title'),
+      description: t('home.introduction.description'),
+      points: t.raw('home.introduction.points') as string[],
+      conclusion: t('home.introduction.conclusion'),
+    },
     services: {
       title: t('home.services.title'),
       items: serviceItems,

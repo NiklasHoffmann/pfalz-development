@@ -122,6 +122,13 @@ export type HomePageData = {
     trustTitle: string;
     trustItems: string[];
   };
+  introduction: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    points: string[];
+    conclusion: string;
+  };
   services: {
     title: string;
     items: CardItem[];

@@ -20,6 +20,17 @@
           "Hosting, maintenance, and further development from one source"
         ]
       },
+      "introduction": {
+        "eyebrow": "Why this works well with me",
+        "title": "Because I combine technical work with real proximity to hospitality and craft businesses",
+        "description": "I do not only come from web development. As a trained chef and butcher with substantial experience in hospitality, I also know the day-to-day reality of businesses where offers must be clear, trust must be built quickly, and contact paths need to stay simple.",
+        "points": [
+          "Trained chef and butcher with real hands-on hospitality experience.",
+          "Practical understanding of business workflows, offer presentation, and customer communication.",
+          "Websites built for clarity, trust, and direct inquiries instead of generic agency language."
+        ],
+        "conclusion": "That is why the result is not a generic agency website, but a presence that feels closer to the real business and is easier for guests or customers to understand right away."
+      },
       "services": {
         "title": "What you get",
         "items": [
@@ -48,12 +59,12 @@
         ]
       },
       "whyMe": {
-        "title": "Why this is a good fit",
+        "title": "What I care about in your website",
         "items": [
-          "I do not just speak tech. I also understand day-to-day business workflows.",
-          "I value clear communication instead of agency language.",
-          "I build websites so visitors quickly understand what matters.",
-          "I work regionally and close to the real needs of smaller businesses."
+          "I shape websites from the first second from the perspective of your visitors and customers.",
+          "I value clear communication, clean structure, and understandable content instead of agency language.",
+          "I build pages so offers, trust signals, and contact paths can be understood quickly.",
+          "I work pragmatically, regionally, and close to what smaller businesses actually need in everyday operations."
         ]
       },
       "packages": {

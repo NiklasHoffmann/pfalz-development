@@ -20,6 +20,17 @@
           "Hosting, Pflege un Weiterentwicklung aus eener Hand"
         ]
       },
+      "introduction": {
+        "eyebrow": "Warum des mit mir gut passt",
+        "title": "Weil isch Technik mit echter Nähe zu Gastro un Handwerk verbind",
+        "description": "Isch kumm net bloß aus de Webentwicklung. Als gelernter Koch un Metzger mit viel Erfahrung in de Gastro kenn isch aa de Alldach in Betriewe, wo Angebote klar gezeigt, Vertraue schnell uffgebaut un Kontaktwege ääfach sei misse.",
+        "points": [
+          "Gelernter Koch un Metzger mit echter Praxiserfahrung in de Gastro.",
+          "Verständnis fer Betriebsalldach, Angebotsdarstellung un Kommunikation mit Kunne un Gäschd.",
+          "Websites mit Fokus uff Klarheit, Vertraue un direkte Aafrooche statt Agentur-Gebabbel."
+        ],
+        "conclusion": "Genau des sorgt dodrfier, dass hier kei austauschbare Agenturseide entstehe, sondern Ufftritte, die naeher am echte Betrieb funktioniere un fer Gäschd oder Kunne direkt verständlich sinn."
+      },
       "services": {
         "title": "Was de krigsch",
         "items": [
@@ -48,12 +59,12 @@
         ]
       },
       "whyMe": {
-        "title": "Warum des gut zammebasst",
+        "title": "Woruff isch bei deiner Website Wert leg",
         "items": [
-          "Isch babbel net bloß Teschnik, isch versteh aa de Alldach im Betrieb.",
-          "Isch leg Wert uff klare Kommunikation statt Agentur-Sprooch.",
-          "Isch bau Websites so, dass Bsucher direkt kapiere, worum's geht.",
-          "Isch schaff regional un nah an de echte Aforderunge vun klänne Unternehme."
+          "Isch denk Websites vun de erschte Sekund aa aus Sicht vun deine Bsucher un Kunne.",
+          "Isch leg Wert uff klare Kommunikation, saubere Struktur un verständliche Inhalte statt Agentur-Sprooch.",
+          "Isch bau Seite so, dass Angebot, Vertraue un Kontaktwege schnell verstonne werre.",
+          "Isch schaff pragmatisch, regional un nah an dem, was bei klänne Betriewe im Alldach wirklich zählt."
         ]
       },
       "packages": {

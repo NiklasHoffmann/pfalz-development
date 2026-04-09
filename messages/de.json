@@ -20,6 +20,17 @@
           "Hosting, Pflege und Weiterentwicklung aus einer Hand"
         ]
       },
+      "introduction": {
+        "eyebrow": "Warum das mit mir gut passt",
+        "title": "Weil ich Technik mit echter Nähe zu Gastronomie und Handwerk verbinde",
+        "description": "Ich komme nicht nur aus der Webentwicklung. Als gelernter Koch und Metzger mit viel Erfahrung in der Gastronomie kenne ich auch den Alltag in Betrieben, in denen Angebote klar dargestellt, Vertrauen schnell aufgebaut und Kontaktwege einfach sein müssen.",
+        "points": [
+          "Gelernter Koch und Metzger mit echter Praxiserfahrung in der Gastronomie.",
+          "Verständnis für Betriebsalltag, Angebotsdarstellung und Kundenkommunikation.",
+          "Websites mit Fokus auf Klarheit, Vertrauen und direkte Anfragen statt Agentur-Floskeln."
+        ],
+        "conclusion": "Genau deshalb entstehen hier keine austauschbaren Agenturseiten, sondern Auftritte, die näher am echten Betrieb funktionieren und für Gäste oder Kunden schnell verständlich sind."
+      },
       "services": {
         "title": "Was du bekommst",
         "items": [
@@ -48,12 +59,12 @@
         ]
       },
       "whyMe": {
-        "title": "Warum das gut zusammenpasst",
+        "title": "Worauf ich bei deiner Website Wert lege",
         "items": [
-          "Ich spreche nicht nur Technik, sondern verstehe auch den Alltag in Betrieben.",
-          "Ich lege Wert auf klare Kommunikation statt Agentur-Sprache.",
-          "Ich baue Websites so, dass Besucher sofort verstehen, worum es geht.",
-          "Ich arbeite regional und nah an den echten Anforderungen kleiner Unternehmen."
+          "Ich denke Websites von der ersten Sekunde an aus Sicht deiner Besucher und Kunden.",
+          "Ich lege Wert auf klare Kommunikation, saubere Struktur und verständliche Inhalte statt Agentur-Sprache.",
+          "Ich baue Seiten so, dass Angebot, Vertrauen und Kontaktwege schnell erfasst werden können.",
+          "Ich arbeite pragmatisch, regional und nah an dem, was für kleinere Betriebe im Alltag wirklich zählt."
         ]
       },
       "packages": {

@@ -3,6 +3,7 @@ import { HomeContactSection } from './HomeContactSection';
 import { HomeFooter } from './HomeFooter';
 import { HomeHeader } from './HomeHeader';
 import { HomeHeroSection } from './HomeHeroSection';
+import { HomeIntroductionSection } from './HomeIntroductionSection';
 import { HomePackagesSection } from './HomePackagesSection';
 import { HomeProcessFaqSection } from './HomeProcessFaqSection';
 import { HomeSeoLinksSection } from './HomeSeoLinksSection';
@@ -43,6 +44,13 @@ export function HomePageView({ data }: HomePageViewProps) {
         <HomeServicesSection
           title={data.services.title}
           items={data.services.items}
+        />
+        <HomeIntroductionSection
+          eyebrow={data.introduction.eyebrow}
+          title={data.introduction.title}
+          description={data.introduction.description}
+          points={data.introduction.points}
+          conclusion={data.introduction.conclusion}
         />
         <HomeAudienceSection
           audiencesTitle={data.audiences.title}
