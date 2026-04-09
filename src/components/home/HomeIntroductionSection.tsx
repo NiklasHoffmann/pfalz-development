@@ -19,7 +19,7 @@ export function HomeIntroductionSection({
     <RevealOnScroll
       as="section"
       aria-labelledby="home-introduction-title"
-      className="border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
+      className="surface-section-muted border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl text-center">
@@ -41,7 +41,7 @@ export function HomeIntroductionSection({
         </div>
 
         <ul
-          className="mx-auto mt-10 grid max-w-6xl gap-4 md:grid-cols-2 xl:grid-cols-3"
+          className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2 xl:grid-cols-3"
           aria-label={title}
         >
           {points.map((point, index) => (
@@ -49,13 +49,16 @@ export function HomeIntroductionSection({
               as="li"
               key={point}
               delayMs={90 + index * 70}
-              className="min-w-0"
+              className={`min-w-0 ${index === 1 ? 'xl:-translate-y-4' : ''}`}
             >
-              <div className="bg-white/78 h-full rounded-[1.4rem] border border-stone-200/85 p-5 shadow-[0_14px_36px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] sm:p-6">
-                <div className="bg-amber-500/12 dark:bg-amber-300/12 mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/35 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:text-amber-100">
-                  0{index + 1}
+              <div className="h-full rounded-[1.5rem] border border-amber-200/75 bg-[linear-gradient(180deg,rgba(255,251,235,0.96),rgba(255,255,255,0.9))] p-5 shadow-[0_18px_44px_rgba(120,53,15,0.08)] dark:border-amber-300/20 dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.92),rgba(28,25,23,0.84))] dark:shadow-[0_20px_48px_rgba(0,0,0,0.24)] sm:p-6">
+                <div className="flex items-center justify-center gap-3 xl:justify-start">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/12 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
+                    0{index + 1}
+                  </div>
+                  <div aria-hidden="true" className="h-px w-16 bg-amber-500/35 dark:bg-amber-300/30" />
                 </div>
-                <p className="text-base leading-7 text-stone-800 dark:text-stone-100">
+                <p className="mt-5 text-center text-base leading-7 text-stone-800 dark:text-stone-100 xl:text-left">
                   {point}
                 </p>
               </div>

@@ -12,17 +12,17 @@ export function HomeSeoLinksSection({
   items,
 }: HomeSeoLinksSectionProps) {
   return (
-    <section className="border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10">
-      <div className="mx-auto max-w-7xl">
+    <section className="border-t border-stone-200/85 px-4 py-16 dark:border-stone-700/80 sm:px-6 sm:py-20 lg:px-10">
+      <div className="mx-auto max-w-6xl">
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
           {title}
         </h2>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group flex h-full min-w-0 flex-col rounded-2xl border border-stone-200/90 bg-stone-50/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-amber-500/70 hover:bg-white dark:border-stone-700/80 dark:bg-stone-900/75 dark:hover:border-amber-300/70 dark:hover:bg-stone-800/90"
+              className="group flex h-full min-w-0 flex-col rounded-[1.35rem] border border-stone-200/90 bg-stone-50/92 p-5 shadow-[0_10px_24px_rgba(28,25,23,0.04)] transition hover:-translate-y-0.5 hover:border-amber-500/55 hover:bg-white dark:border-stone-700/80 dark:bg-stone-900/65 dark:hover:border-amber-300/55 dark:hover:bg-stone-800/85"
             >
               <p className="text-base font-bold text-stone-950 transition group-hover:text-amber-800 dark:text-stone-50 dark:group-hover:text-amber-200">
                 {item.label}

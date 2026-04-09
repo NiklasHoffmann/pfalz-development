@@ -52,9 +52,9 @@ export function HomeContactSection({
       as="section"
       id="kontakt"
       aria-labelledby="home-contact-title"
-      className="surface-section-muted px-4 py-20 sm:px-6 sm:py-24 lg:px-10"
+      className="border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl rounded-[2rem] border border-amber-200/80 bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.18),transparent_32%),linear-gradient(180deg,rgba(255,251,235,0.96),rgba(255,255,255,0.9))] px-6 py-8 shadow-[0_24px_72px_rgba(120,53,15,0.1)] dark:border-amber-300/20 dark:bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.12),transparent_28%),linear-gradient(180deg,rgba(41,37,36,0.94),rgba(28,25,23,0.88))] dark:shadow-[0_28px_80px_rgba(0,0,0,0.34)] sm:px-8 sm:py-10">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
           {navLabel}
         </p>
@@ -62,7 +62,7 @@ export function HomeContactSection({
           <div className="min-w-0">
             <h2
               id="home-contact-title"
-              className="text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 md:text-4xl"
+              className="max-w-3xl text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 md:text-4xl"
             >
               {title}
             </h2>
@@ -99,7 +99,7 @@ export function HomeContactSection({
             </p>
           </div>
 
-          <div className="rounded-[1.25rem] border border-stone-300/70 bg-white/65 p-5 shadow-[0_10px_30px_rgba(28,25,23,0.07)] backdrop-blur-sm dark:border-stone-600/80 dark:bg-stone-900/45 sm:p-6">
+          <div className="rounded-[1.5rem] border border-white/65 bg-white/72 p-5 shadow-[0_14px_36px_rgba(28,25,23,0.08)] backdrop-blur-sm dark:border-stone-600/70 dark:bg-stone-950/38 sm:p-6">
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">

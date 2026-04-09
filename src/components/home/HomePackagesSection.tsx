@@ -72,10 +72,16 @@ export function HomePackagesSection({
       className="surface-section-muted border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
       <div className="mx-auto max-w-7xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
-          {title}
-        </p>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
+            {title}
+          </p>
+          <div
+            aria-hidden="true"
+            className="mx-auto mt-6 h-px w-24 bg-amber-500/35 dark:bg-amber-300/30"
+          />
+        </div>
+        <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => {
             const { priceLine, details } = splitPriceFromDescription(
               item.description
@@ -89,13 +95,13 @@ export function HomePackagesSection({
                 as="article"
                 key={item.name}
                 delayMs={80 + index * 90}
-                className={`flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border p-8 ${
+                className={`flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border p-8 text-center ${
                   index === 1
                     ? 'border-amber-300 bg-[linear-gradient(180deg,_#fff7e6,_#f6e7c8)] shadow-[0_20px_70px_rgba(245,158,11,0.18)] dark:border-amber-500 dark:bg-[linear-gradient(180deg,_#5c2b0e,_#3d1d09)] md:scale-[1.01]'
                     : 'border-stone-200/90 bg-stone-50/95 dark:border-stone-700 dark:bg-stone-900'
                 }`}
               >
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex flex-col items-center gap-4">
                   <h3
                     className={`text-2xl font-bold ${
                       index === 1
@@ -118,7 +124,7 @@ export function HomePackagesSection({
                   ) : null}
                 </div>
                 <p
-                  className={`mt-4 flex-1 text-base leading-7 ${
+                  className={`mt-5 flex-1 text-base leading-7 ${
                     index === 1
                       ? 'text-stone-800 dark:text-amber-100'
                       : 'text-stone-800 dark:text-stone-100'
@@ -140,7 +146,7 @@ export function HomePackagesSection({
                   aria-haspopup="dialog"
                   aria-controls={packageDialogId}
                   aria-expanded={isModalOpen && activePackageName === item.name}
-                  className={`mt-6 inline-flex items-center self-start rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+                  className={`mt-6 inline-flex items-center self-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
                     index === 1
                       ? 'border-amber-500/50 bg-amber-100/60 text-stone-900 hover:bg-amber-100 focus-visible:ring-amber-500 focus-visible:ring-offset-amber-100 dark:border-amber-300/50 dark:bg-amber-100/10 dark:text-amber-100 dark:hover:bg-amber-100/20 dark:focus-visible:ring-amber-300 dark:focus-visible:ring-offset-stone-900'
                       : 'border-stone-300/90 bg-white text-stone-900 hover:bg-stone-100 focus-visible:ring-stone-500 focus-visible:ring-offset-white dark:border-stone-500/90 dark:bg-stone-800 dark:text-stone-100 dark:hover:bg-stone-700 dark:focus-visible:ring-stone-300 dark:focus-visible:ring-offset-stone-900'

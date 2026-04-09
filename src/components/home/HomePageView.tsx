@@ -71,11 +71,6 @@ export function HomePageView({ data }: HomePageViewProps) {
           modalIncludesTitle={data.packages.modalIncludesTitle}
           items={data.packages.items}
         />
-        <HomeSeoLinksSection
-          title={data.seoLinks.title}
-          ctaLabel={data.seoLinks.ctaLabel}
-          items={data.seoLinks.items}
-        />
         <HomeContactSection
           navLabel={data.contact.navLabel}
           title={data.contact.title}
@@ -86,6 +81,11 @@ export function HomePageView({ data }: HomePageViewProps) {
           privacyHref={data.contact.privacyHref}
           form={data.contact.form}
           details={data.contact.details}
+        />
+        <HomeSeoLinksSection
+          title={data.seoLinks.title}
+          ctaLabel={data.seoLinks.ctaLabel}
+          items={data.seoLinks.items}
         />
         <HomeFooter
           note={data.footer.note}

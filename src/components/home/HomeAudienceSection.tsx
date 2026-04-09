@@ -81,7 +81,7 @@ export function HomeAudienceSection({
         <div className="mx-auto max-w-7xl">
           <h2
             id="home-audiences-title"
-            className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100"
+            className="max-w-3xl text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl"
           >
             {audiencesTitle}
           </h2>
@@ -127,17 +127,23 @@ export function HomeAudienceSection({
       <RevealOnScroll
         as="section"
         aria-labelledby="home-why-title"
-        className="surface-section-muted px-4 py-20 sm:px-6 sm:py-24 lg:px-10"
+        className="surface-section-muted border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
       >
         <div className="mx-auto max-w-7xl">
-          <h2
-            id="home-why-title"
-            className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100"
-          >
-            {whyMeTitle}
-          </h2>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2
+              id="home-why-title"
+              className="text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 md:text-4xl"
+            >
+              {whyMeTitle}
+            </h2>
+            <div
+              aria-hidden="true"
+              className="mx-auto mt-6 h-px w-24 bg-amber-500/35 dark:bg-amber-300/30"
+            />
+          </div>
           <ul
-            className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2"
             aria-label={whyMeTitle}
           >
             {whyMeItems.map((item, index) => (
@@ -145,11 +151,19 @@ export function HomeAudienceSection({
                 as="li"
                 key={item}
                 delayMs={110 + index * 70}
-                className="min-w-0"
+                className={`min-w-0 ${index % 2 === 1 ? 'md:translate-y-4' : ''}`}
               >
-                <div className="h-full border-l-2 border-amber-500/40 pl-4">
-                  <div className="mb-3 h-8 w-8 rounded-full border border-amber-500/45 bg-amber-500/10" />
-                  <p className="text-base leading-7 text-stone-800 dark:text-stone-100">
+                <div className="h-full rounded-[1.5rem] border border-stone-200/85 bg-white/82 p-6 shadow-[0_16px_34px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)]">
+                  <div className="flex items-center gap-4">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/12 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
+                      0{index + 1}
+                    </div>
+                    <div
+                      aria-hidden="true"
+                      className="h-px flex-1 bg-amber-500/30 dark:bg-amber-300/30"
+                    />
+                  </div>
+                  <p className="mt-5 text-base leading-7 text-stone-800 dark:text-stone-100">
                     {item}
                   </p>
                 </div>
