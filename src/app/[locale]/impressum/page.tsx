@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
 import type { NavItem } from '@/components/home/types';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { getTranslations } from 'next-intl/server';
@@ -74,7 +75,7 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
       />
       <main className="flex-1 px-4 pb-28 pt-28 text-stone-900 dark:text-stone-100 sm:px-6 sm:pt-32 md:pb-16 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="bg-white/88 mx-auto max-w-5xl rounded-[2rem] border border-stone-200/80 p-8 shadow-[0_20px_56px_rgba(28,25,23,0.08)] dark:border-stone-700/80 dark:bg-stone-900/55 dark:shadow-[0_24px_64px_rgba(0,0,0,0.28)] sm:p-10">
+          <RevealOnScroll className="bg-white/88 mx-auto max-w-5xl rounded-[2rem] border border-stone-200/80 p-8 shadow-[0_20px_56px_rgba(28,25,23,0.08)] dark:border-stone-700/80 dark:bg-stone-900/55 dark:shadow-[0_24px_64px_rgba(0,0,0,0.28)] sm:p-10">
             <a
               href={homeHref}
               className="text-sm font-medium text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
@@ -90,7 +91,7 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
             </h1>
 
             <div className="mt-10 space-y-8 text-sm leading-7 text-stone-700 dark:text-stone-300">
-              <section>
+              <RevealOnScroll as="section" delayMs={60}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.providerTitle')}
                 </h2>
@@ -98,9 +99,9 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                 <p>Fröbelstraße 20</p>
                 <p>67433 Neustadt an der Weinstraße</p>
                 <p>Deutschland</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={100}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.contactTitle')}
                 </h2>
@@ -122,9 +123,9 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                     06321 1876643
                   </a>
                 </p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={140}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.responsibleTitle')}
                 </h2>
@@ -132,44 +133,44 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                 <p>Fröbelstraße 20</p>
                 <p>67433 Neustadt an der Weinstraße</p>
                 <p>Deutschland</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={180}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.vatIdTitle')}
                 </h2>
                 <p className="mt-3">{t('imprint.vatIdText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={220}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.disputeResolutionTitle')}
                 </h2>
                 <p className="mt-3">{t('imprint.disputeResolutionText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={260}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.liabilityContentTitle')}
                 </h2>
                 <p className="mt-3">{t('imprint.liabilityContentText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={300}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.liabilityLinksTitle')}
                 </h2>
                 <p className="mt-3">{t('imprint.liabilityLinksText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={340}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('imprint.copyrightTitle')}
                 </h2>
                 <p className="mt-3">{t('imprint.copyrightText')}</p>
-              </section>
+              </RevealOnScroll>
             </div>
-          </div>
+          </RevealOnScroll>
         </div>
       </main>
       <HomeFooter

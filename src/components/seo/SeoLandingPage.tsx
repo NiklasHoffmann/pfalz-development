@@ -1,6 +1,7 @@
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
 import type { NavItem } from '@/components/home/types';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import type { SeoPageContent } from '@/content/seo/types';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
@@ -96,7 +97,9 @@ export async function SeoLandingPage({
 
       <main className="flex-1 px-4 pb-28 pt-28 text-stone-900 dark:text-stone-100 sm:px-6 sm:pt-32 md:pb-16 lg:px-10">
         <article className="mx-auto max-w-7xl py-2 sm:py-4">
-          <div className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 p-6 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:p-8 lg:p-10">
+          <RevealOnScroll
+            className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 p-6 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:p-8 lg:p-10"
+          >
             <p className="inline-flex rounded-full border border-amber-300/60 bg-amber-100/85 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
               {content.eyebrow}
             </p>
@@ -121,12 +124,14 @@ export async function SeoLandingPage({
                 {content.cta.secondaryLabel}
               </a>
             </div>
-          </div>
+          </RevealOnScroll>
 
           <div className="mt-20 grid gap-6">
             {content.sections.map((section, index) => (
-              <section
+              <RevealOnScroll
+                as="section"
                 key={section.title}
+                delayMs={90 + index * 70}
                 className="bg-white/82 rounded-[1.5rem] border border-stone-200/85 p-6 shadow-[0_16px_34px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] sm:p-8"
               >
                 <div className="flex items-start gap-4">
@@ -161,11 +166,15 @@ export async function SeoLandingPage({
                     </div>
                   </div>
                 </div>
-              </section>
+              </RevealOnScroll>
             ))}
           </div>
 
-          <section className="surface-section-muted mt-20 rounded-[1.75rem] border border-stone-200/80 p-6 dark:border-stone-700/75 dark:bg-stone-900/35 sm:p-8">
+          <RevealOnScroll
+            as="section"
+            delayMs={140}
+            className="surface-section-muted mt-20 rounded-[1.75rem] border border-stone-200/80 p-6 dark:border-stone-700/75 dark:bg-stone-900/35 sm:p-8"
+          >
             <h2 className="text-2xl font-bold text-stone-950 dark:text-stone-50">
               {content.faqTitle}
             </h2>
@@ -184,9 +193,13 @@ export async function SeoLandingPage({
                 </details>
               ))}
             </div>
-          </section>
+          </RevealOnScroll>
 
-          <section className="bg-white/78 mt-16 rounded-[1.5rem] border border-stone-200/85 p-6 dark:border-stone-700/75 dark:bg-stone-900/45 sm:p-7">
+          <RevealOnScroll
+            as="section"
+            delayMs={180}
+            className="bg-white/78 mt-16 rounded-[1.5rem] border border-stone-200/85 p-6 dark:border-stone-700/75 dark:bg-stone-900/45 sm:p-7"
+          >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
               {content.related.label}
             </p>
@@ -196,16 +209,19 @@ export async function SeoLandingPage({
             >
               {content.related.pageLabel}
             </a>
-          </section>
+          </RevealOnScroll>
 
-          <div className="mt-12 border-t border-stone-200/80 pt-8 dark:border-stone-700">
+          <RevealOnScroll
+            delayMs={220}
+            className="mt-12 border-t border-stone-200/80 pt-8 dark:border-stone-700"
+          >
             <a
               href={localizedHomeLinkHref}
               className="text-sm font-semibold text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
             >
               {content.backToHome}
             </a>
-          </div>
+          </RevealOnScroll>
         </article>
       </main>
 

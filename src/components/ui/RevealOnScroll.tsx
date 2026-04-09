@@ -5,11 +5,14 @@ import { useEffect, useRef } from 'react';
 
 type RevealTag = 'div' | 'section' | 'article' | 'p' | 'span' | 'li';
 
+const ROUTE_REVEAL_STORAGE_PREFIX = 'pfalz-development:revealed-route:';
+
 interface RevealOnScrollProps extends HTMLAttributes<HTMLElement> {
   as?: RevealTag;
   children: ReactNode;
   delayMs?: number;
   once?: boolean;
+  revealOncePerPath?: boolean;
   threshold?: number;
   rootMargin?: string;
 }
@@ -21,6 +24,7 @@ export function RevealOnScroll({
   style,
   delayMs = 0,
   once = true,
+  revealOncePerPath = true,
   threshold = 0.16,
   rootMargin = '0px 0px -4% 0px',
   ...rest
@@ -42,11 +46,38 @@ export function RevealOnScroll({
       return;
     }
 
+    const shouldPersistByPath = once && revealOncePerPath;
+    const routeRevealStorageKey = `${ROUTE_REVEAL_STORAGE_PREFIX}${window.location.pathname}`;
+
+    const readRouteRevealState = () => {
+      if (!shouldPersistByPath) {
+        return false;
+      }
+
+      try {
+        return window.sessionStorage.getItem(routeRevealStorageKey) === '1';
+      } catch {
+        return false;
+      }
+    };
+
+    const writeRouteRevealState = () => {
+      if (!shouldPersistByPath) {
+        return;
+      }
+
+      try {
+        window.sessionStorage.setItem(routeRevealStorageKey, '1');
+      } catch {
+        // Ignore storage access failures and fall back to in-memory reveal only.
+      }
+    };
+
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || readRouteRevealState()) {
       node.classList.add('is-visible');
       return;
     }
@@ -60,6 +91,8 @@ export function RevealOnScroll({
 
         if (entry.isIntersecting) {
           node.classList.add('is-visible');
+          writeRouteRevealState();
+
           if (once) {
             observer.unobserve(node);
           }
@@ -78,7 +111,7 @@ export function RevealOnScroll({
     return () => {
       observer.disconnect();
     };
-  }, [once, threshold, rootMargin]);
+  }, [once, revealOncePerPath, threshold, rootMargin]);
 
   return (
     <Element

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
 import type { NavItem } from '@/components/home/types';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { getTranslations } from 'next-intl/server';
@@ -74,7 +75,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
       />
       <main className="flex-1 px-4 pb-28 pt-28 text-stone-900 dark:text-stone-100 sm:px-6 sm:pt-32 md:pb-16 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="bg-white/88 mx-auto max-w-5xl rounded-[2rem] border border-stone-200/80 p-8 shadow-[0_20px_56px_rgba(28,25,23,0.08)] dark:border-stone-700/80 dark:bg-stone-900/55 dark:shadow-[0_24px_64px_rgba(0,0,0,0.28)] sm:p-10">
+          <RevealOnScroll className="bg-white/88 mx-auto max-w-5xl rounded-[2rem] border border-stone-200/80 p-8 shadow-[0_20px_56px_rgba(28,25,23,0.08)] dark:border-stone-700/80 dark:bg-stone-900/55 dark:shadow-[0_24px_64px_rgba(0,0,0,0.28)] sm:p-10">
             <a
               href={homeHref}
               className="text-sm font-medium text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
@@ -90,14 +91,14 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             </h1>
 
             <div className="mt-10 space-y-8 text-sm leading-7 text-stone-700 dark:text-stone-300">
-              <section>
+              <RevealOnScroll as="section" delayMs={60}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.overviewTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.overviewText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={90}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.responsibleTitle')}
                 </h2>
@@ -113,114 +114,114 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
                     kontakt@pfalz-development.de
                   </a>
                 </p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={120}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.dataTypesTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.dataTypesText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={150}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.purposesTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.purposesText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={180}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.legalBasisTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.legalBasisText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={210}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.contactRequestsTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.contactRequestsText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={240}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.serverLogsTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.serverLogsText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={270}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.cookiesTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.cookiesText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={300}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.recipientsTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.recipientsText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={330}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.processorsTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.processorsText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={360}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.storageTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.storageText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={390}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.securityTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.securityText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={420}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.rightsTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.rightsText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={450}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.revocationTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.revocationText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={480}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.complaintTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.complaintText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={510}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.dpoTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.dpoText')}</p>
-              </section>
+              </RevealOnScroll>
 
-              <section>
+              <RevealOnScroll as="section" delayMs={540}>
                 <h2 className="text-lg font-bold text-stone-950 dark:text-stone-50">
                   {t('privacy.statusTitle')}
                 </h2>
                 <p className="mt-3">{t('privacy.statusText')}</p>
-              </section>
+              </RevealOnScroll>
             </div>
-          </div>
+          </RevealOnScroll>
         </div>
       </main>
       <HomeFooter

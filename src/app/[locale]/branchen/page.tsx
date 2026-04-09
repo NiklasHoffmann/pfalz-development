@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
 import { PageSmoothScroll } from '@/components/ui/PageSmoothScroll';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { SectionSpyNav } from '@/components/ui/SectionSpyNav';
 import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
@@ -452,7 +453,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
           </aside>
 
           <div className="pt-28 sm:pt-32 lg:col-start-1 lg:row-start-1">
-            <section className="pt-2 sm:pt-4">
+            <RevealOnScroll as="section" className="pt-2 sm:pt-4">
               <div className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 px-5 py-7 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:px-7 sm:py-8 lg:px-10 lg:py-10">
                 <div className="bg-amber-500/12 pointer-events-none absolute -right-20 -top-16 h-56 w-56 rounded-full blur-3xl" />
                 <div className="relative pl-1 sm:pl-2 lg:pl-4">
@@ -483,10 +484,12 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                   </ul>
                 </div>
               </div>
-            </section>
+            </RevealOnScroll>
 
-            <section
+            <RevealOnScroll
+              as="section"
               id="ueberblick"
+              delayMs={80}
               className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <div className="max-w-4xl">
@@ -498,12 +501,14 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                 </p>
               </div>
               <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {copy.cards.map((card) => {
+                {copy.cards.map((card, index) => {
                   const id = getCardId(card.href);
 
                   return (
-                    <article
+                    <RevealOnScroll
+                      as="article"
                       key={card.href}
+                      delayMs={120 + index * 60}
                       className="flex h-full flex-col rounded-[1.35rem] border border-stone-200/90 bg-stone-50/95 p-5 shadow-[0_12px_26px_rgba(28,25,23,0.05)] dark:border-stone-700 dark:bg-stone-800/65"
                     >
                       <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
@@ -522,14 +527,16 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                         {copy.playbookLabels.scenario}
                         <span aria-hidden="true">-&gt;</span>
                       </a>
-                    </article>
+                    </RevealOnScroll>
                   );
                 })}
               </div>
-            </section>
+            </RevealOnScroll>
 
-            <section
+            <RevealOnScroll
+              as="section"
               id="playbook"
+              delayMs={120}
               className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
@@ -540,13 +547,15 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
               </p>
 
               <div className="mt-8 space-y-12">
-                {copy.cards.map((card) => {
+                {copy.cards.map((card, index) => {
                   const id = getCardId(card.href);
 
                   return (
-                    <article
+                    <RevealOnScroll
+                      as="article"
                       key={card.href}
                       id={id}
+                      delayMs={160 + index * 70}
                       className="scroll-mt-28 border-t border-stone-200/75 pt-8 first:border-t-0 first:pt-0 dark:border-stone-700/70"
                     >
                       <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10">
@@ -609,14 +618,16 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                           </div>
                         </div>
                       </div>
-                    </article>
+                    </RevealOnScroll>
                   );
                 })}
               </div>
-            </section>
+            </RevealOnScroll>
 
-            <section
+            <RevealOnScroll
+              as="section"
               id="support"
+              delayMs={180}
               className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl">
@@ -639,7 +650,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                   {copy.supportSecondaryLabel}
                 </a>
               </div>
-            </section>
+            </RevealOnScroll>
           </div>
         </div>
       </main>

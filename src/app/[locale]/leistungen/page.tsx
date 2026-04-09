@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
 import { PageSmoothScroll } from '@/components/ui/PageSmoothScroll';
+import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { SectionSpyNav } from '@/components/ui/SectionSpyNav';
 import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
@@ -490,7 +491,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
           </aside>
 
           <div className="pt-28 sm:pt-32 lg:col-start-1 lg:row-start-1">
-            <section className="pt-2 sm:pt-4">
+            <RevealOnScroll as="section" className="pt-2 sm:pt-4">
               <div className="surface-hero relative overflow-hidden rounded-[2rem] border border-stone-200/80 px-5 py-7 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:border-stone-700/80 sm:px-7 sm:py-8 lg:px-10 lg:py-10">
                 <div className="bg-amber-500/12 pointer-events-none absolute -right-20 -top-16 h-56 w-56 rounded-full blur-3xl" />
                 <div className="relative pl-1 sm:pl-2 lg:pl-4">
@@ -505,9 +506,14 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                   </p>
                 </div>
               </div>
-            </section>
+            </RevealOnScroll>
 
-            <section id="einstieg" className="mt-20 scroll-mt-28 sm:mt-24">
+            <RevealOnScroll
+              as="section"
+              id="einstieg"
+              delayMs={80}
+              className="mt-20 scroll-mt-28 sm:mt-24"
+            >
               <div className="max-w-3xl">
                 <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
                   {copy.entryTitle}
@@ -519,8 +525,10 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
               <div className="mt-8 max-w-5xl border-t border-stone-200/75 dark:border-stone-700/70">
                 <div className="divide-y divide-stone-200/75 dark:divide-stone-700/70">
                   {copy.entries.map((entry, index) => (
-                    <article
+                    <RevealOnScroll
+                      as="article"
                       key={entry.title}
+                      delayMs={120 + index * 50}
                       className="grid gap-4 py-5 first:pt-6 last:pb-0 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:gap-6"
                     >
                       <div className="bg-amber-500/12 inline-flex h-11 w-11 items-center justify-center rounded-full border border-amber-500/40 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
@@ -541,14 +549,16 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                         {entry.label}
                         <span aria-hidden="true">-&gt;</span>
                       </a>
-                    </article>
+                    </RevealOnScroll>
                   ))}
                 </div>
               </div>
-            </section>
+            </RevealOnScroll>
 
-            <section
+            <RevealOnScroll
+              as="section"
               id="probleme"
+              delayMs={110}
               className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
@@ -559,8 +569,10 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
               </p>
               <ol className="mt-8 grid gap-8" aria-label={copy.problemTitle}>
                 {copy.problems.map((problem, index) => (
-                  <li
+                  <RevealOnScroll
+                    as="li"
                     key={problem.title}
+                    delayMs={150 + index * 50}
                     className="grid gap-4 border-t border-stone-200/75 pt-6 first:border-t-0 first:pt-0 dark:border-stone-700/70 md:grid-cols-[auto_minmax(0,1fr)] md:gap-6"
                   >
                     <div className="bg-amber-500/12 inline-flex h-11 w-11 items-center justify-center rounded-full border border-amber-500/40 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/10 dark:text-amber-100">
@@ -574,13 +586,15 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                         {problem.description}
                       </p>
                     </div>
-                  </li>
+                  </RevealOnScroll>
                 ))}
               </ol>
-            </section>
+            </RevealOnScroll>
 
-            <section
+            <RevealOnScroll
+              as="section"
               id="loesungen"
+              delayMs={140}
               className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
@@ -590,9 +604,11 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                 {copy.solutionIntro}
               </p>
               <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {copy.cards.map((card) => (
-                  <article
+                {copy.cards.map((card, index) => (
+                  <RevealOnScroll
+                    as="article"
                     key={card.href}
+                    delayMs={180 + index * 60}
                     className="flex h-full flex-col rounded-[1.35rem] border border-stone-200/90 bg-stone-50/95 p-5 shadow-[0_12px_26px_rgba(28,25,23,0.05)] dark:border-stone-700 dark:bg-stone-800/65"
                   >
                     <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
@@ -611,13 +627,15 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                       {copy.cta}
                       <span aria-hidden="true">-&gt;</span>
                     </a>
-                  </article>
+                  </RevealOnScroll>
                 ))}
               </div>
-            </section>
+            </RevealOnScroll>
 
-            <section
+            <RevealOnScroll
+              as="section"
               id="beweis"
+              delayMs={170}
               className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
               <div className="surface-section-muted rounded-3xl border border-stone-200/80 p-6 dark:border-stone-700 dark:bg-stone-900/35 sm:p-8">
@@ -662,9 +680,13 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                   </div>
                 </div>
               </div>
-            </section>
+            </RevealOnScroll>
 
-            <section className="mt-20 border-t border-stone-200/70 pb-4 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16">
+            <RevealOnScroll
+              as="section"
+              delayMs={200}
+              className="mt-20 border-t border-stone-200/70 pb-4 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
+            >
               <h2 className="text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl">
                 {copy.finalTitle}
               </h2>
@@ -685,7 +707,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                   {copy.finalSecondaryLabel}
                 </a>
               </div>
-            </section>
+            </RevealOnScroll>
           </div>
         </div>
       </main>
