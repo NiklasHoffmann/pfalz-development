@@ -2,14 +2,17 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
 import { siteConfig } from '@/config/site';
+import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { PALATINATE_HREFLANG } from '@/lib/seo';
 import type {
   CardItem,
   ContactDetails,
+  ContactFormCopy,
   FaqItem,
   HomePageData,
   PackageItem,
   SeoLinkItem,
+  SupportedLocale,
 } from '@/components/home/types';
 
 interface HomePageProps {
@@ -284,6 +287,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const processSteps = t.raw('home.process.steps') as string[];
   const faqItems = t.raw('home.faq.items') as FaqItem[];
   const contactDetails = t.raw('home.contact') as ContactDetails;
+  const contactFormCopy = t.raw('home.contact.form') as ContactFormCopy;
   const legalT = await getTranslations({ locale, namespace: 'legal' });
   const basePath = localeToBasePath(locale);
   const homeHref = basePath || '/';
@@ -331,11 +335,13 @@ export default async function HomePage({ params }: HomePageProps) {
 
   const pageData: HomePageData = {
     appName: t('appName'),
+    locale: locale as SupportedLocale,
     accessibility: {
       skipToContentLabel: t('accessibility.skipToContent'),
       primaryNavigationLabel,
       mobileNavigationLabel,
     },
+    controls: getHeaderControlsCopy(locale),
     navItems,
     mobileNavItems,
     hero: {
@@ -387,12 +393,16 @@ export default async function HomePage({ params }: HomePageProps) {
       primaryCta: t('home.contact.primaryCta'),
       secondaryCta: t('home.contact.secondaryCta'),
       openFormLabel: t('home.contact.form.openCta'),
+      privacyHref: `${basePath}/datenschutz`,
+      form: contactFormCopy,
       details: contactDetails,
     },
     footer: {
       note: legalT('footerNote'),
       imprintLabel: legalT('imprint.title'),
       privacyLabel: legalT('privacy.title'),
+      imprintHref: `${basePath}/impressum`,
+      privacyHref: `${basePath}/datenschutz`,
     },
   };
 

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Link } from '@/routing';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
 import { PageSmoothScroll } from '@/components/ui/PageSmoothScroll';
 import { SectionSpyNav } from '@/components/ui/SectionSpyNav';
 import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
+import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
@@ -439,6 +439,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
         brandHref={homeHref}
         activeHref={branchenHref}
         navAriaLabel={primaryNavigationLabel}
+        controls={getHeaderControlsCopy(locale)}
       />
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-16 sm:px-6 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px] xl:gap-12">
@@ -584,13 +585,13 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                           <p className="mt-3 text-sm leading-6 text-stone-700 dark:text-stone-200">
                             {card.outcome}
                           </p>
-                          <Link
+                          <a
                             href={card.href}
                             className="mt-auto inline-flex items-center gap-1.5 self-end pt-4 text-sm font-semibold text-amber-800 hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
                           >
                             {copy.cta}
                             <span aria-hidden="true">-&gt;</span>
-                          </Link>
+                          </a>
                         </div>
                       </div>
                     </article>
@@ -610,18 +611,18 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                 {copy.supportText}
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <Link
+                <a
                   href={`${basePath}/leistungen`}
                   className="inline-flex items-center justify-center rounded-full bg-stone-950 px-5 py-2.5 text-sm font-semibold text-stone-50 transition hover:bg-stone-800 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300"
                 >
                   {copy.supportPrimaryLabel}
-                </Link>
-                <Link
+                </a>
+                <a
                   href={`${homeHref}#kontakt`}
                   className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white/70 px-5 py-2.5 text-sm font-semibold text-stone-900 transition hover:border-amber-600 hover:text-amber-800 dark:border-stone-600 dark:bg-stone-800/60 dark:text-stone-100 dark:hover:border-amber-300 dark:hover:text-amber-200"
                 >
                   {copy.supportSecondaryLabel}
-                </Link>
+                </a>
               </div>
             </section>
           </div>
@@ -631,6 +632,8 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
         note={legalT('footerNote')}
         imprintLabel={legalT('imprint.title')}
         privacyLabel={legalT('privacy.title')}
+        imprintHref={`${basePath}/impressum`}
+        privacyHref={`${basePath}/datenschutz`}
       />
     </div>
   );

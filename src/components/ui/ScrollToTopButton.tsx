@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useLocale } from 'next-intl';
-import { usePathname } from '@/routing';
+import { usePathname } from 'next/navigation';
+import type { SupportedLocale } from '@/components/home/types';
 
 const SHOW_AFTER_SCROLL_Y = 280;
 
@@ -32,11 +32,19 @@ function ArrowUpIcon() {
   );
 }
 
-export function ScrollToTopButton() {
-  const locale = useLocale();
+interface ScrollToTopButtonProps {
+  locale: SupportedLocale;
+}
+
+export function ScrollToTopButton({ locale }: ScrollToTopButtonProps) {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
-  const hasMobileDock = pathname === '/';
+  const normalizedPathname =
+    pathname !== '/' && pathname.endsWith('/')
+      ? pathname.slice(0, -1)
+      : pathname;
+  const localeRootPath = locale === 'de' ? '/' : `/${locale}`;
+  const hasMobileDock = normalizedPathname === localeRootPath;
 
   useEffect(() => {
     const onScroll = () => {

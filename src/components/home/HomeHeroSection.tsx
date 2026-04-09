@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface HomeHeroSectionProps {
   eyebrow: string;
   headline: string;
@@ -9,7 +11,7 @@ interface HomeHeroSectionProps {
 }
 
 const HERO_TRUST_STOCK_BACKGROUND_URL =
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80';
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=70';
 
 export function HomeHeroSection({
   eyebrow,
@@ -60,12 +62,15 @@ export function HomeHeroSection({
         <div className="relative min-w-0">
           <div className="absolute -left-4 -top-5 h-20 w-20 rounded-full bg-amber-500/15 blur-2xl" />
           <div className="bg-white/82 dark:bg-stone-800/82 relative overflow-hidden rounded-[2rem] border border-stone-200/90 p-5 shadow-[0_30px_80px_rgba(28,25,23,0.14)] backdrop-blur dark:border-stone-700/80 dark:shadow-[0_30px_80px_rgba(0,0,0,0.28)] sm:p-6">
-            <div
+            <Image
+              src={HERO_TRUST_STOCK_BACKGROUND_URL}
+              alt=""
               aria-hidden="true"
-              className="opacity-24 absolute inset-0 bg-cover bg-center bg-no-repeat dark:opacity-20"
-              style={{
-                backgroundImage: `url(${HERO_TRUST_STOCK_BACKGROUND_URL})`,
-              }}
+              fill
+              priority
+              sizes="(max-width: 1024px) calc(100vw - 2.5rem), 42vw"
+              quality={60}
+              className="absolute inset-0 h-full w-full object-cover opacity-24 dark:opacity-20"
             />
             <div
               aria-hidden="true"

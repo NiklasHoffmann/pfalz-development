@@ -26,6 +26,65 @@ export type ContactDetails = {
   regionNote: string;
 };
 
+export type SupportedLocale = 'de' | 'en' | 'pfl';
+
+export type ThemeToggleCopy = {
+  light: string;
+  dark: string;
+  toggle: string;
+};
+
+export type LanguageToggleCopy = {
+  toggle: string;
+  options: Record<SupportedLocale, string>;
+};
+
+export type ContactFormCopy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  submit: string;
+  privacyNote: string;
+  privacyLinkLabel: string;
+  status: {
+    loading: string;
+    success: string;
+    error: string;
+    botCheckPending: string;
+    botCheckFailed: string;
+  };
+  validation: {
+    nameMin: string;
+    businessMax: string;
+    emailRequired: string;
+    emailInvalid: string;
+    phoneMax: string;
+    messageMin: string;
+  };
+  fields: {
+    name: {
+      label: string;
+      placeholder: string;
+    };
+    business: {
+      label: string;
+      placeholder: string;
+    };
+    email: {
+      label: string;
+      placeholder: string;
+    };
+    phone: {
+      label: string;
+      placeholder: string;
+    };
+    message: {
+      label: string;
+      placeholder: string;
+    };
+  };
+};
+
 export type NavItem = {
   label: string;
   href: string;
@@ -43,10 +102,16 @@ export type SeoLinkItem = {
 
 export type HomePageData = {
   appName: string;
+  locale: SupportedLocale;
   accessibility: {
     skipToContentLabel: string;
     primaryNavigationLabel: string;
     mobileNavigationLabel: string;
+  };
+  controls: {
+    currentLocale: SupportedLocale;
+    language: LanguageToggleCopy;
+    theme: ThemeToggleCopy;
   };
   navItems: NavItem[];
   mobileNavItems: MobileNavItem[];
@@ -99,11 +164,15 @@ export type HomePageData = {
     primaryCta: string;
     secondaryCta: string;
     openFormLabel: string;
+    privacyHref: string;
+    form: ContactFormCopy;
     details: ContactDetails;
   };
   footer: {
     note: string;
     imprintLabel: string;
     privacyLabel: string;
+    imprintHref: string;
+    privacyHref: string;
   };
 };

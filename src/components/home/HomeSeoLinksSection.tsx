@@ -1,4 +1,3 @@
-import { Link } from '@/routing';
 import type { SeoLinkItem } from './types';
 
 interface HomeSeoLinksSectionProps {
@@ -20,7 +19,7 @@ export function HomeSeoLinksSection({
         </h2>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
-            <Link
+            <a
               key={item.href}
               href={item.href}
               className="group flex h-full min-w-0 flex-col rounded-2xl border border-stone-200/90 bg-stone-50/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-amber-500/70 hover:bg-white dark:border-stone-700/80 dark:bg-stone-900/75 dark:hover:border-amber-300/70 dark:hover:bg-stone-800/90"
@@ -34,7 +33,7 @@ export function HomeSeoLinksSection({
               <p className="mt-4 text-sm font-semibold text-amber-700 dark:text-amber-200">
                 {ctaLabel}
               </p>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

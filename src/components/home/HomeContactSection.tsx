@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import type { ContactDetails } from './types';
+import type { ContactDetails, ContactFormCopy } from './types';
 import { ContactForm } from '@/components/ui/ContactForm';
 import Modal from '@/components/ui/Modal';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
@@ -13,6 +13,8 @@ interface HomeContactSectionProps {
   primaryCta: string;
   secondaryCta: string;
   openFormLabel: string;
+  privacyHref: string;
+  form: ContactFormCopy;
   details: ContactDetails;
 }
 
@@ -23,6 +25,8 @@ export function HomeContactSection({
   primaryCta,
   secondaryCta,
   openFormLabel,
+  privacyHref,
+  form,
   details,
 }: HomeContactSectionProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -151,7 +155,7 @@ export function HomeContactSection({
           contentClassName="overflow-hidden rounded-[1.75rem] bg-white p-0 shadow-[0_28px_90px_rgba(0,0,0,0.22)] dark:bg-stone-800 dark:shadow-[0_30px_100px_rgba(0,0,0,0.52)]"
           scrollBody={false}
         >
-          <ContactForm key={formSessionKey} />
+          <ContactForm key={formSessionKey} messages={form} privacyHref={privacyHref} />
         </Modal>
       </div>
     </RevealOnScroll>

@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
-import { useTranslations } from 'next-intl';
+import type { ThemeToggleCopy } from '@/components/home/types';
 
 function SunIcon() {
   return (
@@ -29,9 +29,12 @@ function MoonIcon() {
   );
 }
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  labels: ThemeToggleCopy;
+}
+
+export function ThemeToggle({ labels }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme();
-  const t = useTranslations('theme');
   const isHydrated = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -41,8 +44,8 @@ export function ThemeToggle() {
     isHydrated && resolvedTheme === 'dark' ? 'dark' : 'light';
 
   const options = [
-    { mode: 'light' as const, label: t('light'), icon: <SunIcon /> },
-    { mode: 'dark' as const, label: t('dark'), icon: <MoonIcon /> },
+    { mode: 'light' as const, label: labels.light, icon: <SunIcon /> },
+    { mode: 'dark' as const, label: labels.dark, icon: <MoonIcon /> },
   ];
 
   const isDark = effectiveTheme === 'dark';
@@ -67,7 +70,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={handleThemeToggle}
-      aria-label={`${t('toggle')} (${t(effectiveTheme)})`}
+      aria-label={`${labels.toggle} (${isDark ? labels.dark : labels.light})`}
       aria-pressed={isDark}
       className="relative inline-flex h-8 w-14 items-center overflow-hidden rounded-full border border-stone-400/80 bg-[linear-gradient(180deg,rgba(241,235,226,0.95),rgba(232,225,214,0.95))] p-1 text-stone-900 shadow-[inset_0_2px_3px_rgba(28,25,23,0.2),inset_0_-1px_2px_rgba(255,255,255,0.45),0_1px_3px_rgba(28,25,23,0.08)] backdrop-blur transition-[background-color,border-color,color] duration-[260ms] ease-linear focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:border-stone-600/90 dark:bg-[linear-gradient(180deg,rgba(49,43,40,0.94),rgba(39,35,32,0.94))] dark:text-stone-50 dark:shadow-[inset_0_2px_3px_rgba(0,0,0,0.55),inset_0_-1px_2px_rgba(255,255,255,0.05),0_1px_3px_rgba(0,0,0,0.22)] dark:focus-visible:ring-amber-300 sm:h-10 sm:w-[4.5rem]"
     >

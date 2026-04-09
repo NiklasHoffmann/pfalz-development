@@ -1,12 +1,51 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { useLocale, useTranslations } from 'next-intl';
-import { getPathname, routing, usePathname } from '@/routing';
+import type {
+  LanguageToggleCopy,
+  SupportedLocale,
+} from '@/components/home/types';
 
-type SupportedLocale = (typeof routing.locales)[number];
 const LOCALE_SCROLL_RESTORE_KEY = 'locale-switch-scroll-restore';
+const SUPPORTED_LOCALES: SupportedLocale[] = ['de', 'en', 'pfl'];
+const DEFAULT_LOCALE: SupportedLocale = 'de';
+
+function normalizePathname(pathname: string): string {
+  if (!pathname || pathname === '/') {
+    return '/';
+  }
+
+  return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+}
+
+function stripLocalePrefix(pathname: string): string {
+  const normalizedPathname = normalizePathname(pathname);
+
+  if (normalizedPathname === '/') {
+    return '/';
+  }
+
+  const segments = normalizedPathname.split('/').filter(Boolean);
+  const [firstSegment, ...restSegments] = segments;
+
+  if (!SUPPORTED_LOCALES.includes(firstSegment as SupportedLocale)) {
+    return normalizedPathname;
+  }
+
+  return restSegments.length > 0 ? `/${restSegments.join('/')}` : '/';
+}
+
+function localizePathname(pathname: string, locale: SupportedLocale): string {
+  const basePath = stripLocalePrefix(pathname);
+
+  if (locale === DEFAULT_LOCALE) {
+    return basePath;
+  }
+
+  return basePath === '/' ? `/${locale}` : `/${locale}${basePath}`;
+}
 
 function FlagSwatch({ locale }: { locale: SupportedLocale }) {
   const iconByLocale: Record<SupportedLocale, string> = {
@@ -52,9 +91,12 @@ function ChevronIcon({ open }: { open: boolean }) {
   );
 }
 
-export function LanguageToggle() {
-  const locale = useLocale() as SupportedLocale;
-  const t = useTranslations('language');
+interface LanguageToggleProps {
+  currentLocale: SupportedLocale;
+  labels: LanguageToggleCopy;
+}
+
+export function LanguageToggle({ currentLocale, labels }: LanguageToggleProps) {
   const pathname = usePathname();
   const [isPending, setIsPending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +105,7 @@ export function LanguageToggle() {
   );
   const menuRef = useRef<HTMLDivElement>(null);
   const optionsId = 'language-switcher-options';
-  const displayedLocale = pendingLocale ?? locale;
+  const displayedLocale = pendingLocale ?? currentLocale;
 
   useLayoutEffect(() => {
     const raw = sessionStorage.getItem(LOCALE_SCROLL_RESTORE_KEY);
@@ -100,7 +142,7 @@ export function LanguageToggle() {
     };
 
     requestAnimationFrame(() => requestAnimationFrame(restore));
-  }, [locale]);
+  }, [currentLocale]);
 
   useEffect(() => {
     function handlePointerDown(event: PointerEvent) {
@@ -125,7 +167,7 @@ export function LanguageToggle() {
   }, []);
 
   function handleLocaleChange(nextLocale: SupportedLocale) {
-    if (isPending || nextLocale === locale) {
+    if (isPending || nextLocale === currentLocale) {
       setIsOpen(false);
       return;
     }
@@ -140,10 +182,7 @@ export function LanguageToggle() {
 
     setIsPending(true);
 
-    const targetPathname = getPathname({
-      href: pathname,
-      locale: nextLocale,
-    });
+    const targetPathname = localizePathname(pathname, nextLocale);
     const search = window.location.search;
     const hash = window.location.hash;
 
@@ -163,20 +202,20 @@ export function LanguageToggle() {
         className={`inline-flex h-8 min-w-0 items-center justify-between gap-2 rounded-full border border-stone-400/80 bg-stone-50 px-2.5 text-[11px] font-semibold text-stone-900 shadow-sm backdrop-blur transition hover:bg-white focus:border-amber-600 focus:outline-none dark:border-stone-600/90 dark:bg-stone-800 dark:text-stone-50 dark:hover:bg-stone-700 sm:h-10 sm:min-w-[9.25rem] sm:gap-3 sm:px-3.5 sm:text-sm ${isPending ? 'cursor-wait' : ''}`}
         aria-controls={optionsId}
         aria-expanded={isOpen}
-        aria-label={t('toggle')}
+        aria-label={labels.toggle}
         aria-busy={isPending}
       >
         <span className="flex items-center gap-2">
           <FlagSwatch locale={displayedLocale} />
-          <span className="hidden sm:inline">{t(displayedLocale)}</span>
+          <span className="hidden sm:inline">{labels.options[displayedLocale]}</span>
         </span>
         <ChevronIcon open={isOpen} />
       </button>
 
       {isOpen ? (
         <div className="absolute right-0 top-[calc(100%+0.55rem)] z-50 min-w-[10.5rem] overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white p-1.5 shadow-[0_24px_60px_rgba(28,25,23,0.16)] backdrop-blur-xl dark:border-stone-600/90 dark:bg-stone-800 sm:min-w-full">
-          <div id={optionsId} className="space-y-1" aria-label={t('toggle')}>
-            {routing.locales.map((supportedLocale) => {
+          <div id={optionsId} className="space-y-1" aria-label={labels.toggle}>
+            {SUPPORTED_LOCALES.map((supportedLocale) => {
               const isActive = supportedLocale === displayedLocale;
 
               return (
@@ -189,12 +228,12 @@ export function LanguageToggle() {
                       ? 'bg-stone-950 text-stone-50 dark:bg-amber-300 dark:text-stone-950'
                       : 'text-stone-800 hover:bg-stone-100 dark:text-stone-50 dark:hover:bg-stone-700'
                   }`}
-                  aria-label={`${t('toggle')}: ${t(supportedLocale)}`}
+                  aria-label={`${labels.toggle}: ${labels.options[supportedLocale]}`}
                   aria-pressed={isActive}
                 >
                   <span className="flex items-center gap-2.5">
                     <FlagSwatch locale={supportedLocale} />
-                    <span>{t(supportedLocale)}</span>
+                    <span>{labels.options[supportedLocale]}</span>
                   </span>
                   <span
                     className={`text-xs ${isActive ? 'opacity-100' : 'opacity-0'}`}

@@ -1,8 +1,24 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
+import type { SupportedLocale } from '@/components/home/types';
 import { ErrorDisplay } from '@/components/ui/ErrorDisplay';
+
+const errorCopy: Record<SupportedLocale, { generic: string; tryAgain: string }> = {
+  de: {
+    generic: 'Etwas ist schief gelaufen!',
+    tryAgain: 'Erneut versuchen',
+  },
+  en: {
+    generic: 'Something went wrong!',
+    tryAgain: 'Try again',
+  },
+  pfl: {
+    generic: 'Ebbes is schiefgonge!',
+    tryAgain: "Probier's nochemol",
+  },
+};
 
 export default function Error({
   error,
@@ -11,7 +27,9 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const t = useTranslations('errors');
+  const params = useParams<{ locale?: string }>();
+  const locale = (params?.locale as SupportedLocale | undefined) ?? 'de';
+  const copy = errorCopy[locale] ?? errorCopy.de;
 
   useEffect(() => {
     // Log the error to an error reporting service
@@ -21,10 +39,10 @@ export default function Error({
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
       <ErrorDisplay
-        title={t('generic')}
+        title={copy.generic}
         message={error.message}
         onRetry={reset}
-        retryLabel={t('tryAgain')}
+        retryLabel={copy.tryAgain}
       />
     </div>
   );

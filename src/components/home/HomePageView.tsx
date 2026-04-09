@@ -30,6 +30,7 @@ export function HomePageView({ data }: HomePageViewProps) {
           appName={data.appName}
           navItems={data.navItems}
           navAriaLabel={data.accessibility.primaryNavigationLabel}
+          controls={data.controls}
         />
         <HomeMobileDock
           items={data.mobileNavItems}
@@ -79,12 +80,16 @@ export function HomePageView({ data }: HomePageViewProps) {
           primaryCta={data.contact.primaryCta}
           secondaryCta={data.contact.secondaryCta}
           openFormLabel={data.contact.openFormLabel}
+          privacyHref={data.contact.privacyHref}
+          form={data.contact.form}
           details={data.contact.details}
         />
         <HomeFooter
           note={data.footer.note}
           imprintLabel={data.footer.imprintLabel}
           privacyLabel={data.footer.privacyLabel}
+          imprintHref={data.footer.imprintHref}
+          privacyHref={data.footer.privacyHref}
         />
       </main>
     </>

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 import { siteConfig } from '@/config/site';
@@ -109,33 +108,6 @@ export default async function LocaleLayout({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const messages = (await getMessages({ locale })) as Record<string, unknown>;
-  const clientMessages = {
-    language: messages.language,
-    theme: messages.theme,
-    common: {
-      home: {
-        contact: {
-          form: (
-            (messages.common as Record<string, unknown>)?.home as Record<
-              string,
-              unknown
-            >
-          )?.contact
-            ? ((
-                (
-                  (messages.common as Record<string, unknown>).home as Record<
-                    string,
-                    unknown
-                  >
-                ).contact as Record<string, unknown>
-              ).form as Record<string, unknown>)
-            : {},
-        },
-      },
-    },
-  };
-
   return (
     <html
       lang={localeToHtmlLang(locale)}
@@ -175,10 +147,8 @@ export default async function LocaleLayout({
           enableSystem
           storageKey="nextjs-theme"
         >
-          <NextIntlClientProvider messages={clientMessages}>
-            {children}
-            <ScrollToTopButton />
-          </NextIntlClientProvider>
+          {children}
+          <ScrollToTopButton locale={locale as 'de' | 'en' | 'pfl'} />
         </ThemeProvider>
       </body>
     </html>

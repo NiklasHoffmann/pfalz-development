@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { HomeHeaderControls } from './HomeHeaderControls';
-import type { NavItem } from './types';
+import type { HomePageData, NavItem } from './types';
 
 interface HomeHeaderProps {
   appName: string;
@@ -8,6 +8,7 @@ interface HomeHeaderProps {
   brandHref?: string;
   activeHref?: string;
   navAriaLabel?: string;
+  controls: HomePageData['controls'];
 }
 
 export function HomeHeader({
@@ -16,6 +17,7 @@ export function HomeHeader({
   brandHref = '#start',
   activeHref,
   navAriaLabel = `${appName} navigation`,
+  controls,
 }: HomeHeaderProps) {
   return (
     <header
@@ -78,7 +80,7 @@ export function HomeHeader({
               ))}
             </nav>
 
-            <HomeHeaderControls />
+            <HomeHeaderControls controls={controls} />
           </div>
         </div>
       </div>

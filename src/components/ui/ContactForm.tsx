@@ -1,12 +1,11 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import type { ContactFormCopy } from '@/components/home/types';
 import Input from '@/components/ui/Form/Input';
 import Textarea from '@/components/ui/Form/Textarea';
 import { TurnstileWidget } from '@/components/ui/TurnstileWidget';
 import { useZodForm } from '@/hooks/useZodForm';
-import { Link } from '@/routing';
 import {
   createContactSchema,
   type ContactFormValues,
@@ -17,15 +16,34 @@ type ContactApiResponse = {
   error?: string;
 };
 
-export function ContactForm() {
-  const t = useTranslations('common.home.contact.form');
+interface ContactFormProps {
+  messages: ContactFormCopy;
+  privacyHref: string;
+}
+
+export function ContactForm({ messages, privacyHref }: ContactFormProps) {
   const [statusMessage, setStatusMessage] = useState('');
   const [statusType, setStatusType] = useState<'success' | 'error' | null>(
     null
   );
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileResetNonce, setTurnstileResetNonce] = useState(0);
-  const contactSchema = useMemo(() => createContactSchema(t), [t]);
+  const contactSchema = useMemo(
+    () =>
+      createContactSchema((key) => {
+        const validationMessages: Record<string, string> = {
+          'validation.nameMin': messages.validation.nameMin,
+          'validation.businessMax': messages.validation.businessMax,
+          'validation.emailRequired': messages.validation.emailRequired,
+          'validation.emailInvalid': messages.validation.emailInvalid,
+          'validation.phoneMax': messages.validation.phoneMax,
+          'validation.messageMin': messages.validation.messageMin,
+        };
+
+        return validationMessages[key] ?? key;
+      }),
+    [messages]
+  );
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
   const hasTurnstileProtection = Boolean(turnstileSiteKey);
   const form = useZodForm<ContactFormValues>({
@@ -53,7 +71,7 @@ export function ContactForm() {
     setStatusType(null);
 
     if (hasTurnstileProtection && !turnstileToken) {
-      setStatusMessage(t('status.botCheckPending'));
+      setStatusMessage(messages.status.botCheckPending);
       setStatusType('error');
       return;
     }
@@ -74,20 +92,20 @@ export function ContactForm() {
 
       if (!response.ok || !result.success) {
         if (result.error === 'Spam protection verification failed') {
-          throw new Error(t('status.botCheckFailed'));
+          throw new Error(messages.status.botCheckFailed);
         }
 
-        throw new Error(result.error || t('status.error'));
+        throw new Error(result.error || messages.status.error);
       }
 
-      setStatusMessage(t('status.success'));
+      setStatusMessage(messages.status.success);
       setStatusType('success');
       reset();
       setTurnstileToken(null);
       setTurnstileResetNonce((value) => value + 1);
     } catch (error) {
       const message =
-        error instanceof Error ? error.message : t('status.error');
+        error instanceof Error ? error.message : messages.status.error;
       setStatusMessage(message);
       setStatusType('error');
       if (hasTurnstileProtection) {
@@ -101,13 +119,13 @@ export function ContactForm() {
     <div className="flex max-h-[calc(100dvh-2.5rem)] min-h-0 flex-col overflow-hidden rounded-[1.75rem] bg-white text-stone-900 dark:bg-stone-800 dark:text-stone-100 sm:max-h-[calc(100dvh-4rem)]">
       <div className="relative z-10 shrink-0 bg-white px-6 pb-5 pt-6 shadow-[0_20px_34px_-30px_rgba(28,25,23,0.45)] dark:bg-stone-800 dark:shadow-[0_20px_34px_-28px_rgba(0,0,0,0.72)]">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-200">
-          {t('eyebrow')}
+          {messages.eyebrow}
         </p>
         <h3 className="mt-3 text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50">
-          {t('title')}
+          {messages.title}
         </h3>
         <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-stone-300">
-          {t('description')}
+          {messages.description}
         </p>
         <div className="via-white/72 dark:via-stone-800/76 pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white dark:from-stone-800/0 dark:to-stone-800" />
       </div>
@@ -130,8 +148,8 @@ export function ContactForm() {
               />
 
               <Input
-                label={t('fields.name.label')}
-                placeholder={t('fields.name.placeholder')}
+                label={messages.fields.name.label}
+                placeholder={messages.fields.name.placeholder}
                 error={
                   shouldShowValidationErrors ? errors.name?.message : undefined
                 }
@@ -142,8 +160,8 @@ export function ContactForm() {
               />
 
               <Input
-                label={t('fields.business.label')}
-                placeholder={t('fields.business.placeholder')}
+                label={messages.fields.business.label}
+                placeholder={messages.fields.business.placeholder}
                 error={
                   shouldShowValidationErrors
                     ? errors.business?.message
@@ -157,8 +175,8 @@ export function ContactForm() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <Input
                   type="email"
-                  label={t('fields.email.label')}
-                  placeholder={t('fields.email.placeholder')}
+                  label={messages.fields.email.label}
+                  placeholder={messages.fields.email.placeholder}
                   error={
                     shouldShowValidationErrors
                       ? errors.email?.message
@@ -172,8 +190,8 @@ export function ContactForm() {
 
                 <Input
                   type="tel"
-                  label={t('fields.phone.label')}
-                  placeholder={t('fields.phone.placeholder')}
+                  label={messages.fields.phone.label}
+                  placeholder={messages.fields.phone.placeholder}
                   error={
                     shouldShowValidationErrors
                       ? errors.phone?.message
@@ -187,8 +205,8 @@ export function ContactForm() {
               </div>
 
               <Textarea
-                label={t('fields.message.label')}
-                placeholder={t('fields.message.placeholder')}
+                label={messages.fields.message.label}
+                placeholder={messages.fields.message.placeholder}
                 error={
                   shouldShowValidationErrors
                     ? errors.message?.message
@@ -235,13 +253,13 @@ export function ContactForm() {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs leading-5 text-stone-500 dark:text-stone-300">
-              {t('privacyNote')}{' '}
-              <Link
-                href="/datenschutz"
+              {messages.privacyNote}{' '}
+              <a
+                href={privacyHref}
                 className="font-semibold underline decoration-amber-600/70 underline-offset-2 hover:decoration-amber-500"
               >
-                {t('privacyLinkLabel')}
-              </Link>
+                {messages.privacyLinkLabel}
+              </a>
             </p>
 
             <button
@@ -249,7 +267,7 @@ export function ContactForm() {
               className="inline-flex items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300"
               disabled={isSubmitting}
             >
-              {isSubmitting ? t('status.loading') : t('submit')}
+              {isSubmitting ? messages.status.loading : messages.submit}
             </button>
           </div>
         </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/routing';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 
 interface PrivacyPageProps {
@@ -38,16 +37,17 @@ export async function generateMetadata({
 export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal' });
+  const homeHref = locale === 'de' ? '/' : `/${locale}`;
 
   return (
     <main className="min-h-screen bg-stone-50 px-6 py-16 text-stone-900 dark:bg-stone-950 dark:text-stone-100 lg:px-10">
       <div className="mx-auto max-w-4xl">
-        <Link
-          href="/"
+        <a
+          href={homeHref}
           className="text-sm font-medium text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
         >
           {t('backToHome')}
-        </Link>
+        </a>
 
         <div className="mt-6 rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm dark:border-stone-800 dark:bg-stone-900">
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-300">

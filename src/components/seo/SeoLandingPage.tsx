@@ -1,9 +1,9 @@
-import { Link } from '@/routing';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { HomeHeader } from '@/components/home/HomeHeader';
 import type { NavItem } from '@/components/home/types';
 import type { SeoPageContent } from '@/content/seo/types';
 import { siteConfig } from '@/config/site';
+import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { getTranslations } from 'next-intl/server';
 
 interface SeoLandingPageProps {
@@ -35,6 +35,18 @@ function getPrimaryNavigationLabel(locale: string, appName: string): string {
   return `${appName} Hauptnavigation`;
 }
 
+function localizeHref(href: string, locale: string): string {
+  if (!href.startsWith('/')) {
+    return href;
+  }
+
+  if (locale === 'de') {
+    return href;
+  }
+
+  return href === '/' ? `/${locale}` : `/${locale}${href}`;
+}
+
 export async function SeoLandingPage({
   content,
   locale = 'de',
@@ -52,6 +64,7 @@ export async function SeoLandingPage({
   const basePath = locale === 'de' ? '' : `/${locale}`;
   const homeHref = basePath || '/';
   const homeLinkHref = '/';
+  const localizedHomeLinkHref = localizeHref(homeLinkHref, locale);
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
     { label: navT('about'), href: `${basePath}/leistungen` },
@@ -78,6 +91,7 @@ export async function SeoLandingPage({
         brandHref={homeHref}
         activeHref={activeHref}
         navAriaLabel={primaryNavigationLabel}
+        controls={getHeaderControlsCopy(locale)}
       />
 
       <main className="relative flex-1 overflow-hidden bg-[radial-gradient(circle_at_top_left,#fffbeb_0%,#f5f5f4_42%,#e7e5e4_100%)] px-5 pb-14 pt-28 text-stone-900 dark:bg-[radial-gradient(circle_at_top_left,#3a2f28_0%,#332b26_44%,#24303d_100%)] dark:text-stone-100 sm:px-8 sm:pt-32 lg:px-10">
@@ -97,18 +111,18 @@ export async function SeoLandingPage({
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link
-                href={content.cta.primaryHref}
+              <a
+                href={localizeHref(content.cta.primaryHref, locale)}
                 className="inline-flex items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 shadow-[0_10px_26px_rgba(28,25,23,0.24)] transition hover:-translate-y-0.5 hover:bg-stone-800 dark:bg-amber-400 dark:text-stone-950 dark:shadow-[0_10px_26px_rgba(245,158,11,0.2)] dark:hover:bg-amber-300"
               >
                 {content.cta.primaryLabel}
-              </Link>
-              <Link
-                href={content.cta.secondaryHref}
+              </a>
+              <a
+                href={localizeHref(content.cta.secondaryHref, locale)}
                 className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white/75 px-6 py-3 text-sm font-semibold text-stone-900 transition hover:-translate-y-0.5 hover:border-amber-600 hover:text-amber-800 dark:border-stone-500 dark:bg-stone-700/55 dark:text-stone-100 dark:hover:border-amber-300 dark:hover:text-amber-200"
               >
                 {content.cta.secondaryLabel}
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -179,21 +193,21 @@ export async function SeoLandingPage({
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
               {content.related.label}
             </p>
-            <Link
-              href={content.related.href}
+            <a
+              href={localizeHref(content.related.href, locale)}
               className="mt-2 inline-flex text-base font-bold text-amber-900 underline decoration-amber-500 underline-offset-4 transition hover:text-amber-700 dark:text-amber-100 dark:hover:text-amber-200"
             >
               {content.related.pageLabel}
-            </Link>
+            </a>
           </section>
 
           <div className="mt-10 border-t border-stone-200/80 pt-6 dark:border-stone-700">
-            <Link
-              href={homeLinkHref}
+            <a
+              href={localizedHomeLinkHref}
               className="text-sm font-semibold text-amber-700 transition hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200"
             >
               {content.backToHome}
-            </Link>
+            </a>
           </div>
         </article>
       </main>
@@ -202,6 +216,8 @@ export async function SeoLandingPage({
         note={legalT('footerNote')}
         imprintLabel={legalT('imprint.title')}
         privacyLabel={legalT('privacy.title')}
+        imprintHref={localizeHref('/impressum', locale)}
+        privacyHref={localizeHref('/datenschutz', locale)}
       />
     </div>
   );

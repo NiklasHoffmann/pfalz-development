@@ -1,8 +1,9 @@
-import { useTranslations } from 'next-intl';
-import { Link } from '@/routing';
+import { getLocale, getTranslations } from 'next-intl/server';
 
-export default function NotFound() {
-  const t = useTranslations('common');
+export default async function NotFound() {
+  const locale = await getLocale();
+  const t = await getTranslations({ locale, namespace: 'common' });
+  const homeHref = locale === 'de' ? '/' : `/${locale}`;
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">
@@ -16,12 +17,12 @@ export default function NotFound() {
         <p className="mt-4 text-gray-600 dark:text-gray-400">
           Die angeforderte Seite konnte nicht gefunden werden.
         </p>
-        <Link
-          href="/"
+        <a
+          href={homeHref}
           className="mt-8 inline-block rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
         >
           {t('backToHome')}
-        </Link>
+        </a>
       </div>
     </div>
   );
