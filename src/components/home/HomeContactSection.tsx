@@ -6,7 +6,8 @@ import type { ContactDetails, ContactFormCopy } from './types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 const ContactForm = dynamic(
-  () => import('@/components/ui/ContactForm').then((module) => module.ContactForm),
+  () =>
+    import('@/components/ui/ContactForm').then((module) => module.ContactForm),
   {
     loading: () => null,
   }
