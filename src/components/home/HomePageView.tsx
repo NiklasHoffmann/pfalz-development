@@ -3,7 +3,6 @@ import { HomeContactSection } from './HomeContactSection';
 import { HomeFooter } from './HomeFooter';
 import { HomeHeader } from './HomeHeader';
 import { HomeHeroSection } from './HomeHeroSection';
-import { HomeMobileDock } from './HomeMobileDock';
 import { HomePackagesSection } from './HomePackagesSection';
 import { HomeProcessFaqSection } from './HomeProcessFaqSection';
 import { HomeSeoLinksSection } from './HomeSeoLinksSection';
@@ -31,10 +30,6 @@ export function HomePageView({ data }: HomePageViewProps) {
           navItems={data.navItems}
           navAriaLabel={data.accessibility.primaryNavigationLabel}
           controls={data.controls}
-        />
-        <HomeMobileDock
-          items={data.mobileNavItems}
-          ariaLabel={data.accessibility.mobileNavigationLabel}
         />
         <HomeHeroSection
           eyebrow={data.hero.eyebrow}

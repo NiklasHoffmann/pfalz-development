@@ -106,7 +106,6 @@ export type HomePageData = {
   accessibility: {
     skipToContentLabel: string;
     primaryNavigationLabel: string;
-    mobileNavigationLabel: string;
   };
   controls: {
     currentLocale: SupportedLocale;
@@ -114,7 +113,6 @@ export type HomePageData = {
     theme: ThemeToggleCopy;
   };
   navItems: NavItem[];
-  mobileNavItems: MobileNavItem[];
   hero: {
     eyebrow: string;
     headline: string;

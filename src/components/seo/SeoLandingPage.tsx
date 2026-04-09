@@ -94,7 +94,7 @@ export async function SeoLandingPage({
         controls={getHeaderControlsCopy(locale)}
       />
 
-      <main className="relative flex-1 overflow-hidden bg-[radial-gradient(circle_at_top_left,#fffbeb_0%,#f5f5f4_42%,#e7e5e4_100%)] px-5 pb-14 pt-28 text-stone-900 dark:bg-[radial-gradient(circle_at_top_left,#3a2f28_0%,#332b26_44%,#24303d_100%)] dark:text-stone-100 sm:px-8 sm:pt-32 lg:px-10">
+      <main className="relative flex-1 overflow-hidden bg-[radial-gradient(circle_at_top_left,#fffbeb_0%,#f5f5f4_42%,#e7e5e4_100%)] px-5 pb-28 pt-28 text-stone-900 dark:bg-[radial-gradient(circle_at_top_left,#3a2f28_0%,#332b26_44%,#24303d_100%)] dark:text-stone-100 sm:px-8 sm:pt-32 md:pb-14 lg:px-10">
         <div className="dark:bg-amber-400/24 pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-amber-300/30 blur-3xl" />
         <div className="dark:bg-stone-300/18 pointer-events-none absolute -right-12 top-40 h-64 w-64 rounded-full bg-stone-300/45 blur-3xl" />
 

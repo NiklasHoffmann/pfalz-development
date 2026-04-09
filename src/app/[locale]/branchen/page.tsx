@@ -441,7 +441,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
         navAriaLabel={primaryNavigationLabel}
         controls={getHeaderControlsCopy(locale)}
       />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-16 sm:px-6 lg:px-10">
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-28 sm:px-6 md:pb-16 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px] xl:gap-12">
           <aside className="hidden lg:col-start-2 lg:row-start-1 lg:block lg:self-start">
             <SectionSpyNav

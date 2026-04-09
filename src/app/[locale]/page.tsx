@@ -2,7 +2,11 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
 import { siteConfig } from '@/config/site';
-import { getHeaderControlsCopy } from '@/lib/locale-ui';
+import {
+  getHeaderControlsCopy,
+  getIndustryNavLabel,
+  localeToBasePath,
+} from '@/lib/locale-ui';
 import { PALATINATE_HREFLANG } from '@/lib/seo';
 import type {
   CardItem,
@@ -35,48 +39,6 @@ function localeToLanguageTag(locale: string): string {
   return 'de-DE';
 }
 
-function localeToBasePath(locale: string): string {
-  return locale === 'de' ? '' : `/${locale}`;
-}
-
-function localeToIndustryLabel(locale: string): string {
-  if (locale === 'en') return 'Industry';
-  if (locale === 'pfl') return 'Branche';
-  return 'Branche';
-}
-
-function localeToMobileShortLabels(locale: string): {
-  home: string;
-  service: string;
-  industry: string;
-  contact: string;
-} {
-  if (locale === 'en') {
-    return {
-      home: 'Home',
-      service: 'Service',
-      industry: 'Industry',
-      contact: 'Contact',
-    };
-  }
-
-  if (locale === 'pfl') {
-    return {
-      home: 'Schtardt',
-      service: 'Leischdung',
-      industry: 'Branche',
-      contact: 'Kontakt',
-    };
-  }
-
-  return {
-    home: 'Start',
-    service: 'Leistung',
-    industry: 'Branche',
-    contact: 'Kontakt',
-  };
-}
-
 function localeToPrimaryNavigationLabel(
   locale: string,
   appName: string
@@ -86,14 +48,6 @@ function localeToPrimaryNavigationLabel(
   }
 
   return `${appName} Hauptnavigation`;
-}
-
-function localeToMobileNavigationLabel(locale: string): string {
-  if (locale === 'en') {
-    return 'Mobile navigation';
-  }
-
-  return 'Mobile Navigation';
 }
 
 function localeToSeoTitle(locale: string): string {
@@ -291,8 +245,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const legalT = await getTranslations({ locale, namespace: 'legal' });
   const basePath = localeToBasePath(locale);
   const homeHref = basePath || '/';
-  const industryLabel = localeToIndustryLabel(locale);
-  const mobileShortLabels = localeToMobileShortLabels(locale);
+  const industryLabel = getIndustryNavLabel(locale);
   const navItems = [
     { label: navT('home'), href: homeHref },
     { label: navT('about'), href: `${basePath}/leistungen` },
@@ -302,28 +255,6 @@ export default async function HomePage({ params }: HomePageProps) {
     },
     { label: navT('contact'), href: `${homeHref}#kontakt` },
   ];
-  const mobileNavItems = [
-    {
-      label: navT('home'),
-      href: homeHref,
-      shortLabel: mobileShortLabels.home,
-    },
-    {
-      label: navT('about'),
-      href: `${basePath}/leistungen`,
-      shortLabel: mobileShortLabels.service,
-    },
-    {
-      label: industryLabel,
-      href: `${basePath}/branchen`,
-      shortLabel: mobileShortLabels.industry,
-    },
-    {
-      label: navT('contact'),
-      href: `${homeHref}#kontakt`,
-      shortLabel: mobileShortLabels.contact,
-    },
-  ];
   const canonicalPath = localeToPath(locale);
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
   const inLanguage = localeToLanguageTag(locale);
@@ -331,7 +262,6 @@ export default async function HomePage({ params }: HomePageProps) {
     locale,
     t('appName')
   );
-  const mobileNavigationLabel = localeToMobileNavigationLabel(locale);
 
   const pageData: HomePageData = {
     appName: t('appName'),
@@ -339,11 +269,9 @@ export default async function HomePage({ params }: HomePageProps) {
     accessibility: {
       skipToContentLabel: t('accessibility.skipToContent'),
       primaryNavigationLabel,
-      mobileNavigationLabel,
     },
     controls: getHeaderControlsCopy(locale),
     navItems,
-    mobileNavItems,
     hero: {
       eyebrow: t('home.eyebrow'),
       headline: t('home.headline'),

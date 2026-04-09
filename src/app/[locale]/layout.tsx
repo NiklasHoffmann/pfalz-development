@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { setRequestLocale } from 'next-intl/server';
+import { LocaleMobileDock } from '@/components/layouts/LocaleMobileDock';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 import { siteConfig } from '@/config/site';
@@ -148,6 +149,7 @@ export default async function LocaleLayout({
           storageKey="nextjs-theme"
         >
           {children}
+          <LocaleMobileDock locale={locale} />
           <ScrollToTopButton locale={locale as 'de' | 'en' | 'pfl'} />
         </ThemeProvider>
       </body>
