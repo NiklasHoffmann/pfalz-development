@@ -13,7 +13,10 @@ function normalizeDockTarget(href: string): { pathname: string; hash: string } {
   const pathname = !rawPathname || rawPathname === '/' ? '/' : rawPathname;
 
   return {
-    pathname: pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname,
+    pathname:
+      pathname.endsWith('/') && pathname !== '/'
+        ? pathname.slice(0, -1)
+        : pathname,
     hash: rawHash ? `#${rawHash}` : '',
   };
 }
@@ -55,7 +58,8 @@ export function HomeMobileDock({
               : activeHashHref
                 ? item.href === activeHashHref
                 : target.hash
-                  ? currentPathname === target.pathname && currentHash === target.hash
+                  ? currentPathname === target.pathname &&
+                    currentHash === target.hash
                   : currentPathname === target.pathname;
 
             return (
