@@ -70,7 +70,7 @@ export function HomeHeroSection({
               priority
               sizes="(max-width: 1024px) calc(100vw - 2.5rem), 42vw"
               quality={60}
-              className="absolute inset-0 h-full w-full object-cover opacity-24 dark:opacity-20"
+              className="opacity-24 absolute inset-0 h-full w-full object-cover dark:opacity-20"
             />
             <div
               aria-hidden="true"

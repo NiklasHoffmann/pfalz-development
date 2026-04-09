@@ -207,7 +207,9 @@ export function LanguageToggle({ currentLocale, labels }: LanguageToggleProps) {
       >
         <span className="flex items-center gap-2">
           <FlagSwatch locale={displayedLocale} />
-          <span className="hidden sm:inline">{labels.options[displayedLocale]}</span>
+          <span className="hidden sm:inline">
+            {labels.options[displayedLocale]}
+          </span>
         </span>
         <ChevronIcon open={isOpen} />
       </button>

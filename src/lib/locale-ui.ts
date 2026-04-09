@@ -3,8 +3,7 @@ import type { HomePageData, SupportedLocale } from '@/components/home/types';
 export function getHeaderControlsCopy(
   locale: string
 ): HomePageData['controls'] {
-  const currentLocale =
-    locale === 'en' || locale === 'pfl' ? locale : 'de';
+  const currentLocale = locale === 'en' || locale === 'pfl' ? locale : 'de';
 
   if (currentLocale === 'en') {
     return {

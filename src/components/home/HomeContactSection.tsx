@@ -155,7 +155,11 @@ export function HomeContactSection({
           contentClassName="overflow-hidden rounded-[1.75rem] bg-white p-0 shadow-[0_28px_90px_rgba(0,0,0,0.22)] dark:bg-stone-800 dark:shadow-[0_30px_100px_rgba(0,0,0,0.52)]"
           scrollBody={false}
         >
-          <ContactForm key={formSessionKey} messages={form} privacyHref={privacyHref} />
+          <ContactForm
+            key={formSessionKey}
+            messages={form}
+            privacyHref={privacyHref}
+          />
         </Modal>
       </div>
     </RevealOnScroll>

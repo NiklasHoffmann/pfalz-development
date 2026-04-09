@@ -5,7 +5,10 @@ import { useParams } from 'next/navigation';
 import type { SupportedLocale } from '@/components/home/types';
 import { ErrorDisplay } from '@/components/ui/ErrorDisplay';
 
-const errorCopy: Record<SupportedLocale, { generic: string; tryAgain: string }> = {
+const errorCopy: Record<
+  SupportedLocale,
+  { generic: string; tryAgain: string }
+> = {
   de: {
     generic: 'Etwas ist schief gelaufen!',
     tryAgain: 'Erneut versuchen',
