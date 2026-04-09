@@ -1,10 +1,20 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import type { ContactDetails, ContactFormCopy } from './types';
-import { ContactForm } from '@/components/ui/ContactForm';
-import Modal from '@/components/ui/Modal';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
+
+const ContactForm = dynamic(
+  () => import('@/components/ui/ContactForm').then((module) => module.ContactForm),
+  {
+    loading: () => null,
+  }
+);
+
+const Modal = dynamic(() => import('@/components/ui/Modal'), {
+  loading: () => null,
+});
 
 interface HomeContactSectionProps {
   navLabel: string;
@@ -30,6 +40,7 @@ export function HomeContactSection({
   details,
 }: HomeContactSectionProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [hasRequestedFormUi, setHasRequestedFormUi] = useState(false);
   const [formSessionKey, setFormSessionKey] = useState(0);
   const contactDialogId = 'contact-form-dialog';
 
@@ -40,6 +51,10 @@ export function HomeContactSection({
       : details.phoneValue;
 
   function handleFormOpenChange(open: boolean) {
+    if (open) {
+      setHasRequestedFormUi(true);
+    }
+
     setIsFormOpen(open);
 
     if (!open) {
@@ -84,7 +99,10 @@ export function HomeContactSection({
               </a>
               <button
                 type="button"
-                onClick={() => setIsFormOpen(true)}
+                onClick={() => {
+                  setHasRequestedFormUi(true);
+                  setIsFormOpen(true);
+                }}
                 aria-haspopup="dialog"
                 aria-controls={contactDialogId}
                 aria-expanded={isFormOpen}
@@ -145,22 +163,24 @@ export function HomeContactSection({
           </div>
         </div>
 
-        <Modal
-          open={isFormOpen}
-          onOpenChange={handleFormOpenChange}
-          screenReaderTitle={openFormLabel}
-          screenReaderDescription={title}
-          size="xl"
-          contentId={contactDialogId}
-          contentClassName="overflow-hidden rounded-[1.75rem] bg-white p-0 shadow-[0_28px_90px_rgba(0,0,0,0.22)] dark:bg-stone-800 dark:shadow-[0_30px_100px_rgba(0,0,0,0.52)]"
-          scrollBody={false}
-        >
-          <ContactForm
-            key={formSessionKey}
-            messages={form}
-            privacyHref={privacyHref}
-          />
-        </Modal>
+        {hasRequestedFormUi ? (
+          <Modal
+            open={isFormOpen}
+            onOpenChange={handleFormOpenChange}
+            screenReaderTitle={openFormLabel}
+            screenReaderDescription={title}
+            size="xl"
+            contentId={contactDialogId}
+            contentClassName="overflow-hidden rounded-[1.75rem] bg-white p-0 shadow-[0_28px_90px_rgba(0,0,0,0.22)] dark:bg-stone-800 dark:shadow-[0_30px_100px_rgba(0,0,0,0.52)]"
+            scrollBody={false}
+          >
+            <ContactForm
+              key={formSessionKey}
+              messages={form}
+              privacyHref={privacyHref}
+            />
+          </Modal>
+        ) : null}
       </div>
     </RevealOnScroll>
   );

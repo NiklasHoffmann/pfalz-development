@@ -1,9 +1,13 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PackageItem } from './types';
-import Modal from '@/components/ui/Modal';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
+
+const Modal = dynamic(() => import('@/components/ui/Modal'), {
+  loading: () => null,
+});
 
 interface HomePackagesSectionProps {
   title: string;
@@ -39,6 +43,8 @@ export function HomePackagesSection({
 }: HomePackagesSectionProps) {
   const packageDialogId = 'package-details-dialog';
   const closeTimeoutRef = useRef<number | null>(null);
+  const [hasRequestedPackageModal, setHasRequestedPackageModal] =
+    useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activePackageName, setActivePackageName] = useState<string | null>(
     null
@@ -140,6 +146,7 @@ export function HomePackagesSection({
                       closeTimeoutRef.current = null;
                     }
 
+                    setHasRequestedPackageModal(true);
                     setActivePackageName(item.name);
                     setIsModalOpen(true);
                   }}
@@ -162,52 +169,55 @@ export function HomePackagesSection({
           {note}
         </p>
       </div>
-      <Modal
-        open={isModalOpen}
-        onOpenChange={(open) => {
-          if (open) {
-            setIsModalOpen(true);
-            return;
-          }
+      {hasRequestedPackageModal ? (
+        <Modal
+          open={isModalOpen}
+          onOpenChange={(open) => {
+            if (open) {
+              setHasRequestedPackageModal(true);
+              setIsModalOpen(true);
+              return;
+            }
 
-          setIsModalOpen(false);
+            setIsModalOpen(false);
 
-          if (closeTimeoutRef.current !== null) {
-            window.clearTimeout(closeTimeoutRef.current);
-          }
+            if (closeTimeoutRef.current !== null) {
+              window.clearTimeout(closeTimeoutRef.current);
+            }
 
-          // Keep content mounted until the close animation fully finishes.
-          closeTimeoutRef.current = window.setTimeout(() => {
-            setActivePackageName(null);
-            closeTimeoutRef.current = null;
-          }, 360);
-        }}
-        title={activePackage?.name}
-        description={activePriceAndDetails?.priceLine ?? undefined}
-        size="lg"
-        contentId={packageDialogId}
-      >
-        {activePackage && activePriceAndDetails ? (
-          <div className="space-y-5">
-            <p className="text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base">
-              {activePriceAndDetails.details}
-            </p>
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-[0.1em] text-amber-700 dark:text-amber-200">
-                {modalIncludesTitle}
-              </h4>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base">
-                {activePackage.highlights.map((highlight) => (
-                  <li key={highlight} className="flex gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-600 dark:bg-amber-300" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
+            // Keep content mounted until the close animation fully finishes.
+            closeTimeoutRef.current = window.setTimeout(() => {
+              setActivePackageName(null);
+              closeTimeoutRef.current = null;
+            }, 360);
+          }}
+          title={activePackage?.name}
+          description={activePriceAndDetails?.priceLine ?? undefined}
+          size="lg"
+          contentId={packageDialogId}
+        >
+          {activePackage && activePriceAndDetails ? (
+            <div className="space-y-5">
+              <p className="text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base">
+                {activePriceAndDetails.details}
+              </p>
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-[0.1em] text-amber-700 dark:text-amber-200">
+                  {modalIncludesTitle}
+                </h4>
+                <ul className="mt-3 space-y-2 text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base">
+                  {activePackage.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-600 dark:bg-amber-300" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-        ) : null}
-      </Modal>
+          ) : null}
+        </Modal>
+      ) : null}
     </RevealOnScroll>
   );
 }
