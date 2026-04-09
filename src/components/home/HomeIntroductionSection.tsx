@@ -44,23 +44,23 @@ export function HomeIntroductionSection({
           className="mx-auto mt-10 grid max-w-6xl gap-4 md:grid-cols-2 xl:grid-cols-3"
           aria-label={title}
         >
-            {points.map((point, index) => (
-              <RevealOnScroll
-                as="li"
-                key={point}
-                delayMs={90 + index * 70}
-                className="min-w-0"
-              >
-                <div className="bg-white/78 dark:bg-stone-900/55 h-full rounded-[1.4rem] border border-stone-200/85 p-5 shadow-[0_14px_36px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] sm:p-6">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/35 bg-amber-500/12 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:bg-amber-300/12 dark:text-amber-100">
-                    0{index + 1}
-                  </div>
-                  <p className="text-base leading-7 text-stone-800 dark:text-stone-100">
-                    {point}
-                  </p>
+          {points.map((point, index) => (
+            <RevealOnScroll
+              as="li"
+              key={point}
+              delayMs={90 + index * 70}
+              className="min-w-0"
+            >
+              <div className="bg-white/78 h-full rounded-[1.4rem] border border-stone-200/85 p-5 shadow-[0_14px_36px_rgba(28,25,23,0.06)] dark:border-stone-700/75 dark:bg-stone-900/55 dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] sm:p-6">
+                <div className="bg-amber-500/12 dark:bg-amber-300/12 mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/35 text-sm font-bold text-amber-800 dark:border-amber-300/35 dark:text-amber-100">
+                  0{index + 1}
                 </div>
-              </RevealOnScroll>
-            ))}
+                <p className="text-base leading-7 text-stone-800 dark:text-stone-100">
+                  {point}
+                </p>
+              </div>
+            </RevealOnScroll>
+          ))}
         </ul>
       </div>
     </RevealOnScroll>
