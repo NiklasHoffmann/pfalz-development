@@ -1,22 +1,93 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { HomeMobileDock } from '@/components/home/HomeMobileDock';
-import { getMobileDockItems, getMobileNavigationLabel } from '@/lib/locale-ui';
+import {
+  getDockLogicalPath,
+  getMobileDockItems,
+  getMobileNavigationLabel,
+  getNavigationLabels,
+} from '@/lib/locale-ui';
 
 interface LocaleMobileDockProps {
   locale: string;
 }
 
-export async function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
-  const navT = await getTranslations({ locale, namespace: 'navigation' });
+function shouldHideMobileDock(pathname: string): boolean {
+  return pathname === '/impressum' || pathname === '/datenschutz';
+}
+
+export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
+  const pathname = usePathname();
+  const [hash, setHash] = useState('');
+  const [activeHrefOverride, setActiveHrefOverride] = useState<string>();
+  const logicalPathname = getDockLogicalPath(pathname);
+  const items = getMobileDockItems(locale, getNavigationLabels(locale));
+  const homeItemHref = items.find((item) => !item.href.includes('#'))?.href;
+  const resolvedActiveHrefOverride =
+    logicalPathname === '/' ? (activeHrefOverride ?? homeItemHref) : undefined;
+
+  useEffect(() => {
+    if (logicalPathname !== '/') {
+      return;
+    }
+
+    const homeItem = items.find((item) => !item.href.includes('#'));
+    const contactItem = items.find((item) => item.href.endsWith('#kontakt'));
+
+    if (!homeItem || !contactItem) {
+      return;
+    }
+
+    const updateActiveSection = () => {
+      const contactSection = document.getElementById('kontakt');
+      if (!contactSection) {
+        setActiveHrefOverride(homeItem.href);
+        return;
+      }
+
+      const rect = contactSection.getBoundingClientRect();
+      const midLine = window.innerHeight * 0.5;
+      const isContactActive = rect.top <= midLine && rect.bottom >= midLine;
+
+      setActiveHrefOverride(isContactActive ? contactItem.href : homeItem.href);
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
+  }, [items, logicalPathname]);
+
+  useEffect(() => {
+    const updateHash = () => {
+      setHash(window.location.hash);
+    };
+
+    updateHash();
+    window.addEventListener('hashchange', updateHash);
+
+    return () => {
+      window.removeEventListener('hashchange', updateHash);
+    };
+  }, []);
+
+  if (shouldHideMobileDock(logicalPathname)) {
+    return null;
+  }
 
   return (
     <HomeMobileDock
-      items={getMobileDockItems(locale, {
-        home: navT('home'),
-        about: navT('about'),
-        contact: navT('contact'),
-      })}
+      items={items}
       ariaLabel={getMobileNavigationLabel(locale)}
+      currentPathname={logicalPathname}
+      currentHash={hash}
+      activeHrefOverride={resolvedActiveHrefOverride}
     />
   );
 }

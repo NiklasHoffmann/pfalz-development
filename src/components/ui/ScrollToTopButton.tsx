@@ -75,7 +75,7 @@ export function ScrollToTopButton({ locale }: ScrollToTopButtonProps) {
       onClick={handleClick}
       aria-label={ariaLabel}
       title={title}
-      className={`bg-white/92 dark:bg-stone-900/88 fixed right-5 z-[80] inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-300/80 text-stone-900 shadow-[0_10px_25px_rgba(28,25,23,0.2)] backdrop-blur-sm transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:border-stone-600/85 dark:text-stone-100 dark:shadow-[0_12px_28px_rgba(0,0,0,0.38)] dark:focus-visible:ring-amber-300 sm:right-6 ${bottomOffsetClass} ${
+      className={`bg-white/92 dark:bg-stone-900/88 fixed right-5 z-[45] inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-300/80 text-stone-900 shadow-[0_10px_25px_rgba(28,25,23,0.2)] backdrop-blur-sm transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:border-stone-600/85 dark:text-stone-100 dark:shadow-[0_12px_28px_rgba(0,0,0,0.38)] dark:focus-visible:ring-amber-300 sm:right-6 ${bottomOffsetClass} ${
         isVisible
           ? 'pointer-events-auto translate-y-0 opacity-100'
           : 'pointer-events-none translate-y-3 opacity-0'

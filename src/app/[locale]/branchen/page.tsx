@@ -447,7 +447,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
             <SectionSpyNav
               title={copy.navTitle}
               items={sectionLinks}
-              className="rounded-2xl border border-stone-200/80 bg-white/65 p-4 dark:border-stone-700 dark:bg-stone-900/35 lg:fixed lg:right-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:w-[240px] lg:overflow-auto"
+              className="surface-section-muted rounded-2xl border border-stone-200/80 p-4 backdrop-blur-sm dark:border-stone-700 dark:bg-stone-900/35 lg:fixed lg:right-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:w-[240px] lg:overflow-auto"
             />
           </aside>
 
@@ -473,7 +473,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                   {copy.processSteps.map((step) => (
                     <li
                       key={step}
-                      className="rounded-xl bg-white/60 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-900/45 dark:text-stone-200"
+                      className="rounded-xl bg-stone-50/80 px-3 py-2.5 text-sm text-stone-800 dark:bg-stone-900/45 dark:text-stone-200"
                     >
                       {step}
                     </li>
@@ -486,7 +486,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
               id="ueberblick"
               className="mt-14 scroll-mt-28 border-t border-stone-200/70 pt-10 dark:border-stone-700/70 sm:mt-16 sm:pt-12"
             >
-              <div className="rounded-3xl border border-stone-200/80 bg-white/70 p-6 dark:border-stone-700 dark:bg-stone-900/35 sm:p-8">
+              <div className="surface-section-muted rounded-3xl border border-stone-200/80 p-6 dark:border-stone-700 dark:bg-stone-900/35 sm:p-8">
                 <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
                   {copy.gridTitle}
                 </h2>
@@ -500,7 +500,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                     return (
                       <article
                         key={card.href}
-                        className="flex h-full flex-col rounded-2xl border border-stone-200/90 bg-stone-50/90 p-5 dark:border-stone-700 dark:bg-stone-800/65"
+                        className="flex h-full flex-col rounded-2xl border border-stone-200/90 bg-stone-100/80 p-5 dark:border-stone-700 dark:bg-stone-800/65"
                       >
                         <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
                           {card.badge}
@@ -544,7 +544,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                     <article
                       key={card.href}
                       id={id}
-                      className="scroll-mt-28 rounded-2xl border border-stone-200/90 bg-stone-50/90 p-5 dark:border-stone-700 dark:bg-stone-800/65"
+                      className="scroll-mt-28 rounded-2xl border border-stone-200/90 bg-stone-100/80 p-5 dark:border-stone-700 dark:bg-stone-800/65"
                     >
                       <div className="flex flex-wrap items-center gap-2">
                         <p className="inline-flex rounded-full border border-amber-300/70 bg-amber-100/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-200">
@@ -556,7 +556,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                       </div>
 
                       <div className="mt-4 grid gap-4 lg:grid-cols-3">
-                        <div className="rounded-xl bg-white/70 p-4 dark:bg-stone-900/45">
+                        <div className="rounded-xl bg-stone-50/80 p-4 dark:bg-stone-900/45">
                           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
                             {copy.playbookLabels.scenario}
                           </p>
@@ -567,7 +567,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                           </ul>
                         </div>
 
-                        <div className="rounded-xl bg-white/70 p-4 dark:bg-stone-900/45">
+                        <div className="rounded-xl bg-stone-50/80 p-4 dark:bg-stone-900/45">
                           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
                             {copy.playbookLabels.focus}
                           </p>
@@ -578,7 +578,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                           </ul>
                         </div>
 
-                        <div className="flex h-full flex-col rounded-xl bg-white/70 p-4 dark:bg-stone-900/45">
+                        <div className="flex h-full flex-col rounded-xl bg-stone-50/80 p-4 dark:bg-stone-900/45">
                           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-900 dark:text-amber-200">
                             {copy.playbookLabels.result}
                           </p>

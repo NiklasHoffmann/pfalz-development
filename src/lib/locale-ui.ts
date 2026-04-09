@@ -14,6 +14,31 @@ export function localeToBasePath(locale: string): string {
     : `/${getCurrentLocale(locale)}`;
 }
 
+export function normalizePathname(pathname: string): string {
+  if (!pathname || pathname === '/') {
+    return '/';
+  }
+
+  return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+}
+
+export function stripLocalePrefix(pathname: string): string {
+  const normalizedPathname = normalizePathname(pathname);
+
+  if (normalizedPathname === '/') {
+    return '/';
+  }
+
+  const segments = normalizedPathname.split('/').filter(Boolean);
+  const [firstSegment, ...restSegments] = segments;
+
+  if (!firstSegment || !['de', 'en', 'pfl'].includes(firstSegment)) {
+    return normalizedPathname;
+  }
+
+  return restSegments.length > 0 ? `/${restSegments.join('/')}` : '/';
+}
+
 export function getIndustryNavLabel(locale: string): string {
   return getCurrentLocale(locale) === 'en' ? 'Industry' : 'Branche';
 }
@@ -58,6 +83,36 @@ export function getMobileNavigationLabel(locale: string): string {
     : 'Mobile Navigation';
 }
 
+export function getNavigationLabels(locale: string): {
+  home: string;
+  about: string;
+  contact: string;
+} {
+  const currentLocale = getCurrentLocale(locale);
+
+  if (currentLocale === 'en') {
+    return {
+      home: 'Home',
+      about: 'About',
+      contact: 'Contact',
+    };
+  }
+
+  if (currentLocale === 'pfl') {
+    return {
+      home: 'Schtardt',
+      about: 'Leischdunge',
+      contact: 'Kontakt',
+    };
+  }
+
+  return {
+    home: 'Start',
+    about: 'Leistungen',
+    contact: 'Kontakt',
+  };
+}
+
 export function getMobileDockItems(
   locale: string,
   labels: {
@@ -92,6 +147,10 @@ export function getMobileDockItems(
       shortLabel: shortLabels.contact,
     },
   ];
+}
+
+export function getDockLogicalPath(pathname: string): string {
+  return stripLocalePrefix(pathname);
 }
 
 export function getHeaderControlsCopy(

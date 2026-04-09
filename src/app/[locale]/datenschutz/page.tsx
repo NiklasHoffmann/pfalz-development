@@ -40,7 +40,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
 
   return (
-    <main className="min-h-screen bg-stone-50 px-6 pb-28 pt-16 text-stone-900 dark:bg-stone-950 dark:text-stone-100 md:pb-16 lg:px-10">
+    <main className="min-h-screen bg-stone-50 px-6 py-16 text-stone-900 dark:bg-stone-950 dark:text-stone-100 lg:px-10">
       <div className="mx-auto max-w-4xl">
         <a
           href={homeHref}
