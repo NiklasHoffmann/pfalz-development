@@ -348,6 +348,8 @@ export default async function HomePage({ params }: HomePageProps) {
     name: siteConfig.name,
     inLanguage,
     url: canonicalUrl,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
+    priceRange: 'EUR 1,090+',
     email: 'kontakt@pfalz-development.de',
     telephone: '+4963211876643',
     contactPoint: {
