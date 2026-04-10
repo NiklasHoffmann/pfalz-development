@@ -1,4 +1,8 @@
+'use client';
+
 import Image from 'next/image';
+import { useSyncExternalStore } from 'react';
+import { useTheme } from 'next-themes';
 import { HomeHeaderControls } from './HomeHeaderControls';
 import type { HomePageData, NavItem } from './types';
 
@@ -19,6 +23,19 @@ export function HomeHeader({
   navAriaLabel = `${appName} navigation`,
   controls,
 }: HomeHeaderProps) {
+  const { resolvedTheme } = useTheme();
+  const isHydrated = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+  const effectiveTheme =
+    isHydrated && resolvedTheme === 'dark' ? 'dark' : 'light';
+  const logoSrc =
+    effectiveTheme === 'dark'
+      ? '/pfalz-development-logo-dark-ohne-schrift.webp'
+      : '/pfalz-development-logo-light-ohne-schrift.webp';
+
   return (
     <header
       id="home-header"
@@ -39,12 +56,12 @@ export function HomeHeader({
             >
               <span className="-mb-[32px] -mt-[8px] inline-grid place-items-center">
                 <Image
-                  src="/pfalz-development-logo-light-ohne-schrift.webp"
+                  src={logoSrc}
                   alt={appName}
                   width={360}
                   height={163}
                   sizes="(max-width: 640px) 136px, (max-width: 1024px) 148px, 160px"
-                  quality={30}
+                  quality={35}
                   priority
                   className="pointer-events-none h-[3.81rem] w-auto object-contain sm:h-[4.25rem] lg:h-[4.64rem]"
                 />
