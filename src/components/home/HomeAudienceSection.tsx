@@ -61,6 +61,16 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
     return 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=65';
   }
 
+  if (
+    value.includes('individuelle') ||
+    value.includes('custom website') ||
+    value.includes('website-projekte') ||
+    value.includes('website projects') ||
+    value.includes('projekde')
+  ) {
+    return 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=65';
+  }
+
   return audienceFallbackImages[index % audienceFallbackImages.length];
 }
 
