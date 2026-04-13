@@ -127,9 +127,9 @@ export function getMobileDockItems(
   const homeHref = basePath || '/';
   const shortLabels = getMobileShortLabels(locale);
   const whatsAppMessageByLocale = {
-    de: 'Hallo, ich interessiere mich fuer eine Website fuer meinen Betrieb in der Pfalz. Ich wuerde gern kurz ueber mein Projekt sprechen.',
+    de: 'Hallo, ich interessiere mich für eine Website für meinen Betrieb in der Pfalz. Ich würde gern kurz über mein Projekt sprechen.',
     en: 'Hello, I am interested in a website for my business in the Palatinate. I would like to briefly discuss my project.',
-    pfl: 'Hallo, isch interessier mich fer e Website fer mei Betrieb in de Palz. Isch wuerd gern kurz ueber mei Projekt babble.',
+    pfl: 'Hallo, isch interessier mich fer e Website fer mei Betrieb in de Palz. Isch würd gern kurz iwwer mei Projekt babble.',
   } as const;
   const currentLocale = getCurrentLocale(locale);
   const whatsAppHref = buildWhatsAppHref(

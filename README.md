@@ -1,6 +1,6 @@
 # Pfalz Development Website
 
-Offizielle Website fuer Pfalz Development auf Basis von Next.js App Router.
+Offizielle Website für Pfalz Development auf Basis von Next.js App Router.
 
 ## Stack
 
@@ -16,9 +16,9 @@ Offizielle Website fuer Pfalz Development auf Basis von Next.js App Router.
 - Mehrsprachige Landingpage mit separaten Locale-Routen
 - Kontaktformular mit Validation, Rate Limiting und optionalem SMTP-Versand
 - User CRUD API (`/api/users`) als Beispiel-Backend
-- Health-Endpoint fuer Monitoring (`/api/health`)
+- Health-Endpoint für Monitoring (`/api/health`)
 - SEO-Basics mit `sitemap.ts` und `robots.ts`
-- Dockerfile + docker-compose fuer lokale und produktive Deployments
+- Dockerfile + docker-compose für lokale und produktive Deployments
 - ESLint, Prettier, Husky, TypeScript Checks
 
 ## Projektstruktur
@@ -167,7 +167,7 @@ POST /api/test
 ## i18n
 
 - Lokale Routen: `/`, `/de`, `/en`, `/pfl`
-- Uebersetzungen liegen in `messages/*.json`
+- Übersetzungen liegen in `messages/*.json`
 
 ## Deployment
 
@@ -200,8 +200,8 @@ Hinweis: Das Dockerfile baut mit `NEXT_OUTPUT_STANDALONE=1` und startet per `nod
 
 ## Weiterfuehrende Doku
 
-- `USAGE.md` fuer konkrete Code-Beispiele
-- `specs/` fuer fachliche Projektunterlagen
+- `USAGE.md` für konkrete Code-Beispiele
+- `specs/` für fachliche Projektunterlagen
 
 ## Repository
 

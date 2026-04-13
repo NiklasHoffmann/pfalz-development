@@ -60,7 +60,7 @@ function localeToSeoTitle(locale: string): string {
     return 'Webdesign in de Palz fer Betriewe | Pfalz Development';
   }
 
-  return 'Webdesign Pfalz | Homepage erstellen lassen fuer Unternehmen';
+  return 'Webdesign Pfalz | Homepage erstellen lassen für Unternehmen';
 }
 
 function localeToSeoDescription(locale: string): string {
@@ -72,7 +72,7 @@ function localeToSeoDescription(locale: string): string {
     return 'Webdesign fer Betriewe in de Palz mit klare Positionierung, lokale SEO-Grundlage, feste Pakede un direktem Kontakt per Mail, Telefon, WhatsApp odder Formular.';
   }
 
-  return 'Webdesign und Website-Erstellung fuer Unternehmen in der Pfalz mit lokalen SEO-Grundlagen, klaren Paketen und direktem Kontakt per E-Mail, Telefon, WhatsApp oder Formular.';
+  return 'Webdesign und Website-Erstellung für Unternehmen in der Pfalz mit lokalen SEO-Grundlagen, klaren Paketen und direktem Kontakt per E-Mail, Telefon, WhatsApp oder Formular.';
 }
 
 function withLocaleBasePath(basePath: string, href: string): string {
@@ -149,7 +149,7 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
         label: 'Website fer Winzer un Sekdgieder',
         href: withLocaleBasePath(basePath, '/branchen/weingut-sektgut-website'),
         description:
-          'Fer Weinbetriewe, die Weine, Proobe, Termine un direkte Aafrooche uebersichtlich un professionell zeige wolle.',
+          'Fer Weinbetriewe, die Weine, Proobe, Termine un direkte Aafrooche übersichtlich un professionell zeige wolle.',
       },
     ];
   }
@@ -441,11 +441,11 @@ export default async function HomePage({ params }: HomePageProps) {
     ],
     knowsAbout: [
       'Webdesign Pfalz',
-      'Homepage fuer kleine Unternehmen',
+      'Homepage für kleine Unternehmen',
       'Lokale SEO Grundlagen',
       'Ferienwohnungen',
       'Restaurants',
-      'Weingueter',
+      'Weingüter',
       'Handwerksbetriebe',
     ],
     hasOfferCatalog: {

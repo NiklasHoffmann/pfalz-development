@@ -202,7 +202,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       sections: [
         {
           title:
-            'Warum in Neustadt Vertraue un regionale Passung besonders zaehle',
+            'Warum in Neustadt Vertraue un regionale Passung besonders zähle',
           paragraphs: [
             'Viele lokale Betriewe, Gastgeber un regionale Dinschdleischder werre zuerst online geprüft, bevor überhaupt en Anruf oder e Mail kommt. Wenn Angebot, Nutzen un Kontaktweg net direkt klar sinn, isch die Aufmerksamkeit schnell widder weg.',
             'Gerade im Umfeld vun de Weischdroß isch die Konkurrenz oft net riesig, awer viele wirke uff de erschte Blick ähnlich. Wer online klarer un professioneller rüberkommt, hot im Alltag en direkte Vorteil.',

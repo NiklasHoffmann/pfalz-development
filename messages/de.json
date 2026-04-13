@@ -165,7 +165,7 @@
             "success": "Deine Anfrage wurde erfolgreich übermittelt.",
             "error": "Die Anfrage konnte gerade nicht gesendet werden.",
             "botCheckPending": "Der Spam-Schutz wird gerade geladen. Bitte versuche es in einem kurzen Moment erneut.",
-            "botCheckFailed": "Die Spam-Schutz-Pruefung ist fehlgeschlagen. Bitte versuche es erneut."
+            "botCheckFailed": "Die Spam-Schutz-Prüfung ist fehlgeschlagen. Bitte versuche es erneut."
           },
           "validation": {
             "nameMin": "Der Name muss mindestens 2 Zeichen lang sein.",

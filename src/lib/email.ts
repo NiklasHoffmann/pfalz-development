@@ -68,7 +68,7 @@ export async function sendContactMail(
     text: lines.join('\n'),
     html: `
       <div style="font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #1c1917;">
-        <h2>Neue Anfrage ueber das Kontaktformular</h2>
+        <h2>Neue Anfrage über das Kontaktformular</h2>
         <p><strong>Name:</strong> ${escapeHtml(payload.name)}</p>
         <p><strong>Betrieb/Projekt:</strong> ${escapeHtml(payload.business || '-')}</p>
         <p><strong>E-Mail:</strong> ${escapeHtml(payload.email)}</p>
