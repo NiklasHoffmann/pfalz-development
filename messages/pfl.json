@@ -8,15 +8,15 @@
     "home": {
       "eyebrow": "Websites fer Betriewe in de Palz",
       "headline": "Handgemachte Websites aus de Palz fer Betriewe vor Ort.",
-      "subheadline": "Isch bau moderni Websites, die professionell wirke, schnell verstonne werre un neie Aa'frooche reihole.",
+      "subheadline": "Isch bau moderni Websites, die professioneller wirke als Baukaaschde-Loesunge, schnell verstonne werre un neie Aa'frooche reihole.",
       "primaryCta": "Projekt aa'frooche",
       "secondaryCta": "Leischdunge aa'gugge",
       "trust": {
         "title": "Was Kunne bei mir krigge",
         "items": [
           "Persönlische Zammeaarwet statt Agentur-Gebabbel",
-          "Klare Fokus uff de Palz",
-          "Praxisverständnis fer Gastro un Handwerk vor Ort",
+          "Klare Fokus uff de Palz un lokale Suchaafrooche",
+          "Individuelle Seite statt austauschbare Baukaaschde-Loesunge",
           "Hosting, Pflege un Weiterentwicklung aus eener Hand"
         ]
       },
@@ -36,15 +36,15 @@
         "items": [
           {
             "title": "Professionelle Website-Erstellung",
-            "description": "Vun de erschte Struktur bis zur Veröffentlichung entsteht en Auftritt, der zu deim Betrieb passt."
+            "description": "Vun de erschte Struktur bis zur Veröffentlichung entsteht en Ufftritt, der zu deim Betrieb passt un direkt klar wirkt."
           },
           {
-            "title": "Hosting un technische Betreuung",
-            "description": "Isch kimmer mich um die Teschnik, dass dei Website stabil laaft un erreichbar bleibt."
+            "title": "Lokale Sichtbarkeit un SEO-Grundlage",
+            "description": "Isch setz die technische un inhaltlische Grundlage, dass dei Betrieb bei Suchaafrooche in de Palz leichter gfunne wird."
           },
           {
-            "title": "Pflege un laufende Weiterentwicklung",
-            "description": "Wann sisch Inhalte, Agebote oder Öffnungszeite ännre, bleibt dei Website top aktuell."
+            "title": "Hosting, Pflege un technische Betreuung",
+            "description": "Isch kimmer mich um Betrieb, Updates un Aapassunge, dass dei Website sauber laaft un aktuell bleibt."
           }
         ]
       },
@@ -64,7 +64,7 @@
         "items": [
           "Isch denk Websites vun de erschte Sekund aa aus Sicht vun deine Bsucher un Kunne.",
           "Isch leg Wert uff klare Kommunikation, saubere Struktur un verständliche Inhalte statt Agentur-Sprooch.",
-          "Isch bau Seite so, dass Angebot, Vertraue un Kontaktwege schnell verstonne werre.",
+          "Isch bau Seite so, dass Angebot, Vertraue un Kontaktwege schnell verstonne werre - statt wie e austauschbarer Baukaaschde auszusehe.",
           "Isch schaff pragmatisch, regional un nah an dem, was bei klänne Betriewe im Alldach wirklich zählt."
         ]
       },
@@ -135,15 +135,19 @@
       },
       "contact": {
         "title": "Babbel mit mir iwwer doi Projekt",
-        "description": "Wann de in de Palz e Website fer doin Betrieb brauchsch, meldsch dich ääfach per Formular odder Mail.",
+        "description": "Wann de in de Palz e Website fer doin Betrieb brauchsch, meldsch dich ääfach per Formular, Mail, Telefon odder WhatsApp.",
         "primaryCta": "E-Mail schreiwe",
         "secondaryCta": "Aarufe",
+        "tertiaryCta": "WhatsApp schreiwe",
+        "whatsAppMessage": "Hallo, isch interessier mich fer e Website fer mei Betrieb in de Palz. Isch wuerd gern kurz iwwer mei Projekt babble.",
         "personLabel": "Asprechpardner",
         "ownerName": "Niklas Hoffmann",
         "emailLabel": "Mail",
         "emailValue": "kontakt@pfalz-development.de",
         "phoneLabel": "Delefon",
         "phoneValue": "063211876643",
+        "whatsAppLabel": "WhatsApp",
+        "whatsAppValue": "+49 179 1565808",
         "addressLabel": "Adresse",
         "addressLines": ["Neischdad an de Woistrooß"],
         "regionNote": "Fer Unnernehme, Gaschdgewwer un Betriewe in de Palz un drumrum.",
@@ -229,12 +233,14 @@
   "legal": {
     "backToHome": "Zrick zur Schtardtseid",
     "footerNote": "Pfalz Development, Webentwicklung fer Unnernehmen in de Palz.",
+    "footerWhatsAppCta": "WhatsApp schreiwe",
     "imprint": {
       "eyebrow": "Rechtliches",
       "title": "Imbressum",
       "providerTitle": "Angawe gemäss § 5 DDG (frieher § 5 TMG)",
       "contactTitle": "Kontakd",
       "phoneLabel": "Delefon",
+      "whatsAppLabel": "WhatsApp",
       "responsibleTitle": "Verantwortlisch fer de Inhalt gemäss § 18 Abs. 2 MStV",
       "noticeTitle": "Hinweis",
       "noticeText": "Die Inhalte vun de Website werde mit grosser Sorgfalt erstellt un regelmässig aktualisiert. Wenn Inhalte oder Links gege geltends Recht verstosse, bitt ich um en entspreche Hinweis.",

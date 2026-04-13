@@ -8,15 +8,15 @@
     "home": {
       "eyebrow": "Websites für Unternehmen in der Pfalz",
       "headline": "Handgemachte Websites aus der Pfalz.",
-      "subheadline": "Ich entwickle moderne Websites, die professionell wirken, klar verstanden werden und neue Anfragen bringen.",
+      "subheadline": "Ich entwickle moderne Websites, die professioneller wirken als Baukasten-Lösungen, klar verstanden werden und neue Anfragen bringen.",
       "primaryCta": "Projekt anfragen",
       "secondaryCta": "Leistungen ansehen",
       "trust": {
         "title": "Was Kunden bei mir bekommen",
         "items": [
           "Persönliche Zusammenarbeit statt Agentur-Gerede",
-          "Klarer regionaler Fokus auf die Pfalz",
-          "Praxisverständnis für Gastronomie und Handwerk vor Ort",
+          "Klarer regionaler Fokus auf die Pfalz und lokale Suchanfragen",
+          "Individuelle Seiten statt austauschbarer Baukasten-Lösungen",
           "Hosting, Pflege und Weiterentwicklung aus einer Hand"
         ]
       },
@@ -36,15 +36,15 @@
         "items": [
           {
             "title": "Professionelle Website-Erstellung",
-            "description": "Von der ersten Struktur bis zur Veröffentlichung entsteht ein Auftritt, der zu deinem Betrieb passt."
+            "description": "Von der ersten Struktur bis zur Veröffentlichung entsteht ein Auftritt, der zu deinem Betrieb passt und sofort verständlich wirkt."
           },
           {
-            "title": "Hosting und technische Betreuung",
-            "description": "Ich kümmere mich um die Technik, damit deine Website stabil läuft und erreichbar bleibt."
+            "title": "Lokale Sichtbarkeit und SEO-Grundlagen",
+            "description": "Ich setze die technischen und inhaltlichen Grundlagen, damit dein Betrieb bei Suchanfragen in der Pfalz leichter gefunden wird."
           },
           {
-            "title": "Pflege und laufende Weiterentwicklung",
-            "description": "Wenn sich Inhalte, Angebote oder Öffnungszeiten ändern, bleibt deine Website schnell aktuell."
+            "title": "Hosting, Pflege und technische Betreuung",
+            "description": "Ich kümmere mich um Betrieb, Updates und Anpassungen, damit deine Website sauber läuft und aktuell bleibt."
           }
         ]
       },
@@ -64,7 +64,7 @@
         "items": [
           "Ich denke Websites von der ersten Sekunde an aus Sicht deiner Besucher und Kunden.",
           "Ich lege Wert auf klare Kommunikation, saubere Struktur und verständliche Inhalte statt Agentur-Sprache.",
-          "Ich baue Seiten so, dass Angebot, Vertrauen und Kontaktwege schnell erfasst werden können.",
+          "Ich baue Seiten so, dass Angebot, Vertrauen und Kontaktwege schnell erfasst werden können - statt wie ein austauschbarer Baukasten zu wirken.",
           "Ich arbeite pragmatisch, regional und nah an dem, was für kleinere Betriebe im Alltag wirklich zählt."
         ]
       },
@@ -135,15 +135,19 @@
       },
       "contact": {
         "title": "Sprich mit mir über dein Projekt",
-        "description": "Wenn du in der Pfalz eine Website für deinen Betrieb brauchst, melde dich einfach per Formular oder E-Mail.",
+        "description": "Wenn du in der Pfalz eine Website für deinen Betrieb brauchst, melde dich unkompliziert per Formular, E-Mail, Telefon oder WhatsApp.",
         "primaryCta": "E-Mail schreiben",
         "secondaryCta": "Anrufen",
+        "tertiaryCta": "WhatsApp schreiben",
+        "whatsAppMessage": "Hallo, ich interessiere mich für eine Website für meinen Betrieb in der Pfalz. Ich würde gern kurz über mein Projekt sprechen.",
         "personLabel": "Ansprechpartner",
         "ownerName": "Niklas Hoffmann",
         "emailLabel": "E-Mail",
         "emailValue": "kontakt@pfalz-development.de",
         "phoneLabel": "Telefon",
         "phoneValue": "063211876643",
+        "whatsAppLabel": "WhatsApp",
+        "whatsAppValue": "+49 179 1565808",
         "addressLabel": "Adresse",
         "addressLines": ["Neustadt an der Weinstraße"],
         "regionNote": "Für Unternehmen, Gastgeber und Betriebe in der Pfalz und Umgebung.",
@@ -229,12 +233,14 @@
   "legal": {
     "backToHome": "Zurück zur Startseite",
     "footerNote": "Pfalz Development, Webentwicklung für Unternehmen in der Pfalz.",
+    "footerWhatsAppCta": "WhatsApp schreiben",
     "imprint": {
       "eyebrow": "Rechtliches",
       "title": "Impressum",
       "providerTitle": "Angaben gemäß § 5 DDG (ehemals § 5 TMG)",
       "contactTitle": "Kontakt",
       "phoneLabel": "Telefon",
+      "whatsAppLabel": "WhatsApp",
       "responsibleTitle": "Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV",
       "noticeTitle": "Hinweis",
       "noticeText": "Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt und laufend aktualisiert.",
