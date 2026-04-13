@@ -12,6 +12,7 @@ const Modal = dynamic(() => import('@/components/ui/Modal'), {
 interface HomePackagesSectionProps {
   title: string;
   note: string;
+  supportNote: string;
   detailsCta: string;
   modalIncludesTitle: string;
   items: PackageItem[];
@@ -37,6 +38,7 @@ function splitPriceFromDescription(description: string): {
 export function HomePackagesSection({
   title,
   note,
+  supportNote: _supportNote,
   detailsCta,
   modalIncludesTitle,
   items,
@@ -87,7 +89,7 @@ export function HomePackagesSection({
             className="mx-auto mt-6 h-px w-24 bg-amber-500/35 dark:bg-amber-300/30"
           />
         </div>
-        <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="card-grid-balance-md-lg mx-auto mt-12 grid max-w-6xl gap-6 [--card-grid-gap:1.5rem] md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => {
             const { priceLine, details } = splitPriceFromDescription(
               item.description

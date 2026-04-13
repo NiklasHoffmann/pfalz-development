@@ -17,7 +17,7 @@ export function HomeSeoLinksSection({
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
           {title}
         </h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="card-grid-balance-md-lg mt-10 grid gap-4 [--card-grid-gap:1rem] md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
             <a
               key={item.href}

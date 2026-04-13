@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import type { ContactDetails, ContactFormCopy } from './types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 
 const ContactForm = dynamic(
   () =>
@@ -23,7 +24,9 @@ interface HomeContactSectionProps {
   description: string;
   primaryCta: string;
   secondaryCta: string;
+  tertiaryCta: string;
   openFormLabel: string;
+  whatsAppMessage: string;
   privacyHref: string;
   form: ContactFormCopy;
   details: ContactDetails;
@@ -35,7 +38,9 @@ export function HomeContactSection({
   description,
   primaryCta,
   secondaryCta,
+  tertiaryCta,
   openFormLabel,
+  whatsAppMessage,
   privacyHref,
   form,
   details,
@@ -50,6 +55,11 @@ export function HomeContactSection({
     phoneHref.startsWith('0') && phoneHref.length > 5
       ? `${phoneHref.slice(0, 5)} ${phoneHref.slice(5)}`
       : details.phoneValue;
+  const whatsAppHref = buildWhatsAppHref(
+    details.whatsAppValue,
+    whatsAppMessage
+  );
+  const whatsAppDisplay = details.whatsAppValue;
 
   function handleFormOpenChange(open: boolean) {
     if (open) {
@@ -97,6 +107,14 @@ export function HomeContactSection({
                 className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-white dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
               >
                 {secondaryCta}
+              </a>
+              <a
+                href={whatsAppHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex w-full items-center justify-center rounded-full border border-emerald-500/65 bg-emerald-100/85 px-6 py-3 text-sm font-semibold text-emerald-950 shadow-[0_1px_2px_rgba(6,95,70,0.12)] transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-emerald-100 dark:border-emerald-300/60 dark:bg-emerald-950/50 dark:text-emerald-50 dark:hover:bg-emerald-900/70 sm:w-auto"
+              >
+                {tertiaryCta}
               </a>
               <button
                 type="button"
@@ -148,6 +166,19 @@ export function HomeContactSection({
                   className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
                 >
                   {phoneDisplay}
+                </a>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
+                  {details.whatsAppLabel}
+                </p>
+                <a
+                  href={whatsAppHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
+                >
+                  {whatsAppDisplay}
                 </a>
               </div>
               <address className="not-italic">

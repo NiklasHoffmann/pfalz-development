@@ -88,9 +88,9 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
       },
 
       related: {
-        label: 'Passende Seite',
-        pageLabel: 'Website für Ferienwohnungen in der Pfalz',
-        href: '/branchen/ferienwohnung-website',
+        label: 'Regionaler Einstieg',
+        pageLabel: 'Ortsseiten für Neustadt, Landau und Speyer',
+        href: '/orte',
       },
 
       backToHome: 'Zur Startseite',
@@ -174,9 +174,9 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
       },
 
       related: {
-        label: 'Related page',
-        pageLabel: 'Website for Holiday Rentals in the Palatinate',
-        href: '/branchen/ferienwohnung-website',
+        label: 'Regional entry point',
+        pageLabel: 'Location pages for Neustadt, Landau, and Speyer',
+        href: '/orte',
       },
 
       backToHome: 'Back to homepage',
@@ -228,7 +228,7 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
         },
       ],
 
-      faqTitle: 'Haeufige Frooche',
+      faqTitle: 'Häufige Frooche',
       faq: [
         {
           question: 'Wie lang dauert des?',
@@ -261,9 +261,9 @@ export const webdesignPfalzContentByLocale: LocalizedSeoPageContent =
       },
 
       related: {
-        label: 'Passende Seid',
-        pageLabel: 'Website fer Feriewohnunge in de Palz',
-        href: '/branchen/ferienwohnung-website',
+        label: 'Regionaler Einstieg',
+        pageLabel: 'Ortsseide fer Neustadt, Landau un Speyer',
+        href: '/orte',
       },
 
       backToHome: 'Zrick zur Schtardtseid',

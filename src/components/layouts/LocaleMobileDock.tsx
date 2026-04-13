@@ -25,6 +25,9 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
   const logicalPathname = getDockLogicalPath(pathname);
   const items = getMobileDockItems(locale, getNavigationLabels(locale));
   const homeItemHref = items.find((item) => !item.href.includes('#'))?.href;
+  const whatsAppItemHref = items.find((item) =>
+    item.href.startsWith('https://wa.me/')
+  )?.href;
   const resolvedActiveHrefOverride =
     logicalPathname === '/' ? (activeHrefOverride ?? homeItemHref) : undefined;
 
@@ -34,9 +37,11 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
     }
 
     const homeItem = items.find((item) => !item.href.includes('#'));
-    const contactItem = items.find((item) => item.href.endsWith('#kontakt'));
+    const whatsAppItem = items.find((item) =>
+      item.href.startsWith('https://wa.me/')
+    );
 
-    if (!homeItem || !contactItem) {
+    if (!homeItem || !whatsAppItem) {
       return;
     }
 
@@ -51,7 +56,9 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
       const midLine = window.innerHeight * 0.5;
       const isContactActive = rect.top <= midLine && rect.bottom >= midLine;
 
-      setActiveHrefOverride(isContactActive ? contactItem.href : homeItem.href);
+      setActiveHrefOverride(
+        isContactActive ? whatsAppItem.href : homeItem.href
+      );
     };
 
     updateActiveSection();

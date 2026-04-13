@@ -8,15 +8,15 @@
     "home": {
       "eyebrow": "Websites for businesses in the Palatinate",
       "headline": "Handcrafted websites from the Palatinate for local businesses.",
-      "subheadline": "I build modern websites that look professional, are easy to understand, and bring in new inquiries.",
+      "subheadline": "I build modern websites that feel more professional than generic website builders, are easy to understand, and bring in new inquiries.",
       "primaryCta": "Request a project",
       "secondaryCta": "See services",
       "trust": {
         "title": "What clients get from working with me",
         "items": [
           "Personal collaboration instead of agency talk",
-          "A clear regional focus on the Palatinate",
-          "Practical understanding of hospitality and local trades",
+          "A clear regional focus on the Palatinate and local search intent",
+          "Individual websites instead of interchangeable builder solutions",
           "Hosting, maintenance, and further development from one source"
         ]
       },
@@ -36,15 +36,15 @@
         "items": [
           {
             "title": "Professional website creation",
-            "description": "From the first structure to launch, you get a website that fits your business."
+            "description": "From the first structure to launch, you get a website that fits your business and feels clear right away."
           },
           {
-            "title": "Hosting and technical support",
-            "description": "I take care of the technical side so your website stays stable and available."
+            "title": "Local visibility and SEO foundations",
+            "description": "I set up the technical and content foundations so your business is easier to find for local searches in the Palatinate."
           },
           {
-            "title": "Maintenance and ongoing updates",
-            "description": "When your content, offers, or opening hours change, your website stays up to date."
+            "title": "Hosting, maintenance, and technical support",
+            "description": "I handle operations, updates, and changes so your website stays reliable and current."
           }
         ]
       },
@@ -64,7 +64,7 @@
         "items": [
           "I shape websites from the first second from the perspective of your visitors and customers.",
           "I value clear communication, clean structure, and understandable content instead of agency language.",
-          "I build pages so offers, trust signals, and contact paths can be understood quickly.",
+          "I build pages so offers, trust signals, and contact paths are understood quickly instead of looking like a generic builder template.",
           "I work pragmatically, regionally, and close to what smaller businesses actually need in everyday operations."
         ]
       },
@@ -135,15 +135,19 @@
       },
       "contact": {
         "title": "Talk to me about your project",
-        "description": "If you need a website for your business in the Palatinate, get in touch easily via the form or by email.",
+        "description": "If you need a website for your business in the Palatinate, get in touch easily via the form, email, phone, or WhatsApp.",
         "primaryCta": "Send an email",
         "secondaryCta": "Call",
+        "tertiaryCta": "Write on WhatsApp",
+        "whatsAppMessage": "Hello, I am interested in a website for my business in the Palatinate. I would like to briefly discuss my project.",
         "personLabel": "Contact person",
         "ownerName": "Niklas Hoffmann",
         "emailLabel": "Email",
         "emailValue": "kontakt@pfalz-development.de",
         "phoneLabel": "Phone",
         "phoneValue": "063211876643",
+        "whatsAppLabel": "WhatsApp",
+        "whatsAppValue": "+49 179 1565808",
         "addressLabel": "Address",
         "addressLines": ["Neustadt an der Weinstraße"],
         "regionNote": "For businesses, hosts, and local companies in the Palatinate and nearby.",
@@ -229,12 +233,14 @@
   "legal": {
     "backToHome": "Back to home",
     "footerNote": "Pfalz Development, web development for businesses in the Palatinate.",
+    "footerWhatsAppCta": "Write on WhatsApp",
     "imprint": {
       "eyebrow": "Legal",
       "title": "Imprint",
       "providerTitle": "Provider information pursuant to § 5 DDG (formerly § 5 TMG)",
       "contactTitle": "Contact",
       "phoneLabel": "Phone",
+      "whatsAppLabel": "WhatsApp",
       "responsibleTitle": "Responsible for content pursuant to § 18 para. 2 MStV",
       "noticeTitle": "Notice",
       "noticeText": "The content of this website is created with great care and updated regularly. If any content or links violate applicable law, please provide a corresponding notice.",

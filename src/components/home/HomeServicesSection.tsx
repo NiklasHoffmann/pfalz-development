@@ -42,7 +42,7 @@ export function HomeServicesSection({
         >
           {title}
         </h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="card-grid-balance-md-lg mt-12 grid gap-6 [--card-grid-gap:1.5rem] md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (
             <RevealOnScroll
               as="article"

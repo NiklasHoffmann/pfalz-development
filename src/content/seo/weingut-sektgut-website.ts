@@ -192,39 +192,39 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Website fer Winzer, Woigieder un Sekdgieder | Pfalz Development',
       description:
-        'Website-Loesung fer Winzer, Woigieder un Sekdgieder in de Palz: Weine professionell zeige, Termine klar kommuniziere un meh direkte Aafrooche kriege.',
+        'Website-Lösung fer Winzer, Woigieder un Sekdgieder in de Palz: Weine professionell zeige, Termine klar kommuniziere un meh direkte Aafrooche kriege.',
       h1: 'Websites fer Winzer, Woigieder un Sekdgieder in de Palz',
-      eyebrow: 'Branche-Loesung',
+      eyebrow: 'Branche-Lösung',
       intro:
-        'In de Palz entscheidet de erschte digitale Eindruck oft, ob aus Interesse en Besuch, en Bestellung oder en Aafrooch wird. En starke Website zeigt Sortiment, Betriebsgschicht un Agebote klar un fuehrt Besucher gezielt zum neggschde Schritt. Isch iwernehm do die komplette Umsetzung.',
+        'In de Palz entscheidet de erschte digitale Eindruck oft, ob aus Interesse en Besuch, en Bestellung oder en Aafrooch wird. En starke Website zeigt Sortiment, Betriebsgschicht un Agebote klar un führt Besucher gezielt zum neggschde Schritt. Isch iwernehm do die komplette Umsetzung.',
 
       sections: [
         {
           title: 'Warum Weinbetriewe e klare Website-Struktur brauche',
           paragraphs: [
-            'Viele Weingutsseite sinn iwwer Johr gewachse un dadurch schwer zu nutze. Besucher finne Weine, Oeffnungszeiten, Termine oder Kontaktwege oft net schnell genug.',
-            'Mit ere klare Struktur un sauberer Seitenfuehrung wird alles direkt verstaendlich. So sehene Interessente sofort, was du anbietsch un wie se Kontakt uffnehme koenne.',
+            'Viele Weingutsseite sinn iwwer Johr gewachse un dadurch schwer zu nutze. Besucher finne Weine, Öffnungszeiten, Termine oder Kontaktwege oft net schnell genug.',
+            'Mit ere klare Struktur un sauberer Seitenführung wird alles direkt verständlich. So sehene Interessente sofort, was du anbietsch un wie se Kontakt uffnehme könne.',
           ],
         },
         {
           title: 'Welche Inhalte uff Winzerseite besonders wichtig sinn',
           paragraphs: [
-            'Wichtig sinn en klarer Ueberblick uwwer Sortiment un Leischdunge, guut sichtbare Kontaktdaten, aktuelle Termine un en nachvollziehbare Betriebsgschicht.',
+            'Wichtig sinn en klarer Überblick uwwer Sortiment un Leischdunge, guut sichtbare Kontaktdaten, aktuelle Termine un en nachvollziehbare Betriebsgschicht.',
             'Wenn die Inhalte priorisiert un mobil guut lesbar sinn, kumme meist meh direkte Aafrooche fer Proobe, Termine un Zammeaarwet.',
           ],
         },
         {
           title: 'Typische Probleme uff bestehende Weingutsseite',
           paragraphs: [
-            'Haeufig sinn Inhalte veraltet, PDF-Listen unuebersichtlich, mobile Darstellung schwach un die Kommunikation zwischen Wein, Event un Gastfreundschaft net einheitlich.',
+            'Häufig sinn Inhalte veraltet, PDF-Listen unübersichtlich, mobile Darstellung schwach un die Kommunikation zwischen Wein, Event un Gastfreundschaft net einheitlich.',
             'En klarer Neuaufbau nimmt genau die Reibung raus un macht aus ere Infoseid en aktiver Kanal fer Aafrooche un Verkauf.',
           ],
         },
         {
           title: 'Technik, Pflege un Weiterentwicklung',
           paragraphs: [
-            'Dazu gehoere schnelle Ladezeit, klare Seitentitel fer Suchmaschine, strukturierte Inhalte un en wartbare technische Basis. So bleibt die Website aa bei saisonale Aenderunge flexibel.',
-            'Neie Johrgaeng, Termine un Aktionszeiträume kannsch schnell nachziehe. Dadurch bleibt dei Auftritt dauerhaft aktuell un professionell.',
+            'Dazu gehöre schnelle Ladezeit, klare Seitentitel fer Suchmaschine, strukturierte Inhalte un en wartbare technische Basis. So bleibt die Website aa bei saisonale Änderunge flexibel.',
+            'Neie Johrgäng, Termine un Aktionszeiträume kannsch schnell nachziehe. Dadurch bleibt dei Auftritt dauerhaft aktuell un professionell.',
           ],
         },
       ],
@@ -235,22 +235,22 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
           question:
             'Kann die Website uff Woiproobe un Termine optimiert werre?',
           answer:
-            'Ajo. Termine, Infos zur Anmeldung un gut sichtbare Kontakt-Buttons werre so eingebunne, dass Bsucher schnell aafrooche koenne.',
+            'Ajo. Termine, Infos zur Anmeldung un gut sichtbare Kontakt-Buttons werre so eingebunne, dass Bsucher schnell aafrooche könne.',
         },
         {
-          question: 'Kann isch Johrgaeng un Preise spaeter selbst aapasse?',
+          question: 'Kann isch Johrgäng un Preise später selbst aapasse?',
           answer:
-            'Ajo. Die Struktur wird so gebaut, dass Sortiment, Preise un Termine einfach gepflegt werre koenne.',
+            'Ajo. Die Struktur wird so gebaut, dass Sortiment, Preise un Termine einfach gepflegt werre könne.',
         },
         {
-          question: 'Is e mehrsprachige Version moeglich?',
+          question: 'Is e mehrsprachige Version möglich?',
           answer:
-            'Ajo. Deitsch un Englisch koenne direkt vun Anfang aa sauber umgesetzt werre.',
+            'Ajo. Deitsch un Englisch könne direkt vun Anfang aa sauber umgesetzt werre.',
         },
         {
           question: 'Gibts Betreuung aa noch em Launch?',
           answer:
-            'Ajo. Hosting, Pflege un technische Weiterentwicklung koenne dauerhaft iwwernomme werre.',
+            'Ajo. Hosting, Pflege un technische Weiterentwicklung könne dauerhaft iwwernomme werre.',
         },
       ],
 

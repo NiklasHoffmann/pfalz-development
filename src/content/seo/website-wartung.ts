@@ -169,30 +169,30 @@ export const websiteWartungContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Website-Pflege un Ausbau in de Palz | Pfalz Development',
       description:
-        'Website-Pflege un Weiterentwicklung fer Betriewe in de Palz: technische Stabilitaet, aktuelle Inhald un messbare Optimierung.',
+        'Website-Pflege un Weiterentwicklung fer Betriewe in de Palz: technische Stabilität, aktuelle Inhald un messbare Optimierung.',
       h1: 'Website-Pflege un Ausbau, damit dei Seit dauerhaft wirkt',
       eyebrow: 'Leischdung',
       intro:
-        'Nach em Launch entscheidet die laufende Pflege ueber de langfristige Erfolg vun de Website. Inhald aendert sich, Technik entwickelt sich weiter un Nutzerverhalte wechselt. Isch iwernehm Pflege un Ausbau, damit dei Seit sicher, aktuell un anfrageorientiert bleibt.',
+        'Nach em Launch entscheidet die laufende Pflege über de langfristige Erfolg vun de Website. Inhald ändert sich, Technik entwickelt sich weiter un Nutzerverhalte wechselt. Isch iwernehm Pflege un Ausbau, damit dei Seit sicher, aktuell un anfrageorientiert bleibt.',
       sections: [
         {
           title: 'Warum Pflege wichtig is',
           paragraphs: [
             'Ungepflegte Seide verliere oft schrittweis an Wirkung: veraltete Inhald, schlechtere Ladezeit un unbemerkte Fehler.',
-            'Mit strukturierter Betreuung bleibt dei Seit professionell, stabil un vertrauenswuerdig.',
+            'Mit strukturierter Betreuung bleibt dei Seit professionell, stabil un vertrauenswürdig.',
           ],
         },
         {
           title: 'Was die Betreuung enthalten kann',
           paragraphs: [
             'Typische Aufgaben sinn technische Updates, Funktionschecks, Inhald-Anpassunge, neue Unterseide un laufende Optimierung vun Kontaktstrecke.',
-            'Je nach Bedarf liegt de Fokus uff Stabilitaet, Sichtbarkeit oder Anfrageleistung.',
+            'Je nach Bedarf liegt de Fokus uff Stabilität, Sichtbarkeit oder Anfrageleistung.',
           ],
         },
         {
-          title: 'Messbar verbessern statt zufaellig aendere',
+          title: 'Messbar verbessern statt zufällig ändere',
           paragraphs: [
-            'Aenderunge werre anhand relevanter Signale priorisiert: Aafrooche, Klickpfade un Nutzerverhalte.',
+            'Änderunge werre anhand relevanter Signale priorisiert: Aafrooche, Klickpfade un Nutzerverhalte.',
             'So entsteht kontinuierliche Verbesserung mit klarem Nutzen fer de Betrieb.',
           ],
         },
@@ -200,7 +200,7 @@ export const websiteWartungContentByLocale: LocalizedSeoPageContent =
           title: 'Flexible Betreuung passend zum Betrieb',
           paragraphs: [
             'Die Zammeaarwet kann kompakt starte oder als laufendes Modell aufgebaut werre.',
-            'Du hosch jederzeit Transparenz ueber Prioritaete, Aufwand un naechste Schritte.',
+            'Du hosch jederzeit Transparenz über Prioritäten, Aufwand un nächste Schritte.',
           ],
         },
       ],
@@ -209,26 +209,26 @@ export const websiteWartungContentByLocale: LocalizedSeoPageContent =
         {
           question: 'Is Pflege nur fer grosse Seide sinnvoll?',
           answer:
-            'Naa. Grad klannere Unternehmens-Seide profitiere stark vun regelmaessiger Pflege.',
+            'Naa. Grad klannere Unternehmens-Seide profitiere stark vun regelmäßiger Pflege.',
         },
         {
-          question: 'Kann isch Inhald selbscht aendere?',
+          question: 'Kann isch Inhald selbscht ändere?',
           answer:
             'Ajo. Du kannsch selbscht pflege oder Aufgaben komplett abgewe.',
         },
         {
           question: 'Wie oft sollte optimiert werre?',
           answer:
-            'Des haengt vum Betrieb ab. Monatliche oder quartalsweise Zykle sinn oft sinnvoll.',
+            'Des hängt vum Betrieb ab. Monatliche oder quartalsweise Zykle sinn oft sinnvoll.',
         },
         {
           question: 'Kann die Betreuung mit Relaunch kombiniert werre?',
           answer:
-            'Ajo. Oft startet alles mit Relaunch un geht dann in laufende Betreuung ueber.',
+            'Ajo. Oft startet alles mit Relaunch un geht dann in laufende Betreuung über.',
         },
       ],
       cta: {
-        primaryLabel: 'Betreuungsgespaerch aafohre',
+        primaryLabel: 'Betreuungsgespräch aafohre',
         primaryHref: '/#kontakt',
         secondaryLabel: 'Website-Relaunch aa gugge',
         secondaryHref: '/leistungen/website-relaunch',

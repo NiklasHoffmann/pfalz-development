@@ -8,6 +8,7 @@ import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 interface BranchenPageProps {
@@ -83,7 +84,7 @@ function getBranchenMetaDescription(locale: string): string {
   }
 
   if (locale === 'pfl') {
-    return 'Branche-Websites fer Gastgeber, Restaurants, Winzer un aehnliche Betriewe in de Palz mit klarer Struktur, Vertrauen un passendem Aafrooch-Weg.';
+    return 'Branche-Websites fer Gastgeber, Restaurants, Winzer un ähnliche Betriewe in de Palz mit klarer Struktur, Vertrauen un passendem Aafrooch-Weg.';
   }
 
   return 'Branchenspezifische Websites für Ferienwohnungen, Restaurants, Winzer und ähnliche Betriebe in der Pfalz mit klarer Struktur, Vertrauen und qualifizierten Anfragewegen.';
@@ -200,12 +201,12 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
         playbook: 'Playbook',
         support: 'Support',
       },
-      gridTitle: 'Waehle de passende Branche-Weg',
+      gridTitle: 'Wähle de passende Branche-Weg',
       gridText:
         'Mit de Iwwersicht kummersch direkt zur Seid, die zu deim Gschaeft un deim Anfrage-Ziel passt.',
       playbookTitle: 'Jede Branche kriegt en klares Umsetzungs-Playbook',
       playbookText:
-        'Die Grundqualitaet bleibt gleich hoch, waehrend Sprache, Vertrauen un CTA auf de Markt angepasst werre.',
+        'Die Grundqualität bleibt gleich hoch, während Sprache, Vertrauen un CTA auf de Markt angepasst werre.',
       playbookLabels: {
         scenario: 'Typische Ausgangslage',
         focus: 'Schwerpunkt',
@@ -223,12 +224,12 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
           badge: 'Gastgewerbe',
           title: 'Feriewohnunge',
           description:
-            'Fer Gaschdgewwer, die meh direkte Buchungsafrooche un wenischer Plattform-Abhaengigkeit wolle.',
+            'Fer Gaschdgewwer, die meh direkte Buchungsafrooche un wenischer Plattform-Abhängigkeit wolle.',
           outcome:
             'Ziel: en starker direkter Kanal mit klarer Positionierung un einfachem Aafrooch-Ablauf.',
           href: '/branchen/ferienwohnung-website',
           scenario: [
-            'Viel Anfrage laafe ueber Plattform statt ueber dei Seid.',
+            'Viel Anfrage laafe über Plattform statt über dei Seid.',
             'Vertrauen un Kontaktweg sinn net direkt sichtbar.',
           ],
           focus: [
@@ -243,11 +244,11 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
           description:
             'Fer Restaurants mit klare Gaste-Infos un direkte Reservierungsaafrooche.',
           outcome:
-            'Ziel: schnellere Entscheedung fer Gaeste durch klare Infos un direkte Reservierungswege.',
+            'Ziel: schnellere Entscheedung fer Gäschte durch klare Infos un direkte Reservierungswege.',
           href: '/branchen/restaurant-website',
           scenario: [
-            'Gaeste finne Oeffnungszeiten, Karte odder Reservierung net schnell genug.',
-            'Uf em Handy gehn Kontaktmoeglichkeide unter.',
+            'Gäschte finne Öffnungszeiten, Karte odder Reservierung net schnell genug.',
+            'Uf em Handy gehn Kontaktmöglichkeiten unter.',
           ],
           focus: [
             'Direkte Navigation zu Karte, Lage un Reservierung',
@@ -259,7 +260,7 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
           badge: 'Weinbetrieb',
           title: 'Winzer, Woigieder un Sekdgieder',
           description:
-            'Fer Weinbetriewe, die Weine, Termine un Kontakt klar un uebersichtlich zeige wolle.',
+            'Fer Weinbetriewe, die Weine, Termine un Kontakt klar un übersichtlich zeige wolle.',
           outcome:
             'Ziel: bessere Produktkommunikation un passendi Aafrooche zu Besuch, Termin un Verkauf.',
           href: '/branchen/weingut-sektgut-website',
@@ -277,7 +278,7 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
       cta: 'Brancheseid uffmache',
       supportTitle: 'Net sicher, was am beschde passt?',
       supportText:
-        'Wenn du willsch, klaer ich die passende Struktur in eme kurze Scoping-Gespaerch un setz sie direkt um.',
+        'Wenn du willsch, klär ich die passende Struktur in eme kurze Scoping-Gespräch un setz sie direkt um.',
       supportPrimaryLabel: 'Alle Leischdunge aa gugge',
       supportSecondaryLabel: 'Berodung aafohre',
     };
@@ -405,6 +406,11 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
 
   const navT = await getTranslations({ locale, namespace: 'navigation' });
   const legalT = await getTranslations({ locale, namespace: 'legal' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
+  const footerWhatsAppHref = buildWhatsAppHref(
+    siteConfig.contact.whatsAppDisplay,
+    commonT('home.contact.whatsAppMessage')
+  );
   const copy = getBranchenCopy(locale);
 
   const basePath = locale === 'de' ? '' : `/${locale}`;
@@ -500,7 +506,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
                   {copy.gridText}
                 </p>
               </div>
-              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div className="card-grid-balance-md-xl mt-8 grid gap-4 [--card-grid-gap:1rem] md:grid-cols-2 xl:grid-cols-3">
                 {copy.cards.map((card, index) => {
                   const id = getCardId(card.href);
 
@@ -658,6 +664,8 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
         note={legalT('footerNote')}
         imprintLabel={legalT('imprint.title')}
         privacyLabel={legalT('privacy.title')}
+        whatsAppLabel={legalT('footerWhatsAppCta')}
+        whatsAppHref={footerWhatsAppHref}
         imprintHref={`${basePath}/impressum`}
         privacyHref={`${basePath}/datenschutz`}
       />

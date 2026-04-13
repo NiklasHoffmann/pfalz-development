@@ -257,6 +257,33 @@
     box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.3);
   }
 
+  @media (min-width: 768px) {
+    .card-grid-balance-md > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--card-grid-gap, 1rem)) / 2);
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .card-grid-balance-md-lg > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--card-grid-gap, 1rem)) / 2);
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .card-grid-balance-md-xl > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--card-grid-gap, 1rem)) / 2);
+      max-width: 100%;
+    }
+  }
+
   .surface-section-muted {
     background: linear-gradient(
       180deg,

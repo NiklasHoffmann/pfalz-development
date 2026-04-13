@@ -21,6 +21,8 @@ export type ContactDetails = {
   emailValue: string;
   phoneLabel: string;
   phoneValue: string;
+  whatsAppLabel: string;
+  whatsAppValue: string;
   addressLabel: string;
   addressLines: string[];
   regionNote: string;
@@ -119,6 +121,7 @@ export type HomePageData = {
     subheadline: string;
     primaryCta: string;
     secondaryCta: string;
+    secondaryCtaHref: string;
     trustTitle: string;
     trustItems: string[];
   };
@@ -168,7 +171,9 @@ export type HomePageData = {
     description: string;
     primaryCta: string;
     secondaryCta: string;
+    tertiaryCta: string;
     openFormLabel: string;
+    whatsAppMessage: string;
     privacyHref: string;
     form: ContactFormCopy;
     details: ContactDetails;
@@ -177,6 +182,8 @@ export type HomePageData = {
     note: string;
     imprintLabel: string;
     privacyLabel: string;
+    whatsAppLabel: string;
+    whatsAppHref: string;
     imprintHref: string;
     privacyHref: string;
   };

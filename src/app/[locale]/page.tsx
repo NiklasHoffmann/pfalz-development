@@ -8,6 +8,7 @@ import {
   localeToBasePath,
 } from '@/lib/locale-ui';
 import { PALATINATE_HREFLANG } from '@/lib/seo';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 import type {
   CardItem,
   ContactDetails,
@@ -52,26 +53,34 @@ function localeToPrimaryNavigationLabel(
 
 function localeToSeoTitle(locale: string): string {
   if (locale === 'en') {
-    return 'Web Design for Palatinate Businesses | Pfalz Development';
+    return 'Web Design in the Palatinate for Local Businesses | Pfalz Development';
   }
 
   if (locale === 'pfl') {
-    return 'Webdesign in de Palz | Pfalz Development';
+    return 'Webdesign in de Palz fer Betriewe | Pfalz Development';
   }
 
-  return 'Webdesign Pfalz für Unternehmen | Pfalz Development';
+  return 'Webdesign Pfalz | Homepage erstellen lassen fuer Unternehmen';
 }
 
 function localeToSeoDescription(locale: string): string {
   if (locale === 'en') {
-    return 'Web design, development, relaunches, and website support for businesses in the Palatinate, including Neustadt, Landau, and the surrounding region.';
+    return 'Web design for local businesses in the Palatinate with clear positioning, local SEO foundations, fixed packages, and direct contact via email, phone, WhatsApp, or form.';
   }
 
   if (locale === 'pfl') {
-    return 'Webdesign, Umsetzung, Relaunch un Website-Pflege fer Betriewe in de Palz, rund um Neustadt, Landau un die Region.';
+    return 'Webdesign fer Betriewe in de Palz mit klare Positionierung, lokale SEO-Grundlage, feste Pakede un direktem Kontakt per Mail, Telefon, WhatsApp odder Formular.';
   }
 
-  return 'Webdesign, Website-Erstellung, Relaunch und laufende Betreuung für Unternehmen in der Pfalz, rund um Neustadt an der Weinstraße, Landau und Umgebung.';
+  return 'Webdesign und Website-Erstellung fuer Unternehmen in der Pfalz mit lokalen SEO-Grundlagen, klaren Paketen und direktem Kontakt per E-Mail, Telefon, WhatsApp oder Formular.';
+}
+
+function withLocaleBasePath(basePath: string, href: string): string {
+  if (!href.startsWith('/')) {
+    return href;
+  }
+
+  return `${basePath}${href}`;
 }
 
 function localeToSeoLinksTitle(locale: string): string {
@@ -98,24 +107,24 @@ function localeToSeoLinksCtaLabel(locale: string): string {
   return 'Seite öffnen';
 }
 
-function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
+function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
   if (locale === 'en') {
     return [
       {
         label: 'Website for Holiday Rentals',
-        href: '/branchen/ferienwohnung-website',
+        href: withLocaleBasePath(basePath, '/branchen/ferienwohnung-website'),
         description:
           'For hosts who want more direct booking inquiries, clearer trust signals, and a stronger website presence beyond booking platforms.',
       },
       {
         label: 'Website for Restaurants',
-        href: '/branchen/restaurant-website',
+        href: withLocaleBasePath(basePath, '/branchen/restaurant-website'),
         description:
           'For restaurants that need clear guest information, strong mobile usability, and direct reservation inquiries through their own website.',
       },
       {
         label: 'Website for Wineries and Sparkling Wine Estates',
-        href: '/branchen/weingut-sektgut-website',
+        href: withLocaleBasePath(basePath, '/branchen/weingut-sektgut-website'),
         description:
           'For wineries and sparkling wine estates that want to present wines, tastings, events, and direct inquiries in a structured way.',
       },
@@ -126,19 +135,19 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
     return [
       {
         label: 'Website fer Feriewohnunge',
-        href: '/branchen/ferienwohnung-website',
+        href: withLocaleBasePath(basePath, '/branchen/ferienwohnung-website'),
         description:
           'Fer Gaschdgewwer, die meh direkte Buchungsafrooche, klares Vertrauen un en staerkere eigne Online-Praesenz wolle.',
       },
       {
         label: 'Website fer Restaurants',
-        href: '/branchen/restaurant-website',
+        href: withLocaleBasePath(basePath, '/branchen/restaurant-website'),
         description:
           'Fer Restaurants mit Fokus uff klare Gaste-Info, gute Handy-Nutzbarkeit un direkte Reservierungsaafrooche.',
       },
       {
         label: 'Website fer Winzer un Sekdgieder',
-        href: '/branchen/weingut-sektgut-website',
+        href: withLocaleBasePath(basePath, '/branchen/weingut-sektgut-website'),
         description:
           'Fer Weinbetriewe, die Weine, Proobe, Termine un direkte Aafrooche uebersichtlich un professionell zeige wolle.',
       },
@@ -148,19 +157,19 @@ function localeToSeoLinkItems(locale: string): SeoLinkItem[] {
   return [
     {
       label: 'Website für Ferienwohnungen',
-      href: '/branchen/ferienwohnung-website',
+      href: withLocaleBasePath(basePath, '/branchen/ferienwohnung-website'),
       description:
         'Für Gastgeber, die mehr Direktanfragen, klare Vertrauenselemente und weniger Abhängigkeit von Buchungsplattformen möchten.',
     },
     {
       label: 'Website für Restaurants',
-      href: '/branchen/restaurant-website',
+      href: withLocaleBasePath(basePath, '/branchen/restaurant-website'),
       description:
         'Für Restaurants mit Fokus auf klare Gäste-Kommunikation, gute mobile Nutzung und direkte Reservierungsanfragen.',
     },
     {
       label: 'Website für Winzer und Sektgüter',
-      href: '/branchen/weingut-sektgut-website',
+      href: withLocaleBasePath(basePath, '/branchen/weingut-sektgut-website'),
       description:
         'Für Weinbetriebe mit Fokus auf Weinproben, Veranstaltungen, Produktdarstellung und direkte Anfragen über die eigene Website.',
     },
@@ -180,15 +189,20 @@ export async function generateMetadata({
     title: seoTitle,
     description: seoDescription,
     keywords: [
+      'Webdesign Pfalz',
+      'Webdesigner Pfalz',
       'Website erstellen lassen Pfalz',
+      'Homepage erstellen Neustadt an der Weinstraße',
       'Webdesign Neustadt an der Weinstraße',
       'Webdesign Landau in der Pfalz',
       'Webentwickler Pfalz',
       'Homepage für Unternehmen Pfalz',
+      'Website für Handwerker Pfalz',
       'Website für Ferienwohnung Pfalz',
       'Website für Restaurant Pfalz',
       'Website für Weingut Pfalz',
       'Website für Sektgut Pfalz',
+      'Lokale SEO Pfalz',
       'Webdesign Bad Dürkheim',
       'Webdesign Speyer',
       'Webdesign Ludwigshafen',
@@ -236,6 +250,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const trustItems = t.raw('home.trust.items') as string[];
   const serviceItems = t.raw('home.services.items') as CardItem[];
   const audiences = t.raw('home.audiences.items') as string[];
+  const basePath = localeToBasePath(locale);
   const whyMeItems = t.raw('home.whyMe.items') as string[];
   const packageItems = t.raw('home.packages.items') as PackageItem[];
   const processSteps = t.raw('home.process.steps') as string[];
@@ -243,7 +258,17 @@ export default async function HomePage({ params }: HomePageProps) {
   const contactDetails = t.raw('home.contact') as ContactDetails;
   const contactFormCopy = t.raw('home.contact.form') as ContactFormCopy;
   const legalT = await getTranslations({ locale, namespace: 'legal' });
-  const basePath = localeToBasePath(locale);
+  const resolvedContactDetails: ContactDetails = {
+    ...contactDetails,
+    ownerName: siteConfig.creator.name,
+    emailValue: siteConfig.contact.email,
+    phoneValue: siteConfig.contact.phoneDisplay,
+    whatsAppValue: siteConfig.contact.whatsAppDisplay,
+  };
+  const footerWhatsAppHref = buildWhatsAppHref(
+    siteConfig.contact.whatsAppDisplay,
+    t('home.contact.whatsAppMessage')
+  );
   const homeHref = basePath || '/';
   const industryLabel = getIndustryNavLabel(locale);
   const navItems = [
@@ -258,6 +283,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const canonicalPath = localeToPath(locale);
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
   const inLanguage = localeToLanguageTag(locale);
+  const seoDescription = localeToSeoDescription(locale);
   const primaryNavigationLabel = localeToPrimaryNavigationLabel(
     locale,
     t('appName')
@@ -278,6 +304,7 @@ export default async function HomePage({ params }: HomePageProps) {
       subheadline: t('home.subheadline'),
       primaryCta: t('home.primaryCta'),
       secondaryCta: t('home.secondaryCta'),
+      secondaryCtaHref: `${basePath}/leistungen`,
       trustTitle: t('home.trust.title'),
       trustItems,
     },
@@ -295,7 +322,7 @@ export default async function HomePage({ params }: HomePageProps) {
     seoLinks: {
       title: localeToSeoLinksTitle(locale),
       ctaLabel: localeToSeoLinksCtaLabel(locale),
-      items: localeToSeoLinkItems(locale),
+      items: localeToSeoLinkItems(locale, basePath),
     },
     audiences: {
       title: t('home.audiences.title'),
@@ -327,15 +354,19 @@ export default async function HomePage({ params }: HomePageProps) {
       description: t('home.contact.description'),
       primaryCta: t('home.contact.primaryCta'),
       secondaryCta: t('home.contact.secondaryCta'),
+      tertiaryCta: t('home.contact.tertiaryCta'),
       openFormLabel: t('home.contact.form.openCta'),
+      whatsAppMessage: t('home.contact.whatsAppMessage'),
       privacyHref: `${basePath}/datenschutz`,
       form: contactFormCopy,
-      details: contactDetails,
+      details: resolvedContactDetails,
     },
     footer: {
       note: legalT('footerNote'),
       imprintLabel: legalT('imprint.title'),
       privacyLabel: legalT('privacy.title'),
+      whatsAppLabel: legalT('footerWhatsAppCta'),
+      whatsAppHref: footerWhatsAppHref,
       imprintHref: `${basePath}/impressum`,
       privacyHref: `${basePath}/datenschutz`,
     },
@@ -346,28 +377,53 @@ export default async function HomePage({ params }: HomePageProps) {
     '@type': 'ProfessionalService',
     '@id': `${canonicalUrl}#professional-service`,
     name: siteConfig.name,
+    description: seoDescription,
+    slogan: t('home.subheadline'),
     inLanguage,
     url: canonicalUrl,
     image: `${siteConfig.url}${siteConfig.ogImage}`,
     priceRange: 'EUR 1,090+',
-    email: 'kontakt@pfalz-development.de',
-    telephone: '+4963211876643',
+    email: siteConfig.contact.email,
+    telephone: siteConfig.contact.phoneHref,
+    founder: {
+      '@type': 'Person',
+      name: siteConfig.creator.name,
+    },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+4963211876643',
-      email: 'kontakt@pfalz-development.de',
+      telephone: siteConfig.contact.phoneHref,
+      email: siteConfig.contact.email,
       contactType: 'customer support',
+      url: `${canonicalUrl}#kontakt`,
       areaServed: 'DE',
       availableLanguage: ['de', 'en', PALATINATE_HREFLANG],
     },
     sameAs: [siteConfig.links.github],
     areaServed: [
-      'Neustadt an der Weinstraße',
-      'Landau in der Pfalz',
-      'Bad Dürkheim',
-      'Speyer',
-      'Ludwigshafen',
-      'Pfalz',
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Pfalz',
+      },
+      {
+        '@type': 'City',
+        name: 'Neustadt an der Weinstraße',
+      },
+      {
+        '@type': 'City',
+        name: 'Landau in der Pfalz',
+      },
+      {
+        '@type': 'City',
+        name: 'Bad Dürkheim',
+      },
+      {
+        '@type': 'City',
+        name: 'Speyer',
+      },
+      {
+        '@type': 'City',
+        name: 'Ludwigshafen',
+      },
     ],
     address: {
       '@type': 'PostalAddress',
@@ -383,6 +439,30 @@ export default async function HomePage({ params }: HomePageProps) {
       'Website Wartung',
       'Hosting',
     ],
+    knowsAbout: [
+      'Webdesign Pfalz',
+      'Homepage fuer kleine Unternehmen',
+      'Lokale SEO Grundlagen',
+      'Ferienwohnungen',
+      'Restaurants',
+      'Weingueter',
+      'Handwerksbetriebe',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: t('home.packages.title'),
+      itemListElement: packageItems.map((item) => ({
+        '@type': 'Offer',
+        name: item.name,
+        description: item.description,
+        priceCurrency: 'EUR',
+        url: `${canonicalUrl}#preise`,
+        itemOffered: {
+          '@type': 'Service',
+          name: item.name,
+        },
+      })),
+    },
   };
 
   const websiteSchema = {

@@ -96,7 +96,7 @@ export function HomeAudienceSection({
             {audiencesTitle}
           </h2>
           <ul
-            className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+            className="card-grid-balance-md-lg mt-12 grid gap-5 [--card-grid-gap:1.25rem] md:grid-cols-2 lg:grid-cols-3"
             aria-label={audiencesTitle}
           >
             {audiences.map((item, index) => (
@@ -153,7 +153,7 @@ export function HomeAudienceSection({
             />
           </div>
           <ul
-            className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2"
+            className="card-grid-balance-md mx-auto mt-12 grid max-w-5xl gap-4 [--card-grid-gap:1rem] md:grid-cols-2"
             aria-label={whyMeTitle}
           >
             {whyMeItems.map((item, index) => (

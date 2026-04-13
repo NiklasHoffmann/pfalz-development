@@ -184,7 +184,7 @@ export const websiteRelaunchContentByLocale: LocalizedSeoPageContent =
         {
           title: 'Was konkret umgesetzt wird',
           paragraphs: [
-            'Am Anfang analysier isch Zielgruppe, Angebot un Reibungspunkte. Daraus entsteht en neue Seidestruktur mit klare Prioritaete.',
+            'Am Anfang analysier isch Zielgruppe, Angebot un Reibungspunkte. Daraus entsteht en neue Seidestruktur mit klare Prioritäten.',
             'Dann folgt die technische Umsetzung mit Fokus uff Performance, mobile Nutzung, SEO-Basis un Anfragefiehrung.',
           ],
         },
@@ -192,13 +192,13 @@ export const websiteRelaunchContentByLocale: LocalizedSeoPageContent =
           title: 'Ergebnis: en Seit, die wieder verkauft',
           paragraphs: [
             'Du kriegsch kein kosmetische Update, sondern en belastbare Grundlage fer meh passendi Aafrooche.',
-            'Die neue Seit zeigt dei Angebot klar, schafft Vertrauen un fuehrt Besucher strukturiert zum Kontakt.',
+            'Die neue Seit zeigt dei Angebot klar, schafft Vertrauen un führt Besucher strukturiert zum Kontakt.',
           ],
         },
         {
           title: 'Ablauf un Planbarkeit',
           paragraphs: [
-            'Umfang, Zeitplan un Prioritaete werre vorher sauber festgelegt, damit jeder Schrit klar is.',
+            'Umfang, Zeitplan un Prioritäten werre vorher sauber festgelegt, damit jeder Schrit klar is.',
             'Mit kurze Feedbackschleife bleibt des Projekt effizient un kann realistisch live gehe.',
           ],
         },
@@ -208,7 +208,7 @@ export const websiteRelaunchContentByLocale: LocalizedSeoPageContent =
         {
           question: 'Muss alles komplett neu gemacht werre?',
           answer:
-            'Net unbedingt. Gute Inhald-Bausteine kenne uebernomme werre, wenn se zur neue Struktur passe.',
+            'Net unbedingt. Gute Inhald-Bausteine kenne übernomme werre, wenn se zur neue Struktur passe.',
         },
         {
           question: 'Kann die alte Seit bis zum Launch online bleiwe?',
@@ -223,7 +223,7 @@ export const websiteRelaunchContentByLocale: LocalizedSeoPageContent =
         {
           question: 'Gibts Betreuung nach em Relaunch?',
           answer:
-            'Ajo. Pflege, Weiterentwicklung un Optimierung kann laufend uebernomme werre.',
+            'Ajo. Pflege, Weiterentwicklung un Optimierung kann laufend übernomme werre.',
         },
       ],
       cta: {

@@ -5,6 +5,7 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import type { SeoPageContent } from '@/content/seo/types';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations } from 'next-intl/server';
 
 interface SeoLandingPageProps {
@@ -55,6 +56,7 @@ export async function SeoLandingPage({
 }: SeoLandingPageProps) {
   const navT = await getTranslations({ locale, namespace: 'navigation' });
   const legalT = await getTranslations({ locale, namespace: 'legal' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
   const industryLabel = getIndustryNavLabel(locale);
   const moreLabel = getMoreLabel(locale);
   const lessLabel = getLessLabel(locale);
@@ -66,6 +68,10 @@ export async function SeoLandingPage({
   const homeHref = basePath || '/';
   const homeLinkHref = '/';
   const localizedHomeLinkHref = localizeHref(homeLinkHref, locale);
+  const footerWhatsAppHref = buildWhatsAppHref(
+    siteConfig.contact.whatsAppDisplay,
+    commonT('home.contact.whatsAppMessage')
+  );
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
     { label: navT('about'), href: `${basePath}/leistungen` },
@@ -227,6 +233,8 @@ export async function SeoLandingPage({
         note={legalT('footerNote')}
         imprintLabel={legalT('imprint.title')}
         privacyLabel={legalT('privacy.title')}
+        whatsAppLabel={legalT('footerWhatsAppCta')}
+        whatsAppHref={footerWhatsAppHref}
         imprintHref={localizeHref('/impressum', locale)}
         privacyHref={localizeHref('/datenschutz', locale)}
       />

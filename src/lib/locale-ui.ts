@@ -3,6 +3,8 @@ import type {
   MobileNavItem,
   SupportedLocale,
 } from '@/components/home/types';
+import { siteConfig } from '@/config/site';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 
 export function getCurrentLocale(locale: string): SupportedLocale {
   return locale === 'en' || locale === 'pfl' ? locale : 'de';
@@ -47,7 +49,7 @@ export function getMobileShortLabels(locale: string): {
   home: string;
   service: string;
   industry: string;
-  contact: string;
+  whatsapp: string;
 } {
   const currentLocale = getCurrentLocale(locale);
 
@@ -56,7 +58,7 @@ export function getMobileShortLabels(locale: string): {
       home: 'Home',
       service: 'Service',
       industry: 'Industry',
-      contact: 'Contact',
+      whatsapp: 'WhatsApp',
     };
   }
 
@@ -65,7 +67,7 @@ export function getMobileShortLabels(locale: string): {
       home: 'Schtardt',
       service: 'Leischdung',
       industry: 'Branche',
-      contact: 'Kontakt',
+      whatsapp: 'WhatsApp',
     };
   }
 
@@ -73,7 +75,7 @@ export function getMobileShortLabels(locale: string): {
     home: 'Start',
     service: 'Leistung',
     industry: 'Branche',
-    contact: 'Kontakt',
+    whatsapp: 'WhatsApp',
   };
 }
 
@@ -86,7 +88,7 @@ export function getMobileNavigationLabel(locale: string): string {
 export function getNavigationLabels(locale: string): {
   home: string;
   about: string;
-  contact: string;
+  whatsapp: string;
 } {
   const currentLocale = getCurrentLocale(locale);
 
@@ -94,7 +96,7 @@ export function getNavigationLabels(locale: string): {
     return {
       home: 'Home',
       about: 'About',
-      contact: 'Contact',
+      whatsapp: 'WhatsApp',
     };
   }
 
@@ -102,14 +104,14 @@ export function getNavigationLabels(locale: string): {
     return {
       home: 'Schtardt',
       about: 'Leischdunge',
-      contact: 'Kontakt',
+      whatsapp: 'WhatsApp',
     };
   }
 
   return {
     home: 'Start',
     about: 'Leistungen',
-    contact: 'Kontakt',
+    whatsapp: 'WhatsApp',
   };
 }
 
@@ -118,12 +120,22 @@ export function getMobileDockItems(
   labels: {
     home: string;
     about: string;
-    contact: string;
+    whatsapp: string;
   }
 ): MobileNavItem[] {
   const basePath = localeToBasePath(locale);
   const homeHref = basePath || '/';
   const shortLabels = getMobileShortLabels(locale);
+  const whatsAppMessageByLocale = {
+    de: 'Hallo, ich interessiere mich fuer eine Website fuer meinen Betrieb in der Pfalz. Ich wuerde gern kurz ueber mein Projekt sprechen.',
+    en: 'Hello, I am interested in a website for my business in the Palatinate. I would like to briefly discuss my project.',
+    pfl: 'Hallo, isch interessier mich fer e Website fer mei Betrieb in de Palz. Isch wuerd gern kurz ueber mei Projekt babble.',
+  } as const;
+  const currentLocale = getCurrentLocale(locale);
+  const whatsAppHref = buildWhatsAppHref(
+    siteConfig.contact.whatsAppDisplay,
+    whatsAppMessageByLocale[currentLocale]
+  );
 
   return [
     {
@@ -142,9 +154,9 @@ export function getMobileDockItems(
       shortLabel: shortLabels.industry,
     },
     {
-      label: labels.contact,
-      href: `${homeHref}#kontakt`,
-      shortLabel: shortLabels.contact,
+      label: labels.whatsapp,
+      href: whatsAppHref,
+      shortLabel: shortLabels.whatsapp,
     },
   ];
 }

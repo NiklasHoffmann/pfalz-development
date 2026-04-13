@@ -188,39 +188,39 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Website fer Feriewohnunge in de Palz | Pfalz Development',
       description:
-        'Website fer Feriewohnunge in de Palz: meh Direktaafrooche, wenischer Plattform-Abhaengigkeit un en professioneller Auftritt mit Vertraue.',
+        'Website fer Feriewohnunge in de Palz: meh Direktaafrooche, wenischer Plattform-Abhängigkeit un en professioneller Auftritt mit Vertraue.',
       h1: 'Websites fer Feriewohnunge in de Palz, die meh Direktaafrooche bringe',
-      eyebrow: 'Branche-Loesung',
+      eyebrow: 'Branche-Lösung',
       intro:
-        'Viele Feriewohnunge werre heit fast nur iwwer Buchungsplattforme gefunne. Des bringt Sichtbarkeit, kostet awer Marge un macht abhaengisch vun fremde Regeln. E eigene Website gibt dir meh Kontrolle, zeigt dei Unterkunft professionell un fuehrt Interessente direkt zur Aafrooch. Genau do setzt die Loesung aa, un isch iwernehm die Umsetzung komplett: klare Inhalte, starke Vertrauenssignale un en einfacher Weg zur Buchungsaafrooch.',
+        'Viele Feriewohnunge werre heit fast nur iwwer Buchungsplattforme gefunne. Des bringt Sichtbarkeit, kostet awer Marge un macht abhängigisch vun fremde Regeln. E eigene Website gibt dir meh Kontrolle, zeigt dei Unterkunft professionell un führt Interessente direkt zur Aafrooch. Genau do setzt die Lösung aa, un isch iwernehm die Umsetzung komplett: klare Inhalte, starke Vertrauenssignale un en einfacher Weg zur Buchungsaafrooch.',
 
       sections: [
         {
           title: 'Warum Gastgeber e eigene Website brauche',
           paragraphs: [
             'En Plattform-Profil allaa reicht selten, um Vertraue, Wiedererkennung un en klares Bild aufzubaue. Uff de eige Website kannsch Unterkunft, Lage un Gastgeberprofil genau so zeige, wie es zu deim Angebot passt – ganz ohne dass annere Angebote drumrum ablenke.',
-            'Du steuerst de Aafroochprozess selbst, setzt dei Schwerpunkte un fuehrsch Bsucher gezielt zum neggschde Schritt. So entsteht en staerkerer Direktkanal mit bessere un passendere Aafrooche.',
+            'Du steuerst de Aafroochprozess selbst, setzt dei Schwerpunkte un führsch Bsucher gezielt zum neggschde Schritt. So entsteht en stärkerer Direktkanal mit bessere un passendere Aafrooche.',
           ],
         },
         {
-          title: 'Welche Inhalte meh Buchungsaafrooche ausloese',
+          title: 'Welche Inhalte meh Buchungsaafrooche auslöse',
           paragraphs: [
-            'Potenzielle Geste entscheide schnell. Sie wolle uff en Blick verstehe, fer wen die Unterkunft passt, was sie besonders macht un wie se dich erreiche koenne.',
+            'Potenzielle Geste entscheide schnell. Sie wolle uff en Blick verstehe, fer wen die Unterkunft passt, was sie besonders macht un wie se dich erreiche könne.',
             'Deshalb braucht en gute Feriewohnungsseite net bloos scheene Bilder, sondern aa klare Infos zu Ausstattung, Lagevorteile, Vertrauenselemente un gut sichtbare Kontakt-Buttons. Wenn die Inhalte gut sortiert sinn, steigt Nutzerfreundlichkeit un Aafroochquote gleichzeitig.',
           ],
         },
         {
-          title: 'Typische Schwaeche bei Feriewohnungsseiten',
+          title: 'Typische Schwäche bei Feriewohnungsseiten',
           paragraphs: [
-            'Haeufige Probleme sinn zu viel Inhalt ohne klare Reihenfolg, schwache mobile Darstellung, unuebersichtliche Bilderstrecke un en Kontaktweg, der unnötig bremst. Oft fehlt aa die klare Abgrenzung zu aehnliche Unterkuenft in de Region.',
-            'En starke Seitenstruktur loest genau des: Sie macht Vorteile klarer, nimmt Unsicherheit raus un fuehrt Besucher Schritt fer Schritt zur direkten Kontaktaufnahme.',
+            'Häufige Probleme sinn zu viel Inhalt ohne klare Reihenfolg, schwache mobile Darstellung, unübersichtliche Bilderstrecke un en Kontaktweg, der unnötig bremst. Oft fehlt aa die klare Abgrenzung zu ähnliche Unterkünfte in de Region.',
+            'En starke Seitenstruktur löst genau des: Sie macht Vorteile klarer, nimmt Unsicherheit raus un führt Besucher Schritt fer Schritt zur direkten Kontaktaufnahme.',
           ],
         },
         {
           title: 'Mehrsprachigkeit, Aafroochprozess un Technik',
           paragraphs: [
-            'Grad in touristische Regionen is Mehrsprachigkeit en direkter Hebel. Deitsche un englische Inhalte koenne von Anfang aa sauber mitgeplant werre, damit internationale Geste dei Angebot schnell verstehe.',
-            'Technisch gehoere schnelle Ladezeit, klare Seitentitel fer Suchmaschine, e guude Darstellung uff em Handy un en wartbare Struktur dazu. So bleiwe Saison-Aenderunge, Preisupdates oder lokale Tipps jederzeit einfach pflegbar.',
+            'Grad in touristische Regionen is Mehrsprachigkeit en direkter Hebel. Deitsche un englische Inhalte könne von Anfang aa sauber mitgeplant werre, damit internationale Geste dei Angebot schnell verstehe.',
+            'Technisch gehöre schnelle Ladezeit, klare Seitentitel fer Suchmaschine, e guude Darstellung uff em Handy un en wartbare Struktur dazu. So bleiwe Saison-Änderunge, Preisupdates oder lokale Tipps jederzeit einfach pflegbar.',
           ],
         },
       ],
@@ -230,7 +230,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
         {
           question: 'Kann isch Buchungsplattforme parallel weiter nutze?',
           answer:
-            'Ajo. Ziel is net, die Plattforme sofort zu ersetze, sondern zusaetzlich en staerkere Direktkanal uffzubaue.',
+            'Ajo. Ziel is net, die Plattforme sofort zu ersetze, sondern zusätzlich en stärkere Direktkanal uffzubaue.',
         },
         {
           question: 'Hilfsch du aa bei Text un Seitenstruktur?',
@@ -238,12 +238,12 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
             'Ajo. Isch helf bei Aufbau, Priorisierung un Formulierunge, damit Geste dei Angebot schnell verstehe un Vertraue fasse.',
         },
         {
-          question: 'Is e mehrsprachige Version moeglich?',
+          question: 'Is e mehrsprachige Version möglich?',
           answer:
-            'Ajo. Deitsch un Englisch koenne direkt vun Anfang aa sauber mitgedenkt un aufgebaut werre.',
+            'Ajo. Deitsch un Englisch könne direkt vun Anfang aa sauber mitgedenkt un aufgebaut werre.',
         },
         {
-          question: 'Kann isch Inhalte spaeter selbst aktualisiere?',
+          question: 'Kann isch Inhalte später selbst aktualisiere?',
           answer:
             'Ajo. Preise, Saisonzeite, Ausstattungsdetails oder lokale Tipps kannsch jederzeit aapasse.',
         },

@@ -5,6 +5,7 @@ import type { NavItem } from '@/components/home/types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations } from 'next-intl/server';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 
@@ -55,8 +56,13 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal' });
   const navT = await getTranslations({ locale, namespace: 'navigation' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
   const basePath = locale === 'de' ? '' : `/${locale}`;
+  const footerWhatsAppHref = buildWhatsAppHref(
+    siteConfig.contact.whatsAppDisplay,
+    commonT('home.contact.whatsAppMessage')
+  );
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
     { label: navT('about'), href: `${basePath}/leistungen` },
@@ -108,19 +114,30 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                 <p className="mt-3">
                   E-Mail:{' '}
                   <a
-                    href="mailto:kontakt@pfalz-development.de"
+                    href={`mailto:${siteConfig.contact.email}`}
                     className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                   >
-                    kontakt@pfalz-development.de
+                    {siteConfig.contact.email}
                   </a>
                 </p>
                 <p className="mt-2">
                   {t('imprint.phoneLabel')}:{' '}
                   <a
-                    href="tel:+4963211876643"
+                    href={`tel:${siteConfig.contact.phoneHref}`}
                     className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                   >
-                    06321 1876643
+                    {siteConfig.contact.phoneDisplay}
+                  </a>
+                </p>
+                <p className="mt-2">
+                  {t('imprint.whatsAppLabel')}:{' '}
+                  <a
+                    href={footerWhatsAppHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-medium text-amber-700 hover:underline dark:text-amber-300"
+                  >
+                    {siteConfig.contact.whatsAppDisplay}
                   </a>
                 </p>
               </RevealOnScroll>
@@ -177,6 +194,8 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
         note={t('footerNote')}
         imprintLabel={t('imprint.title')}
         privacyLabel={t('privacy.title')}
+        whatsAppLabel={t('footerWhatsAppCta')}
+        whatsAppHref={footerWhatsAppHref}
         imprintHref={`${basePath}/impressum`}
         privacyHref={`${basePath}/datenschutz`}
       />

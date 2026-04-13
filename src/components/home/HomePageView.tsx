@@ -38,6 +38,7 @@ export function HomePageView({ data }: HomePageViewProps) {
           subheadline={data.hero.subheadline}
           primaryCta={data.hero.primaryCta}
           secondaryCta={data.hero.secondaryCta}
+          secondaryCtaHref={data.hero.secondaryCtaHref}
           trustTitle={data.hero.trustTitle}
           trustItems={data.hero.trustItems}
         />
@@ -67,6 +68,7 @@ export function HomePageView({ data }: HomePageViewProps) {
         <HomePackagesSection
           title={data.packages.title}
           note={data.packages.note}
+          supportNote={data.packages.supportNote}
           detailsCta={data.packages.detailsCta}
           modalIncludesTitle={data.packages.modalIncludesTitle}
           items={data.packages.items}
@@ -77,7 +79,9 @@ export function HomePageView({ data }: HomePageViewProps) {
           description={data.contact.description}
           primaryCta={data.contact.primaryCta}
           secondaryCta={data.contact.secondaryCta}
+          tertiaryCta={data.contact.tertiaryCta}
           openFormLabel={data.contact.openFormLabel}
+          whatsAppMessage={data.contact.whatsAppMessage}
           privacyHref={data.contact.privacyHref}
           form={data.contact.form}
           details={data.contact.details}
@@ -91,6 +95,8 @@ export function HomePageView({ data }: HomePageViewProps) {
           note={data.footer.note}
           imprintLabel={data.footer.imprintLabel}
           privacyLabel={data.footer.privacyLabel}
+          whatsAppLabel={data.footer.whatsAppLabel}
+          whatsAppHref={data.footer.whatsAppHref}
           imprintHref={data.footer.imprintHref}
           privacyHref={data.footer.privacyHref}
         />

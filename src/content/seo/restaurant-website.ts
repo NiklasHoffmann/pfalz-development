@@ -87,8 +87,8 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
 
       related: {
         label: 'Passende Seite',
-        pageLabel: 'Website für Winzer, Weingüter und Sektgüter',
-        href: '/branchen/weingut-sektgut-website',
+        pageLabel: 'Webdesign in der Pfalz für Unternehmen',
+        href: '/leistungen/webdesign-pfalz',
       },
 
       backToHome: 'Zur Startseite',
@@ -172,9 +172,8 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
 
       related: {
         label: 'Related page',
-        pageLabel:
-          'Website for Winegrowers, Wineries, and Sparkling Wine Estates',
-        href: '/branchen/weingut-sektgut-website',
+        pageLabel: 'Web Design in the Palatinate for Businesses',
+        href: '/leistungen/webdesign-pfalz',
       },
 
       backToHome: 'Back to homepage',
@@ -189,39 +188,39 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Website fer Restaurants in de Palz | Pfalz Development',
       description:
-        'Website fer Restaurants in de Palz: Speisekard, Oeffnungszeiten un Reservierungsweg klar zeige un meh direkte Gaste-Aafrooche kriege.',
+        'Website fer Restaurants in de Palz: Speisekard, Öffnungszeiten un Reservierungsweg klar zeige un meh direkte Gaste-Aafrooche kriege.',
       h1: 'Websites fer Restaurants in de Palz, die Aafrooche foerdere',
-      eyebrow: 'Branche-Loesung',
+      eyebrow: 'Branche-Lösung',
       intro:
-        'Im Restaurant entscheidet oft in paar Sekunne, ob en Besucher bleibt oder geht. Wenn Speisekard, Oeffnungszeiten, Kontakt un Reservierung net sofort zu finne sinn, geht Potenzial verlore. Die Loesung fuehrt Geste klar un macht direkte Aafrooche planbarer, un isch setz des komplett um.',
+        'Im Restaurant entscheidet oft in paar Sekunne, ob en Besucher bleibt oder geht. Wenn Speisekard, Öffnungszeiten, Kontakt un Reservierung net sofort zu finne sinn, geht Potenzial verlore. Die Lösung führt Geste klar un macht direkte Aafrooche planbarer, un isch setz des komplett um.',
 
       sections: [
         {
-          title: 'Was Restaurant-Websites heit leischde muesse',
+          title: 'Was Restaurant-Websites heit leischde müsse',
           paragraphs: [
             'Geste suche schnell no de wichtigste Infos: Angebot, Zeite, Lage un Kontakt. En guude Seid liefert genau des ohne Umweg un laaft mobil sauber.',
-            'Mit klarer Struktur, guut lesbarem Inhalt un sichtbarem naechschde Schritt wird aus em Website-Besuch eher en Reservierung odder Aafrooch.',
+            'Mit klarer Struktur, guut lesbarem Inhalt un sichtbarem nächschde Schritt wird aus em Website-Besuch eher en Reservierung odder Aafrooch.',
           ],
         },
         {
-          title: 'Welche Inhalte fuer Geste wirklich wichtig sinn',
+          title: 'Welche Inhalte fer Geste wirklich wichtig sinn',
           paragraphs: [
-            'Wichtig sinn e uebersichtliche Speisekard, aktuelle Oeffnungszeiten, klare Kontaktmoeglichkeite un en einfacher Reservierungsweg. Dazu helfe Vertrauenselemente wie Stimmung, Team un Highlights.',
+            'Wichtig sinn e übersichtliche Speisekard, aktuelle Öffnungszeiten, klare Kontaktmöglichkeiten un en einfacher Reservierungsweg. Dazu helfe Vertrauenselemente wie Stimmung, Team un Highlights.',
             'Wenn des sauber priorisiert is, steigt die Nutzerfreundlichkeit un meist aa die Zahl an direkte Aafrooche.',
           ],
         },
         {
-          title: 'Typische Schwaeche bei Gastro-Seide',
+          title: 'Typische Schwäche bei Gastro-Seide',
           paragraphs: [
-            'Haeufig sinn Inhalte veraltet, PDF-Karde schwer lesbar oder Kontaktdaten uff mehrere Seide verteilt. Grad mobil sorgt des fer unnötige Reibung.',
-            'En klarer Neuaufbau nimmt die Bruech raus un macht aus de Website en staerkeres Werkzeug fer Sichtbarkeit un Aafrooche.',
+            'Häufig sinn Inhalte veraltet, PDF-Karde schwer lesbar oder Kontaktdaten uff mehrere Seide verteilt. Grad mobil sorgt des fer unnötige Reibung.',
+            'En klarer Neuaufbau nimmt die Brüch raus un macht aus de Website en stärkeres Werkzeug fer Sichtbarkeit un Aafrooche.',
           ],
         },
         {
           title: 'Technik un laufende Pflege',
           paragraphs: [
-            'Mit schneller Ladezeit, sauberer Struktur un wartbarer Basis bleibt die Seid flexibel. Saisonale Menues, Events oder geaenderte Zeite kannsch schnell aktualisiere.',
-            'So bleibt dei Auftritt verlaesslich aktuell un hilft im Alldach.',
+            'Mit schneller Ladezeit, sauberer Struktur un wartbarer Basis bleibt die Seid flexibel. Saisonale Menüs, Events oder geänderte Zeite kannsch schnell aktualisiere.',
+            'So bleibt dei Auftritt verlässlich aktuell un hilft im Alldach.',
           ],
         },
       ],
@@ -232,23 +231,23 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
           question:
             'Kann die Website uff Reservierungsaafrooche optimiert werre?',
           answer:
-            'Ajo. Kontakt- un Reservierungswege werre so gebaut, dass Geste schnell un klar aafrooche koenne.',
+            'Ajo. Kontakt- un Reservierungswege werre so gebaut, dass Geste schnell un klar aafrooche könne.',
         },
         {
           question:
-            'Kann isch Speisekard un Oeffnungszeiten selbst aktualisiere?',
+            'Kann isch Speisekard un Öffnungszeiten selbst aktualisiere?',
           answer:
-            'Ajo. Menues, Akschione un Oeffnungszeiten kannsch einfach pflege.',
+            'Ajo. Menüs, Akschione un Öffnungszeiten kannsch einfach pflege.',
         },
         {
-          question: 'Is e englischi Version moeglich?',
+          question: 'Is e englischi Version möglich?',
           answer:
             'Ajo. Deitsch un Englisch kann von Anfang aa mitgeplant werre.',
         },
         {
           question: 'Gibts Betreuung noch em Launch?',
           answer:
-            'Ajo. Hosting, Pflege un technische Weiterentwicklung sinn moeglich.',
+            'Ajo. Hosting, Pflege un technische Weiterentwicklung sinn möglich.',
         },
       ],
 
@@ -261,8 +260,8 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
 
       related: {
         label: 'Passende Seid',
-        pageLabel: 'Website fer Winzer, Woigieder un Sekdgieder',
-        href: '/branchen/weingut-sektgut-website',
+        pageLabel: 'Webdesign in de Palz fer Betriewe',
+        href: '/leistungen/webdesign-pfalz',
       },
 
       backToHome: 'Zrick zur Schtardtseid',

@@ -8,6 +8,7 @@ import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 interface LeistungenPageProps {
@@ -29,6 +30,7 @@ type LeistungenPageCopy = {
     entry: string;
     problems: string;
     solutions: string;
+    regions: string;
     proof: string;
   };
   entryTitle: string;
@@ -41,6 +43,8 @@ type LeistungenPageCopy = {
   }>;
   problemTitle: string;
   problemIntro: string;
+  problemNextText: string;
+  problemNextLabel: string;
   problems: Array<{
     title: string;
     description: string;
@@ -49,6 +53,16 @@ type LeistungenPageCopy = {
   solutionIntro: string;
   processTitle: string;
   processSteps: string[];
+  regionsTitle: string;
+  regionsIntro: string;
+  regionsOverviewLabel: string;
+  regionsOverviewHref: string;
+  regionsCards: Array<{
+    title: string;
+    description: string;
+    href: string;
+  }>;
+  regionsCta: string;
   proofTitle: string;
   proofIntro: string;
   proofOutcomeLabel: string;
@@ -111,6 +125,7 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
         entry: 'Entry',
         problems: 'Typical Challenges',
         solutions: 'Service Modules',
+        regions: 'Locations',
         proof: 'Proof and Process',
       },
       entryTitle: 'Choose the starting point that fits your current situation',
@@ -136,6 +151,9 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
         'Typical website challenges before relaunch or optimization',
       problemIntro:
         'Most projects start with one of these blockers. I resolve them systematically in the implementation.',
+      problemNextText:
+        'If you recognize your situation here, the next step is the matching service module below. That section shows which setup fits your bottleneck best.',
+      problemNextLabel: 'Go to service modules',
       problems: [
         {
           title: 'Visitors do not understand the offer fast enough',
@@ -163,6 +181,32 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
         'Implementation with performance and SEO basics',
         'Launch and measurable optimization',
       ],
+      regionsTitle: 'Regional entry points for Neustadt, Landau, and Speyer',
+      regionsIntro:
+        'If local context matters for your business, you can also enter through the dedicated regional pages. They all lead into the same core service, but with different positioning: Neustadt is more regional and hospitality-adjacent, Landau more modern and mobile-first, and Speyer more trust- and credibility-driven.',
+      regionsOverviewLabel: 'View all local pages',
+      regionsOverviewHref: '/orte',
+      regionsCards: [
+        {
+          title: 'Web Design Neustadt an der Weinstrasse',
+          description:
+            'For businesses around Neustadt and the Weinstrasse that need stronger regional trust and clearer positioning.',
+          href: '/orte/webdesign-neustadt',
+        },
+        {
+          title: 'Web Design Landau in der Pfalz',
+          description:
+            'For businesses in Landau that need a more modern outward presence and clearer mobile-first communication.',
+          href: '/orte/webdesign-landau',
+        },
+        {
+          title: 'Web Design Speyer',
+          description:
+            'For businesses in Speyer that need a more professional, trustworthy presence and a clearer path to qualified inquiries.',
+          href: '/orte/webdesign-speyer',
+        },
+      ],
+      regionsCta: 'Open local page',
       proofTitle: 'Proof and implementation standards',
       proofIntro:
         'Besides design and copy, you get a process that is transparent, measurable, and easy to iterate.',
@@ -215,11 +259,12 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       navTitle: 'Leischdunge',
       nav: {
         entry: 'Einstieg',
-        problems: 'Haeufige Probleme',
+        problems: 'Häufige Probleme',
         solutions: 'Leischdungs-Module',
-        proof: 'Ablauf un Qualitaet',
+        regions: 'Regione',
+        proof: 'Ablauf un Qualität',
       },
-      entryTitle: 'Waehle de Einstieg, der grad zu deim Betrieb passt',
+      entryTitle: 'Wähle de Einstieg, der grad zu deim Betrieb passt',
       entryText:
         'So kummersch schnell zu de Bausteine, die wirklich gebraucht werre.',
       entries: [
@@ -240,7 +285,10 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       ],
       problemTitle: 'Typische Ausgangslage vor Relaunch oder Optimierung',
       problemIntro:
-        'Meist start ich mit genau dene Stolpersteine un loes sie Schritt fer Schritt.',
+        'Meist start ich mit genau dene Stolpersteine un lös sie Schritt fer Schritt.',
+      problemNextText:
+        'Wenn de dich do widderfinnsch, geh als neggschdes direkt zu de passende Leischdungs-Module. Dort siehsch, welcher Ansatz am beschde zu deim Engpass passt.',
+      problemNextLabel: 'Zu de Leischdungs-Module',
       problems: [
         {
           title: 'Angebot wird net schnell genug verstanden',
@@ -248,14 +296,14 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
             'Botschaft un Struktur sinn net klar, deshalb springe Besucher frieh ab.',
         },
         {
-          title: 'Mobil is der Weg zu umstaendlich',
+          title: 'Mobil is der Weg zu umständlich',
           description:
             'Navigation, Lesbarkeit un Kontaktweg passe net zum echten Handy-Verhalte.',
         },
         {
           title: 'Zu wenisch Vertrauen bis zur Anfrage',
           description:
-            'Fehlende Nachweise un schwache CTA-Struktur druecke die Anfrage-Qualitaet.',
+            'Fehlende Nachweise un schwache CTA-Struktur drücke die Anfrage-Qualität.',
         },
       ],
       solutionTitle: 'Leischdungs-Module passend zu deim Engpass',
@@ -264,18 +312,44 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       processTitle: 'So laaft die Zammeaarwet',
       processSteps: [
         'Zielgruppe un Angebot klar aufstelle',
-        'Seidestruktur un Botschaft sauber fuehre',
+        'Seidestruktur un Botschaft sauber führe',
         'Umsetzung mit schneller Technik un Google-Grundlage',
         'Go-live un messbar weiter verbessere',
       ],
-      proofTitle: 'Qualitaets- un Umsetzungsstandard',
+      regionsTitle: 'Regionale Einstiege fer Neustadt, Landau un Speyer',
+      regionsIntro:
+        'Wenn der lokale Bezug fer dein Betrieb wichtig is, kannsch aa iwwer die regionale Einstiegsseite reingehe. Sie führe all ins gleiche Kernangebot, setze awer unterschiedliche Schwerpunkte: Neustadt eher regional un gastgebernah, Landau moderner un mobiler un Speyer stärker uff Vertrauen un Seriosität ausgericht.',
+      regionsOverviewLabel: 'Alle regionale Seide aa gugge',
+      regionsOverviewHref: '/orte',
+      regionsCards: [
+        {
+          title: 'Webdesign Neustadt an de Weischdroß',
+          description:
+            'Fer Betriewe rund um Neustadt un die Weischdroß, die meh regionales Vertraue un en klarere Positionierung brauche.',
+          href: '/orte/webdesign-neustadt',
+        },
+        {
+          title: 'Webdesign Landau in de Palz',
+          description:
+            'Fer Betriewe in Landau, die moderner wirke un mobil schneller verstanden werre müsse.',
+          href: '/orte/webdesign-landau',
+        },
+        {
+          title: 'Webdesign Speyer',
+          description:
+            'Fer Betriewe in Speyer, die professioneller, vertrauenswürdiger un klarer online wirke wolle.',
+          href: '/orte/webdesign-speyer',
+        },
+      ],
+      regionsCta: 'Regionale Seid uffmache',
+      proofTitle: 'Qualitäts- un Umsetzungsstandard',
       proofIntro:
         'Du kriegsch net nur Design, sondern en klar steuerbare Ablauf mit messbarem Ergebnis.',
       proofOutcomeLabel: 'Ergebnis',
       proofPoints: [
-        'Klare Prioritaete bevor die Umsetzung startet',
+        'Klare Prioritäten bevor die Umsetzung startet',
         'Schnelle Seide-Bausteine mit moderner Technik-Basis',
-        'Conversion-orientierter Aufbau ueber alle Kernseiten',
+        'Conversion-orientierter Aufbau über alle Kernseiten',
         'Kontrolle nach em Start plus geplanter Ausbau',
       ],
       cards: [
@@ -304,7 +378,7 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       cta: 'Leischdungsseid uffmache',
       finalTitle: 'Bereit fer die passende Aufstellung?',
       finalText:
-        'In eme kurze Gespaerch klaer ich de richtige Modul-Mix un geh direkt in die Umsetzung.',
+        'In eme kurze Gespräch klär ich de richtige Modul-Mix un geh direkt in die Umsetzung.',
       finalPrimaryLabel: 'Berodung aafohre',
       finalSecondaryLabel: 'Branche-Seide aa gugge',
     };
@@ -321,7 +395,8 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       entry: 'Einstieg',
       problems: 'Typische Probleme',
       solutions: 'Leistungsmodule',
-      proof: 'Beweis und Ablauf',
+      regions: 'Regionen',
+      proof: 'Qualität und Ablauf',
     },
     entryTitle: 'Wähle den Einstieg, der zu deiner aktuellen Lage passt',
     entryText:
@@ -345,6 +420,9 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
     problemTitle: 'Typische Herausforderungen vor Relaunch oder Optimierung',
     problemIntro:
       'In den meisten Projekten sehe ich ähnliche Engpässe. Die Struktur unten zeigt, wie ich sie auflöse.',
+    problemNextText:
+      'Wenn du dich hier wiederfindest, geh als Nächstes direkt zu den passenden Leistungsmodulen. Dort siehst du, welcher Ansatz am besten zu deinem Engpass passt.',
+    problemNextLabel: 'Zu den Leistungsmodulen',
     problems: [
       {
         title: 'Das Angebot wird nicht schnell genug verstanden',
@@ -372,7 +450,33 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       'Technische Umsetzung: schnell, stabil und Google-freundlich',
       'Go-live und messbare Weiterentwicklung',
     ],
-    proofTitle: 'Beweisbare Qualität in Umsetzung und Ablauf',
+    regionsTitle: 'Regionale Einstiege für Neustadt, Landau und Speyer',
+    regionsIntro:
+      'Wenn für deinen Betrieb der Ortsbezug wichtig ist, kannst du zusätzlich über die regionalen Einstiegsseiten einsteigen. Sie führen alle ins gleiche Kernangebot, setzen aber unterschiedliche Schwerpunkte: Neustadt stärker regional und gastgebernah, Landau moderner und mobiler, Speyer stärker auf Vertrauen und Seriosität ausgerichtet.',
+    regionsOverviewLabel: 'Alle Ortsseiten ansehen',
+    regionsOverviewHref: '/orte',
+    regionsCards: [
+      {
+        title: 'Webdesign Neustadt an der Weinstraße',
+        description:
+          'Für Unternehmen rund um Neustadt und die Weinstraße, die regional mehr Vertrauen und eine klarere Positionierung brauchen.',
+        href: '/orte/webdesign-neustadt',
+      },
+      {
+        title: 'Webdesign Landau in der Pfalz',
+        description:
+          'Für Unternehmen in Landau, die moderner auftreten und mobil schneller verstanden werden möchten.',
+        href: '/orte/webdesign-landau',
+      },
+      {
+        title: 'Webdesign Speyer',
+        description:
+          'Für Unternehmen in Speyer, die professioneller, vertrauenswürdiger und klarer online wirken möchten.',
+        href: '/orte/webdesign-speyer',
+      },
+    ],
+    regionsCta: 'Ortsseite öffnen',
+    proofTitle: 'Nachvollziehbare Qualität in Umsetzung und Ablauf',
     proofIntro:
       'Neben Design und Text bekommst du einen klaren Prozess mit messbarer Priorisierung und sauberer Weiterentwicklung.',
     proofOutcomeLabel: 'Ergebnis',
@@ -400,7 +504,7 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       {
         title: 'Website Wartung und Ausbau',
         description:
-          'Laufende Pflege, technische Betreuung und gezielte Optimierung nach dem Launch, damit deine Seite dauerhaft wirkt.',
+          'Laufende Pflege, technische Betreuung und gezielte Optimierung nach dem Launch, damit deine Website dauerhaft wirksam bleibt.',
         href: '/leistungen/website-wartung',
         badge: 'Leistung',
       },
@@ -441,6 +545,11 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
 
   const navT = await getTranslations({ locale, namespace: 'navigation' });
   const legalT = await getTranslations({ locale, namespace: 'legal' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
+  const footerWhatsAppHref = buildWhatsAppHref(
+    siteConfig.contact.whatsAppDisplay,
+    commonT('home.contact.whatsAppMessage')
+  );
   const copy = getLeistungenCopy(locale);
 
   const basePath = locale === 'de' ? '' : `/${locale}`;
@@ -466,6 +575,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
     { href: '#probleme', label: copy.nav.problems },
     { href: '#loesungen', label: copy.nav.solutions },
     { href: '#beweis', label: copy.nav.proof },
+    { href: '#regionen', label: copy.nav.regions },
   ];
 
   return (
@@ -589,6 +699,18 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
                   </RevealOnScroll>
                 ))}
               </ol>
+              <div className="mt-8 max-w-4xl rounded-[1.35rem] border border-amber-200/80 bg-amber-50/80 p-5 dark:border-amber-300/25 dark:bg-amber-950/20 sm:p-6">
+                <p className="text-sm leading-7 text-stone-800 dark:text-stone-100 sm:text-base">
+                  {copy.problemNextText}
+                </p>
+                <a
+                  href="#loesungen"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
+                >
+                  {copy.problemNextLabel}
+                  <span aria-hidden="true">-&gt;</span>
+                </a>
+              </div>
             </RevealOnScroll>
 
             <RevealOnScroll
@@ -603,7 +725,7 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
               <p className="mt-3 max-w-4xl text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
                 {copy.solutionIntro}
               </p>
-              <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div className="card-grid-balance-md-xl mt-5 grid gap-4 [--card-grid-gap:1rem] md:grid-cols-2 xl:grid-cols-3">
                 {copy.cards.map((card, index) => (
                   <RevealOnScroll
                     as="article"
@@ -684,6 +806,58 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
 
             <RevealOnScroll
               as="section"
+              id="regionen"
+              delayMs={185}
+              className="mt-20 scroll-mt-28 border-t border-stone-200/70 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
+            >
+              <div className="bg-white/82 rounded-[1.75rem] border border-stone-200/80 p-6 dark:border-stone-700/75 dark:bg-stone-900/45 sm:p-8">
+                <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                  <div className="max-w-4xl">
+                    <h2 className="text-2xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-3xl">
+                      {copy.regionsTitle}
+                    </h2>
+                    <p className="mt-3 text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
+                      {copy.regionsIntro}
+                    </p>
+                  </div>
+                  <a
+                    href={`${basePath}${copy.regionsOverviewHref}`}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
+                  >
+                    {copy.regionsOverviewLabel}
+                    <span aria-hidden="true">-&gt;</span>
+                  </a>
+                </div>
+
+                <div className="card-grid-balance-md-xl mt-6 grid gap-4 [--card-grid-gap:1rem] md:grid-cols-2 xl:grid-cols-3">
+                  {copy.regionsCards.map((region, index) => (
+                    <RevealOnScroll
+                      as="article"
+                      key={region.href}
+                      delayMs={205 + index * 50}
+                      className="flex h-full flex-col rounded-[1.25rem] border border-stone-200/90 bg-stone-50/95 p-5 shadow-[0_12px_26px_rgba(28,25,23,0.05)] dark:border-stone-700 dark:bg-stone-800/65"
+                    >
+                      <h3 className="text-lg font-bold text-stone-950 dark:text-stone-50">
+                        {region.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">
+                        {region.description}
+                      </p>
+                      <a
+                        href={`${basePath}${region.href}`}
+                        className="mt-auto inline-flex items-center gap-1.5 self-end pt-4 text-sm font-semibold text-amber-800 transition hover:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
+                      >
+                        {copy.regionsCta}
+                        <span aria-hidden="true">-&gt;</span>
+                      </a>
+                    </RevealOnScroll>
+                  ))}
+                </div>
+              </div>
+            </RevealOnScroll>
+
+            <RevealOnScroll
+              as="section"
               delayMs={200}
               className="mt-20 border-t border-stone-200/70 pb-4 pt-14 dark:border-stone-700/70 sm:mt-24 sm:pt-16"
             >
@@ -716,6 +890,8 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
         note={legalT('footerNote')}
         imprintLabel={legalT('imprint.title')}
         privacyLabel={legalT('privacy.title')}
+        whatsAppLabel={legalT('footerWhatsAppCta')}
+        whatsAppHref={footerWhatsAppHref}
         imprintHref={`${basePath}/impressum`}
         privacyHref={`${basePath}/datenschutz`}
       />

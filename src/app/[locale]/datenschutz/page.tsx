@@ -5,6 +5,7 @@ import type { NavItem } from '@/components/home/types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/locale-ui';
+import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations } from 'next-intl/server';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 
@@ -55,8 +56,13 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal' });
   const navT = await getTranslations({ locale, namespace: 'navigation' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
   const basePath = locale === 'de' ? '' : `/${locale}`;
+  const footerWhatsAppHref = buildWhatsAppHref(
+    siteConfig.contact.whatsAppDisplay,
+    commonT('home.contact.whatsAppMessage')
+  );
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
     { label: navT('about'), href: `${basePath}/leistungen` },
@@ -228,6 +234,8 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
         note={t('footerNote')}
         imprintLabel={t('imprint.title')}
         privacyLabel={t('privacy.title')}
+        whatsAppLabel={t('footerWhatsAppCta')}
+        whatsAppHref={footerWhatsAppHref}
         imprintHref={`${basePath}/impressum`}
         privacyHref={`${basePath}/datenschutz`}
       />

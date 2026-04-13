@@ -41,7 +41,7 @@ export function HomeIntroductionSection({
         </div>
 
         <ul
-          className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2 xl:grid-cols-3"
+          className="card-grid-balance-md-xl mx-auto mt-12 grid max-w-5xl gap-4 [--card-grid-gap:1rem] md:grid-cols-2 xl:grid-cols-3"
           aria-label={title}
         >
           {points.map((point, index) => (
