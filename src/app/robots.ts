@@ -6,7 +6,18 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/'],
+      disallow: [
+        '/api/',
+        '/admin/',
+        '/projekt/',
+        '/fragebogen/',
+        '/en/admin/',
+        '/en/projekt/',
+        '/en/fragebogen/',
+        '/pfl/admin/',
+        '/pfl/projekt/',
+        '/pfl/fragebogen/',
+      ],
     },
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };

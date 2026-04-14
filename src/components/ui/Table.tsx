@@ -15,6 +15,7 @@ export interface TableProps<T> {
   data: T[];
   columns: Column<T>[];
   onRowClick?: (row: T) => void;
+  rowClassName?: (row: T) => string | undefined;
   isLoading?: boolean;
   emptyMessage?: string;
   className?: string;
@@ -24,6 +25,7 @@ export default function Table<T extends Record<string, unknown>>({
   data,
   columns,
   onRowClick,
+  rowClassName,
   isLoading,
   emptyMessage = 'No data available',
   className,
@@ -38,58 +40,66 @@ export default function Table<T extends Record<string, unknown>>({
 
   if (data.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12 text-gray-500 dark:text-gray-400">
+      <div className="flex min-h-[12rem] items-center justify-center rounded-[1.75rem] border border-dashed border-stone-300 bg-stone-50 px-6 py-12 text-center text-sm text-stone-500 dark:border-stone-700 dark:bg-stone-950/40 dark:text-stone-400">
         {emptyMessage}
       </div>
     );
   }
 
   return (
-    <div className={cn('overflow-x-auto', className)}>
-      <table className="w-full border-collapse text-left text-sm">
-        <thead className="border-b border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
-          <tr>
-            {columns.map((column) => (
-              <th
-                key={String(column.key)}
-                className={cn(
-                  'px-4 py-3 font-medium text-gray-900 dark:text-white',
-                  column.className
-                )}
-              >
-                {column.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-          {data.map((row, index) => (
-            <tr
-              key={index}
-              onClick={() => onRowClick?.(row)}
-              className={cn(
-                'transition-colors',
-                onRowClick &&
-                  'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800'
-              )}
-            >
+    <div
+      className={cn(
+        'overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-950/40',
+        className
+      )}
+    >
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse text-left text-sm">
+          <thead className="sticky top-0 z-10 border-b border-stone-200 bg-stone-100/95 backdrop-blur dark:border-stone-800 dark:bg-stone-900/95">
+            <tr>
               {columns.map((column) => (
-                <td
+                <th
                   key={String(column.key)}
                   className={cn(
-                    'px-4 py-3 text-gray-700 dark:text-gray-300',
+                    'whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400',
                     column.className
                   )}
                 >
-                  {column.render
-                    ? column.render(row)
-                    : String(row[column.key] ?? '')}
-                </td>
+                  {column.label}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-stone-200 dark:divide-stone-800">
+            {data.map((row, index) => (
+              <tr
+                key={String(row.id ?? index)}
+                onClick={() => onRowClick?.(row)}
+                className={cn(
+                  'transition-colors odd:bg-white even:bg-stone-50/55 dark:odd:bg-transparent dark:even:bg-stone-900/35',
+                  onRowClick &&
+                    'cursor-pointer hover:bg-stone-100 dark:hover:bg-stone-900',
+                  rowClassName?.(row)
+                )}
+              >
+                {columns.map((column) => (
+                  <td
+                    key={String(column.key)}
+                    className={cn(
+                      'px-4 py-3.5 align-top text-sm leading-6 text-stone-700 dark:text-stone-200',
+                      column.className
+                    )}
+                  >
+                    {column.render
+                      ? column.render(row)
+                      : String(row[column.key] ?? '')}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

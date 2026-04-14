@@ -1,4 +1,5 @@
 import { FilterQuery } from 'mongoose';
+import { escapeRegex } from './utils';
 
 export type FilterOperator =
   | 'eq'
@@ -135,7 +136,7 @@ export class QueryFilterBuilder<T> {
           break;
         case 'regex':
           query[field] = {
-            $regex: value,
+            $regex: typeof value === 'string' ? escapeRegex(value) : value,
             $options: 'i',
           };
           break;

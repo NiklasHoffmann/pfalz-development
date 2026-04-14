@@ -34,17 +34,17 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           ref={ref}
           value={value}
           className={cn(
-            'block w-full rounded-lg border border-gray-300 bg-gray-50 py-2 pl-10 pr-10 text-sm text-gray-900',
-            'focus:border-blue-500 focus:ring-blue-500',
-            'dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400',
-            'dark:focus:border-blue-500 dark:focus:ring-blue-500',
+            'block w-full rounded-2xl border border-stone-300 bg-stone-50 py-3 pl-10 pr-10 text-sm text-stone-900 shadow-sm transition',
+            'placeholder:text-stone-400 focus:border-stone-950 focus:bg-white focus:outline-none',
+            'dark:border-stone-700 dark:bg-stone-950/70 dark:text-stone-50 dark:placeholder:text-stone-500',
+            'dark:focus:border-stone-100 dark:focus:bg-stone-900',
             className
           )}
           {...props}
         />
         {isLoading && (
           <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-stone-500 border-t-transparent dark:border-stone-300"></div>
           </div>
         )}
         {showClearButton && !isLoading && onClear && (

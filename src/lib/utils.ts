@@ -43,3 +43,10 @@ export function randomString(length: number = 10): string {
     .toString(36)
     .substring(2, length + 2);
 }
+
+/**
+ * Escape user input before using it in a RegExp search.
+ */
+export function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}

@@ -40,6 +40,18 @@ const envSchema = z
     SMTP_FROM_EMAIL: z.string().email().optional(),
     CONTACT_FROM_EMAIL: z.string().email().optional(),
     CONTACT_TO_EMAIL: z.string().email().optional(),
+
+    // Intake system
+    INTAKE_UPLOAD_DIR: z.string().default('storage/intake'),
+    INTAKE_SESSION_SECRET: z.string().min(32).optional(),
+    INTAKE_SHARE_LINK_SECRET: z.string().min(32).optional(),
+    INTAKE_SESSION_DURATION_HOURS: z.string().transform(Number).default('168'),
+
+    // Staff admin auth
+    ADMIN_API_KEY: z.string().min(24).optional(),
+    ADMIN_ALLOWED_IPS: z.string().optional(),
+    ADMIN_SESSION_SECRET: z.string().min(32).optional(),
+    ADMIN_SESSION_DURATION_HOURS: z.string().transform(Number).default('12'),
   })
   .superRefine((value, ctx) => {
     const hasTurnstileSiteKey = Boolean(
@@ -57,6 +69,42 @@ const envSchema = z
         'NEXT_PUBLIC_TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY must either both be set or both be omitted.',
       path: ['NEXT_PUBLIC_TURNSTILE_SITE_KEY'],
     });
+
+    if (
+      value.NODE_ENV === 'production' &&
+      !value.INTAKE_SESSION_SECRET?.trim()
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          'INTAKE_SESSION_SECRET must be set in production for signed intake sessions.',
+        path: ['INTAKE_SESSION_SECRET'],
+      });
+    }
+
+    if (
+      value.NODE_ENV === 'production' &&
+      !value.INTAKE_SHARE_LINK_SECRET?.trim()
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          'INTAKE_SHARE_LINK_SECRET must be set in production for signed access-link share URLs.',
+        path: ['INTAKE_SHARE_LINK_SECRET'],
+      });
+    }
+
+    if (
+      value.NODE_ENV === 'production' &&
+      !value.ADMIN_SESSION_SECRET?.trim()
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          'ADMIN_SESSION_SECRET must be set in production for signed staff admin sessions.',
+        path: ['ADMIN_SESSION_SECRET'],
+      });
+    }
   });
 
 // Validate environment variables

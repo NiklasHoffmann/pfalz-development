@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { HomeMobileDock } from '@/components/home/HomeMobileDock';
+import { isInternalIntakePath } from '@/lib/intake/path';
 import {
   getDockLogicalPath,
   getMobileDockItems,
@@ -15,7 +16,11 @@ interface LocaleMobileDockProps {
 }
 
 function shouldHideMobileDock(pathname: string): boolean {
-  return pathname === '/impressum' || pathname === '/datenschutz';
+  return (
+    pathname === '/impressum' ||
+    pathname === '/datenschutz' ||
+    isInternalIntakePath(pathname)
+  );
 }
 
 export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
@@ -25,9 +30,6 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
   const logicalPathname = getDockLogicalPath(pathname);
   const items = getMobileDockItems(locale, getNavigationLabels(locale));
   const homeItemHref = items.find((item) => !item.href.includes('#'))?.href;
-  const whatsAppItemHref = items.find((item) =>
-    item.href.startsWith('https://wa.me/')
-  )?.href;
   const resolvedActiveHrefOverride =
     logicalPathname === '/' ? (activeHrefOverride ?? homeItemHref) : undefined;
 

@@ -111,14 +111,23 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
+async function resolveLocale(params: Promise<unknown>) {
+  const value = (await params) as { locale?: string } | undefined;
+  return routing.locales.includes(
+    value?.locale as (typeof routing.locales)[number]
+  )
+    ? (value?.locale as (typeof routing.locales)[number])
+    : routing.defaultLocale;
+}
+
 export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<unknown>;
 }) {
-  const { locale } = await params;
+  const locale = await resolveLocale(params);
   setRequestLocale(locale);
 
   return (
