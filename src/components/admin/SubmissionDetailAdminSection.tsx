@@ -589,7 +589,8 @@ export function SubmissionDetailAdminSection({
                         {answer.questionKey}
                       </p>
                       <p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-stone-700 dark:text-stone-300">
-                        {answer.displayValue || formatSubmissionAnswerValue(answer.value)}
+                        {answer.displayValue ||
+                          formatSubmissionAnswerValue(answer.value)}
                       </p>
                     </div>
                   ))}

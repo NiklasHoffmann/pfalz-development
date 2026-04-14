@@ -139,7 +139,10 @@ export function AuditLogsAdminSection() {
 
       setRows(nextRows);
       setSelectedLogId((currentValue) => {
-        if (currentValue && nextRows.some((entry) => entry.id === currentValue)) {
+        if (
+          currentValue &&
+          nextRows.some((entry) => entry.id === currentValue)
+        ) {
           return currentValue;
         }
 
