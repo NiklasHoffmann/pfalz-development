@@ -221,6 +221,12 @@ The image uses a standalone Next.js production build and starts with `node serve
 - `USAGE.md` for implementation examples
 - Private planning, client, and operating documents are intentionally kept outside the public repository
 
+## License
+
+This repository is proprietary and not licensed for public reuse.
+All rights reserved.
+See the `LICENSE` file for details.
+
 ## Repository
 
 https://github.com/NiklasHoffmann/pfalz-development
