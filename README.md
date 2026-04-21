@@ -1,95 +1,112 @@
-# Pfalz Development Website
+# Pfalz Development
 
-Offizielle Website für Pfalz Development auf Basis von Next.js App Router.
+This repository contains a production-oriented Next.js application built around three connected surfaces: a multilingual marketing site, a protected client intake flow, and an internal admin area.
 
-## Stack
+From a GitHub portfolio perspective, this project is less about presenting a service brand and more about showing how I design and ship a real application that combines public pages, internal workflows, forms, authentication, uploads, and operational concerns in one codebase.
 
-- Next.js 16 + React 19 + TypeScript
+## What This Repository Demonstrates
+
+- multilingual routing with `next-intl` and locale-aware page structure
+- public-facing marketing pages with SEO-oriented metadata and route coverage
+- validated contact handling with rate limiting, honeypot protection, optional Turnstile, and SMTP delivery
+- protected intake questionnaires with shareable access links, draft saving, step-based flows, and file uploads
+- internal admin tooling for submissions, forms, staff access, access links, and audit logging
+- containerized local or server deployment with health checks and a standalone production build
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
 - Tailwind CSS
-- next-intl (Locales: `de`, `en`, `pfl`)
-- MongoDB + Mongoose
-- Zod + React Hook Form
-- Nodemailer (Kontaktformular)
+- next-intl
+- MongoDB and Mongoose
+- Zod and React Hook Form
+- Nodemailer
+- Winston
 
-## Features
+## Product Areas
 
-- Mehrsprachige Landingpage mit separaten Locale-Routen
-- Kontaktformular mit Validation, Rate Limiting und optionalem SMTP-Versand
-- User CRUD API (`/api/users`) als Beispiel-Backend
-- Health-Endpoint für Monitoring (`/api/health`)
-- SEO-Basics mit `sitemap.ts` und `robots.ts`
-- Dockerfile + docker-compose für lokale und produktive Deployments
-- ESLint, Prettier, Husky, TypeScript Checks
+### Public Website
 
-## Projektstruktur
+- App Router based marketing site
+- locales: `de`, `en`, `pfl`
+- default locale `de` without prefix, `en` and `pfl` with prefix
+- service, industry, location, and project entry pages
+- SEO support through sitemap, robots, metadata, and structured page setup
 
-```text
-pfalz-development.de/
-|- src/
-|  |- app/
-|  |  |- [locale]/
-|  |  |  |- page.tsx
-|  |  |  |- datenschutz/page.tsx
-|  |  |  |- impressum/page.tsx
-|  |  |- api/
-|  |  |  |- contact/route.ts
-|  |  |  |- health/route.ts
-|  |  |  |- test/route.ts
-|  |  |  |- users/route.ts
-|  |  |  |- users/[id]/route.ts
-|  |  |- robots.ts
-|  |  |- sitemap.ts
-|  |- components/
-|  |  |- home/
-|  |  |- ui/
-|  |- hooks/
-|  |- lib/
-|  |- models/
-|  |- schemas/
-|  |- contexts/
-|  |- proxy.ts
-|  |- i18n.ts
-|  |- routing.ts
-|- messages/
-|  |- de.json
-|  |- en.json
-|  |- pfl.json
-|- specs/
-|- Dockerfile
-|- docker-compose.yml
-|- README.md
-|- USAGE.md
-```
+### Contact and Lead Handling
 
-## Quick Start
+- validated contact API
+- anti-spam honeypot field
+- API rate limiting
+- optional Cloudflare Turnstile support
+- optional SMTP delivery for contact requests
 
-### Voraussetzungen
+### Intake and Internal Admin
+
+- protected questionnaire routes for individual clients
+- step-based questionnaire UI with file uploads and draft persistence
+- internal admin login and first-user bootstrap flow
+- admin interfaces for forms, staff, access links, submissions, and audit trails
+
+## Project Structure
+
+| Area                    | Purpose                                                                          |
+| ----------------------- | -------------------------------------------------------------------------------- |
+| `src/app/[locale]`      | Public routes, localized layouts, protected intake pages, and admin entry points |
+| `src/app/api/contact`   | Contact form processing                                                          |
+| `src/app/api/health`    | Health check endpoint for monitoring and deployment                              |
+| `src/app/api/intake/*`  | Intake access resolution, uploads, and submission lifecycle                      |
+| `src/app/api/admin/*`   | Admin authentication, session handling, and staff bootstrap                      |
+| `src/components/admin`  | Internal admin interface components                                              |
+| `src/components/intake` | Questionnaire UI components                                                      |
+| `messages/*.json`       | Translation files for `de`, `en`, and `pfl`                                      |
+
+## Why This Project Matters
+
+The interesting part is not the marketing website alone. The repository combines several concerns that are often split across separate tools or only partially implemented in smaller projects:
+
+- content-heavy public pages
+- user input and validation
+- protected internal workflows
+- file handling
+- operational safeguards and runtime safety checks
+- localization
+- deployable infrastructure
+
+That mix makes it a stronger representation of day-to-day product engineering than a pure landing page or a framework starter.
+
+## Local Development
+
+### Prerequisites
 
 - Node.js 20+
 - npm
-- MongoDB (lokal oder Atlas)
+- MongoDB locally or MongoDB Atlas
 
-### Installation
+### Install
 
 ```bash
 git clone https://github.com/NiklasHoffmann/pfalz-development.git
-cd pfalz-development
+cd <repo-folder>
 npm install
-cp .env.example .env.local
 ```
 
-Danach `.env.local` anpassen.
+Copy `.env.example` to `.env.local` and adjust the values.
 
-Minimal erforderlich:
+### Minimum required environment variables
 
 ```env
 MONGODB_URI=mongodb://localhost:27017/nextjs-starter
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-Optional (Kontaktmail):
+### Recommended for contact handling
 
 ```env
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
 SMTP_HOST=
 SMTP_PORT=
 SMTP_SECURE=
@@ -100,13 +117,56 @@ CONTACT_FROM_EMAIL=
 CONTACT_TO_EMAIL=
 ```
 
-Starten:
+### Important for intake and admin in production
+
+```env
+INTAKE_SESSION_SECRET=
+INTAKE_SHARE_LINK_SECRET=
+ADMIN_API_KEY=
+ADMIN_SESSION_SECRET=
+```
+
+Notes:
+
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` must either both be set or both be omitted.
+- `INTAKE_SESSION_SECRET`, `INTAKE_SHARE_LINK_SECRET`, and `ADMIN_SESSION_SECRET` are required in production for signed sessions.
+- The complete template lives in `.env.example`.
+
+### Run locally
 
 ```bash
 npm run dev
 ```
 
-## NPM Scripts
+The app then runs on `http://localhost:3000`.
+
+## Representative Routes
+
+| Route                | Purpose                        |
+| -------------------- | ------------------------------ |
+| `/`                  | German default landing page    |
+| `/en`                | English locale entry           |
+| `/pfl`               | Palatine locale entry          |
+| `/leistungen/*`      | Service pages                  |
+| `/branchen/*`        | Industry pages                 |
+| `/orte/*`            | Location pages                 |
+| `/fragebogen/[slug]` | Protected client questionnaire |
+| `/admin/login`       | Internal admin login           |
+| `/admin/intake/*`    | Internal intake administration |
+
+## Representative APIs
+
+| API                          | Purpose                                     |
+| ---------------------------- | ------------------------------------------- |
+| `/api/contact`               | Process contact requests                    |
+| `/api/health`                | Health checks for monitoring and deployment |
+| `/api/intake/access/resolve` | Resolve intake access links                 |
+| `/api/intake/submissions/*`  | Save answers and finalize submissions       |
+| `/api/intake/uploads`        | Handle questionnaire file uploads           |
+| `/api/admin/auth/*`          | Admin login, logout, and session checks     |
+| `/api/admin/staff/bootstrap` | Bootstrap the first internal staff user     |
+
+## Scripts
 
 ```bash
 npm run dev
@@ -118,90 +178,48 @@ npm run lint:fix
 npm run format
 npm run format:check
 npm run type-check
+npm run security:check-live
 ```
-
-## API Endpoints
-
-### Health
-
-```http
-GET /api/health
-```
-
-### Kontakt
-
-```http
-POST /api/contact
-```
-
-Payload:
-
-```json
-{
-  "name": "Max Mustermann",
-  "business": "Firma GmbH",
-  "email": "max@example.com",
-  "phone": "+49 123 456",
-  "message": "Hallo, ich brauche eine neue Website.",
-  "website": ""
-}
-```
-
-### Users
-
-```http
-GET    /api/users
-POST   /api/users
-GET    /api/users/[id]
-PATCH  /api/users/[id]
-DELETE /api/users/[id]
-```
-
-### Test
-
-```http
-GET  /api/test
-POST /api/test
-```
-
-## i18n
-
-- Lokale Routen: `/`, `/de`, `/en`, `/pfl`
-- Übersetzungen liegen in `messages/*.json`
 
 ## Deployment
 
 ### Docker Compose
 
 ```bash
-docker-compose up -d
+docker compose up --build
 ```
 
-### Dockerfile (single image)
+The provided compose setup starts:
+
+- the Next.js app on port `3000`
+- MongoDB on port `27017`
+
+### Dockerfile
 
 ```bash
 docker build -t pfalz-development .
 docker run -p 3000:3000 -e MONGODB_URI=... -e NEXT_PUBLIC_APP_URL=... pfalz-development
 ```
 
-### Coolify
+The image uses a standalone Next.js production build and starts with `node server.js`.
 
-- Deployment-Typ: Dockerfile
-- Port: `3000`
-- Healthcheck: `/api/health`
+### Health Checks
 
-Hinweis: Das Dockerfile baut mit `NEXT_OUTPUT_STANDALONE=1` und startet per `node server.js`.
+- endpoint: `/api/health`
+- already wired into the Docker image health check
 
 ## Code Quality
 
-- Pre-commit: Prettier + ESLint (lint-staged)
-- Pre-push: TypeScript Check
-- CI Workflow in `.github/workflows/ci.yml`
+- ESLint for static analysis
+- Prettier for formatting
+- Husky and `lint-staged` for local Git hooks
+- TypeScript checks via `npm run type-check`
+- CI workflow in `.github/workflows/ci.yml`
 
-## Weiterfuehrende Doku
+## Additional Documentation
 
-- `USAGE.md` für konkrete Code-Beispiele
-- `specs/` für fachliche Projektunterlagen
+- `USAGE.md` for implementation examples
+- Private planning, client, and operating documents are intentionally kept outside the public repository
 
 ## Repository
 

@@ -37,3 +37,4 @@ coverage
 *.seed
 *.pid.lock
 .husky/_
+specs/
