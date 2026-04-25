@@ -95,7 +95,7 @@ export function AccessLinksAdminSection() {
 
     async function loadForms() {
       setIsLoadingForms(true);
-      const response = await fetch('/api/intake/admin/forms', {
+      const response = await fetch('/api/admin/forms', {
         credentials: 'include',
       });
       const payload = (await response.json().catch(() => null)) as {
@@ -225,7 +225,7 @@ export function AccessLinksAdminSection() {
         : undefined,
     };
 
-    const response = await fetch('/api/intake/admin/access-links', {
+    const response = await fetch('/api/admin/access-links', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -268,7 +268,7 @@ export function AccessLinksAdminSection() {
 
   function exportAccessLinksCsv() {
     const exportUrl = new URL(
-      '/api/intake/admin/access-links/export',
+      '/api/admin/access-links/export',
       window.location.origin
     );
 
@@ -292,7 +292,7 @@ export function AccessLinksAdminSection() {
     setActionError(undefined);
     setActionMessage(undefined);
 
-    const response = await fetch(`/api/intake/admin/access-links/${row.id}`, {
+    const response = await fetch(`/api/admin/access-links/${row.id}`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {
@@ -343,7 +343,7 @@ export function AccessLinksAdminSection() {
     setActionMessage(undefined);
 
     const response = await fetch(
-      `/api/intake/admin/access-links/${row.id}/share`,
+      `/api/admin/access-links/${row.id}/share`,
       {
         credentials: 'include',
       }
@@ -642,7 +642,7 @@ export function AccessLinksAdminSection() {
       <AdminDataSection<IntakeAccessLinkRow>
         title="Zugangslinks"
         description="Individuelle Projektlinks fuer Kunden, die per Direktlink oder QR-Code verteilt werden."
-        endpoint="/api/intake/admin/access-links"
+        endpoint="/api/admin/access-links"
         searchPlaceholder="Suche nach Projekt, Kunde oder E-Mail"
         emptyMessage="Noch keine Zugangslinks vorhanden"
         headerActions={

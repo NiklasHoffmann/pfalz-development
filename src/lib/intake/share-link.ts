@@ -5,7 +5,17 @@ import { INTAKE_DEV_SHARE_LINK_SECRET } from './constants';
 const SHARE_TOKEN_SEPARATOR = '~';
 
 function getShareLinkSecret() {
-  return env.INTAKE_SHARE_LINK_SECRET?.trim() || INTAKE_DEV_SHARE_LINK_SECRET;
+  const configuredSecret = env.INTAKE_SHARE_LINK_SECRET?.trim();
+
+  if (configuredSecret) {
+    return configuredSecret;
+  }
+
+  if (env.NODE_ENV === 'production') {
+    throw new Error('INTAKE_SHARE_LINK_SECRET must be configured in production');
+  }
+
+  return INTAKE_DEV_SHARE_LINK_SECRET;
 }
 
 function signShareLinkValue(value: string) {

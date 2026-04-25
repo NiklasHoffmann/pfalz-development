@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
       action: 'admin.auth.logout',
       resourceType: 'staff-session',
       resourceId: String(staffUser.id ?? staffUser._id),
+      required: true,
       metadata: {
         email: staffUser.email,
         role: staffUser.role,

@@ -45,8 +45,12 @@ export function ScrollToTopButton({ locale }: ScrollToTopButtonProps) {
       ? pathname.slice(0, -1)
       : pathname;
   const localeRootPath = locale === 'de' ? '/' : `/${locale}`;
+  const adminRootPath = locale === 'de' ? '/admin' : `/${locale}/admin`;
   const hasMobileDock =
     normalizedPathname === localeRootPath && !isInternalIntakePath(pathname);
+  const isAdminPath =
+    normalizedPathname === adminRootPath ||
+    normalizedPathname.startsWith(`${adminRootPath}/`);
 
   useEffect(() => {
     const onScroll = () => {
@@ -70,6 +74,10 @@ export function ScrollToTopButton({ locale }: ScrollToTopButtonProps) {
   const bottomOffsetClass = hasMobileDock
     ? 'bottom-[calc(env(safe-area-inset-bottom)+6.8rem)] sm:bottom-[calc(env(safe-area-inset-bottom)+7.2rem)] md:bottom-6'
     : 'bottom-5 sm:bottom-6';
+
+  if (isAdminPath) {
+    return null;
+  }
 
   return (
     <button

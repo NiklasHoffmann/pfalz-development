@@ -59,21 +59,16 @@ const envSchema = z
     );
     const hasTurnstileSecretKey = Boolean(value.TURNSTILE_SECRET_KEY?.trim());
 
-    if (hasTurnstileSiteKey === hasTurnstileSecretKey) {
-      return;
+    if (hasTurnstileSiteKey !== hasTurnstileSecretKey) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          'NEXT_PUBLIC_TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY must either both be set or both be omitted.',
+        path: ['NEXT_PUBLIC_TURNSTILE_SITE_KEY'],
+      });
     }
 
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message:
-        'NEXT_PUBLIC_TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY must either both be set or both be omitted.',
-      path: ['NEXT_PUBLIC_TURNSTILE_SITE_KEY'],
-    });
-
-    if (
-      value.NODE_ENV === 'production' &&
-      !value.INTAKE_SESSION_SECRET?.trim()
-    ) {
+    if (value.NODE_ENV === 'production' && !value.INTAKE_SESSION_SECRET?.trim()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:
@@ -94,10 +89,7 @@ const envSchema = z
       });
     }
 
-    if (
-      value.NODE_ENV === 'production' &&
-      !value.ADMIN_SESSION_SECRET?.trim()
-    ) {
+    if (value.NODE_ENV === 'production' && !value.ADMIN_SESSION_SECRET?.trim()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:

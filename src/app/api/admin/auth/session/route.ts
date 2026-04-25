@@ -1,6 +1,5 @@
 import { NextRequest } from 'next/server';
 import {
-  errorResponse,
   handleApiError,
   successResponse,
 } from '@/lib/api-response';

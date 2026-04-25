@@ -16,35 +16,57 @@ interface AdminShellProps {
   children: React.ReactNode;
 }
 
+interface NavigationItem {
+  href: string;
+  label: string;
+  roles?: IntakeStaffRole[];
+  matchMode?: 'exact' | 'prefix';
+}
+
 function withLocale(locale: string, path: string) {
   return locale === 'de' ? path : `/${locale}${path}`;
 }
 
-const navigationItems = [
-  { href: '/admin/intake/submissions', label: 'Einreichungen' },
+const navigationItems: NavigationItem[] = [
+  { href: '/admin', label: 'Uebersicht', matchMode: 'exact' },
+  { href: '/admin/submissions', label: 'Einreichungen' },
+  { href: '/admin/rechnungen', label: 'Rechnungen', matchMode: 'exact' },
   {
-    href: '/admin/intake/access-links',
+    href: '/admin/rechnungen/stammdaten',
+    label: 'Rechnungs-Stammdaten',
+    matchMode: 'exact',
+  },
+  {
+    href: '/admin/access-links',
     label: 'Zugangslinks',
     roles: ['admin'] as IntakeStaffRole[],
   },
   {
-    href: '/admin/intake/forms',
+    href: '/admin/forms',
     label: 'Formulare',
     roles: ['admin'] as IntakeStaffRole[],
   },
   {
-    href: '/admin/intake/audit',
+    href: '/admin/audit',
     label: 'Audit-Log',
     roles: ['admin'] as IntakeStaffRole[],
   },
   {
-    href: '/admin/intake/staff',
-    label: 'Staff',
+    href: '/admin/staff',
+    label: 'Mitarbeiter',
     roles: ['admin'] as IntakeStaffRole[],
   },
 ];
 
-function isNavigationItemActive(pathname: string, href: string) {
+function isNavigationItemActive(
+  pathname: string,
+  href: string,
+  matchMode: 'exact' | 'prefix' = 'prefix'
+) {
+  if (matchMode === 'exact') {
+    return pathname === href;
+  }
+
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
@@ -55,6 +77,11 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
   const visibleNavigationItems = navigationItems.filter(
     (item) => !item.roles || item.roles.includes(staffUser.role)
   );
+  const activeNavigationItem = visibleNavigationItems.find((item) => {
+    const href = withLocale(locale, item.href);
+    return isNavigationItemActive(pathname, href, item.matchMode);
+  });
+  const activeSectionLabel = activeNavigationItem?.label || 'Uebersicht';
 
   async function handleLogout() {
     setIsLoggingOut(true);
@@ -82,14 +109,18 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
 
             <div className="surface-header relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-stone-300/80 p-4 shadow-[0_10px_34px_rgba(28,25,23,0.08)] backdrop-blur-xl dark:border-stone-600/90">
               <div className="bg-white/72 rounded-[1.5rem] border border-stone-200/80 px-4 py-4 backdrop-blur-sm dark:border-stone-700/80 dark:bg-stone-900/45">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
-                  Intake Admin
-                </p>
-                <p className="mt-2 text-lg font-semibold tracking-tight">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
+                  <span>Adminbereich</span>
+                  <span className="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[10px] text-amber-800 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+                    {activeSectionLabel}
+                  </span>
+                </div>
+                <p className="mt-3 text-lg font-semibold tracking-tight">
                   Arbeitsbereich
                 </p>
                 <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                  Formulare, Zugangslinks und Einreichungen zentral verwalten.
+                  Die wichtigsten Admin-Flaechen sind hier gebuendelt und mit
+                  kurzen Wegen erreichbar.
                 </p>
               </div>
 
@@ -106,7 +137,11 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
                 <nav className="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
                   {visibleNavigationItems.map((item) => {
                     const href = withLocale(locale, item.href);
-                    const isActive = isNavigationItemActive(pathname, href);
+                    const isActive = isNavigationItemActive(
+                      pathname,
+                      href,
+                      item.matchMode
+                    );
 
                     return (
                       <Link
@@ -157,15 +192,18 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
             <div className="surface-header relative rounded-[2rem] border border-stone-300/80 px-5 py-4 shadow-[0_10px_34px_rgba(28,25,23,0.08)] backdrop-blur-xl dark:border-stone-600/90 sm:px-6">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
-                    Intake Admin
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold tracking-tight">
-                    Interner Kundenbereich
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
+                    <span>Adminbereich</span>
+                    <span className="rounded-full border border-stone-200 bg-white/80 px-2.5 py-1 text-[10px] text-stone-700 dark:border-stone-700 dark:bg-stone-900/60 dark:text-stone-200">
+                      {activeSectionLabel}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
+                    Interner Arbeitsbereich
                   </p>
                   <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                    Offener Seitenfluss fuer Inhalte, fixe Navigation und
-                    schnellere Orientierung im Tagesbetrieb.
+                    Klare Navigation, kompakte Statusinfos und schnelle
+                    Aktionen fuer den Tagesbetrieb.
                   </p>
                 </div>
 
@@ -190,7 +228,11 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
               <nav className="mt-4 flex flex-wrap gap-2 xl:hidden">
                 {visibleNavigationItems.map((item) => {
                   const href = withLocale(locale, item.href);
-                  const isActive = isNavigationItemActive(pathname, href);
+                  const isActive = isNavigationItemActive(
+                    pathname,
+                    href,
+                    item.matchMode
+                  );
 
                   return (
                     <Link

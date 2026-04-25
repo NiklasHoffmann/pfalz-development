@@ -53,10 +53,7 @@ export function handleApiError(error: unknown): NextResponse<ApiResponse> {
 
   // Zod validation error
   if (error instanceof ZodError) {
-    return errorResponse(
-      `Validation error: ${error.errors.map((e) => e.message).join(', ')}`,
-      400
-    );
+    return errorResponse('Validation error', 400);
   }
 
   // MongoDB duplicate key error
@@ -71,7 +68,7 @@ export function handleApiError(error: unknown): NextResponse<ApiResponse> {
 
   // Generic error
   if (error instanceof Error) {
-    return errorResponse(error.message, 500);
+    return errorResponse('Internal server error', 500);
   }
 
   return errorResponse('An unknown error occurred', 500);

@@ -47,7 +47,7 @@ From a GitHub portfolio perspective, this project is less about presenting a ser
 
 - protected questionnaire routes for individual clients
 - step-based questionnaire UI with file uploads and draft persistence
-- internal admin login and first-user bootstrap flow
+- internal admin login and secured first-user bootstrap flow
 - admin interfaces for forms, staff, access links, submissions, and audit trails
 
 ## Project Structure
@@ -123,13 +123,17 @@ CONTACT_TO_EMAIL=
 INTAKE_SESSION_SECRET=
 INTAKE_SHARE_LINK_SECRET=
 ADMIN_API_KEY=
+ADMIN_ALLOWED_IPS=
 ADMIN_SESSION_SECRET=
 ```
 
 Notes:
 
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` must either both be set or both be omitted.
-- `INTAKE_SESSION_SECRET`, `INTAKE_SHARE_LINK_SECRET`, and `ADMIN_SESSION_SECRET` are required in production for signed sessions.
+- `INTAKE_SESSION_SECRET` and `INTAKE_SHARE_LINK_SECRET` are required in production for signed intake access.
+- `ADMIN_SESSION_SECRET` is required for admin authentication in every environment.
+- `ADMIN_ALLOWED_IPS` should be set for every deployed environment. Without it, the admin area is only reachable from local loopback addresses.
+- First-user bootstrap without `ADMIN_API_KEY` is restricted to local development requests only.
 - The complete template lives in `.env.example`.
 
 ### Run locally

@@ -23,6 +23,7 @@ interface WriteAdminAuditLogInput {
   resourceId?: string | null;
   authState?: AdminAuditAuthState | null;
   metadata?: Record<string, unknown>;
+  required?: boolean;
 }
 
 const redactedKeys = new Set([
@@ -111,6 +112,7 @@ export async function writeAdminAuditLog({
   resourceId,
   authState,
   metadata,
+  required = false,
 }: WriteAdminAuditLogInput) {
   try {
     await connectToDatabase();
@@ -145,8 +147,13 @@ export async function writeAdminAuditLog({
           : undefined,
     });
   } catch (error) {
-    logger.warn(
-      `Admin audit log write failed (action=${action}, resourceType=${resourceType}): ${error instanceof Error ? error.message : String(error)}`
-    );
+    const message = `Admin audit log write failed (action=${action}, resourceType=${resourceType}): ${error instanceof Error ? error.message : String(error)}`;
+
+    if (required) {
+      logger.error(message);
+      throw error instanceof Error ? error : new Error(message);
+    }
+
+    logger.warn(message);
   }
 }

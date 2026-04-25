@@ -95,7 +95,7 @@ export function SubmissionsAdminSection({
     setActionError(undefined);
     setActionMessage(undefined);
 
-    const response = await fetch(`/api/intake/admin/submissions/${id}`, {
+    const response = await fetch(`/api/admin/submissions/${id}`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {
@@ -124,7 +124,7 @@ export function SubmissionsAdminSection({
 
   function exportSubmissionsCsv() {
     const exportUrl = new URL(
-      '/api/intake/admin/submissions/export',
+      '/api/admin/submissions/export',
       window.location.origin
     );
 
@@ -190,16 +190,14 @@ export function SubmissionsAdminSection({
       <AdminDataSection<IntakeSubmissionRow>
         title="Einreichungen"
         description="Suche und Uebersicht ueber alle laufenden und abgeschlossenen Intake-Einreichungen."
-        endpoint="/api/intake/admin/submissions"
+        endpoint="/api/admin/submissions"
         searchPlaceholder="Suche nach Kunde, Firma, E-Mail oder Projekt"
         emptyMessage="Noch keine Einreichungen vorhanden"
         headerActions={headerActions}
         queryParams={queryParams}
         reloadToken={reloadToken}
         onRowClick={(row) => {
-          router.push(
-            withLocale(locale, `/admin/intake/submissions/${row.id}`)
-          );
+          router.push(withLocale(locale, `/admin/submissions/${row.id}`));
         }}
         columns={[
           {

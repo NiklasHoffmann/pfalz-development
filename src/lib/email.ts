@@ -14,6 +14,17 @@ interface SendContactMailResult {
   reason: 'sent' | 'not-configured';
 }
 
+interface AdminPasswordResetMailPayload {
+  toEmail: string;
+  staffName?: string;
+  resetUrl: string;
+}
+
+interface SendAdminPasswordResetMailResult {
+  sent: boolean;
+  reason: 'sent' | 'not-configured';
+}
+
 interface IntakeMailSummaryItem {
   label: string;
   value: string;
@@ -38,14 +49,14 @@ interface SendIntakeMailResult {
   customer: 'sent' | 'not-configured' | 'disabled' | 'no-recipient';
 }
 
-function isMailConfigured(): boolean {
+function hasSmtpConfig(): boolean {
   return Boolean(
-    env.SMTP_HOST &&
-    env.SMTP_PORT &&
-    env.SMTP_USER &&
-    env.SMTP_PASS &&
-    env.CONTACT_TO_EMAIL
+    env.SMTP_HOST && env.SMTP_PORT && env.SMTP_USER && env.SMTP_PASS
   );
+}
+
+function isMailConfigured(): boolean {
+  return Boolean(hasSmtpConfig() && env.CONTACT_TO_EMAIL);
 }
 
 function createMailTransport() {
@@ -107,6 +118,49 @@ export async function sendContactMail(
         <p><strong>Telefon:</strong> ${escapeHtml(payload.phone || '-')}</p>
         <p><strong>Nachricht:</strong></p>
         <p>${escapeHtml(payload.message).replaceAll('\n', '<br />')}</p>
+      </div>
+    `,
+  });
+
+  return { sent: true, reason: 'sent' };
+}
+
+export async function sendAdminPasswordResetMail(
+  payload: AdminPasswordResetMailPayload
+): Promise<SendAdminPasswordResetMailResult> {
+  if (!hasSmtpConfig()) {
+    return { sent: false, reason: 'not-configured' };
+  }
+
+  const transport = createMailTransport();
+  const greetingName = payload.staffName?.trim() || 'Hallo';
+
+  await transport.sendMail({
+    from: getFromAddress(),
+    to: payload.toEmail,
+    subject: 'Admin-Passwort zurücksetzen',
+    text: [
+      `${greetingName},`,
+      '',
+      'für deinen Admin-Zugang wurde ein Link zum Zurücksetzen des Passworts angefordert.',
+      'Wenn du das warst, öffne bitte diesen Link:',
+      payload.resetUrl,
+      '',
+      'Der Link ist 60 Minuten gültig. Falls du die Anfrage nicht gestartet hast, kannst du diese E-Mail ignorieren.',
+    ].join('\n'),
+    html: `
+      <div style="font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #1c1917;">
+        <h2>Admin-Passwort zurücksetzen</h2>
+        <p>Hallo ${escapeHtml(greetingName)},</p>
+        <p>
+          für deinen Admin-Zugang wurde ein Link zum Zurücksetzen des Passworts angefordert.
+        </p>
+        <p>
+          <a href="${escapeHtml(payload.resetUrl)}" style="display: inline-block; padding: 10px 16px; border-radius: 999px; background: #1c1917; color: #ffffff; text-decoration: none; font-weight: 700;">Passwort zurücksetzen</a>
+        </p>
+        <p>Oder direkt diesen Link öffnen:</p>
+        <p><a href="${escapeHtml(payload.resetUrl)}">${escapeHtml(payload.resetUrl)}</a></p>
+        <p>Der Link ist 60 Minuten gültig. Falls du die Anfrage nicht gestartet hast, kannst du diese E-Mail ignorieren.</p>
       </div>
     `,
   });
@@ -190,23 +244,23 @@ export async function sendIntakeSubmissionMails(
       to: payload.customerEmail,
       subject:
         payload.customerSubject ||
-        `Bestaetigung: ${payload.formTitle} wurde uebermittelt`,
+        `Bestätigung: ${payload.formTitle} wurde übermittelt`,
       text: [
         `Hallo ${payload.customerName},`,
         '',
-        `dein Fragebogen "${payload.formTitle}" fuer das Projekt ${payload.projectId} wurde erfolgreich uebermittelt.`,
-        'Wir nutzen die Angaben jetzt fuer die interne Projektvorbereitung und melden uns mit den naechsten Schritten.',
+        `dein Fragebogen "${payload.formTitle}" für das Projekt ${payload.projectId} wurde erfolgreich übermittelt.`,
+        'Wir nutzen die Angaben jetzt für die interne Projektvorbereitung und melden uns mit den nächsten Schritten.',
       ].join('\n'),
       html: `
         <div style="font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #1c1917;">
-          <h2>Dein Fragebogen wurde uebermittelt</h2>
+          <h2>Dein Fragebogen wurde übermittelt</h2>
           <p>Hallo ${escapeHtml(payload.customerName)},</p>
           <p>
-            dein Fragebogen <strong>${escapeHtml(payload.formTitle)}</strong> fuer das Projekt
-            <strong>${escapeHtml(payload.projectId)}</strong> wurde erfolgreich uebermittelt.
+            dein Fragebogen <strong>${escapeHtml(payload.formTitle)}</strong> für das Projekt
+            <strong>${escapeHtml(payload.projectId)}</strong> wurde erfolgreich übermittelt.
           </p>
           <p>
-            Wir nutzen die Angaben jetzt fuer die interne Projektvorbereitung und melden uns mit den naechsten Schritten.
+            Wir nutzen die Angaben jetzt für die interne Projektvorbereitung und melden uns mit den nächsten Schritten.
           </p>
         </div>
       `,

@@ -168,7 +168,7 @@ export function FormDetailAdminSection({
       setIsLoading(true);
       setError(undefined);
 
-      const response = await fetch(`/api/intake/admin/forms/${formId}`, {
+      const response = await fetch(`/api/admin/forms/${formId}`, {
         credentials: 'include',
       });
       const payload = (await response.json().catch(() => null)) as {
@@ -303,7 +303,7 @@ export function FormDetailAdminSection({
               </p>
             </div>
             <Link
-              href={withLocale(locale, '/admin/intake/forms')}
+              href={withLocale(locale, '/admin/forms')}
               className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
             >
               Zurueck zur Liste

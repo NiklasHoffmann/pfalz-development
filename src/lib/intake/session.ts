@@ -4,7 +4,17 @@ import { INTAKE_DEV_SESSION_SECRET } from './constants';
 import type { IntakeSessionPayload } from '@/types/intake';
 
 function getSessionSecret(): string {
-  return env.INTAKE_SESSION_SECRET?.trim() || INTAKE_DEV_SESSION_SECRET;
+  const configuredSecret = env.INTAKE_SESSION_SECRET?.trim();
+
+  if (configuredSecret) {
+    return configuredSecret;
+  }
+
+  if (env.NODE_ENV === 'production') {
+    throw new Error('INTAKE_SESSION_SECRET must be configured in production');
+  }
+
+  return INTAKE_DEV_SESSION_SECRET;
 }
 
 function sign(payload: string): string {

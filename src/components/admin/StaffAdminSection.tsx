@@ -80,7 +80,7 @@ export function StaffAdminSection() {
       setIsLoading(true);
       setLoadError(undefined);
 
-      const response = await fetch('/api/intake/admin/staff', {
+      const response = await fetch('/api/admin/staff', {
         credentials: 'include',
       });
       const payload = (await response.json().catch(() => null)) as {
@@ -139,7 +139,7 @@ export function StaffAdminSection() {
   }
 
   async function reloadStaffUsers() {
-    const response = await fetch('/api/intake/admin/staff', {
+    const response = await fetch('/api/admin/staff', {
       credentials: 'include',
     });
     const payload = (await response.json().catch(() => null)) as {
@@ -176,7 +176,7 @@ export function StaffAdminSection() {
     setCreateError(undefined);
     setCreateMessage(undefined);
 
-    const response = await fetch('/api/intake/admin/staff', {
+    const response = await fetch('/api/admin/staff', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -222,7 +222,7 @@ export function StaffAdminSection() {
     setSaveError(undefined);
     setSaveMessage(undefined);
 
-    const response = await fetch(`/api/intake/admin/staff/${userId}`, {
+    const response = await fetch(`/api/admin/staff/${userId}`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {

@@ -4,7 +4,6 @@ import { notFound, redirect } from 'next/navigation';
 import type { NextRequest } from 'next/server';
 import { env } from '@/lib/env';
 import {
-  ADMIN_DEV_SESSION_SECRET,
   ADMIN_SESSION_COOKIE_NAME,
 } from '@/lib/intake/constants';
 import { getClientIpFromHeaders, isAllowedAdminIp } from '@/lib/admin-network';
@@ -27,11 +26,7 @@ function getSessionSecret() {
     return configuredSecret;
   }
 
-  if (env.NODE_ENV === 'production') {
-    throw new Error('ADMIN_SESSION_SECRET must be configured in production');
-  }
-
-  return ADMIN_DEV_SESSION_SECRET;
+  throw new Error('ADMIN_SESSION_SECRET must be configured for admin authentication');
 }
 
 function sign(payload: string) {

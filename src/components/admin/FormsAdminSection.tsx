@@ -209,7 +209,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
 
     async function loadForms() {
       setIsLoadingAvailableForms(true);
-      const response = await fetch('/api/intake/admin/forms', {
+      const response = await fetch('/api/admin/forms', {
         credentials: 'include',
       });
       const payload = (await response.json().catch(() => null)) as {
@@ -331,7 +331,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
           : undefined,
     };
 
-    const response = await fetch('/api/intake/admin/forms', {
+    const response = await fetch('/api/admin/forms', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -367,7 +367,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
     setImportError(undefined);
     setImportSuccess(undefined);
 
-    const response = await fetch('/api/intake/admin/forms/import', {
+    const response = await fetch('/api/admin/forms/import', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -406,7 +406,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
     setImportError(undefined);
     setImportSuccess(undefined);
 
-    const response = await fetch('/api/intake/admin/forms/import', {
+    const response = await fetch('/api/admin/forms/import', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -1008,12 +1008,12 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
       <AdminDataSection<IntakeFormRow>
         title="Formulare"
         description="Verfuegbare Intake-Vorlagen und duplizierte Formulare fuer konkrete Projektarten."
-        endpoint="/api/intake/admin/forms"
+        endpoint="/api/admin/forms"
         searchPlaceholder="Suche nach Titel oder Slug"
         emptyMessage="Noch keine Formulare vorhanden"
         reloadToken={reloadToken}
         onRowClick={(row) =>
-          router.push(withLocale(locale, `/admin/intake/forms/${row.id}`))
+          router.push(withLocale(locale, `/admin/forms/${row.id}`))
         }
         columns={[
           {

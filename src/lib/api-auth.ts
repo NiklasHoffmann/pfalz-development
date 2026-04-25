@@ -3,7 +3,8 @@ import { timingSafeEqual } from 'node:crypto';
 import { errorResponse } from './api-response';
 import { getStaffUserFromRequest } from './auth/admin-session';
 import { env } from './env';
-import { rateLimit } from './rate-limit';
+import { logger } from './logger';
+import { rateLimitPersistent } from './rate-limit';
 import { getClientIp, isAllowedAdminIp } from './admin-network';
 import type { IntakeStaffRole } from '@/types/intake';
 
@@ -128,20 +129,32 @@ export function requireTrustedAdminOrigin(request: NextRequest) {
   return null;
 }
 
-export function requireAdminRouteRateLimit(
+export async function requireAdminRouteRateLimit(
   request: NextRequest,
   scope: string
 ) {
-  const rateLimitResult = rateLimit(`admin:${scope}:${getClientIp(request)}`);
+  try {
+    const rateLimitResult = await rateLimitPersistent(
+      `admin:${scope}:${getClientIp(request)}`
+    );
 
-  if (!rateLimitResult.success) {
+    if (!rateLimitResult.success) {
+      return errorResponse(
+        'Zu viele Anfragen. Bitte spaeter erneut versuchen.',
+        429
+      );
+    }
+
+    return null;
+  } catch (error) {
+    logger.error(
+      `Admin rate limit unavailable for scope=${scope}: ${error instanceof Error ? error.message : String(error)}`
+    );
     return errorResponse(
-      'Zu viele Anfragen. Bitte spaeter erneut versuchen.',
-      429
+      'Admin-Schutz ist temporaer nicht verfuegbar. Bitte spaeter erneut versuchen.',
+      503
     );
   }
-
-  return null;
 }
 
 export async function requireIntakeAdminMutationAccess(
@@ -149,7 +162,10 @@ export async function requireIntakeAdminMutationAccess(
   allowedRoles: IntakeStaffRole[],
   rateLimitScope: string
 ) {
-  const rateLimitError = requireAdminRouteRateLimit(request, rateLimitScope);
+  const rateLimitError = await requireAdminRouteRateLimit(
+    request,
+    rateLimitScope
+  );
 
   if (rateLimitError) {
     return rateLimitError;

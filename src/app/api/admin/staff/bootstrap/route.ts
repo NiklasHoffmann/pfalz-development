@@ -10,6 +10,7 @@ import {
   requireAdminRouteRateLimit,
   requireTrustedAdminOrigin,
 } from '@/lib/api-auth';
+import { getClientIp, isLocalAdminIp } from '@/lib/admin-network';
 import { hashPassword } from '@/lib/auth/password';
 import { env } from '@/lib/env';
 import connectToDatabase from '@/lib/mongodb';
@@ -18,7 +19,7 @@ import { bootstrapStaffUserSchema } from '@/schemas/intake/staff-auth.schema';
 
 export async function POST(request: NextRequest) {
   try {
-    const rateLimitError = requireAdminRouteRateLimit(
+    const rateLimitError = await requireAdminRouteRateLimit(
       request,
       'staff-bootstrap'
     );
@@ -30,10 +31,12 @@ export async function POST(request: NextRequest) {
     await connectToDatabase();
     const hasExistingStaffUsers = (await StaffUser.countDocuments().exec()) > 0;
     const hasConfiguredAdminApiKey = Boolean(env.ADMIN_API_KEY?.trim());
+    const clientIp = getClientIp(request);
     const canBootstrapWithoutApiKey =
       !hasExistingStaffUsers &&
-      env.NODE_ENV !== 'production' &&
-      !hasConfiguredAdminApiKey;
+      env.NODE_ENV === 'development' &&
+      !hasConfiguredAdminApiKey &&
+      isLocalAdminIp(clientIp);
 
     if (canBootstrapWithoutApiKey) {
       const originError = requireTrustedAdminOrigin(request);
@@ -76,12 +79,13 @@ export async function POST(request: NextRequest) {
         action: 'admin.staff.bootstrap.update',
         resourceType: 'staff-user',
         resourceId: String(existingUser.id ?? existingUser._id),
+        required: true,
         metadata: {
           email: existingUser.email,
           role: existingUser.role,
           isActive: existingUser.isActive,
           bootstrapMode: canBootstrapWithoutApiKey
-            ? 'development-open'
+            ? 'development-local'
             : 'api-key',
         },
       });
@@ -105,12 +109,13 @@ export async function POST(request: NextRequest) {
       action: 'admin.staff.bootstrap.create',
       resourceType: 'staff-user',
       resourceId: String(createdUser.id ?? createdUser._id),
+      required: true,
       metadata: {
         email: createdUser.email,
         role: createdUser.role,
         isActive: createdUser.isActive,
         bootstrapMode: canBootstrapWithoutApiKey
-          ? 'development-open'
+          ? 'development-local'
           : 'api-key',
       },
     });

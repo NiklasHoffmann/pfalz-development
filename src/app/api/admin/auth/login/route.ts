@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     }
 
     const clientIp = getClientIp(request);
-    const rateLimitError = requireAdminRouteRateLimit(request, 'login');
+    const rateLimitError = await requireAdminRouteRateLimit(request, 'login');
 
     if (rateLimitError) {
       logger.warn(`Staff login rate limited (ip=${clientIp})`);

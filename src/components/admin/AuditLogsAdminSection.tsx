@@ -27,7 +27,7 @@ interface AdminAuditLogRow {
 }
 
 const actorTypeLabels: Record<AdminAuditActorType, string> = {
-  'staff-user': 'Staff',
+  'staff-user': 'Mitarbeiter',
   'api-key': 'API-Key',
   system: 'System',
 };
@@ -51,7 +51,10 @@ const resourceTypeOptions = [
   { value: 'form', label: 'Formulare' },
   { value: 'access-link', label: 'Zugangslinks' },
   { value: 'submission', label: 'Einreichungen' },
-  { value: 'staff-user', label: 'Staff-Nutzer' },
+  { value: 'invoice', label: 'Rechnungen' },
+  { value: 'invoice-settings', label: 'Rechnungs-Stammdaten' },
+  { value: 'staff-user', label: 'Mitarbeiter' },
+  { value: 'staff-session', label: 'Staff-Sessions' },
   { value: 'template-bootstrap', label: 'Template-Bootstrap' },
 ];
 
@@ -96,7 +99,7 @@ export function AuditLogsAdminSection() {
       setIsLoading(true);
       setError(undefined);
 
-      const url = new URL('/api/intake/admin/audit', window.location.origin);
+      const url = new URL('/api/admin/audit', window.location.origin);
 
       if (search.trim()) {
         url.searchParams.set('search', search.trim());

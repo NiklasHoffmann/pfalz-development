@@ -153,7 +153,7 @@ export function SubmissionDetailAdminSection({
       setIsLoading(true);
       setError(undefined);
       const response = await fetch(
-        `/api/intake/admin/submissions/${submissionId}`,
+        `/api/admin/submissions/${submissionId}`,
         {
           credentials: 'include',
         }
@@ -194,7 +194,7 @@ export function SubmissionDetailAdminSection({
     let isCancelled = false;
 
     async function loadAssignableStaffUsers() {
-      const response = await fetch('/api/intake/admin/staff/options', {
+      const response = await fetch('/api/admin/staff/options', {
         credentials: 'include',
       });
       const payload = (await response.json().catch(() => null)) as {
@@ -230,7 +230,7 @@ export function SubmissionDetailAdminSection({
     setError(undefined);
 
     const response = await fetch(
-      `/api/intake/admin/submissions/${submissionId}`,
+      `/api/admin/submissions/${submissionId}`,
       {
         method: 'PATCH',
         credentials: 'include',
@@ -346,7 +346,7 @@ export function SubmissionDetailAdminSection({
             </div>
             <div className="flex flex-wrap items-center gap-3 print:hidden">
               <Link
-                href={withLocale(locale, '/admin/intake/submissions')}
+                href={withLocale(locale, '/admin/submissions')}
                 className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
               >
                 Zurueck zur Liste
@@ -354,7 +354,7 @@ export function SubmissionDetailAdminSection({
               {canPrint ? (
                 <>
                   <a
-                    href={`/api/intake/admin/submissions/${submissionId}/json`}
+                    href={`/api/admin/submissions/${submissionId}/json`}
                     className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
                   >
                     JSON exportieren
@@ -362,7 +362,7 @@ export function SubmissionDetailAdminSection({
                   <Link
                     href={withLocale(
                       locale,
-                      `/admin/intake/submissions/${submissionId}/print`
+                      `/admin/submissions/${submissionId}/print`
                     )}
                     className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
                   >

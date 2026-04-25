@@ -6,6 +6,16 @@ export const staffLoginSchema = z.object({
   password: z.string().min(10),
 });
 
+export const requestStaffPasswordResetSchema = z.object({
+  email: z.string().email(),
+  locale: z.string().trim().min(2).max(10).optional().default('de'),
+});
+
+export const resetStaffPasswordSchema = z.object({
+  token: z.string().trim().min(32),
+  password: z.string().min(10),
+});
+
 export const bootstrapStaffUserSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),

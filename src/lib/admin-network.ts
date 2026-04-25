@@ -44,11 +44,21 @@ export function getConfiguredAdminAllowedIps() {
     .filter(Boolean);
 }
 
+export function isLocalAdminIp(ip: string) {
+  const normalizedIp = normalizeIp(ip);
+
+  return (
+    normalizedIp === '127.0.0.1' ||
+    normalizedIp === '::1' ||
+    normalizedIp === 'localhost'
+  );
+}
+
 export function isAllowedAdminIp(ip: string) {
   const allowedIps = getConfiguredAdminAllowedIps();
 
   if (!allowedIps.length) {
-    return true;
+    return isLocalAdminIp(ip);
   }
 
   return allowedIps.includes(normalizeIp(ip));

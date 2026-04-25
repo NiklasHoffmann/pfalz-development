@@ -28,8 +28,8 @@ export function AdminBootstrapForm({
 
   const dashboardPath =
     locale === 'de'
-      ? '/admin/intake/submissions'
-      : `/${locale}/admin/intake/submissions`;
+      ? '/admin'
+      : `/${locale}/admin`;
 
   async function handleSubmit() {
     setError(undefined);

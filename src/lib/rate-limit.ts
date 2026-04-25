@@ -1,8 +1,16 @@
 import { env } from './env';
+import connectToDatabase from './mongodb';
+import AdminRateLimit from '@/models/AdminRateLimit';
 
 interface RateLimitStore {
   count: number;
   resetTime: number;
+}
+
+export interface RateLimitResult {
+  success: boolean;
+  remaining: number;
+  reset: number;
 }
 
 const store = new Map<string, RateLimitStore>();
@@ -50,6 +58,61 @@ export function rateLimit(identifier: string): {
     success: true,
     remaining: limit - record.count,
     reset: record.resetTime,
+  };
+}
+
+export async function rateLimitPersistent(
+  identifier: string
+): Promise<RateLimitResult> {
+  await connectToDatabase();
+
+  const now = new Date();
+  const limit = env.API_RATE_LIMIT;
+  const windowDuration = env.API_RATE_LIMIT_WINDOW;
+  const nextReset = new Date(now.getTime() + windowDuration);
+  const windowExpiredExpression = {
+    $or: [{ $eq: ['$resetAt', null] }, { $lte: ['$resetAt', now] }],
+  };
+
+  const record = await AdminRateLimit.findOneAndUpdate(
+    { identifier },
+    [
+      {
+        $set: {
+          identifier,
+          createdAt: { $ifNull: ['$createdAt', now] },
+          updatedAt: now,
+          count: {
+            $cond: [
+              windowExpiredExpression,
+              1,
+              { $add: [{ $ifNull: ['$count', 0] }, 1] },
+            ],
+          },
+          resetAt: {
+            $cond: [windowExpiredExpression, nextReset, '$resetAt'],
+          },
+        },
+      },
+    ],
+    {
+      new: true,
+      upsert: true,
+    }
+  )
+    .lean<{ count: number; resetAt: Date }>()
+    .exec();
+
+  if (!record) {
+    throw new Error(`Unable to persist rate limit state for ${identifier}`);
+  }
+
+  const remaining = Math.max(0, limit - record.count);
+
+  return {
+    success: record.count <= limit,
+    remaining,
+    reset: new Date(record.resetAt).getTime(),
   };
 }
 
