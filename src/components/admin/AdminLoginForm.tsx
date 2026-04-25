@@ -20,10 +20,7 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
   const [showResetRequest, setShowResetRequest] = useState(false);
   const [isResetPending, setIsResetPending] = useState(false);
 
-  const dashboardPath =
-    locale === 'de'
-      ? '/admin'
-      : `/${locale}/admin`;
+  const dashboardPath = locale === 'de' ? '/admin' : `/${locale}/admin`;
 
   async function handleSubmit() {
     setError(undefined);

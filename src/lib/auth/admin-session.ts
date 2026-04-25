@@ -3,9 +3,7 @@ import { cookies, headers } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 import type { NextRequest } from 'next/server';
 import { env } from '@/lib/env';
-import {
-  ADMIN_SESSION_COOKIE_NAME,
-} from '@/lib/intake/constants';
+import { ADMIN_SESSION_COOKIE_NAME } from '@/lib/intake/constants';
 import { getClientIpFromHeaders, isAllowedAdminIp } from '@/lib/admin-network';
 import connectToDatabase from '@/lib/mongodb';
 import StaffUser from '@/models/StaffUser';
@@ -26,7 +24,9 @@ function getSessionSecret() {
     return configuredSecret;
   }
 
-  throw new Error('ADMIN_SESSION_SECRET must be configured for admin authentication');
+  throw new Error(
+    'ADMIN_SESSION_SECRET must be configured for admin authentication'
+  );
 }
 
 function sign(payload: string) {

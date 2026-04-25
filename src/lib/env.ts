@@ -68,7 +68,10 @@ const envSchema = z
       });
     }
 
-    if (value.NODE_ENV === 'production' && !value.INTAKE_SESSION_SECRET?.trim()) {
+    if (
+      value.NODE_ENV === 'production' &&
+      !value.INTAKE_SESSION_SECRET?.trim()
+    ) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:
@@ -89,7 +92,10 @@ const envSchema = z
       });
     }
 
-    if (value.NODE_ENV === 'production' && !value.ADMIN_SESSION_SECRET?.trim()) {
+    if (
+      value.NODE_ENV === 'production' &&
+      !value.ADMIN_SESSION_SECRET?.trim()
+    ) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:

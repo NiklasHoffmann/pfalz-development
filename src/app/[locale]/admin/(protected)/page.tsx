@@ -22,17 +22,20 @@ const adminEntries: AdminEntry[] = [
   {
     href: '/admin/submissions',
     label: 'Einreichungen',
-    description: 'Laufende Projekte, Status und Druckansichten im Blick behalten.',
+    description:
+      'Laufende Projekte, Status und Druckansichten im Blick behalten.',
   },
   {
     href: '/admin/rechnungen',
     label: 'Rechnungen',
-    description: 'Rechnungen erstellen, archivieren und direkt in den Druck geben.',
+    description:
+      'Rechnungen erstellen, archivieren und direkt in den Druck geben.',
   },
   {
     href: '/admin/rechnungen/stammdaten',
     label: 'Rechnungs-Stammdaten',
-    description: 'Absender, Zahlungsdaten und Standardhinweise zentral pflegen.',
+    description:
+      'Absender, Zahlungsdaten und Standardhinweise zentral pflegen.',
   },
   {
     href: '/admin/access-links',
@@ -43,13 +46,15 @@ const adminEntries: AdminEntry[] = [
   {
     href: '/admin/forms',
     label: 'Formulare',
-    description: 'Intake-Formulare verwalten, duplizieren und weiterentwickeln.',
+    description:
+      'Intake-Formulare verwalten, duplizieren und weiterentwickeln.',
     roles: ['admin'],
   },
   {
     href: '/admin/audit',
     label: 'Audit-Log',
-    description: 'Nachvollziehen, welche Admin-Aktionen wann ausgefuehrt wurden.',
+    description:
+      'Nachvollziehen, welche Admin-Aktionen wann ausgefuehrt wurden.',
     roles: ['admin'],
   },
   {
@@ -83,9 +88,12 @@ export default async function AdminOverviewPage({
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
             Admin-Start
           </p>
-          <h1 className="text-3xl font-semibold tracking-tight">Arbeitsbereiche</h1>
+          <h1 className="text-3xl font-semibold tracking-tight">
+            Arbeitsbereiche
+          </h1>
           <p className="max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-            Alle internen Bereiche liegen jetzt direkt unter /admin und sind nach Aufgaben gegliedert statt nach der alten Intake-Herkunft.
+            Alle internen Bereiche liegen jetzt direkt unter /admin und sind
+            nach Aufgaben gegliedert statt nach der alten Intake-Herkunft.
           </p>
         </div>
 

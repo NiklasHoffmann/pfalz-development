@@ -202,8 +202,8 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
                     Interner Arbeitsbereich
                   </p>
                   <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                    Klare Navigation, kompakte Statusinfos und schnelle
-                    Aktionen fuer den Tagesbetrieb.
+                    Klare Navigation, kompakte Statusinfos und schnelle Aktionen
+                    fuer den Tagesbetrieb.
                   </p>
                 </div>
 

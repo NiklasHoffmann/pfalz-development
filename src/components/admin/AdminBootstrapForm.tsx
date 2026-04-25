@@ -26,10 +26,7 @@ export function AdminBootstrapForm({
   const [adminApiKey, setAdminApiKey] = useState('');
   const [error, setError] = useState<string>();
 
-  const dashboardPath =
-    locale === 'de'
-      ? '/admin'
-      : `/${locale}/admin`;
+  const dashboardPath = locale === 'de' ? '/admin' : `/${locale}/admin`;
 
   async function handleSubmit() {
     setError(undefined);

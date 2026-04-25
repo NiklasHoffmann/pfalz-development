@@ -33,6 +33,7 @@ export function RevealOnScroll({
 }: RevealOnScrollProps) {
   const Element = as;
   const elementRef = useRef<HTMLElement | null>(null);
+  const elementId = typeof rest.id === 'string' ? rest.id : '';
   const mergedClassName = ['reveal-on-scroll', className ?? '']
     .join(' ')
     .trim();
@@ -49,12 +50,11 @@ export function RevealOnScroll({
     }
 
     const shouldPersistByPath = once && revealOncePerPath;
-    const restId = typeof rest.id === 'string' ? rest.id : '';
     const storageKeySource = [
       window.location.pathname,
       Element,
       revealKey ?? '',
-      restId,
+      elementId,
       className ?? '',
       String(delayMs),
     ].join('|');
@@ -122,7 +122,17 @@ export function RevealOnScroll({
     return () => {
       observer.disconnect();
     };
-  }, [once, revealOncePerPath, threshold, rootMargin]);
+  }, [
+    Element,
+    className,
+    delayMs,
+    elementId,
+    once,
+    revealKey,
+    revealOncePerPath,
+    rootMargin,
+    threshold,
+  ]);
 
   return (
     <Element

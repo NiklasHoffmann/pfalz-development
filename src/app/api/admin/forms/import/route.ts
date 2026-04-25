@@ -6,9 +6,7 @@ import {
   successResponse,
 } from '@/lib/api-response';
 import { writeAdminAuditLog } from '@/lib/admin-audit';
-import {
-  requireIntakeAdminMutationAccess,
-} from '@/lib/api-auth';
+import { requireIntakeAdminMutationAccess } from '@/lib/api-auth';
 import connectToDatabase from '@/lib/mongodb';
 import IntakeForm from '@/models/IntakeForm';
 import {

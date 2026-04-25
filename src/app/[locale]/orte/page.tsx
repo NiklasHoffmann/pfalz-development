@@ -306,7 +306,6 @@ export default async function OrtePage({ params }: OrtePageProps) {
 
   const basePath = locale === 'de' ? '' : `/${locale}`;
   const homeHref = basePath || '/';
-  const orteHref = `${basePath}/orte`;
   const primaryNavigationLabel = getPrimaryNavigationLabel(
     locale,
     siteConfig.name

@@ -634,9 +634,7 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
     setActionMessage('');
 
     const response = await fetch(
-      draft.id
-        ? `/api/admin/invoices/${draft.id}`
-        : '/api/admin/invoices',
+      draft.id ? `/api/admin/invoices/${draft.id}` : '/api/admin/invoices',
       {
         method: draft.id ? 'PATCH' : 'POST',
         credentials: 'include',

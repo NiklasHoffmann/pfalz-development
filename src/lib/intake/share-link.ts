@@ -12,7 +12,9 @@ function getShareLinkSecret() {
   }
 
   if (env.NODE_ENV === 'production') {
-    throw new Error('INTAKE_SHARE_LINK_SECRET must be configured in production');
+    throw new Error(
+      'INTAKE_SHARE_LINK_SECRET must be configured in production'
+    );
   }
 
   return INTAKE_DEV_SHARE_LINK_SECRET;

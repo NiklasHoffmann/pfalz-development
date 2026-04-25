@@ -342,12 +342,9 @@ export function AccessLinksAdminSection() {
     setActionError(undefined);
     setActionMessage(undefined);
 
-    const response = await fetch(
-      `/api/admin/access-links/${row.id}/share`,
-      {
-        credentials: 'include',
-      }
-    );
+    const response = await fetch(`/api/admin/access-links/${row.id}/share`, {
+      credentials: 'include',
+    });
 
     const result = (await response.json().catch(() => null)) as {
       success?: boolean;

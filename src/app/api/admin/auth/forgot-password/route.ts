@@ -1,8 +1,5 @@
 import { NextRequest } from 'next/server';
-import {
-  handleApiError,
-  successResponse,
-} from '@/lib/api-response';
+import { handleApiError, successResponse } from '@/lib/api-response';
 import {
   requireAdminRouteRateLimit,
   requireTrustedAdminOrigin,

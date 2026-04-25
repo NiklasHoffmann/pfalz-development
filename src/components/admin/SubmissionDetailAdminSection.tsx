@@ -152,12 +152,9 @@ export function SubmissionDetailAdminSection({
     async function loadDetail() {
       setIsLoading(true);
       setError(undefined);
-      const response = await fetch(
-        `/api/admin/submissions/${submissionId}`,
-        {
-          credentials: 'include',
-        }
-      );
+      const response = await fetch(`/api/admin/submissions/${submissionId}`, {
+        credentials: 'include',
+      });
       const payload = (await response.json().catch(() => null)) as {
         success?: boolean;
         data?: SubmissionDetail;
@@ -229,21 +226,18 @@ export function SubmissionDetailAdminSection({
     setSaveMessage(undefined);
     setError(undefined);
 
-    const response = await fetch(
-      `/api/admin/submissions/${submissionId}`,
-      {
-        method: 'PATCH',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          status,
-          internalNotes,
-          assigneeUserId: assigneeUserId || null,
-        }),
-      }
-    );
+    const response = await fetch(`/api/admin/submissions/${submissionId}`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        status,
+        internalNotes,
+        assigneeUserId: assigneeUserId || null,
+      }),
+    });
 
     const payload = (await response.json().catch(() => null)) as {
       success?: boolean;
