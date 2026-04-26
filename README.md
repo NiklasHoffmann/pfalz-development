@@ -102,6 +102,8 @@ MONGODB_URI=mongodb://localhost:27017/nextjs-starter
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
+These two values are enough for the public site in local development. If you want to use intake or admin flows locally, also set the auth and signing secrets from the production section below.
+
 ### Recommended for contact handling
 
 ```env
@@ -156,7 +158,7 @@ The app then runs on `http://localhost:3000`.
 | `/orte/*`            | Location pages                 |
 | `/fragebogen/[slug]` | Protected client questionnaire |
 | `/admin/login`       | Internal admin login           |
-| `/admin/intake/*`    | Internal intake administration |
+| `/admin/*`           | Internal admin workspace       |
 
 ## Representative APIs
 
@@ -193,6 +195,19 @@ npm run security:check-live
 docker compose up --build
 ```
 
+Important: the checked-in `docker-compose.yml` runs the app with `NODE_ENV=production`. That means the container needs the production auth and signing secrets before startup, otherwise environment validation will stop the app.
+
+At minimum, provide these values in the deployment environment or compose override:
+
+```env
+MONGODB_URI=
+NEXT_PUBLIC_APP_URL=
+INTAKE_SESSION_SECRET=
+INTAKE_SHARE_LINK_SECRET=
+ADMIN_SESSION_SECRET=
+ADMIN_ALLOWED_IPS=
+```
+
 The provided compose setup starts:
 
 - the Next.js app on port `3000`
@@ -202,7 +217,14 @@ The provided compose setup starts:
 
 ```bash
 docker build -t pfalz-development .
-docker run -p 3000:3000 -e MONGODB_URI=... -e NEXT_PUBLIC_APP_URL=... pfalz-development
+docker run -p 3000:3000 \
+	-e MONGODB_URI=... \
+	-e NEXT_PUBLIC_APP_URL=https://your-domain.example \
+	-e INTAKE_SESSION_SECRET=... \
+	-e INTAKE_SHARE_LINK_SECRET=... \
+	-e ADMIN_SESSION_SECRET=... \
+	-e ADMIN_ALLOWED_IPS=... \
+	pfalz-development
 ```
 
 The image uses a standalone Next.js production build and starts with `node server.js`.

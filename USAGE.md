@@ -79,6 +79,7 @@ export default function MyForm() {
 'use client';
 
 import { useEffect, useState } from 'react';
+import { readJsonResponse } from '@/lib/api-client';
 import { useNotification } from '@/hooks/useNotification';
 
 type User = {
@@ -100,10 +101,14 @@ export default function UsersList() {
 
     try {
       const res = await fetch('/api/users');
-      const json = await res.json();
+      const json = await readJsonResponse<{
+        success?: boolean;
+        data?: User[];
+        error?: string;
+      }>(res);
 
-      if (!res.ok || !json.success) {
-        throw new Error(json.error || 'Failed to load users');
+      if (!res.ok || !json?.success) {
+        throw new Error(json?.error || 'Failed to load users');
       }
 
       setUsers(json.data ?? []);
@@ -129,10 +134,13 @@ export default function UsersList() {
         }),
       });
 
-      const json = await res.json();
+      const json = await readJsonResponse<{
+        success?: boolean;
+        error?: string;
+      }>(res);
 
-      if (!res.ok || !json.success) {
-        throw new Error(json.error || 'Failed to create user');
+      if (!res.ok || !json?.success) {
+        throw new Error(json?.error || 'Failed to create user');
       }
 
       await loadUsers();
@@ -150,10 +158,13 @@ export default function UsersList() {
         method: 'DELETE',
       });
 
-      const json = await res.json();
+      const json = await readJsonResponse<{
+        success?: boolean;
+        error?: string;
+      }>(res);
 
-      if (!res.ok || !json.success) {
-        throw new Error(json.error || 'Failed to delete user');
+      if (!res.ok || !json?.success) {
+        throw new Error(json?.error || 'Failed to delete user');
       }
 
       await loadUsers();
@@ -188,6 +199,7 @@ export default function UsersList() {
 'use client';
 
 import { useState } from 'react';
+import { readJsonResponse } from '@/lib/api-client';
 import { useNotification } from '@/hooks/useNotification';
 
 export default function ContactSubmitExample() {
@@ -211,10 +223,13 @@ export default function ContactSubmitExample() {
         }),
       });
 
-      const json = await res.json();
+      const json = await readJsonResponse<{
+        success?: boolean;
+        error?: string;
+      }>(res);
 
-      if (!res.ok || !json.success) {
-        throw new Error(json.error || 'Contact request failed');
+      if (!res.ok || !json?.success) {
+        throw new Error(json?.error || 'Contact request failed');
       }
 
       notification.success('Message sent successfully');
