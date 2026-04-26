@@ -1,12 +1,21 @@
 import { NextRequest } from 'next/server';
 import { successResponse } from '@/lib/api-response';
 import { writeAdminAuditLog } from '@/lib/admin-audit';
-import { requireTrustedAdminOrigin } from '@/lib/api-auth';
+import {
+  requireAdminRequestAccess,
+  requireTrustedAdminOrigin,
+} from '@/lib/api-auth';
 import { getStaffUserFromRequest } from '@/lib/auth/admin-session';
 import { env } from '@/lib/env';
 import { ADMIN_SESSION_COOKIE_NAME } from '@/lib/intake/constants';
 
 export async function POST(request: NextRequest) {
+  const accessError = requireAdminRequestAccess(request);
+
+  if (accessError) {
+    return accessError;
+  }
+
   const originError = requireTrustedAdminOrigin(request);
 
   if (originError) {

@@ -11,6 +11,7 @@ const envSchema = z
       .enum(['development', 'production', 'test'])
       .default('development'),
     NEXT_PUBLIC_APP_URL: z.string().url().default('http://localhost:3000'),
+    ADMIN_APP_URL: z.string().url().optional(),
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().optional(),
     TURNSTILE_SECRET_KEY: z.string().optional(),
 
@@ -49,6 +50,12 @@ const envSchema = z
 
     // Staff admin auth
     ADMIN_API_KEY: z.string().min(24).optional(),
+    ADMIN_ENFORCE_IP_ALLOWLIST: z.preprocess((value) => {
+      if (value === undefined || value === '') return true;
+      if (value === true || value === 'true') return true;
+      if (value === false || value === 'false') return false;
+      return value;
+    }, z.boolean()),
     ADMIN_ALLOWED_IPS: z.string().optional(),
     ADMIN_SESSION_SECRET: z.string().min(32).optional(),
     ADMIN_SESSION_DURATION_HOURS: z.string().transform(Number).default('12'),

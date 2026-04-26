@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { AdminResetPasswordForm } from '@/components/admin/AdminResetPasswordForm';
+import { getAdminAppUrl } from '@/lib/admin-host';
+import { requireAdminPageEntryAccess } from '@/lib/auth/admin-session';
 import { createInternalMetadata } from '@/lib/intake/metadata';
 
 interface AdminResetPasswordPageProps {
@@ -16,6 +18,7 @@ export async function generateMetadata({
     path: '/admin/reset-password',
     title: 'Admin-Passwort zurücksetzen',
     description: 'Setze ein neues Passwort für den internen Admin-Zugang.',
+    baseUrl: getAdminAppUrl(),
   });
 }
 
@@ -23,6 +26,7 @@ export default async function AdminResetPasswordPage({
   params,
 }: AdminResetPasswordPageProps) {
   const { locale } = await params;
+  await requireAdminPageEntryAccess();
 
   return (
     <main className="min-h-screen bg-stone-100 px-4 py-10 text-stone-950 dark:bg-stone-950 dark:text-stone-50">

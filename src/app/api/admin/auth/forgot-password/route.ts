@@ -1,11 +1,13 @@
 import { NextRequest } from 'next/server';
 import { handleApiError, successResponse } from '@/lib/api-response';
 import {
+  requireAdminRequestAccess,
   requireAdminRouteRateLimit,
   requireTrustedAdminOrigin,
 } from '@/lib/api-auth';
 import { writeAdminAuditLog } from '@/lib/admin-audit';
 import { getClientIp } from '@/lib/admin-network';
+import { buildAdminAppUrl } from '@/lib/admin-host';
 import {
   generatePasswordResetToken,
   getPasswordResetExpiryDate,
@@ -23,6 +25,12 @@ const GENERIC_MESSAGE =
 
 export async function POST(request: NextRequest) {
   try {
+    const accessError = requireAdminRequestAccess(request);
+
+    if (accessError) {
+      return accessError;
+    }
+
     const originError = requireTrustedAdminOrigin(request);
 
     if (originError) {
@@ -62,7 +70,9 @@ export async function POST(request: NextRequest) {
 
     const { rawToken, tokenHash } = generatePasswordResetToken();
     const localePrefix = body.locale === 'de' ? '' : `/${body.locale}`;
-    const resetUrl = `${env.NEXT_PUBLIC_APP_URL}${localePrefix}/admin/reset-password?token=${encodeURIComponent(rawToken)}`;
+    const resetUrl = buildAdminAppUrl(
+      `${localePrefix}/admin/reset-password?token=${encodeURIComponent(rawToken)}`
+    );
 
     await AdminPasswordResetToken.create({
       staffUserId: staffUser._id,

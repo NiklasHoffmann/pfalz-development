@@ -7,14 +7,17 @@ export function createInternalMetadata({
   path,
   title,
   description,
+  baseUrl,
 }: {
   locale: string;
   path: string;
   title: string;
   description: string;
+  baseUrl?: string;
 }): Metadata {
   const prefix = localeToPathPrefix(locale);
   const canonicalPath = `${prefix}${path.startsWith('/') ? path : `/${path}`}`;
+  const metadataBaseUrl = baseUrl || siteConfig.url;
 
   return {
     title: {
@@ -37,7 +40,7 @@ export function createInternalMetadata({
     },
     openGraph: {
       type: 'website',
-      url: `${siteConfig.url}${canonicalPath}`,
+      url: `${metadataBaseUrl}${canonicalPath}`,
       title,
       description,
       siteName: siteConfig.name,

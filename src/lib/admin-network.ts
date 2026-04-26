@@ -44,6 +44,10 @@ export function getConfiguredAdminAllowedIps() {
     .filter(Boolean);
 }
 
+export function isAdminIpAllowlistEnforced() {
+  return env.ADMIN_ENFORCE_IP_ALLOWLIST;
+}
+
 export function isLocalAdminIp(ip: string) {
   const normalizedIp = normalizeIp(ip);
 
@@ -55,6 +59,10 @@ export function isLocalAdminIp(ip: string) {
 }
 
 export function isAllowedAdminIp(ip: string) {
+  if (!isAdminIpAllowlistEnforced()) {
+    return true;
+  }
+
   const allowedIps = getConfiguredAdminAllowedIps();
 
   if (!allowedIps.length) {

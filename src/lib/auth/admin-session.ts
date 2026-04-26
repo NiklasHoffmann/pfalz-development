@@ -3,6 +3,7 @@ import { cookies, headers } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 import type { NextRequest } from 'next/server';
 import { env } from '@/lib/env';
+import { getRequestHost, isAllowedAdminHost } from '@/lib/admin-host';
 import { ADMIN_SESSION_COOKIE_NAME } from '@/lib/intake/constants';
 import { getClientIpFromHeaders, isAllowedAdminIp } from '@/lib/admin-network';
 import connectToDatabase from '@/lib/mongodb';
@@ -142,13 +143,27 @@ export async function getStaffUserFromCookieStore(
   );
 }
 
+export async function requireAdminPageEntryAccess() {
+  const headerStore = await headers();
+
+  if (
+    !isAllowedAdminHost(getRequestHost(headerStore)) ||
+    !isAllowedAdminIp(getClientIpFromHeaders(headerStore))
+  ) {
+    notFound();
+  }
+}
+
 export async function requireStaffPageAccess(
   locale: string,
   allowedRoles?: IntakeStaffRole[]
 ) {
   const headerStore = await headers();
 
-  if (!isAllowedAdminIp(getClientIpFromHeaders(headerStore))) {
+  if (
+    !isAllowedAdminHost(getRequestHost(headerStore)) ||
+    !isAllowedAdminIp(getClientIpFromHeaders(headerStore))
+  ) {
     notFound();
   }
 

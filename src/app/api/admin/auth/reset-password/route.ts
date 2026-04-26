@@ -5,6 +5,7 @@ import {
   successResponse,
 } from '@/lib/api-response';
 import {
+  requireAdminRequestAccess,
   requireAdminRouteRateLimit,
   requireTrustedAdminOrigin,
 } from '@/lib/api-auth';
@@ -20,6 +21,12 @@ import { resetStaffPasswordSchema } from '@/schemas/intake/staff-auth.schema';
 
 export async function POST(request: NextRequest) {
   try {
+    const accessError = requireAdminRequestAccess(request);
+
+    if (accessError) {
+      return accessError;
+    }
+
     const originError = requireTrustedAdminOrigin(request);
 
     if (originError) {

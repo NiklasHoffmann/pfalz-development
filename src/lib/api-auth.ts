@@ -6,6 +6,7 @@ import { env } from './env';
 import { logger } from './logger';
 import { rateLimitPersistent } from './rate-limit';
 import { getClientIp, isAllowedAdminIp } from './admin-network';
+import { getRequestHost, isAllowedAdminHost } from './admin-host';
 import type { IntakeStaffRole } from '@/types/intake';
 
 const ADMIN_HEADER = 'x-admin-key';
@@ -33,6 +34,10 @@ export function hasValidAdminApiKey(request: NextRequest): boolean {
 }
 
 export function requireAdminApiKey(request: NextRequest) {
+  if (!isAllowedAdminHost(getRequestHost(request.headers))) {
+    return errorResponse('Not found', 404);
+  }
+
   if (!isAllowedAdminIp(getClientIp(request))) {
     return errorResponse('Forbidden', 403);
   }
@@ -44,10 +49,26 @@ export function requireAdminApiKey(request: NextRequest) {
   return null;
 }
 
+export function requireAdminRequestAccess(request: NextRequest) {
+  if (!isAllowedAdminHost(getRequestHost(request.headers))) {
+    return errorResponse('Not found', 404);
+  }
+
+  if (isAllowedAdminIp(getClientIp(request))) {
+    return null;
+  }
+
+  return errorResponse('Forbidden', 403);
+}
+
 export async function requireIntakeAdminAccess(
   request: NextRequest,
   allowedRoles?: IntakeStaffRole[]
 ) {
+  if (!isAllowedAdminHost(getRequestHost(request.headers))) {
+    return errorResponse('Not found', 404);
+  }
+
   if (!isAllowedAdminIp(getClientIp(request))) {
     return errorResponse('Forbidden', 403);
   }

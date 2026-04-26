@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { AdminBootstrapForm } from '@/components/admin/AdminBootstrapForm';
 import { AdminLoginForm } from '@/components/admin/AdminLoginForm';
+import { getAdminAppUrl } from '@/lib/admin-host';
+import { requireAdminPageEntryAccess } from '@/lib/auth/admin-session';
 import { createInternalMetadata } from '@/lib/intake/metadata';
 import connectToDatabase from '@/lib/mongodb';
 import StaffUser from '@/models/StaffUser';
@@ -19,11 +21,13 @@ export async function generateMetadata({
     path: '/admin/login',
     title: 'Interner Admin-Login',
     description: 'Geschützter Login für den internen Kundenbereich.',
+    baseUrl: getAdminAppUrl(),
   });
 }
 
 export default async function AdminLoginPage({ params }: AdminLoginPageProps) {
   const { locale } = await params;
+  await requireAdminPageEntryAccess();
   let hasStaffUsers = true;
   const hasConfiguredAdminApiKey = Boolean(process.env.ADMIN_API_KEY?.trim());
   let canBootstrapWithoutAdminApiKey = false;

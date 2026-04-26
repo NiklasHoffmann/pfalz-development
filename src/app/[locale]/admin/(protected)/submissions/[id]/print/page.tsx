@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SubmissionPrintActions } from '@/components/admin/SubmissionPrintActions';
+import { getAdminAppUrl } from '@/lib/admin-host';
 import {
   getAdminSubmissionDetail,
   type SubmissionSection,
@@ -37,6 +38,7 @@ export async function generateMetadata({
     title: 'Druckansicht Einreichung',
     description:
       'Druckoptimierte Einzelansicht für eine interne Intake-Einreichung.',
+    baseUrl: getAdminAppUrl(),
   });
 }
 

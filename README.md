@@ -100,6 +100,7 @@ Copy `.env.example` to `.env.local` and adjust the values.
 ```env
 MONGODB_URI=mongodb://localhost:27017/nextjs-starter
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+ADMIN_APP_URL=
 ```
 
 These two values are enough for the public site in local development. If you want to use intake or admin flows locally, also set the auth and signing secrets from the production section below.
@@ -125,6 +126,8 @@ CONTACT_TO_EMAIL=
 INTAKE_SESSION_SECRET=
 INTAKE_SHARE_LINK_SECRET=
 ADMIN_API_KEY=
+ADMIN_APP_URL=
+ADMIN_ENFORCE_IP_ALLOWLIST=true
 ADMIN_ALLOWED_IPS=
 ADMIN_SESSION_SECRET=
 ```
@@ -134,7 +137,9 @@ Notes:
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` must either both be set or both be omitted.
 - `INTAKE_SESSION_SECRET` and `INTAKE_SHARE_LINK_SECRET` are required in production for signed intake access.
 - `ADMIN_SESSION_SECRET` is required for admin authentication in every environment.
-- `ADMIN_ALLOWED_IPS` should be set for every deployed environment. Without it, the admin area is only reachable from local loopback addresses.
+- `ADMIN_APP_URL` is optional. Set it when the admin should live on a dedicated host such as `https://admin.pfalz-development.de`.
+- `ADMIN_ENFORCE_IP_ALLOWLIST` defaults to `true`. Set it to `false` if your reverse proxy or private network is the primary admin barrier.
+- `ADMIN_ALLOWED_IPS` should be set whenever `ADMIN_ENFORCE_IP_ALLOWLIST=true`. Without it, the admin area is only reachable from local loopback addresses.
 - First-user bootstrap without `ADMIN_API_KEY` is restricted to local development requests only.
 - The complete template lives in `.env.example`.
 
@@ -202,9 +207,11 @@ At minimum, provide these values in the deployment environment or compose overri
 ```env
 MONGODB_URI=
 NEXT_PUBLIC_APP_URL=
+ADMIN_APP_URL=
 INTAKE_SESSION_SECRET=
 INTAKE_SHARE_LINK_SECRET=
 ADMIN_SESSION_SECRET=
+ADMIN_ENFORCE_IP_ALLOWLIST=true
 ADMIN_ALLOWED_IPS=
 ```
 
@@ -220,9 +227,11 @@ docker build -t pfalz-development .
 docker run -p 3000:3000 \
 	-e MONGODB_URI=... \
 	-e NEXT_PUBLIC_APP_URL=https://your-domain.example \
+	-e ADMIN_APP_URL=https://admin.your-domain.example \
 	-e INTAKE_SESSION_SECRET=... \
 	-e INTAKE_SHARE_LINK_SECRET=... \
 	-e ADMIN_SESSION_SECRET=... \
+	-e ADMIN_ENFORCE_IP_ALLOWLIST=true \
 	-e ADMIN_ALLOWED_IPS=... \
 	pfalz-development
 ```
@@ -245,6 +254,8 @@ The image uses a standalone Next.js production build and starts with `node serve
 ## Additional Documentation
 
 - `USAGE.md` for implementation examples
+- `docs/admin-subdomain.md` for a clean `admin.<domain>` setup, including Coolify
+- `docs/tailscale-admin-vps.md` for a private Tailscale-based admin setup on a VPS
 - Private planning, client, and operating documents are intentionally kept outside the public repository
 
 ## License

@@ -4,7 +4,10 @@ import {
   handleApiError,
   successResponse,
 } from '@/lib/api-response';
-import { requireTrustedAdminOrigin } from '@/lib/api-auth';
+import {
+  requireAdminRequestAccess,
+  requireTrustedAdminOrigin,
+} from '@/lib/api-auth';
 import { encodeAdminSession } from '@/lib/auth/admin-session';
 import { verifyPassword } from '@/lib/auth/password';
 import { env } from '@/lib/env';
@@ -18,6 +21,12 @@ import { getClientIp } from '@/lib/admin-network';
 
 export async function POST(request: NextRequest) {
   try {
+    const accessError = requireAdminRequestAccess(request);
+
+    if (accessError) {
+      return accessError;
+    }
+
     const originError = requireTrustedAdminOrigin(request);
 
     if (originError) {
