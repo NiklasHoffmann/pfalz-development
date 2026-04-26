@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import Input from '@/components/ui/Form/Input';
 import Textarea from '@/components/ui/Form/Textarea';
+import { readJsonResponse } from '@/lib/api-client';
 import { formatIban } from '@/lib/iban';
 
 interface InvoiceProfile {
@@ -125,14 +126,14 @@ export function InvoiceSettingsAdminSection({
         credentials: 'include',
       });
 
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: {
           settings?: InvoiceSettingsPayload;
           nextInvoiceNumber?: string;
         };
         error?: string;
-      } | null;
+      }>(response);
 
       if (!response.ok || !payload?.success || !payload.data?.settings) {
         setActionError(
@@ -196,10 +197,10 @@ export function InvoiceSettingsAdminSection({
       }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       error?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success) {
       setActionError(

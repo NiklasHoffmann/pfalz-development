@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import Select from '@/components/ui/Form/Select';
 import { AdminDataSection } from '@/components/admin/AdminDataSection';
 import { useRouter } from 'next/navigation';
+import { readJsonResponse } from '@/lib/api-client';
 import { intakeFormTypes, intakeSubmissionStatuses } from '@/types/intake';
 
 interface IntakeSubmissionRow {
@@ -104,10 +105,10 @@ export function SubmissionsAdminSection({
       body: JSON.stringify({ status }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       error?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success) {
       setActionError(

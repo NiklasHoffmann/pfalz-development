@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import SearchInput from '@/components/ui/SearchInput';
 import Table, { type Column } from '@/components/ui/Table';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { readJsonResponse } from '@/lib/api-client';
 
 interface AdminDataSectionProps<T extends Record<string, unknown>> {
   title: string;
@@ -60,11 +61,11 @@ export function AdminDataSection<T extends Record<string, unknown>>({
       const response = await fetch(url.toString(), {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: T[];
         error?: string;
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;

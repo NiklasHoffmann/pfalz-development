@@ -4,7 +4,7 @@ import { HomeHeader } from '@/components/home/HomeHeader';
 import type { NavItem } from '@/components/home/types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { siteConfig } from '@/config/site';
-import { getHeaderControlsCopy } from '@/lib/locale-ui';
+import { getHeaderControlsCopy } from '@/lib/header-controls.server';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations } from 'next-intl/server';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
@@ -63,6 +63,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
     siteConfig.contact.whatsAppDisplay,
     commonT('home.contact.whatsAppMessage')
   );
+  const headerControls = await getHeaderControlsCopy(locale);
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
     { label: navT('about'), href: `${basePath}/leistungen` },
@@ -77,7 +78,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
         navItems={navItems}
         brandHref={homeHref}
         navAriaLabel={getPrimaryNavigationLabel(locale, siteConfig.name)}
-        controls={getHeaderControlsCopy(locale)}
+        controls={headerControls}
       />
       <main className="flex-1 px-4 pb-28 pt-28 text-stone-900 dark:text-stone-100 sm:px-6 sm:pt-32 md:pb-16 lg:px-10">
         <div className="mx-auto max-w-7xl">

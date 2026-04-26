@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Textarea from '@/components/ui/Form/Textarea';
 import Select from '@/components/ui/Form/Select';
+import { readJsonResponse } from '@/lib/api-client';
 import { cn } from '@/lib/utils';
 import {
   formatSubmissionAnswerValue,
@@ -155,11 +156,11 @@ export function SubmissionDetailAdminSection({
       const response = await fetch(`/api/admin/submissions/${submissionId}`, {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: SubmissionDetail;
         error?: string;
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;
@@ -194,10 +195,10 @@ export function SubmissionDetailAdminSection({
       const response = await fetch('/api/admin/staff/options', {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: AssignableStaffUser[];
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;
@@ -239,11 +240,11 @@ export function SubmissionDetailAdminSection({
       }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       data?: SubmissionDetail;
       error?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success || !payload.data) {
       setError(payload?.error || 'Einreichung konnte nicht gespeichert werden');

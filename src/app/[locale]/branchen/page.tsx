@@ -6,7 +6,7 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { SectionSpyNav } from '@/components/ui/SectionSpyNav';
 import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
-import { getHeaderControlsCopy } from '@/lib/locale-ui';
+import { getHeaderControlsCopy } from '@/lib/header-controls.server';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -436,6 +436,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
 
   const getCardId = (href: string) =>
     href.split('/').filter(Boolean).pop() ?? href;
+  const headerControls = await getHeaderControlsCopy(locale);
 
   return (
     <div className="surface-page flex min-h-screen flex-col">
@@ -446,7 +447,7 @@ export default async function BranchenPage({ params }: BranchenPageProps) {
         brandHref={homeHref}
         activeHref={branchenHref}
         navAriaLabel={primaryNavigationLabel}
-        controls={getHeaderControlsCopy(locale)}
+        controls={headerControls}
       />
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-28 sm:px-6 md:pb-16 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px] xl:gap-12">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Input from '@/components/ui/Form/Input';
 import Select from '@/components/ui/Form/Select';
+import { readJsonResponse } from '@/lib/api-client';
 
 interface StaffUserRow {
   id: string;
@@ -83,11 +84,11 @@ export function StaffAdminSection() {
       const response = await fetch('/api/admin/staff', {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: StaffUserRow[];
         error?: string;
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;
@@ -142,11 +143,11 @@ export function StaffAdminSection() {
     const response = await fetch('/api/admin/staff', {
       credentials: 'include',
     });
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       data?: StaffUserRow[];
       error?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success || !Array.isArray(payload.data)) {
       throw new Error(
@@ -191,11 +192,11 @@ export function StaffAdminSection() {
       }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: StaffUserRow;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success || !payload.data) {
       setCreateError(
@@ -236,11 +237,11 @@ export function StaffAdminSection() {
       }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: StaffUserRow;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success || !payload.data) {
       setSaveError(

@@ -5,6 +5,7 @@ import { useMemo, useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Form from '@/components/ui/Form/Form';
 import Input from '@/components/ui/Form/Input';
+import { readJsonResponse } from '@/lib/api-client';
 
 interface AdminResetPasswordFormProps {
   locale: string;
@@ -49,10 +50,10 @@ export function AdminResetPasswordForm({
       body: JSON.stringify({ token, password }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       error?: string;
       message?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok) {
       setError(payload?.error || 'Passwort konnte nicht zurueckgesetzt werden');

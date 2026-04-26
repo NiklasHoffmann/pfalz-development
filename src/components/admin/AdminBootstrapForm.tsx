@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import Form from '@/components/ui/Form/Form';
 import Input from '@/components/ui/Form/Input';
 import Select from '@/components/ui/Form/Select';
+import { readJsonResponse } from '@/lib/api-client';
+import { getAdminRootPath } from '@/lib/locale-ui';
 
 interface AdminBootstrapFormProps {
   locale: string;
@@ -26,7 +28,7 @@ export function AdminBootstrapForm({
   const [adminApiKey, setAdminApiKey] = useState('');
   const [error, setError] = useState<string>();
 
-  const dashboardPath = locale === 'de' ? '/admin' : `/${locale}/admin`;
+  const dashboardPath = getAdminRootPath(locale);
 
   async function handleSubmit() {
     setError(undefined);
@@ -45,11 +47,9 @@ export function AdminBootstrapForm({
       }),
     });
 
-    const bootstrapPayload = (await bootstrapResponse
-      .json()
-      .catch(() => null)) as {
+    const bootstrapPayload = await readJsonResponse<{
       error?: string;
-    } | null;
+    }>(bootstrapResponse);
 
     if (!bootstrapResponse.ok) {
       setError(
@@ -66,9 +66,9 @@ export function AdminBootstrapForm({
       body: JSON.stringify({ email, password }),
     });
 
-    const loginPayload = (await loginResponse.json().catch(() => null)) as {
+    const loginPayload = await readJsonResponse<{
       error?: string;
-    } | null;
+    }>(loginResponse);
 
     if (!loginResponse.ok) {
       setError(

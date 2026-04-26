@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import type { SupportedLocale } from '@/components/home/types';
 import { isInternalIntakePath } from '@/lib/intake/path';
+import { getAdminRootPath } from '@/lib/locale-ui';
 
 const SHOW_AFTER_SCROLL_Y = 280;
 
@@ -45,7 +46,7 @@ export function ScrollToTopButton({ locale }: ScrollToTopButtonProps) {
       ? pathname.slice(0, -1)
       : pathname;
   const localeRootPath = locale === 'de' ? '/' : `/${locale}`;
-  const adminRootPath = locale === 'de' ? '/admin' : `/${locale}/admin`;
+  const adminRootPath = getAdminRootPath(locale);
   const hasMobileDock =
     normalizedPathname === localeRootPath && !isInternalIntakePath(pathname);
   const isAdminPath =

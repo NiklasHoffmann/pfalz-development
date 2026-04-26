@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { readJsonResponse } from '@/lib/api-client';
 import type {
   IntakeNotificationConfig,
   IntakeQuestionDefinition,
@@ -171,11 +172,11 @@ export function FormDetailAdminSection({
       const response = await fetch(`/api/admin/forms/${formId}`, {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: IntakeFormDetail;
         error?: string;
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;

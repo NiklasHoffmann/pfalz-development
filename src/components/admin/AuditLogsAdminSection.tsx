@@ -5,6 +5,7 @@ import Select from '@/components/ui/Form/Select';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import SearchInput from '@/components/ui/SearchInput';
 import Table, { type Column } from '@/components/ui/Table';
+import { readJsonResponse } from '@/lib/api-client';
 import { cn } from '@/lib/utils';
 import type { AdminAuditActorType, IntakeStaffRole } from '@/types/intake';
 
@@ -120,11 +121,11 @@ export function AuditLogsAdminSection() {
       const response = await fetch(url.toString(), {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: AdminAuditLogRow[];
         error?: string;
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;

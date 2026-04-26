@@ -4,6 +4,8 @@ import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import Form from '@/components/ui/Form/Form';
 import Input from '@/components/ui/Form/Input';
+import { readJsonResponse } from '@/lib/api-client';
+import { getAdminRootPath } from '@/lib/locale-ui';
 
 interface AdminLoginFormProps {
   locale: string;
@@ -20,7 +22,7 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
   const [showResetRequest, setShowResetRequest] = useState(false);
   const [isResetPending, setIsResetPending] = useState(false);
 
-  const dashboardPath = locale === 'de' ? '/admin' : `/${locale}/admin`;
+  const dashboardPath = getAdminRootPath(locale);
 
   async function handleSubmit() {
     setError(undefined);
@@ -35,9 +37,9 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
       body: JSON.stringify({ email, password }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       error?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok) {
       setError(payload?.error || 'Login fehlgeschlagen');
@@ -70,10 +72,10 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
       body: JSON.stringify({ email, locale }),
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       error?: string;
       message?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok) {
       setResetError(

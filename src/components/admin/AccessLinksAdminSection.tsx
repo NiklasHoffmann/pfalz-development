@@ -6,6 +6,7 @@ import QRCode from 'qrcode';
 import { AdminDataSection } from '@/components/admin/AdminDataSection';
 import Input from '@/components/ui/Form/Input';
 import Select from '@/components/ui/Form/Select';
+import { readJsonResponse } from '@/lib/api-client';
 
 interface IntakeAccessLinkRow {
   [key: string]: unknown;
@@ -98,7 +99,7 @@ export function AccessLinksAdminSection() {
       const response = await fetch('/api/admin/forms', {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: Array<{
           id?: string;
@@ -107,7 +108,7 @@ export function AccessLinksAdminSection() {
           slug?: string;
           status?: string;
         }>;
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;
@@ -234,11 +235,11 @@ export function AccessLinksAdminSection() {
       body: JSON.stringify(payload),
     });
 
-    const result = (await response.json().catch(() => null)) as {
+    const result = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: AccessLinkCreateResult;
-    } | null;
+    }>(response);
 
     if (!response.ok || !result?.success || !result.data) {
       setSubmitError(
@@ -301,11 +302,11 @@ export function AccessLinksAdminSection() {
       body: JSON.stringify(payload),
     });
 
-    const result = (await response.json().catch(() => null)) as {
+    const result = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: AccessLinkUpdateResult;
-    } | null;
+    }>(response);
 
     if (!response.ok || !result?.success || !result.data) {
       setActionError(
@@ -346,11 +347,11 @@ export function AccessLinksAdminSection() {
       credentials: 'include',
     });
 
-    const result = (await response.json().catch(() => null)) as {
+    const result = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: AccessLinkShareResult;
-    } | null;
+    }>(response);
 
     if (!response.ok || !result?.success || !result.data) {
       setActionError(
@@ -486,7 +487,7 @@ export function AccessLinksAdminSection() {
               options={[
                 { value: 'de', label: 'Deutsch' },
                 { value: 'en', label: 'English' },
-                { value: 'pfl', label: 'Pfaelzisch' },
+                { value: 'pfl', label: 'Pfälzisch' },
               ]}
               disabled={isSubmitting}
             />

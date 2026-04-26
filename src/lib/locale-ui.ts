@@ -1,8 +1,4 @@
-import type {
-  HomePageData,
-  MobileNavItem,
-  SupportedLocale,
-} from '@/components/home/types';
+import type { MobileNavItem, SupportedLocale } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 
@@ -14,6 +10,12 @@ export function localeToBasePath(locale: string): string {
   return getCurrentLocale(locale) === 'de'
     ? ''
     : `/${getCurrentLocale(locale)}`;
+}
+
+export function getAdminRootPath(locale: string): string {
+  const basePath = localeToBasePath(locale);
+
+  return `${basePath}/admin`;
 }
 
 export function normalizePathname(pathname: string): string {
@@ -163,65 +165,4 @@ export function getMobileDockItems(
 
 export function getDockLogicalPath(pathname: string): string {
   return stripLocalePrefix(pathname);
-}
-
-export function getHeaderControlsCopy(
-  locale: string
-): HomePageData['controls'] {
-  const currentLocale = getCurrentLocale(locale);
-
-  if (currentLocale === 'en') {
-    return {
-      currentLocale,
-      language: {
-        toggle: 'Switch language',
-        options: {
-          de: 'German',
-          en: 'English',
-          pfl: 'Palatine',
-        },
-      },
-      theme: {
-        light: 'Light',
-        dark: 'Dark',
-        toggle: 'Toggle theme',
-      },
-    };
-  }
-
-  if (currentLocale === 'pfl') {
-    return {
-      currentLocale,
-      language: {
-        toggle: 'Sprooch wechsle',
-        options: {
-          de: 'Deutsch',
-          en: 'Englisch',
-          pfl: 'Paelzisch',
-        },
-      },
-      theme: {
-        light: 'Hell',
-        dark: 'Dungel',
-        toggle: 'Design wechsle',
-      },
-    };
-  }
-
-  return {
-    currentLocale: currentLocale as SupportedLocale,
-    language: {
-      toggle: 'Sprache wechseln',
-      options: {
-        de: 'Deutsch',
-        en: 'Englisch',
-        pfl: 'Pfaelzisch',
-      },
-    },
-    theme: {
-      light: 'Hell',
-      dark: 'Dunkel',
-      toggle: 'Design wechseln',
-    },
-  };
 }

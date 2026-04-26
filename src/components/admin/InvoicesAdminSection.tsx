@@ -7,6 +7,7 @@ import QRCode from 'qrcode';
 import Input from '@/components/ui/Form/Input';
 import Select from '@/components/ui/Form/Select';
 import Table from '@/components/ui/Table';
+import { readJsonResponse } from '@/lib/api-client';
 import { compactIban, formatIban } from '@/lib/iban';
 import type { InvoiceStatus } from '@/types/invoice';
 
@@ -645,11 +646,11 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
       }
     );
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       data?: InvoiceApiDocument;
       error?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success || !payload.data) {
       setActionError(
@@ -678,11 +679,11 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
       credentials: 'include',
     });
 
-    const payload = (await response.json().catch(() => null)) as {
+    const payload = await readJsonResponse<{
       success?: boolean;
       data?: InvoiceApiDocument;
       error?: string;
-    } | null;
+    }>(response);
 
     if (!response.ok || !payload?.success || !payload.data) {
       setActionError(payload?.error || 'Rechnung konnte nicht geladen werden');

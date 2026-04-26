@@ -7,6 +7,7 @@ import Checkbox from '@/components/ui/Form/Checkbox';
 import Input from '@/components/ui/Form/Input';
 import Select from '@/components/ui/Form/Select';
 import Textarea from '@/components/ui/Form/Textarea';
+import { readJsonResponse } from '@/lib/api-client';
 
 interface IntakeFormRow {
   [key: string]: unknown;
@@ -212,10 +213,10 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
       const response = await fetch('/api/admin/forms', {
         credentials: 'include',
       });
-      const payload = (await response.json().catch(() => null)) as {
+      const payload = await readJsonResponse<{
         success?: boolean;
         data?: IntakeFormRow[];
-      } | null;
+      }>(response);
 
       if (isCancelled) {
         return;
@@ -340,11 +341,11 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
       body: JSON.stringify(payload),
     });
 
-    const result = (await response.json().catch(() => null)) as {
+    const result = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: IntakeFormRow;
-    } | null;
+    }>(response);
 
     if (!response.ok || !result?.success || !result.data) {
       setSubmitError(result?.error || 'Formular konnte nicht erstellt werden');
@@ -379,11 +380,11 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
       }),
     });
 
-    const result = (await response.json().catch(() => null)) as {
+    const result = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: ImportPreviewData;
-    } | null;
+    }>(response);
 
     if (!response.ok || !result?.success || !result.data) {
       setImportPreview(null);
@@ -419,11 +420,11 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
       }),
     });
 
-    const result = (await response.json().catch(() => null)) as {
+    const result = await readJsonResponse<{
       success?: boolean;
       error?: string;
       data?: IntakeFormRow;
-    } | null;
+    }>(response);
 
     if (!response.ok || !result?.success || !result.data) {
       setImportError(

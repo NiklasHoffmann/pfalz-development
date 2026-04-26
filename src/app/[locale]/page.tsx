@@ -2,11 +2,8 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
 import { siteConfig } from '@/config/site';
-import {
-  getHeaderControlsCopy,
-  getIndustryNavLabel,
-  localeToBasePath,
-} from '@/lib/locale-ui';
+import { getIndustryNavLabel, localeToBasePath } from '@/lib/locale-ui';
+import { getHeaderControlsCopy } from '@/lib/header-controls.server';
 import { PALATINATE_HREFLANG } from '@/lib/seo';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 import type {
@@ -296,7 +293,7 @@ export default async function HomePage({ params }: HomePageProps) {
       skipToContentLabel: t('accessibility.skipToContent'),
       primaryNavigationLabel,
     },
-    controls: getHeaderControlsCopy(locale),
+    controls: await getHeaderControlsCopy(locale),
     navItems,
     hero: {
       eyebrow: t('home.eyebrow'),
