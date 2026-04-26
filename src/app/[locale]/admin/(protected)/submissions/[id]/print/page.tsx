@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import styles from './page.module.css';
 import { SubmissionPrintActions } from '@/components/admin/SubmissionPrintActions';
 import { getAdminAppUrl } from '@/lib/admin-host';
 import {
@@ -56,7 +57,7 @@ function renderAnswerSections(
   return sections.map((section) => (
     <section
       key={section.id}
-      className="print-break-avoid rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900"
+      className={`${styles.breakAvoid} rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900`}
     >
       <h2 className="text-xl font-semibold tracking-tight">{section.title}</h2>
       {section.description && (
@@ -120,7 +121,7 @@ export default async function AdminSubmissionPrintPage({
 
   return (
     <main className="min-h-screen bg-stone-100 px-4 py-8 text-stone-950 dark:bg-stone-950 dark:text-stone-50 print:bg-white print:px-0 print:py-0 print:text-black">
-      <div className="print-sheet mx-auto flex max-w-5xl flex-col gap-6">
+      <div className={`${styles.sheet} mx-auto flex max-w-5xl flex-col gap-6`}>
         <section className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900 print:border-0 print:shadow-none">
           <SubmissionPrintActions
             backHref={withLocale(locale, `/admin/submissions/${id}`)}
@@ -144,7 +145,9 @@ export default async function AdminSubmissionPrintPage({
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <div className="print-break-avoid rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60">
+            <div
+              className={`${styles.breakAvoid} rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60`}
+            >
               <p className="text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 Kunde
               </p>
@@ -159,7 +162,9 @@ export default async function AdminSubmissionPrintPage({
                   '-'}
               </p>
             </div>
-            <div className="print-break-avoid rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60">
+            <div
+              className={`${styles.breakAvoid} rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60`}
+            >
               <p className="text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 Kontakt
               </p>
@@ -174,7 +179,9 @@ export default async function AdminSubmissionPrintPage({
                   '-'}
               </p>
             </div>
-            <div className="print-break-avoid rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60">
+            <div
+              className={`${styles.breakAvoid} rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60`}
+            >
               <p className="text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 Status
               </p>
@@ -183,7 +190,9 @@ export default async function AdminSubmissionPrintPage({
                 Fortschritt: {detail.progressPercent}%
               </p>
             </div>
-            <div className="print-break-avoid rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60">
+            <div
+              className={`${styles.breakAvoid} rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950/60`}
+            >
               <p className="text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 Zeitstempel
               </p>
@@ -198,7 +207,9 @@ export default async function AdminSubmissionPrintPage({
         </section>
 
         {!!detail.internalNotes && (
-          <section className="print-break-avoid rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+          <section
+            className={`${styles.breakAvoid} rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900`}
+          >
             <h2 className="text-xl font-semibold tracking-tight">
               Interne Notizen
             </h2>
@@ -210,7 +221,9 @@ export default async function AdminSubmissionPrintPage({
 
         {renderAnswerSections(sections, answerMap)}
 
-        <section className="print-break-avoid rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+        <section
+          className={`${styles.breakAvoid} rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900`}
+        >
           <h2 className="text-xl font-semibold tracking-tight">Consent</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-3">
             <div className="rounded-2xl bg-stone-50 px-4 py-3 dark:bg-stone-950/60">

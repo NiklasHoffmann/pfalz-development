@@ -1,0 +1,102 @@
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background-clip: padding-box;
+  background-color: var(--scrollbar-thumb);
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+@keyframes overlayEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayExit {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes contentEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, calc(-50% + 18px), 0) scale(0.965);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+}
+
+@keyframes contentExit {
+  from {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-50%, calc(-50% + 10px), 0) scale(0.985);
+  }
+}
+
+.overlay {
+  opacity: 0;
+  animation-duration: 320ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.overlay[data-state='open'] {
+  animation-name: overlayEnter;
+}
+
+.overlay[data-state='closed'] {
+  animation-name: overlayExit;
+  pointer-events: none;
+}
+
+.content {
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  will-change: opacity, transform;
+  animation-duration: 420ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.content[data-state='open'] {
+  animation-name: contentEnter;
+}
+
+.content[data-state='closed'] {
+  animation-name: contentExit;
+  pointer-events: none;
+}

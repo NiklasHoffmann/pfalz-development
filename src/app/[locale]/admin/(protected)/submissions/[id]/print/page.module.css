@@ -1,0 +1,21 @@
+.sheet {
+  max-width: none;
+  padding: 0;
+}
+
+.breakAvoid {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@media print {
+  .sheet {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .breakAvoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

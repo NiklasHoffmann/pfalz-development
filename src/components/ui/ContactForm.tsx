@@ -1,11 +1,13 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import modalStyles from '@/components/ui/Modal.module.css';
 import type { ContactFormCopy } from '@/components/home/types';
 import Input from '@/components/ui/Form/Input';
 import Textarea from '@/components/ui/Form/Textarea';
 import { TurnstileWidget } from '@/components/ui/TurnstileWidget';
 import { useZodForm } from '@/hooks/useZodForm';
+import { cn } from '@/lib/utils';
 import {
   createContactSchema,
   type ContactFormValues,
@@ -135,7 +137,12 @@ export function ContactForm({ messages, privacyHref }: ContactFormProps) {
         className="flex min-h-0 flex-1 flex-col"
         aria-describedby="contact-form-status"
       >
-        <div className="modal-scrollbar from-stone-100/78 via-stone-50/58 to-stone-100/44 dark:from-stone-900/52 dark:via-stone-900/28 dark:to-stone-900/12 min-h-0 flex-1 overflow-y-auto bg-gradient-to-b px-6 pb-5 pt-5">
+        <div
+          className={cn(
+            modalStyles.scrollbar,
+            'from-stone-100/78 via-stone-50/58 to-stone-100/44 dark:from-stone-900/52 dark:via-stone-900/28 dark:to-stone-900/12 min-h-0 flex-1 overflow-y-auto bg-gradient-to-b px-6 pb-5 pt-5'
+          )}
+        >
           <div className="from-stone-50/94 to-stone-100/82 dark:from-stone-800/96 dark:via-stone-800/94 dark:to-stone-900/84 rounded-[1.6rem] border border-stone-300/70 bg-gradient-to-b via-stone-100/90 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.52),0_16px_36px_-32px_rgba(28,25,23,0.22)] dark:border-stone-700/75 dark:bg-gradient-to-b dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_16px_36px_-32px_rgba(0,0,0,0.4)] sm:p-5">
             <fieldset disabled={isSubmitting} className="space-y-4">
               <input

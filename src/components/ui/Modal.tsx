@@ -2,6 +2,7 @@
 
 import * as Dialog from '@radix-ui/react-dialog';
 import { ReactNode, useEffect, useRef } from 'react';
+import styles from './Modal.module.css';
 import { cn } from '@/lib/utils';
 
 export interface ModalProps {
@@ -122,12 +123,18 @@ export default function Modal({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="modal-overlay-surface fixed inset-0 z-50 bg-black/50 backdrop-blur-[3px]" />
+        <Dialog.Overlay
+          className={cn(
+            styles.overlay,
+            'fixed inset-0 z-50 bg-black/50 backdrop-blur-[3px]'
+          )}
+        />
         <Dialog.Content
           id={contentId}
           ref={contentRef}
           className={cn(
-            'modal-content-surface fixed left-1/2 top-1/2 z-[60] flex max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] flex-col overflow-hidden overscroll-contain sm:max-h-[calc(100dvh-3rem)] sm:w-full',
+            styles.content,
+            'fixed left-1/2 top-1/2 z-[60] flex max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] flex-col overflow-hidden overscroll-contain sm:max-h-[calc(100dvh-3rem)] sm:w-full',
             'rounded-lg bg-white p-6 shadow-lg',
             'dark:bg-gray-800',
             sizeClasses[size],
@@ -158,7 +165,12 @@ export default function Modal({
             </>
           )}
           {scrollBody ? (
-            <div className="modal-scrollbar min-h-0 flex-1 overflow-y-auto pr-1">
+            <div
+              className={cn(
+                styles.scrollbar,
+                'min-h-0 flex-1 overflow-y-auto pr-1'
+              )}
+            >
               {children}
             </div>
           ) : (
