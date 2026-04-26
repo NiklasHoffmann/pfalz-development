@@ -215,55 +215,6 @@
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
   }
 
-  .admin-shell {
-    --admin-shell-max-width: 1800px;
-    --admin-shell-sidebar-track: 17.5rem;
-    --admin-shell-sidebar-width: 16rem;
-    --admin-shell-inline: 0.75rem;
-    --admin-shell-content-left: 0.75rem;
-  }
-
-  @media (min-width: 640px) {
-    .admin-shell {
-      --admin-shell-inline: 1rem;
-      --admin-shell-content-left: 1rem;
-    }
-
-    .admin-shell-header {
-      left: var(--admin-shell-inline);
-      right: var(--admin-shell-inline);
-      width: auto;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .admin-shell {
-      --admin-shell-inline: max(
-        1.5rem,
-        calc((100% - var(--admin-shell-max-width)) / 2 + 1.5rem)
-      );
-      --admin-shell-content-left: calc(
-        var(--admin-shell-inline) + var(--admin-shell-sidebar-track)
-      );
-    }
-
-    .admin-shell-sidebar {
-      left: var(--admin-shell-inline);
-      width: var(--admin-shell-sidebar-width);
-    }
-
-    .admin-shell-header {
-      left: var(--admin-shell-content-left);
-      right: var(--admin-shell-inline);
-      width: auto;
-    }
-
-    .admin-shell-content {
-      margin-left: var(--admin-shell-sidebar-track);
-      width: calc(100% - var(--admin-shell-sidebar-track));
-    }
-  }
-
   .surface-hero {
     background:
       radial-gradient(

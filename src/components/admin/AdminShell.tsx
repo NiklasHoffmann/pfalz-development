@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { startTransition, useState } from 'react';
+import styles from './AdminShell.module.css';
 import { cn } from '@/lib/utils';
 import type { IntakeStaffRole } from '@/types/intake';
 
@@ -93,7 +94,12 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
   }
 
   return (
-    <div className="admin-shell surface-page min-h-screen overflow-x-clip text-stone-950 dark:text-stone-50">
+    <div
+      className={cn(
+        styles.shell,
+        'admin-shell surface-page min-h-screen overflow-x-clip text-stone-950 dark:text-stone-50'
+      )}
+    >
       <div className="pointer-events-none fixed inset-x-0 top-0 -z-10 overflow-hidden">
         <div className="absolute left-[-8rem] top-[-7rem] h-64 w-64 rounded-full bg-amber-200/35 blur-3xl dark:bg-amber-500/10" />
         <div className="absolute right-[-6rem] top-20 h-72 w-72 rounded-full bg-stone-300/45 blur-3xl dark:bg-stone-700/25" />
@@ -101,7 +107,12 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
 
       <div className="relative mx-auto box-border w-full max-w-[1800px] px-3 py-4 sm:px-4 xl:px-6">
         <aside className="hidden xl:block">
-          <div className="admin-shell-sidebar fixed bottom-4 top-4 z-40 hidden flex-col overflow-hidden rounded-[2rem] xl:flex">
+          <div
+            className={cn(
+              styles.sidebar,
+              'admin-shell-sidebar fixed bottom-4 top-4 z-40 hidden flex-col overflow-hidden rounded-[2rem] xl:flex'
+            )}
+          >
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 rounded-[2rem] bg-transparent backdrop-blur-md [-webkit-mask-image:linear-gradient(to_right,black_0%,rgba(0,0,0,0.52)_32%,transparent_100%)] [mask-image:linear-gradient(to_right,black_0%,rgba(0,0,0,0.52)_32%,transparent_100%)]"
@@ -182,8 +193,15 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
           </div>
         </aside>
 
-        <div className="admin-shell-content min-w-0 pb-10 xl:pb-16">
-          <header className="admin-shell-header fixed top-4 z-30">
+        <div
+          className={cn(
+            styles.content,
+            'admin-shell-content min-w-0 pb-10 xl:pb-16'
+          )}
+        >
+          <header
+            className={cn(styles.header, 'admin-shell-header fixed top-4 z-30')}
+          >
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 -top-4 h-28 bg-transparent backdrop-blur-md [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.58)_24%,rgba(0,0,0,0.22)_52%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.58)_24%,rgba(0,0,0,0.22)_52%,transparent_100%)] sm:h-32"

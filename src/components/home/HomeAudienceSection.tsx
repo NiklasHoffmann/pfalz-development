@@ -9,10 +9,10 @@ interface HomeAudienceSectionProps {
 }
 
 const audienceFallbackImages = [
-  'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=65',
-  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=65',
-  'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=1200&q=65',
-  'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1200&q=65',
+  'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=960&q=48',
+  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=960&q=48',
+  'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=960&q=48',
+  'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=960&q=48',
 ];
 
 const AUDIENCE_IMAGE_SIZES =
@@ -26,11 +26,11 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
     value.includes('gastgeber') ||
     value.includes('host')
   ) {
-    return 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=65';
+    return 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=960&q=48';
   }
 
   if (value.includes('restaurant') || value.includes('gastr')) {
-    return 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=65';
+    return 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=960&q=48';
   }
 
   if (
@@ -38,7 +38,7 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
     value.includes('wein') ||
     value.includes('sekt')
   ) {
-    return 'https://images.unsplash.com/photo-1470158499416-75be9aa0c4db?auto=format&fit=crop&w=1200&q=65';
+    return 'https://images.unsplash.com/photo-1470158499416-75be9aa0c4db?auto=format&fit=crop&w=960&q=48';
   }
 
   if (
@@ -46,7 +46,7 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
     value.includes('handwerk') ||
     value.includes('craft')
   ) {
-    return 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1200&q=65';
+    return 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=960&q=48';
   }
 
   if (
@@ -58,7 +58,7 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
     value.includes('dinschdleischder') ||
     value.includes('unnernehme')
   ) {
-    return 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=65';
+    return 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=960&q=48';
   }
 
   if (
@@ -68,7 +68,7 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
     value.includes('website projects') ||
     value.includes('projekde')
   ) {
-    return 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=65';
+    return 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=960&q=48';
   }
 
   return audienceFallbackImages[index % audienceFallbackImages.length];

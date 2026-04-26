@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { StatusPageFrame } from '@/components/ui/StatusPageFrame';
 
 export default function GlobalError({
   error,
@@ -13,25 +14,38 @@ export default function GlobalError({
     console.error('Global Error:', error);
   }, [error]);
 
+  const detailMessage =
+    process.env.NODE_ENV === 'production' ? undefined : error.message;
+
   return (
     <html>
       <body>
-        <div className="flex min-h-screen flex-col items-center justify-center p-4">
-          <div className="text-center">
-            <h1 className="text-6xl font-bold text-red-600">
-              Kritischer Fehler
-            </h1>
-            <p className="mt-4 text-xl text-gray-700">
-              Ein schwerwiegender Fehler ist aufgetreten
-            </p>
-            <button
-              onClick={() => reset()}
-              className="mt-8 rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
-            >
-              Erneut versuchen
-            </button>
-          </div>
-        </div>
+        <StatusPageFrame
+          eyebrow="Kritischer Fehler"
+          title="Die Anwendung konnte diese Ansicht nicht stabil ausführen"
+          description="Es ist ein Fehler aufgetreten, der nicht auf einen einzelnen Bereich begrenzt war. Du kannst den Vorgang erneut starten oder zur Startseite zurückkehren."
+          statusLabel="Status"
+          statusValue="Globaler Fehler"
+          actions={[
+            { label: 'Erneut versuchen', onClick: reset, variant: 'solid' },
+            { label: 'Zur Startseite', href: '/', variant: 'outline' },
+          ]}
+          asideEyebrow="Stabilisierung"
+          asideTitle="Nächster sinnvoller Schritt"
+          asideDescription="Versuche zuerst einen erneuten Aufruf. Wenn der Fehler bestehen bleibt, starte über die Startseite neu und prüfe, ob der Fehler reproduzierbar ist."
+          asideBody={
+            detailMessage ? (
+              <div className="rounded-2xl border border-red-400/20 bg-red-500/10 px-4 py-4 text-sm text-red-100">
+                {detailMessage}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-stone-200">
+                Technische Fehlerdetails bleiben im Produktivbetrieb
+                ausgeblendet.
+              </div>
+            )
+          }
+        />
       </body>
     </html>
   );

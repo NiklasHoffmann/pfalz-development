@@ -1,0 +1,48 @@
+.shell {
+  --admin-shell-max-width: 1800px;
+  --admin-shell-sidebar-track: 17.5rem;
+  --admin-shell-sidebar-width: 16rem;
+  --admin-shell-inline: 0.75rem;
+  --admin-shell-content-left: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .shell {
+    --admin-shell-inline: 1rem;
+    --admin-shell-content-left: 1rem;
+  }
+
+  .header {
+    left: var(--admin-shell-inline);
+    right: var(--admin-shell-inline);
+    width: auto;
+  }
+}
+
+@media (min-width: 1280px) {
+  .shell {
+    --admin-shell-inline: max(
+      1.5rem,
+      calc((100% - var(--admin-shell-max-width)) / 2 + 1.5rem)
+    );
+    --admin-shell-content-left: calc(
+      var(--admin-shell-inline) + var(--admin-shell-sidebar-track)
+    );
+  }
+
+  .sidebar {
+    left: var(--admin-shell-inline);
+    width: var(--admin-shell-sidebar-width);
+  }
+
+  .header {
+    left: var(--admin-shell-content-left);
+    right: var(--admin-shell-inline);
+    width: auto;
+  }
+
+  .content {
+    margin-left: var(--admin-shell-sidebar-track);
+    width: calc(100% - var(--admin-shell-sidebar-track));
+  }
+}

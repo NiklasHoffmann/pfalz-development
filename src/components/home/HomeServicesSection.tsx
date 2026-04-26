@@ -8,7 +8,7 @@ interface HomeServicesSectionProps {
 }
 
 const SERVICES_STOCK_BACKGROUND_URL =
-  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=58';
+  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1280&q=44';
 
 export function HomeServicesSection({
   title,
@@ -27,7 +27,7 @@ export function HomeServicesSection({
         aria-hidden="true"
         fill
         sizes="100vw"
-        quality={40}
+        quality={28}
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
       <div
