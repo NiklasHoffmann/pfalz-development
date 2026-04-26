@@ -124,7 +124,7 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
       {showResetRequest ? (
         <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 dark:border-stone-800 dark:bg-stone-950/60">
           <p className="text-sm text-stone-600 dark:text-stone-300">
-            Wir senden einen einmaligen Link zum Zuruecksetzen an die angegebene
+            Wir senden einen einmaligen Link zum Zurücksetzen an die angegebene
             Admin-E-Mail.
           </p>
           <button

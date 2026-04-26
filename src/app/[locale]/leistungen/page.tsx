@@ -188,9 +188,9 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
       regionsOverviewHref: '/orte',
       regionsCards: [
         {
-          title: 'Web Design Neustadt an der Weinstrasse',
+          title: 'Web Design Neustadt an der Weinstraße',
           description:
-            'For businesses around Neustadt and the Weinstrasse that need stronger regional trust and clearer positioning.',
+            'For businesses around Neustadt and the Weinstraße that need stronger regional trust and clearer positioning.',
           href: '/orte/webdesign-neustadt',
         },
         {

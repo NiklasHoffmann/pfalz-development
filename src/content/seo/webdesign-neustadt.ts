@@ -103,20 +103,20 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
     },
 
     en: {
-      title: 'Web Design Neustadt an der Weinstrasse | Pfalz Development',
+      title: 'Web Design Neustadt an der Weinstraße | Pfalz Development',
       description:
-        'Web design for businesses in Neustadt an der Weinstrasse: clear positioning, strong local trust signals, and websites built to generate qualified inquiries.',
-      h1: 'Web design in Neustadt an der Weinstrasse for businesses that need clearer online positioning',
+        'Web design for businesses in Neustadt an der Weinstraße: clear positioning, strong local trust signals, and websites built to generate qualified inquiries.',
+      h1: 'Web design in Neustadt an der Weinstraße for businesses that need clearer online positioning',
       eyebrow: 'Location Page',
       intro:
-        'Neustadt an der Weinstrasse combines regional visibility, tourism, hospitality, and strong personal trust signals. When someone looks for a local provider here, the website often decides whether they reach out or move on. It has to communicate the offer quickly, build trust, and make the next step obvious.',
+        'Neustadt an der Weinstraße combines regional visibility, tourism, hospitality, and strong personal trust signals. When someone looks for a local provider here, the website often decides whether they reach out or move on. It has to communicate the offer quickly, build trust, and make the next step obvious.',
 
       sections: [
         {
           title: 'Why trust and regional fit matter especially in Neustadt',
           paragraphs: [
             'Many smaller businesses, hospitality offers, and local service providers are checked online before any phone call or inquiry happens. If the offer, relevance, and contact path are not immediately clear, potential customers leave within seconds.',
-            'In the wider Weinstrasse environment, the market is often not extremely large, but many providers look similar at first glance. A clearer and more professional website creates a practical advantage in exactly that situation.',
+            'In the wider Weinstraße environment, the market is often not extremely large, but many providers look similar at first glance. A clearer and more professional website creates a practical advantage in exactly that situation.',
           ],
         },
         {
@@ -138,12 +138,12 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
           title: 'Neustadt benefits from clear local entry points',
           paragraphs: [
             'A well-structured website supports both visitors and search visibility. Clear headings, relevant page titles, local references, and a clean technical setup help Google understand the regional focus.',
-            'Combined with a well-maintained Google Business Profile, this creates a stronger base for inquiries from Neustadt, the Weinstrasse area, and the surrounding region.',
+            'Combined with a well-maintained Google Business Profile, this creates a stronger base for inquiries from Neustadt, the Weinstraße area, and the surrounding region.',
           ],
         },
       ],
 
-      faqTitle: 'FAQ for businesses in Neustadt an der Weinstrasse',
+      faqTitle: 'FAQ for businesses in Neustadt an der Weinstraße',
       faq: [
         {
           question: 'Is this only for new websites or also for relaunches?',
@@ -184,9 +184,9 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       backToHome: 'Back to homepage',
 
       service: {
-        name: 'Web Design Neustadt an der Weinstrasse',
+        name: 'Web Design Neustadt an der Weinstraße',
         serviceType: 'Webdesign',
-        areaServed: 'Neustadt an der Weinstrasse',
+        areaServed: 'Neustadt an der Weinstraße',
       },
     },
 

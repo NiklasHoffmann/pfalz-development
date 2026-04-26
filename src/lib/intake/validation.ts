@@ -165,11 +165,11 @@ function validateQuestion(
     question.validationRules?.minSelections &&
     value.length < question.validationRules.minSelections
   ) {
-    return `${question.label} benoetigt mindestens ${question.validationRules.minSelections} Auswahl(en).`;
+    return `${question.label} benötigt mindestens ${question.validationRules.minSelections} Auswahl(en).`;
   }
 
   if (question.fieldType === 'consent' && value !== true) {
-    return `${question.label} muss bestaetigt werden.`;
+    return `${question.label} muss bestätigt werden.`;
   }
 
   return null;

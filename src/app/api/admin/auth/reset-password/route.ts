@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       logger.warn(
         `Staff reset-password failed due to invalid token (ip=${clientIp})`
       );
-      return errorResponse('Reset-Link ist ungueltig oder abgelaufen', 400);
+      return errorResponse('Reset-Link ist ungültig oder abgelaufen', 400);
     }
 
     const staffUser = await StaffUser.findOne({
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     if (!staffUser) {
       tokenRecord.usedAt = new Date();
       await tokenRecord.save();
-      return errorResponse('Reset-Link ist ungueltig oder abgelaufen', 400);
+      return errorResponse('Reset-Link ist ungültig oder abgelaufen', 400);
     }
 
     staffUser.passwordHash = hashPassword(body.password);

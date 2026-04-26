@@ -107,7 +107,7 @@ export function AdminDataSection<T extends Record<string, unknown>>({
           </p>
           <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-stone-600 dark:text-stone-300">
             <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 dark:border-stone-700 dark:bg-stone-950/60">
-              {isLoading ? 'Laedt...' : `${rows.length} Eintraege`}
+              {isLoading ? 'Lädt...' : `${rows.length} Einträge`}
             </span>
             {search.trim() ? (
               <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 dark:border-stone-700 dark:bg-stone-950/60">

@@ -4,7 +4,7 @@ export const websiteRelaunchTemplate: IntakeTemplateDefinition = {
   title: 'Website-Relaunch-Fragebogen',
   slug: 'website-relaunch',
   description:
-    'Strukturierte Erstaufnahme fuer Relaunch-Projekte mit Fokus auf Ziele, Inhalte, Technik und Projektorganisation.',
+    'Strukturierte Erstaufnahme für Relaunch-Projekte mit Fokus auf Ziele, Inhalte, Technik und Projektorganisation.',
   status: 'active',
   version: 1,
   formType: 'relaunch',
@@ -94,7 +94,7 @@ export const websiteRelaunchTemplate: IntakeTemplateDefinition = {
           id: 'relaunch-copy-needed',
           key: 'copyCreationNeeded',
           fieldType: 'yes-no',
-          label: 'Sollen Texte neu erstellt oder ueberarbeitet werden?',
+          label: 'Sollen Texte neu erstellt oder überarbeitet werden?',
           required: true,
           order: 2,
         },
@@ -102,7 +102,7 @@ export const websiteRelaunchTemplate: IntakeTemplateDefinition = {
           id: 'relaunch-page-priorities',
           key: 'pagePriorities',
           fieldType: 'checkbox-group',
-          label: 'Welche Bereiche haben Prioritaet?',
+          label: 'Welche Bereiche haben Priorität?',
           required: false,
           order: 3,
           options: [
@@ -136,7 +136,7 @@ export const websiteRelaunchTemplate: IntakeTemplateDefinition = {
           id: 'relaunch-features',
           key: 'technicalFeatures',
           fieldType: 'checkbox-group',
-          label: 'Welche Funktionen werden benoetigt?',
+          label: 'Welche Funktionen werden benötigt?',
           required: false,
           order: 1,
           options: [
@@ -150,7 +150,7 @@ export const websiteRelaunchTemplate: IntakeTemplateDefinition = {
           id: 'relaunch-target-date',
           key: 'targetLaunchDate',
           fieldType: 'date',
-          label: 'Gewuenschtes Ziel- oder Go-live-Datum',
+          label: 'Gewünschtes Ziel- oder Go-live-Datum',
           required: false,
           order: 2,
         },
@@ -167,7 +167,7 @@ export const websiteRelaunchTemplate: IntakeTemplateDefinition = {
           key: 'privacyConsent',
           fieldType: 'consent',
           label:
-            'Ich stimme der Verarbeitung meiner Angaben fuer die Projektanfrage zu.',
+            'Ich stimme der Verarbeitung meiner Angaben für die Projektanfrage zu.',
           required: true,
           order: 4,
         },

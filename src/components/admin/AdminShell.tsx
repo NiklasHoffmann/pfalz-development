@@ -28,7 +28,7 @@ function withLocale(locale: string, path: string) {
 }
 
 const navigationItems: NavigationItem[] = [
-  { href: '/admin', label: 'Uebersicht', matchMode: 'exact' },
+  { href: '/admin', label: 'Übersicht', matchMode: 'exact' },
   { href: '/admin/submissions', label: 'Einreichungen' },
   { href: '/admin/rechnungen', label: 'Rechnungen', matchMode: 'exact' },
   {
@@ -81,7 +81,7 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
     const href = withLocale(locale, item.href);
     return isNavigationItemActive(pathname, href, item.matchMode);
   });
-  const activeSectionLabel = activeNavigationItem?.label || 'Uebersicht';
+  const activeSectionLabel = activeNavigationItem?.label || 'Übersicht';
 
   async function handleLogout() {
     setIsLoggingOut(true);
@@ -119,7 +119,7 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
                   Arbeitsbereich
                 </p>
                 <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                  Die wichtigsten Admin-Flaechen sind hier gebuendelt und mit
+                  Die wichtigsten Admin-Flächen sind hier gebündelt und mit
                   kurzen Wegen erreichbar.
                 </p>
               </div>
@@ -203,7 +203,7 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
                   </p>
                   <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-300">
                     Klare Navigation, kompakte Statusinfos und schnelle Aktionen
-                    fuer den Tagesbetrieb.
+                    für den Tagesbetrieb.
                   </p>
                 </div>
 

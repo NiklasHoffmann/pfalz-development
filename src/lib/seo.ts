@@ -143,7 +143,7 @@ export function createSeoSchemas({
           '@type': 'PostalAddress',
           streetAddress: 'Froebelstrasse 20',
           postalCode: '67433',
-          addressLocality: 'Neustadt an der Weinstrasse',
+          addressLocality: 'Neustadt an der Weinstraße',
           addressCountry: 'DE',
         },
         areaServed: 'Pfalz',

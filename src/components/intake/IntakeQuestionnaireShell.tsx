@@ -226,13 +226,13 @@ function validateQuestion(
       try {
         new URL(value.trim());
       } catch {
-        return 'Bitte eine gueltige URL eingeben.';
+        return 'Bitte eine gültige URL eingeben.';
       }
     }
   }
 
   if (question.fieldType === 'consent' && value !== true) {
-    return 'Bitte bestaetige die Einwilligung vor dem Absenden.';
+    return 'Bitte bestätige die Einwilligung vor dem Absenden.';
   }
 
   if (
@@ -241,7 +241,7 @@ function validateQuestion(
     question.validationRules?.minSelections &&
     value.length < question.validationRules.minSelections
   ) {
-    return `Bitte mindestens ${question.validationRules.minSelections} Option(en) auswaehlen.`;
+    return `Bitte mindestens ${question.validationRules.minSelections} Option(en) auswählen.`;
   }
 
   return null;
@@ -520,7 +520,7 @@ function QuestionField({
         {...commonProps}
         options={options}
         value={typeof value === 'string' ? value : ''}
-        placeholder="Bitte auswaehlen"
+        placeholder="Bitte auswählen"
         onChange={(event) => onChange(event.target.value)}
       />
     );
@@ -684,7 +684,7 @@ function QuestionField({
           </p>
           {question.helpText && <p className="mt-1">{question.helpText}</p>}
           <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">
-            Uploads werden lokal gespeichert und nur ueber geschuetzte Endpunkte
+            Uploads werden lokal gespeichert und nur über geschützte Endpunkte
             ausgeliefert.
             {maxFileSize
               ? ` Maximal ${formatFileSize(maxFileSize)} pro Datei.`
@@ -693,7 +693,7 @@ function QuestionField({
         </div>
 
         <label className="inline-flex cursor-pointer items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-100 dark:hover:border-stone-100 dark:hover:text-stone-50">
-          Dateien auswaehlen
+          Dateien auswählen
           <input
             type="file"
             name={question.key}
@@ -1172,7 +1172,7 @@ export function IntakeQuestionnaireShell({
             disabled={currentStepIndex === 0 || isPending || hasPendingUploads}
             className="inline-flex items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-stone-700 dark:text-stone-100 dark:hover:border-stone-100 dark:hover:text-stone-50"
           >
-            Zurueck
+            Zurück
           </button>
           <button
             type="submit"

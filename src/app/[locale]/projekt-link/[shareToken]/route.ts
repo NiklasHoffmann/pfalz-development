@@ -18,7 +18,7 @@ export async function GET(
 
   if (!accessLinkId) {
     return new NextResponse(
-      'Dieser Zugangslink ist ungueltig oder nicht mehr verfuegbar.',
+      'Dieser Zugangslink ist ungültig oder nicht mehr verfügbar.',
       {
         status: 404,
         headers: {
@@ -33,7 +33,7 @@ export async function GET(
 
   if (!resolved) {
     return new NextResponse(
-      'Dieser Zugangslink ist ungueltig oder abgelaufen.',
+      'Dieser Zugangslink ist ungültig oder abgelaufen.',
       {
         status: 404,
         headers: {

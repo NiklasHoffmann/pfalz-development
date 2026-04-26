@@ -251,7 +251,7 @@ export function AccessLinksAdminSection() {
 
     setCreatedResult(result.data);
     setSubmitSuccess(
-      'Zugangslink wurde erstellt und steht sofort zur Verfuegung.'
+      'Zugangslink wurde erstellt und steht sofort zur Verfügung.'
     );
     setReloadToken((currentValue) => currentValue + 1);
     setFormState((currentState) => ({
@@ -356,7 +356,7 @@ export function AccessLinksAdminSection() {
     if (!response.ok || !result?.success || !result.data) {
       setActionError(
         result?.error ||
-          'Zugangslink konnte nicht fuer das Teilen geladen werden'
+          'Zugangslink konnte nicht für das Teilen geladen werden'
       );
       setActiveActionKey(undefined);
       return;
@@ -404,7 +404,7 @@ export function AccessLinksAdminSection() {
               Zugangslink anlegen
             </h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Erstellt einen individuellen Projektzugang fuer Kunden. Der
+              Erstellt einen individuellen Projektzugang für Kunden. Der
               erzeugte Link kann direkt verschickt oder als QR-Wert
               weiterverarbeitet werden.
             </p>
@@ -412,7 +412,7 @@ export function AccessLinksAdminSection() {
           <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-600 dark:border-stone-800 dark:bg-stone-950/60 dark:text-stone-300">
             {isLoadingForms
               ? 'Formulare werden geladen...'
-              : `${forms.length} Formular${forms.length === 1 ? '' : 'e'} verfuegbar`}
+              : `${forms.length} Formular${forms.length === 1 ? '' : 'e'} verfügbar`}
           </div>
         </div>
 
@@ -428,9 +428,9 @@ export function AccessLinksAdminSection() {
               value={formState.formId}
               onChange={(event) => updateField('formId', event.target.value)}
               options={formOptions}
-              placeholder="Formular waehlen"
+              placeholder="Formular wählen"
               disabled={isLoadingForms || !formOptions.length || isSubmitting}
-              hint="Es wird ein Snapshot des aktuell ausgewaehlten Formulars eingefroren."
+              hint="Es wird ein Snapshot des aktuell ausgewählten Formulars eingefroren."
             />
             <Input
               name="projectId"
@@ -605,7 +605,7 @@ export function AccessLinksAdminSection() {
               )}
               {copyState === 'failed' && (
                 <p className="text-sm text-red-600 dark:text-red-300">
-                  Kopieren war nicht moeglich.
+                  Kopieren war nicht möglich.
                 </p>
               )}
             </div>
@@ -617,7 +617,7 @@ export function AccessLinksAdminSection() {
               {qrCodeDataUrl ? (
                 <Image
                   src={qrCodeDataUrl}
-                  alt="QR-Code fuer den erzeugten Zugangslink"
+                  alt="QR-Code für den erzeugten Zugangslink"
                   width={224}
                   height={224}
                   unoptimized
@@ -630,7 +630,7 @@ export function AccessLinksAdminSection() {
               )}
               <p className="mt-4 text-center text-xs leading-5 text-stone-500 dark:text-stone-400">
                 Derselbe Link kann per Browser oder durch Scan des QR-Codes
-                geoefnnet werden.
+                geöffnet werden.
               </p>
             </div>
           </div>
@@ -639,7 +639,7 @@ export function AccessLinksAdminSection() {
 
       <AdminDataSection<IntakeAccessLinkRow>
         title="Zugangslinks"
-        description="Individuelle Projektlinks fuer Kunden, die per Direktlink oder QR-Code verteilt werden."
+        description="Individuelle Projektlinks für Kunden, die per Direktlink oder QR-Code verteilt werden."
         endpoint="/api/admin/access-links"
         searchPlaceholder="Suche nach Projekt, Kunde oder E-Mail"
         emptyMessage="Noch keine Zugangslinks vorhanden"
@@ -775,7 +775,7 @@ export function AccessLinksAdminSection() {
                     void updateAccessLink(
                       row,
                       { regenerateToken: true },
-                      'Token wurde neu erzeugt. Alter Direktlink ist damit ungueltig.',
+                      'Token wurde neu erzeugt. Alter Direktlink ist damit ungültig.',
                       event
                     )
                   }

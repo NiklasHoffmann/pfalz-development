@@ -505,7 +505,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
                   updateField('duplicateFromFormId', event.target.value)
                 }
                 options={duplicateOptions}
-                placeholder="Formular waehlen"
+                placeholder="Formular wählen"
                 disabled={
                   isSubmitting ||
                   isLoadingAvailableForms ||
@@ -609,8 +609,8 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
               Formular per JSON importieren
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Fuege hier ein DB-taugliches Formular-JSON ein, lass es
-              serverseitig pruefen und speichere es erst nach einer Vorschau
+              Füge hier ein DB-taugliches Formular-JSON ein, lass es
+              serverseitig prüfen und speichere es erst nach einer Vorschau
               bewusst in die Datenbank.
             </p>
           </div>
@@ -663,8 +663,8 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
               className="inline-flex items-center justify-center rounded-full bg-stone-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-200"
             >
               {isPreviewingImport
-                ? 'Vorschau wird geprueft...'
-                : 'Vorschau pruefen'}
+                ? 'Vorschau wird geprüft...'
+                : 'Vorschau prüfen'}
             </button>
             <button
               type="button"
@@ -989,7 +989,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
                         onChange={(event) =>
                           setOverwriteImportedForm(event.target.checked)
                         }
-                        label="Vorhandenes Formular ueberschreiben"
+                        label="Vorhandenes Formular überschreiben"
                         hint="Nur aktivieren, wenn dieses Formular mit gleichem Slug bewusst aktualisiert werden soll."
                       />
                     </div>
@@ -1008,7 +1008,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
 
       <AdminDataSection<IntakeFormRow>
         title="Formulare"
-        description="Verfuegbare Intake-Vorlagen und duplizierte Formulare fuer konkrete Projektarten."
+        description="Verfügbare Intake-Vorlagen und duplizierte Formulare für konkrete Projektarten."
         endpoint="/api/admin/forms"
         searchPlaceholder="Suche nach Titel oder Slug"
         emptyMessage="Noch keine Formulare vorhanden"

@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     if (existingUser) {
       if (canBootstrapWithoutApiKey) {
         return errorResponse(
-          'Bootstrap ist nur fuer die initiale Erstellung verfuegbar',
+          'Bootstrap ist nur für die initiale Erstellung verfügbar',
           409
         );
       }

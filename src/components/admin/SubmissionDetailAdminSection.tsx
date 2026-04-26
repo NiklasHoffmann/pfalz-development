@@ -258,7 +258,7 @@ export function SubmissionDetailAdminSection({
     setAssigneeUserId(
       payload.data.assignee?.id || payload.data.assigneeUserId || ''
     );
-    setSaveMessage('Aenderungen wurden gespeichert.');
+    setSaveMessage('Änderungen wurden gespeichert.');
     setIsSaving(false);
   }
 
@@ -333,7 +333,7 @@ export function SubmissionDetailAdminSection({
               <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
                 {detail.accessLink?.formSnapshot?.title ||
                   'Unbekanntes Formular'}{' '}
-                fuer{' '}
+                für{' '}
                 {detail.accessLink?.customerName ||
                   detail.customerSnapshot.name ||
                   'Unbekannter Kunde'}
@@ -344,7 +344,7 @@ export function SubmissionDetailAdminSection({
                 href={withLocale(locale, '/admin/submissions')}
                 className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
               >
-                Zurueck zur Liste
+                Zurück zur Liste
               </Link>
               {canPrint ? (
                 <>
@@ -361,7 +361,7 @@ export function SubmissionDetailAdminSection({
                     )}
                     className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
                   >
-                    Druckansicht oeffnen
+                    Druckansicht öffnen
                   </Link>
                 </>
               ) : null}
@@ -558,8 +558,8 @@ export function SubmissionDetailAdminSection({
 
             {!sections.length && (
               <div className="rounded-[1.75rem] border border-dashed border-stone-300 bg-stone-50 px-5 py-6 text-sm text-stone-600 dark:border-stone-700 dark:bg-stone-950/40 dark:text-stone-300">
-                Fuer diese Einreichung liegt kein Formular-Snapshot mit Sections
-                vor. Antworten koennen trotzdem unten eingesehen werden.
+                Für diese Einreichung liegt kein Formular-Snapshot mit Sections
+                vor. Antworten können trotzdem unten eingesehen werden.
               </div>
             )}
 
@@ -602,7 +602,7 @@ export function SubmissionDetailAdminSection({
                 Interne Bearbeitung
               </h2>
               <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                Status, Bearbeiter und interne Notizen fuer die weitere
+                Status, Bearbeiter und interne Notizen für die weitere
                 Projektbearbeitung.
               </p>
             </div>
@@ -630,14 +630,14 @@ export function SubmissionDetailAdminSection({
                   .filter((option) => option.value)}
                 placeholder="Nicht zugewiesen"
                 disabled={isSaving}
-                hint="Zustaendigen internen Bearbeiter fuer diesen Fall festlegen."
+                hint="Zuständigen internen Bearbeiter für diesen Fall festlegen."
               />
               <Textarea
                 label="Interne Notizen"
                 value={internalNotes}
                 onChange={(event) => setInternalNotes(event.target.value)}
                 rows={8}
-                placeholder="Naechste Schritte, offene Rueckfragen, Priorisierung, technische Hinweise ..."
+                placeholder="Nächste Schritte, offene Rückfragen, Priorisierung, technische Hinweise ..."
                 disabled={isSaving}
               />
             </div>
@@ -657,7 +657,7 @@ export function SubmissionDetailAdminSection({
                 disabled={isSaving}
                 className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-200"
               >
-                {isSaving ? 'Speichert...' : 'Aenderungen speichern'}
+                {isSaving ? 'Speichert...' : 'Änderungen speichern'}
               </button>
             </div>
           </section>
@@ -666,7 +666,7 @@ export function SubmissionDetailAdminSection({
             <div className="border-b border-stone-200 pb-5 dark:border-stone-800">
               <h2 className="text-xl font-semibold tracking-tight">Kontext</h2>
               <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                Kontakt- und Verlaufsdaten fuer schnelle interne Einordnung.
+                Kontakt- und Verlaufsdaten für schnelle interne Einordnung.
               </p>
             </div>
 

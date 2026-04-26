@@ -14,8 +14,8 @@ export async function generateMetadata({
   return createInternalMetadata({
     locale,
     path: '/admin/reset-password',
-    title: 'Admin-Passwort zuruecksetzen',
-    description: 'Setze ein neues Passwort fuer den internen Admin-Zugang.',
+    title: 'Admin-Passwort zurücksetzen',
+    description: 'Setze ein neues Passwort für den internen Admin-Zugang.',
   });
 }
 
@@ -31,10 +31,10 @@ export default async function AdminResetPasswordPage({
           Interner Bereich
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight">
-          Passwort zuruecksetzen
+          Passwort zurücksetzen
         </h1>
         <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-stone-300">
-          Vergib ein neues Passwort fuer deinen Admin-Zugang. Der Link aus der
+          Vergib ein neues Passwort für deinen Admin-Zugang. Der Link aus der
           E-Mail ist zeitlich begrenzt.
         </p>
         <div className="mt-6">

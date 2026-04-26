@@ -111,7 +111,7 @@ export function AdminBootstrapForm({
         required
         value={password}
         onChange={(event) => setPassword(event.target.value)}
-        hint="Mindestens 10 Zeichen. Dieses Passwort wird direkt fuer den ersten Admin-Login verwendet."
+        hint="Mindestens 10 Zeichen. Dieses Passwort wird direkt für den ersten Admin-Login verwendet."
       />
       <Select
         label="Rolle"
@@ -129,7 +129,7 @@ export function AdminBootstrapForm({
           required
           value={adminApiKey}
           onChange={(event) => setAdminApiKey(event.target.value)}
-          hint="Wird nur fuer die initiale Benutzeranlage verwendet."
+          hint="Wird nur für die initiale Benutzeranlage verwendet."
         />
       )}
       {error && (

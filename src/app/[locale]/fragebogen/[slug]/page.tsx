@@ -52,7 +52,7 @@ export async function generateMetadata({
     locale,
     path: `/fragebogen/${slug}`,
     title: 'Kundenfragebogen',
-    description: 'Geschuetzter, nicht oeffentlich verlinkter Kundenfragebogen.',
+    description: 'Geschützter, nicht öffentlich verlinkter Kundenfragebogen.',
   });
 }
 
@@ -69,7 +69,7 @@ export default async function IntakeQuestionnairePage({
     return (
       <AccessState
         title="Zugang erforderlich"
-        message="Bitte oeffne deinen persoenlichen Fragebogen erneut ueber den individuellen Link oder den zugehoerigen QR-Code."
+        message="Bitte öffne deinen persönlichen Fragebogen erneut über den individuellen Link oder den zugehörigen QR-Code."
       />
     );
   }
@@ -79,8 +79,8 @@ export default async function IntakeQuestionnairePage({
   if (!context) {
     return (
       <AccessState
-        title="Zugang nicht mehr gueltig"
-        message="Der gespeicherte Zugriff konnte nicht mehr bestaetigt werden. Bitte verwende erneut deinen persoenlichen Link oder den QR-Code."
+        title="Zugang nicht mehr gültig"
+        message="Der gespeicherte Zugriff konnte nicht mehr bestätigt werden. Bitte verwende erneut deinen persönlichen Link oder den QR-Code."
       />
     );
   }

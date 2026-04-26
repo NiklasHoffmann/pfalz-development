@@ -36,10 +36,10 @@ function withLocale(locale: string, path: string) {
 
 const statusLabelMap: Record<string, string> = {
   begonnen: 'Begonnen',
-  teilweise_ausgefüllt: 'Teilweise ausgefuellt',
+  teilweise_ausgefüllt: 'Teilweise ausgefüllt',
   vollständig_eingereicht: 'Eingereicht',
-  intern_geprüft: 'Intern geprueft',
-  rückfrage_offen: 'Rueckfrage offen',
+  intern_geprüft: 'Intern geprüft',
+  rückfrage_offen: 'Rückfrage offen',
   abgeschlossen: 'Abgeschlossen',
 };
 
@@ -190,7 +190,7 @@ export function SubmissionsAdminSection({
 
       <AdminDataSection<IntakeSubmissionRow>
         title="Einreichungen"
-        description="Suche und Uebersicht ueber alle laufenden und abgeschlossenen Intake-Einreichungen."
+        description="Suche und Übersicht über alle laufenden und abgeschlossenen Intake-Einreichungen."
         endpoint="/api/admin/submissions"
         searchPlaceholder="Suche nach Kunde, Firma, E-Mail oder Projekt"
         emptyMessage="Noch keine Einreichungen vorhanden"
@@ -277,7 +277,7 @@ export function SubmissionsAdminSection({
                   >
                     {isUpdatingKey === `${row.id}:intern_geprüft`
                       ? '...'
-                      : 'Pruefen'}
+                      : 'Prüfen'}
                   </button>
                 )}
                 {row.status !== 'rückfrage_offen' && (
@@ -291,7 +291,7 @@ export function SubmissionsAdminSection({
                   >
                     {isUpdatingKey === `${row.id}:rückfrage_offen`
                       ? '...'
-                      : 'Rueckfrage'}
+                      : 'Rückfrage'}
                   </button>
                 )}
                 {row.status !== 'abgeschlossen' && (
@@ -305,7 +305,7 @@ export function SubmissionsAdminSection({
                   >
                     {isUpdatingKey === `${row.id}:abgeschlossen`
                       ? '...'
-                      : 'Abschliessen'}
+                      : 'Abschließen'}
                   </button>
                 )}
               </div>

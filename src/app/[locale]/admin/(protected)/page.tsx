@@ -40,7 +40,7 @@ const adminEntries: AdminEntry[] = [
   {
     href: '/admin/access-links',
     label: 'Zugangslinks',
-    description: 'Projektzugriffe anlegen, pruefen und erneut teilen.',
+    description: 'Projektzugriffe anlegen, prüfen und erneut teilen.',
     roles: ['admin'],
   },
   {

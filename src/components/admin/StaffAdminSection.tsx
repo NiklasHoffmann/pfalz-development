@@ -264,7 +264,7 @@ export function StaffAdminSection() {
             Staff-Nutzer
           </h1>
           <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
-            Interne Admin- und Editor-Accounts fuer den Intake-Bereich anlegen
+            Interne Admin- und Editor-Accounts für den Intake-Bereich anlegen
             und verwalten.
           </p>
         </div>
@@ -507,7 +507,7 @@ export function StaffAdminSection() {
                             password: event.target.value,
                           })
                         }
-                        hint="Optional. Leer lassen, um das Passwort nicht zu aendern."
+                        hint="Optional. Leer lassen, um das Passwort nicht zu ändern."
                         disabled={savingUserId === staffUser.id}
                       />
                     </div>

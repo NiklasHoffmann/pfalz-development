@@ -33,12 +33,12 @@ export function AdminResetPasswordForm({
     setMessage(undefined);
 
     if (!token) {
-      setError('Der Reset-Link ist unvollstaendig oder ungueltig.');
+      setError('Der Reset-Link ist unvollständig oder ungültig.');
       return;
     }
 
     if (password !== confirmPassword) {
-      setError('Die Passwoerter stimmen nicht ueberein.');
+      setError('Die Passwörter stimmen nicht überein.');
       return;
     }
 
@@ -56,7 +56,7 @@ export function AdminResetPasswordForm({
     }>(response);
 
     if (!response.ok) {
-      setError(payload?.error || 'Passwort konnte nicht zurueckgesetzt werden');
+      setError(payload?.error || 'Passwort konnte nicht zurückgesetzt werden');
       return;
     }
 
@@ -87,7 +87,7 @@ export function AdminResetPasswordForm({
         hint="Mindestens 10 Zeichen."
       />
       <Input
-        label="Passwort bestaetigen"
+        label="Passwort bestätigen"
         type="password"
         required
         value={confirmPassword}
@@ -113,7 +113,7 @@ export function AdminResetPasswordForm({
         href={loginHref}
         className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
       >
-        Zurueck zum Login
+        Zurück zum Login
       </Link>
     </Form>
   );

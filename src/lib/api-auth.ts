@@ -140,7 +140,7 @@ export async function requireAdminRouteRateLimit(
 
     if (!rateLimitResult.success) {
       return errorResponse(
-        'Zu viele Anfragen. Bitte spaeter erneut versuchen.',
+        'Zu viele Anfragen. Bitte später erneut versuchen.',
         429
       );
     }
@@ -151,7 +151,7 @@ export async function requireAdminRouteRateLimit(
       `Admin rate limit unavailable for scope=${scope}: ${error instanceof Error ? error.message : String(error)}`
     );
     return errorResponse(
-      'Admin-Schutz ist temporaer nicht verfuegbar. Bitte spaeter erneut versuchen.',
+      'Admin-Schutz ist temporär nicht verfügbar. Bitte später erneut versuchen.',
       503
     );
   }

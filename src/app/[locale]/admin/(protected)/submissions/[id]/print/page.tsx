@@ -36,7 +36,7 @@ export async function generateMetadata({
     path: `/admin/submissions/${id}/print`,
     title: 'Druckansicht Einreichung',
     description:
-      'Druckoptimierte Einzelansicht fuer eine interne Intake-Einreichung.',
+      'Druckoptimierte Einzelansicht für eine interne Intake-Einreichung.',
   });
 }
 
@@ -134,7 +134,7 @@ export default async function AdminSubmissionPrintPage({
             </h1>
             <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
               {detail.accessLink?.formSnapshot?.title || 'Unbekanntes Formular'}{' '}
-              fuer{' '}
+              für{' '}
               {detail.accessLink?.customerName ||
                 detail.customerSnapshot.name ||
                 'Unbekannter Kunde'}

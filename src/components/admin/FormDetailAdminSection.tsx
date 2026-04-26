@@ -307,7 +307,7 @@ export function FormDetailAdminSection({
               href={withLocale(locale, '/admin/forms')}
               className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
             >
-              Zurueck zur Liste
+              Zurück zur Liste
             </Link>
           </div>
 
@@ -369,7 +369,7 @@ export function FormDetailAdminSection({
                 Struktur
               </h2>
               <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                Vollstaendige Sections und Fragen, so wie sie spaeter im
+                Vollständige Sections und Fragen, so wie sie später im
                 Kundenfragebogen verwendet werden.
               </p>
             </div>
@@ -383,7 +383,7 @@ export function FormDetailAdminSection({
                 }
                 className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
               >
-                Alle oeffnen
+                Alle öffnen
               </button>
               <button
                 type="button"
@@ -635,7 +635,7 @@ export function FormDetailAdminSection({
             <div className="mt-5 space-y-4 text-sm">
               <div className="rounded-[1.4rem] border border-stone-200 bg-stone-50 px-4 py-3 dark:border-stone-800 dark:bg-stone-950/60">
                 <p className="text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
-                  Empfaenger intern
+                  Empfänger intern
                 </p>
                 {detail.notificationConfig?.internalRecipients?.length ? (
                   <div className="mt-2 flex flex-wrap gap-2">
@@ -652,7 +652,7 @@ export function FormDetailAdminSection({
                   </div>
                 ) : (
                   <p className="mt-2 text-stone-600 dark:text-stone-300">
-                    Keine Empfaenger hinterlegt
+                    Keine Empfänger hinterlegt
                   </p>
                 )}
               </div>
@@ -668,7 +668,7 @@ export function FormDetailAdminSection({
 
               <div className="rounded-[1.4rem] border border-stone-200 bg-stone-50 px-4 py-3 dark:border-stone-800 dark:bg-stone-950/60">
                 <p className="text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
-                  Kundenbestaetigung
+                  Kundenbestätigung
                 </p>
                 <p className="mt-2 font-medium text-stone-950 dark:text-stone-50">
                   {detail.notificationConfig?.customerConfirmationEnabled

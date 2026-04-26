@@ -72,7 +72,7 @@ function getOrteMetaTitle(locale: string): string {
 
 function getOrteMetaDescription(locale: string): string {
   if (locale === 'en') {
-    return 'Location-specific web design pages for Neustadt an der Weinstrasse, Landau in der Pfalz, and Speyer with clear local relevance and direct paths to inquiry.';
+    return 'Location-specific web design pages for Neustadt an der Weinstraße, Landau in der Pfalz, and Speyer with clear local relevance and direct paths to inquiry.';
   }
 
   if (locale === 'pfl') {
@@ -87,7 +87,7 @@ function getOrteCopy(locale: string): OrtePageCopy {
     return {
       title: 'Web Design for Neustadt, Landau, and Speyer',
       intro:
-        'If your business is based in Neustadt an der Weinstrasse, Landau in der Pfalz, or Speyer, this is the right local entry point for your website project. The best page depends less on the map alone and more on the business context you want to emphasize.',
+        'If your business is based in Neustadt an der Weinstraße, Landau in der Pfalz, or Speyer, this is the right local entry point for your website project. The best page depends less on the map alone and more on the business context you want to emphasize.',
       highlight:
         'Choose the page that best fits your regional business context and use it as the shortest path toward a clearer offer, more trust, and better inquiries.',
       navTitle: 'Locations',
@@ -103,16 +103,16 @@ function getOrteCopy(locale: string): OrtePageCopy {
       logicText:
         'The city matters, but the stronger differentiator is how your business is positioned. Choose the page that reflects the tone, audience, and decision pattern your customers are most likely to have.',
       logicPoints: [
-        'Neustadt: a strong fit for hospitality, wine-related businesses, and regional service providers around the Weinstrasse',
+        'Neustadt: a strong fit for hospitality, wine-related businesses, and regional service providers around the Weinstraße',
         'Landau: a strong fit for retail, hospitality, and service businesses that need a more modern and mobile-first outward presence',
         'Speyer: a strong fit for established, advisory, or trust-driven businesses where credibility matters before contact happens',
       ],
       cards: [
         {
           badge: 'Location',
-          title: 'Web Design Neustadt an der Weinstrasse',
+          title: 'Web Design Neustadt an der Weinstraße',
           description:
-            'For businesses around Neustadt and the Weinstrasse that need stronger regional trust and clearer positioning.',
+            'For businesses around Neustadt and the Weinstraße that need stronger regional trust and clearer positioning.',
           outcome:
             'Focus: hospitality-adjacent audiences, regional relevance, and a stronger trust-based first impression.',
           href: '/orte/webdesign-neustadt',

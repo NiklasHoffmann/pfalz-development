@@ -114,7 +114,7 @@ function buildImportWarnings(
       warnings.push({
         code: 'missing-section-description',
         path: section.stepKey,
-        message: `Section "${section.title}" hat keine Beschreibung. Fuer grosse Formulare verbessert eine kurze Einordnung die Lesbarkeit deutlich.`,
+        message: `Section "${section.title}" hat keine Beschreibung. Für große Formulare verbessert eine kurze Einordnung die Lesbarkeit deutlich.`,
       });
     }
 
@@ -139,7 +139,7 @@ function buildImportWarnings(
       warnings.push({
         code: 'non-sequential-question-order',
         path: section.stepKey,
-        message: `Die Fragen in "${section.title}" sind nicht lueckenlos ab 1 durchnummeriert. Das ist technisch erlaubt, macht die Pflege aber unnoetig schwerer.`,
+        message: `Die Fragen in "${section.title}" sind nicht lückenlos ab 1 durchnummeriert. Das ist technisch erlaubt, macht die Pflege aber unnötig schwerer.`,
       });
     }
 
@@ -187,7 +187,7 @@ function buildImportWarnings(
         warnings.push({
           code: 'invalid-length-range',
           path: questionPath,
-          message: `Die Frage "${question.label}" hat minLength groesser als maxLength.`,
+          message: `Die Frage "${question.label}" hat minLength größer als maxLength.`,
         });
       }
 
@@ -199,7 +199,7 @@ function buildImportWarnings(
         warnings.push({
           code: 'invalid-value-range',
           path: questionPath,
-          message: `Die Frage "${question.label}" hat min groesser als max.`,
+          message: `Die Frage "${question.label}" hat min größer als max.`,
         });
       }
 
@@ -212,7 +212,7 @@ function buildImportWarnings(
         warnings.push({
           code: 'invalid-selection-range',
           path: questionPath,
-          message: `Die Frage "${question.label}" hat minSelections groesser als maxSelections.`,
+          message: `Die Frage "${question.label}" hat minSelections größer als maxSelections.`,
         });
       }
 
@@ -271,7 +271,7 @@ function parseImportedDocument(json: string): ImportedIntakeFormDocument {
   try {
     parsedJson = JSON.parse(json);
   } catch {
-    throw new Error('Das eingefuegte Dokument ist kein gueltiges JSON.');
+    throw new Error('Das eingefügte Dokument ist kein gültiges JSON.');
   }
 
   return importedIntakeFormSchema.parse(parsedJson);
@@ -351,7 +351,7 @@ export async function POST(request: NextRequest) {
 
     if (existingForm && !body.overwrite) {
       return errorResponse(
-        'Ein Formular mit diesem Slug existiert bereits. Aktiviere Ueberschreiben, um es zu aktualisieren.',
+        'Ein Formular mit diesem Slug existiert bereits. Aktiviere Überschreiben, um es zu aktualisieren.',
         409
       );
     }

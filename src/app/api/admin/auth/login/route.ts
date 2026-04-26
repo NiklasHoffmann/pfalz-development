@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       logger.warn(
         `Staff login failed (email=${body.email.toLowerCase()}, ip=${clientIp})`
       );
-      return errorResponse('Ungueltige Zugangsdaten', 401);
+      return errorResponse('Ungültige Zugangsdaten', 401);
     }
 
     staffUser.lastLoginAt = new Date();

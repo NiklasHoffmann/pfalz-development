@@ -4,7 +4,7 @@ export const seoContentTemplate: IntakeTemplateDefinition = {
   title: 'Content- und SEO-Fragebogen',
   slug: 'content-seo',
   description:
-    'Vorlage fuer Content-, SEO- und Seitenstruktur-Briefings mit Fokus auf Sichtbarkeit und Conversion.',
+    'Vorlage für Content-, SEO- und Seitenstruktur-Briefings mit Fokus auf Sichtbarkeit und Conversion.',
   status: 'active',
   version: 1,
   formType: 'seo-content',
@@ -66,7 +66,7 @@ export const seoContentTemplate: IntakeTemplateDefinition = {
     },
     {
       id: 'seo-content',
-      title: 'Content und Prioritaeten',
+      title: 'Content und Prioritäten',
       order: 2,
       stepKey: 'content',
       questions: [
@@ -95,7 +95,7 @@ export const seoContentTemplate: IntakeTemplateDefinition = {
           id: 'seo-priority-pages',
           key: 'priorityPages',
           fieldType: 'checkbox-group',
-          label: 'Welche Seitentypen haben Prioritaet?',
+          label: 'Welche Seitentypen haben Priorität?',
           required: false,
           order: 3,
           options: [
@@ -145,7 +145,7 @@ export const seoContentTemplate: IntakeTemplateDefinition = {
           key: 'privacyConsent',
           fieldType: 'consent',
           label:
-            'Ich stimme der Verarbeitung meiner Angaben fuer die Projektanfrage zu.',
+            'Ich stimme der Verarbeitung meiner Angaben für die Projektanfrage zu.',
           required: true,
           order: 3,
         },

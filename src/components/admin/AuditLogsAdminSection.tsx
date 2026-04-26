@@ -260,12 +260,12 @@ export function AuditLogsAdminSection() {
               Audit-Log
             </h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Nachvollziehbare Historie fuer Admin-Aktionen inklusive Akteur,
+              Nachvollziehbare Historie für Admin-Aktionen inklusive Akteur,
               Ressource, Request-Pfad und bereinigten Metadaten.
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-stone-600 dark:text-stone-300">
               <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 dark:border-stone-700 dark:bg-stone-950/60">
-                {isLoading ? 'Laedt...' : `${rows.length} Eintraege`}
+                {isLoading ? 'Lädt...' : `${rows.length} Einträge`}
               </span>
               {search.trim() ? (
                 <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 dark:border-stone-700 dark:bg-stone-950/60">
@@ -360,17 +360,17 @@ export function AuditLogsAdminSection() {
                 Verlauf
               </p>
               <h2 className="mt-2 text-xl font-semibold tracking-tight">
-                Letzte Audit-Eintraege
+                Letzte Audit-Einträge
               </h2>
               <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
-                Waehle einen Eintrag aus der Liste, um darunter die komplette
+                Wähle einen Eintrag aus der Liste, um darunter die komplette
                 Detailansicht mit Request-Kontext und Metadaten zu sehen.
               </p>
             </div>
             {selectedLog ? (
               <div className="rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm shadow-sm dark:border-stone-800 dark:bg-stone-900/60">
                 <p className="font-medium text-stone-900 dark:text-stone-50">
-                  Aktiv ausgewaehlt
+                  Aktiv ausgewählt
                 </p>
                 <p className="mt-1 text-stone-600 dark:text-stone-300">
                   {selectedLog.action}
@@ -393,7 +393,7 @@ export function AuditLogsAdminSection() {
                   ? '!bg-amber-100/75 dark:!bg-amber-950/30'
                   : undefined
               }
-              emptyMessage="Noch keine Audit-Eintraege vorhanden"
+              emptyMessage="Noch keine Audit-Einträge vorhanden"
               className="max-h-[70vh] overflow-auto"
             />
           )}
@@ -406,10 +406,10 @@ export function AuditLogsAdminSection() {
                 Detailansicht
               </p>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight">
-                {selectedLog ? selectedLog.action : 'Kein Eintrag ausgewaehlt'}
+                {selectedLog ? selectedLog.action : 'Kein Eintrag ausgewählt'}
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-                Vollstaendiger Eintrag mit Akteur, Ressource, technischem
+                Vollständiger Eintrag mit Akteur, Ressource, technischem
                 Request-Kontext und bereinigten Metadaten in lesbarer Breite.
               </p>
             </div>
@@ -538,7 +538,7 @@ export function AuditLogsAdminSection() {
                       Metadaten
                     </p>
                     <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">
-                      Bereinigtes Payload fuer schnelle forensische Einordnung
+                      Bereinigtes Payload für schnelle forensische Einordnung
                       ohne schmale Seitenleiste.
                     </p>
                   </div>
