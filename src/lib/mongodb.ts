@@ -13,8 +13,23 @@ declare global {
 
 const MONGODB_URI = env.MONGODB_URI;
 
+function getMongoDatabaseName(uri: string) {
+  const match = uri.match(/^mongodb(?:\+srv)?:\/\/[^/]+\/([^?]+)/i);
+  const databaseName = match?.[1]?.trim();
+
+  return databaseName ? decodeURIComponent(databaseName) : undefined;
+}
+
 if (!MONGODB_URI) {
   throw new Error('Please define MONGODB_URI in your .env.local file');
+}
+
+const MONGODB_DATABASE_NAME = getMongoDatabaseName(MONGODB_URI);
+
+if (!MONGODB_DATABASE_NAME) {
+  throw new Error(
+    'MONGODB_URI must include an explicit database name to avoid falling back to the default test database'
+  );
 }
 
 const cached: MongooseConnection = global.mongoose || {
@@ -35,12 +50,15 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      dbName: MONGODB_DATABASE_NAME,
     };
 
     cached.promise = mongoose
       .connect(MONGODB_URI, opts)
       .then((mongoose) => {
-        logger.info('✅ MongoDB connected successfully');
+        logger.info(
+          `✅ MongoDB connected successfully (db=${MONGODB_DATABASE_NAME})`
+        );
         return mongoose;
       })
       .catch((error) => {
