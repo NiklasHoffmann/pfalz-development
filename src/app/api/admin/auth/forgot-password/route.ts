@@ -44,6 +44,15 @@ export async function POST(request: NextRequest) {
     );
 
     if (rateLimitError) {
+      await writeAdminAuditLog({
+        request,
+        action: 'admin.auth.password-reset.rate-limited',
+        resourceType: 'staff-user',
+        metadata: {
+          scope: 'forgot-password',
+          ip: clientIp,
+        },
+      });
       logger.warn(`Staff forgot-password rate limited (ip=${clientIp})`);
       return rateLimitError;
     }
@@ -57,6 +66,14 @@ export async function POST(request: NextRequest) {
     }).exec();
 
     if (!staffUser) {
+      await writeAdminAuditLog({
+        request,
+        action: 'admin.auth.password-reset.unknown-email',
+        resourceType: 'staff-user',
+        metadata: {
+          email: body.email.toLowerCase(),
+        },
+      });
       logger.info(
         `Staff forgot-password requested for unknown email=${body.email.toLowerCase()} (ip=${clientIp})`
       );

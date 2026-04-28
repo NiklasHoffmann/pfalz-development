@@ -4,12 +4,12 @@ import {
   handleApiError,
   successResponse,
 } from '@/lib/api-response';
+import { writeAdminAuditLog } from '@/lib/admin-audit';
 import {
   requireAdminRequestAccess,
   requireAdminRouteRateLimit,
   requireTrustedAdminOrigin,
 } from '@/lib/api-auth';
-import { writeAdminAuditLog } from '@/lib/admin-audit';
 import { getClientIp } from '@/lib/admin-network';
 import { hashPassword } from '@/lib/auth/password';
 import { hashPasswordResetToken } from '@/lib/auth/password-reset';
@@ -40,6 +40,15 @@ export async function POST(request: NextRequest) {
     );
 
     if (rateLimitError) {
+      await writeAdminAuditLog({
+        request,
+        action: 'admin.auth.password-reset.rate-limited',
+        resourceType: 'staff-user',
+        metadata: {
+          scope: 'reset-password',
+          ip: clientIp,
+        },
+      });
       logger.warn(`Staff reset-password rate limited (ip=${clientIp})`);
       return rateLimitError;
     }
@@ -55,6 +64,11 @@ export async function POST(request: NextRequest) {
     }).exec();
 
     if (!tokenRecord) {
+      await writeAdminAuditLog({
+        request,
+        action: 'admin.auth.password-reset.invalid-token',
+        resourceType: 'staff-user',
+      });
       logger.warn(
         `Staff reset-password failed due to invalid token (ip=${clientIp})`
       );

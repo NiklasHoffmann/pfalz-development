@@ -13,20 +13,28 @@ export interface RateLimitResult {
   reset: number;
 }
 
+interface RateLimitOptions {
+  limit?: number;
+  windowMs?: number;
+}
+
 const store = new Map<string, RateLimitStore>();
 
 /**
  * Simple in-memory rate limiter
  * For production, consider using Redis or a dedicated rate limiting service
  */
-export function rateLimit(identifier: string): {
+export function rateLimit(
+  identifier: string,
+  options?: RateLimitOptions
+): {
   success: boolean;
   remaining: number;
   reset: number;
 } {
   const now = Date.now();
-  const limit = env.API_RATE_LIMIT;
-  const window = env.API_RATE_LIMIT_WINDOW;
+  const limit = options?.limit ?? env.API_RATE_LIMIT;
+  const window = options?.windowMs ?? env.API_RATE_LIMIT_WINDOW;
 
   const record = store.get(identifier);
 
@@ -62,13 +70,14 @@ export function rateLimit(identifier: string): {
 }
 
 export async function rateLimitPersistent(
-  identifier: string
+  identifier: string,
+  options?: RateLimitOptions
 ): Promise<RateLimitResult> {
   await connectToDatabase();
 
   const now = new Date();
-  const limit = env.API_RATE_LIMIT;
-  const windowDuration = env.API_RATE_LIMIT_WINDOW;
+  const limit = options?.limit ?? env.API_RATE_LIMIT;
+  const windowDuration = options?.windowMs ?? env.API_RATE_LIMIT_WINDOW;
   const nextReset = new Date(now.getTime() + windowDuration);
   const windowExpiredExpression = {
     $or: [{ $eq: ['$resetAt', null] }, { $lte: ['$resetAt', now] }],

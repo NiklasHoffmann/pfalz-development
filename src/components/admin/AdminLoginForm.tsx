@@ -14,6 +14,7 @@ interface AdminLoginFormProps {
 export function AdminLoginForm({ locale }: AdminLoginFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string>();
@@ -23,36 +24,50 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
   const [isResetPending, setIsResetPending] = useState(false);
 
   const dashboardPath = getAdminRootPath(locale);
+  const isFormBusy = isPending || isSubmitting;
 
   async function handleSubmit() {
-    setError(undefined);
-    setResetError(undefined);
-    setResetMessage(undefined);
-
-    const response = await fetch('/api/admin/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const payload = await readJsonResponse<{
-      error?: string;
-    }>(response);
-
-    if (!response.ok) {
-      setError(payload?.error || 'Login fehlgeschlagen');
+    if (isSubmitting) {
       return;
     }
 
-    startTransition(() => {
-      router.push(dashboardPath);
-      router.refresh();
-    });
+    setError(undefined);
+    setResetError(undefined);
+    setResetMessage(undefined);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/admin/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const payload = await readJsonResponse<{
+        error?: string;
+      }>(response);
+
+      if (!response.ok) {
+        setError(payload?.error || 'Login fehlgeschlagen');
+        return;
+      }
+
+      startTransition(() => {
+        router.push(dashboardPath);
+        router.refresh();
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   async function handleResetRequest() {
+    if (isResetPending) {
+      return;
+    }
+
     setError(undefined);
     setResetError(undefined);
     setResetMessage(undefined);
@@ -97,7 +112,7 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
       onSubmit={async () => {
         await handleSubmit();
       }}
-      isLoading={isPending}
+      isLoading={isFormBusy}
       className="space-y-5"
     >
       <Input
@@ -117,6 +132,7 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
       <button
         type="button"
         onClick={() => setShowResetRequest((current) => !current)}
+        disabled={isFormBusy}
         className="inline-flex items-center justify-start text-sm font-medium text-amber-800 transition hover:text-amber-950 dark:text-amber-300 dark:hover:text-amber-100"
       >
         {showResetRequest ? 'Reset-Anfrage ausblenden' : 'Passwort vergessen?'}
@@ -132,6 +148,7 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
             onClick={() => {
               void handleResetRequest();
             }}
+            disabled={isResetPending || isFormBusy}
             className="mt-3 inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-60 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
           >
             {isResetPending ? 'Link wird gesendet...' : 'Reset-Link senden'}
@@ -155,9 +172,10 @@ export function AdminLoginForm({ locale }: AdminLoginFormProps) {
       )}
       <button
         type="submit"
+        disabled={isFormBusy}
         className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-200"
       >
-        Anmelden
+        {isFormBusy ? 'Anmeldung laeuft...' : 'Anmelden'}
       </button>
     </Form>
   );

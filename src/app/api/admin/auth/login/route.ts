@@ -8,6 +8,7 @@ import {
   requireAdminRequestAccess,
   requireTrustedAdminOrigin,
 } from '@/lib/api-auth';
+import { writeAdminAuditLog } from '@/lib/admin-audit';
 import { encodeAdminSession } from '@/lib/auth/admin-session';
 import { verifyPassword } from '@/lib/auth/password';
 import { env } from '@/lib/env';
@@ -37,6 +38,14 @@ export async function POST(request: NextRequest) {
     const rateLimitError = await requireAdminRouteRateLimit(request, 'login');
 
     if (rateLimitError) {
+      await writeAdminAuditLog({
+        request,
+        action: 'admin.auth.login.rate-limited',
+        resourceType: 'staff-session',
+        metadata: {
+          ip: clientIp,
+        },
+      });
       logger.warn(`Staff login rate limited (ip=${clientIp})`);
       return rateLimitError;
     }
@@ -50,6 +59,14 @@ export async function POST(request: NextRequest) {
     }).exec();
 
     if (!staffUser || !verifyPassword(body.password, staffUser.passwordHash)) {
+      await writeAdminAuditLog({
+        request,
+        action: 'admin.auth.login.failed',
+        resourceType: 'staff-session',
+        metadata: {
+          email: body.email.toLowerCase(),
+        },
+      });
       logger.warn(
         `Staff login failed (email=${body.email.toLowerCase()}, ip=${clientIp})`
       );
@@ -79,6 +96,18 @@ export async function POST(request: NextRequest) {
       priority: 'high',
       path: '/',
       maxAge: env.ADMIN_SESSION_DURATION_HOURS * 60 * 60,
+    });
+
+    await writeAdminAuditLog({
+      request,
+      authState: { via: 'session', staffUser },
+      action: 'admin.auth.login.succeeded',
+      resourceType: 'staff-session',
+      resourceId: String(staffUser.id ?? staffUser._id),
+      metadata: {
+        email: staffUser.email,
+        role: staffUser.role,
+      },
     });
 
     logger.info(

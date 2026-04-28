@@ -10,6 +10,34 @@ import { getRequestHost, isAllowedAdminHost } from './admin-host';
 import type { IntakeStaffRole } from '@/types/intake';
 
 const ADMIN_HEADER = 'x-admin-key';
+const ADMIN_API_KEY_ALLOWED_PATHS = [
+  '/api/admin/staff/bootstrap',
+  '/api/intake/uploads/',
+  '/api/users',
+  '/api/users/',
+] as const;
+
+interface AdminAccessOptions {
+  allowApiKey?: boolean;
+}
+
+const ADMIN_RATE_LIMIT_OVERRIDES: Record<
+  string,
+  { limit: number; windowMs: number }
+> = {
+  login: { limit: 5, windowMs: 5 * 60 * 1000 },
+  'forgot-password': { limit: 3, windowMs: 15 * 60 * 1000 },
+  'reset-password': { limit: 5, windowMs: 15 * 60 * 1000 },
+  'staff-bootstrap': { limit: 3, windowMs: 60 * 60 * 1000 },
+};
+
+function isAllowedAdminApiKeyPath(pathname: string) {
+  return ADMIN_API_KEY_ALLOWED_PATHS.some((allowedPath) =>
+    allowedPath.endsWith('/')
+      ? pathname.startsWith(allowedPath)
+      : pathname === allowedPath
+  );
+}
 
 function safeEquals(a: string, b: string): boolean {
   const aBuffer = Buffer.from(a);
@@ -23,6 +51,10 @@ function safeEquals(a: string, b: string): boolean {
 }
 
 export function hasValidAdminApiKey(request: NextRequest): boolean {
+  if (!isAllowedAdminApiKeyPath(request.nextUrl.pathname)) {
+    return false;
+  }
+
   const configuredKey = env.ADMIN_API_KEY?.trim();
   const providedKey = request.headers.get(ADMIN_HEADER)?.trim();
 
@@ -63,7 +95,8 @@ export function requireAdminRequestAccess(request: NextRequest) {
 
 export async function requireIntakeAdminAccess(
   request: NextRequest,
-  allowedRoles?: IntakeStaffRole[]
+  allowedRoles?: IntakeStaffRole[],
+  options?: AdminAccessOptions
 ) {
   if (!isAllowedAdminHost(getRequestHost(request.headers))) {
     return errorResponse('Not found', 404);
@@ -73,7 +106,7 @@ export async function requireIntakeAdminAccess(
     return errorResponse('Forbidden', 403);
   }
 
-  if (hasValidAdminApiKey(request)) {
+  if (options?.allowApiKey && hasValidAdminApiKey(request)) {
     return { via: 'api-key' as const, staffUser: null };
   }
 
@@ -155,8 +188,10 @@ export async function requireAdminRouteRateLimit(
   scope: string
 ) {
   try {
+    const override = ADMIN_RATE_LIMIT_OVERRIDES[scope];
     const rateLimitResult = await rateLimitPersistent(
-      `admin:${scope}:${getClientIp(request)}`
+      `admin:${scope}:${getClientIp(request)}`,
+      override
     );
 
     if (!rateLimitResult.success) {
@@ -181,7 +216,8 @@ export async function requireAdminRouteRateLimit(
 export async function requireIntakeAdminMutationAccess(
   request: NextRequest,
   allowedRoles: IntakeStaffRole[],
-  rateLimitScope: string
+  rateLimitScope: string,
+  options?: AdminAccessOptions
 ) {
   const rateLimitError = await requireAdminRouteRateLimit(
     request,
@@ -192,7 +228,11 @@ export async function requireIntakeAdminMutationAccess(
     return rateLimitError;
   }
 
-  const authState = await requireIntakeAdminAccess(request, allowedRoles);
+  const authState = await requireIntakeAdminAccess(
+    request,
+    allowedRoles,
+    options
+  );
 
   if ('status' in authState) {
     return authState;

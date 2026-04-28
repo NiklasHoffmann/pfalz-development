@@ -50,6 +50,13 @@ export async function POST(request: NextRequest) {
       if (authError) {
         return authError;
       }
+
+      if (hasExistingStaffUsers) {
+        return errorResponse(
+          'Bootstrap ist nach der ersten Benutzeranlage deaktiviert',
+          409
+        );
+      }
     }
 
     const body = bootstrapStaffUserSchema.parse(await request.json());
@@ -58,39 +65,7 @@ export async function POST(request: NextRequest) {
     }).exec();
 
     if (existingUser) {
-      if (canBootstrapWithoutApiKey) {
-        return errorResponse(
-          'Bootstrap ist nur für die initiale Erstellung verfügbar',
-          409
-        );
-      }
-
-      existingUser.name = body.name;
-      existingUser.role = body.role;
-      existingUser.passwordHash = hashPassword(body.password);
-      existingUser.isActive = true;
-      await existingUser.save();
-
-      await writeAdminAuditLog({
-        request,
-        authState: canBootstrapWithoutApiKey
-          ? null
-          : { via: 'api-key', staffUser: null },
-        action: 'admin.staff.bootstrap.update',
-        resourceType: 'staff-user',
-        resourceId: String(existingUser.id ?? existingUser._id),
-        required: true,
-        metadata: {
-          email: existingUser.email,
-          role: existingUser.role,
-          isActive: existingUser.isActive,
-          bootstrapMode: canBootstrapWithoutApiKey
-            ? 'development-local'
-            : 'api-key',
-        },
-      });
-
-      return successResponse(existingUser, 'Staff user updated successfully');
+      return errorResponse('Staff user already exists', 409);
     }
 
     const createdUser = await StaffUser.create({
