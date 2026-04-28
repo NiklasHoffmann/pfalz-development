@@ -73,12 +73,53 @@ export function formatInvoiceNumber(
   return `${year}-${String(resolvedSequence).padStart(settings.numbering.padding, '0')}`;
 }
 
-export async function getNextInvoiceNumberPreview() {
-  const settings = await getOrCreateInvoiceSettings();
-  return formatInvoiceNumber(settings);
+function parseInvoiceNumber(value: string) {
+  const match = value.trim().match(/^(\d{4})-(\d+)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const [, yearText, sequenceText] = match;
+  const year = Number(yearText);
+  const sequence = Number(sequenceText);
+
+  if (!Number.isFinite(year) || !Number.isFinite(sequence)) {
+    return null;
+  }
+
+  return { year, sequence };
 }
 
-export async function reserveNextInvoiceNumber() {
+async function getPersistedNextInvoiceSequence(
+  settings: IInvoiceSettings,
+  invoiceModel: Model<IInvoice> = Invoice
+) {
+  const invoiceNumberPattern = new RegExp(`^${settings.numbering.year}-\\d+$`);
+  const invoices = await invoiceModel
+    .find({ invoiceNumber: invoiceNumberPattern })
+    .select('invoiceNumber')
+    .lean()
+    .exec();
+
+  const highestSequence = invoices.reduce((maxSequence, invoice) => {
+    const parsedNumber = parseInvoiceNumber(
+      String(invoice.invoiceNumber || '')
+    );
+
+    if (!parsedNumber || parsedNumber.year !== settings.numbering.year) {
+      return maxSequence;
+    }
+
+    return Math.max(maxSequence, parsedNumber.sequence);
+  }, settings.numbering.startSequence - 1);
+
+  return Math.max(settings.numbering.startSequence, highestSequence + 1);
+}
+
+async function reconcileInvoiceNumbering(
+  invoiceModel: Model<IInvoice> = Invoice
+) {
   let settings = await getOrCreateInvoiceSettings();
   const currentYear = new Date().getFullYear();
 
@@ -103,6 +144,44 @@ export async function reserveNextInvoiceNumber() {
     settings = rolledSettings;
   }
 
+  const persistedNextSequence = await getPersistedNextInvoiceSequence(
+    settings,
+    invoiceModel
+  );
+
+  if (persistedNextSequence === settings.numbering.nextSequence) {
+    return settings;
+  }
+
+  const reconciledSettings = await InvoiceSettings.findOneAndUpdate(
+    { scope: 'default' },
+    {
+      $set: {
+        'numbering.nextSequence': persistedNextSequence,
+      },
+    },
+    { new: true }
+  ).exec();
+
+  if (!reconciledSettings) {
+    throw new Error('Invoice settings could not be reconciled');
+  }
+
+  return reconciledSettings;
+}
+
+export async function resetInvoiceNumberingToPersistedState() {
+  return reconcileInvoiceNumbering();
+}
+
+export async function getNextInvoiceNumberPreview() {
+  const settings = await reconcileInvoiceNumbering();
+  return formatInvoiceNumber(settings);
+}
+
+export async function reserveNextInvoiceNumber() {
+  await reconcileInvoiceNumbering();
+
   const updated = await InvoiceSettings.findOneAndUpdate(
     { scope: 'default' },
     { $inc: { 'numbering.nextSequence': 1 } },
@@ -117,22 +196,16 @@ export async function reserveNextInvoiceNumber() {
 }
 
 export async function syncInvoiceNumbering(invoiceNumber: string) {
-  const match = invoiceNumber.trim().match(/^(\d{4})-(\d+)$/);
+  const parsedNumber = parseInvoiceNumber(invoiceNumber);
 
-  if (!match) {
+  if (!parsedNumber) {
     return;
   }
 
-  const [, yearText, sequenceText] = match;
-  const year = Number(yearText);
-  const sequence = Number(sequenceText);
-
-  if (!Number.isFinite(year) || !Number.isFinite(sequence)) {
-    return;
-  }
+  const { year, sequence } = parsedNumber;
+  const nextSequence = sequence + 1;
 
   const settings = await getOrCreateInvoiceSettings();
-  const nextSequence = sequence + 1;
   const shouldUpdateYear = year > settings.numbering.year;
   const shouldUpdateSameYear =
     year === settings.numbering.year &&

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import ConfirmDialog from '@/components/ui/ConfirmDialog';
 import Input from '@/components/ui/Form/Input';
 import Textarea from '@/components/ui/Form/Textarea';
 import { readJsonResponse } from '@/lib/api-client';
@@ -105,6 +106,8 @@ export function InvoiceSettingsAdminSection({
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isResettingNumbering, setIsResettingNumbering] = useState(false);
+  const [isResetConfirmOpen, setIsResetConfirmOpen] = useState(false);
   const [actionError, setActionError] = useState('');
   const [actionMessage, setActionMessage] = useState('');
 
@@ -218,6 +221,41 @@ export function InvoiceSettingsAdminSection({
     await loadSettings(false);
   }
 
+  async function resetInvoiceNumbering() {
+    setIsResettingNumbering(true);
+    setActionError('');
+    setActionMessage('');
+
+    try {
+      const response = await fetch('/api/admin/invoices/settings', {
+        method: 'POST',
+        credentials: 'include',
+      });
+
+      const payload = await readJsonResponse<{
+        success?: boolean;
+        data?: {
+          nextInvoiceNumber?: string;
+        };
+        error?: string;
+      }>(response);
+
+      if (!response.ok || !payload?.success) {
+        setActionError(
+          payload?.error || 'Rechnungsnummer konnte nicht zurückgesetzt werden.'
+        );
+        return;
+      }
+
+      setNextInvoiceNumber(payload.data?.nextInvoiceNumber || '');
+      setActionMessage(
+        `Rechnungsnummer wurde auf ${payload.data?.nextInvoiceNumber || 'den aktuellen Datenstand'} zurückgesetzt.`
+      );
+    } finally {
+      setIsResettingNumbering(false);
+    }
+  }
+
   return (
     <div className="space-y-6">
       {(actionError || actionMessage) && (
@@ -247,6 +285,18 @@ export function InvoiceSettingsAdminSection({
             >
               Zurück zu Rechnungen
             </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setIsResetConfirmOpen(true);
+              }}
+              disabled={isLoading || isResettingNumbering}
+              className="inline-flex items-center justify-center rounded-full border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-medium text-amber-900 transition hover:border-amber-400 hover:bg-amber-100 disabled:cursor-not-allowed disabled:opacity-60 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100 dark:hover:border-amber-700 dark:hover:bg-amber-950/50"
+            >
+              {isResettingNumbering
+                ? 'Setzt zurück...'
+                : 'Rechnungsnummer zurücksetzen'}
+            </button>
             {profileExists && !isEditing ? (
               <button
                 type="button"
@@ -467,6 +517,18 @@ export function InvoiceSettingsAdminSection({
           </div>
         )}
       </section>
+
+      <ConfirmDialog
+        open={isResetConfirmOpen}
+        onOpenChange={setIsResetConfirmOpen}
+        onConfirm={resetInvoiceNumbering}
+        title="Rechnungsnummer zurücksetzen?"
+        description="Die nächste serverseitige Rechnungsnummer wird auf Basis der noch vorhandenen Rechnungen neu berechnet. Stammdaten und bestehende Rechnungen bleiben unverändert."
+        confirmText="Jetzt zurücksetzen"
+        cancelText="Abbrechen"
+        variant="warning"
+        isLoading={isResettingNumbering}
+      />
     </div>
   );
 }

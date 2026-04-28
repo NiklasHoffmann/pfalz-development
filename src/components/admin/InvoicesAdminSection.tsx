@@ -190,6 +190,26 @@ function formatDateInput(value?: string | null) {
   return new Date(value).toISOString().slice(0, 10);
 }
 
+function formatDisplayDate(value?: string | null) {
+  if (!value) {
+    return '-';
+  }
+
+  const [year, month, day] = value.split('-');
+
+  if (year && month && day) {
+    return `${day.padStart(2, '0')}.${month.padStart(2, '0')}.${year}`;
+  }
+
+  const parsedDate = new Date(value);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return value;
+  }
+
+  return parsedDate.toLocaleDateString('de-DE');
+}
+
 function buildEpcPayload(draft: InvoiceDraft, amount: number) {
   if (!draft.paymentPayee.trim() || !draft.paymentIban.trim()) {
     return '';
@@ -1063,7 +1083,7 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                     <div className="mt-3 space-y-3 text-sm text-stone-700 dark:text-stone-200">
                       <p>
                         <strong>Fälligkeit:</strong>{' '}
-                        {selectedInvoicePreview.dueDate || '-'}
+                        {formatDisplayDate(selectedInvoicePreview.dueDate)}
                       </p>
                       <p>
                         <strong>E-Mail:</strong>{' '}
@@ -1450,7 +1470,7 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
               </div>
               {qrDataUrl ? (
                 <div className="mt-4 rounded-2xl border border-emerald-200 bg-white p-4 shadow-sm dark:border-emerald-900 dark:bg-stone-950">
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="space-y-2 text-sm text-stone-700 dark:text-stone-200">
                       <p className="font-semibold text-stone-900 dark:text-stone-50">
                         Jetzt per Scan bezahlen
@@ -1465,7 +1485,7 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                         <strong>Referenz:</strong> {draft.invoiceNumber || '-'}
                       </p>
                     </div>
-                    <div className="relative rounded-2xl border-2 border-emerald-500 bg-white p-2 shadow-sm">
+                    <div className="relative mx-auto rounded-2xl border-2 border-emerald-500 bg-white p-2 shadow-sm sm:mx-0">
                       <Image
                         src={qrDataUrl}
                         alt="QR-Code zum Bezahlen per Banking-App"
@@ -1510,7 +1530,7 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
 
       <section className="invoice-print-shell mx-auto box-border w-full max-w-[210mm] overflow-hidden rounded-3xl border border-[#e8dcc8] bg-white p-0 shadow-sm dark:border-stone-700 dark:bg-stone-900 print:rounded-none print:border-0 print:shadow-none">
         <article className="invoice-print-root mx-auto box-border flex min-h-[calc(297mm-2px)] w-full max-w-[210mm] flex-col bg-[#fcfbf7] p-6 text-sm text-[#1c1917] sm:p-8">
-          <header className="grid grid-cols-[1fr_auto] items-start gap-4 border-b-2 border-[#92400e] pb-4">
+          <header className="grid items-start gap-4 border-b-2 border-[#92400e] pb-4 sm:grid-cols-[1fr_auto]">
             <div className="flex items-center">
               <Image
                 src="/pfalz-development-logo-light.webp"
@@ -1521,7 +1541,7 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                 className="h-16 w-auto object-contain"
               />
             </div>
-            <div className="rounded-lg border border-[#e8dcc8] bg-[#f5efe4] px-3 py-2 text-right">
+            <div className="rounded-lg border border-[#e8dcc8] bg-[#f5efe4] px-3 py-2 text-left sm:text-right">
               <h2 className="text-2xl font-bold tracking-wide text-[#78350f]">
                 RECHNUNG
               </h2>
@@ -1584,9 +1604,9 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                     )?.label
                   }
                 </p>
-                <p>Rechnungsdatum: {draft.invoiceDate}</p>
+                <p>Rechnungsdatum: {formatDisplayDate(draft.invoiceDate)}</p>
                 <p>Leistungszeitraum: {draft.servicePeriod}</p>
-                <p>Fälligkeit: {draft.dueDate}</p>
+                <p>Fälligkeit: {formatDisplayDate(draft.dueDate)}</p>
                 <p className="invoice-print-meta-project sm:col-span-2">
                   Projekt: {draft.project}
                 </p>
@@ -1675,8 +1695,8 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
               <div>
                 <p className="leading-6">
                   <strong>Zahlungsbedingungen:</strong> Bitte bis spätestens{' '}
-                  {draft.dueDate} unter Angabe der Rechnungsnummer{' '}
-                  {draft.invoiceNumber} überweisen.
+                  {formatDisplayDate(draft.dueDate)} unter Angabe der
+                  Rechnungsnummer {draft.invoiceNumber} überweisen.
                 </p>
                 <p className="mt-1 leading-6">
                   <strong>Bankverbindung:</strong> IBAN{' '}
