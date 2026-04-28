@@ -8,6 +8,7 @@ import Input from '@/components/ui/Form/Input';
 import Select from '@/components/ui/Form/Select';
 import Table from '@/components/ui/Table';
 import { readJsonResponse } from '@/lib/api-client';
+import { formatPhoneDisplay } from '@/lib/format';
 import { compactIban, formatIban } from '@/lib/iban';
 import type { InvoiceStatus } from '@/types/invoice';
 
@@ -210,6 +211,18 @@ function formatDisplayDate(value?: string | null) {
   return parsedDate.toLocaleDateString('de-DE');
 }
 
+function getPrintableInvoiceStatusLabel(status: InvoiceStatus) {
+  if (status === 'draft') {
+    return 'Entwurf';
+  }
+
+  if (status === 'cancelled') {
+    return 'Storniert';
+  }
+
+  return null;
+}
+
 function buildEpcPayload(draft: InvoiceDraft, amount: number) {
   if (!draft.paymentPayee.trim() || !draft.paymentIban.trim()) {
     return '';
@@ -403,6 +416,9 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
   const [actionMessage, setActionMessage] = useState<string>('');
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [qrError, setQrError] = useState<string>('');
+  const printableInvoiceStatusLabel = getPrintableInvoiceStatusLabel(
+    draft.status
+  );
 
   const subtotal = useMemo(
     () =>
@@ -1545,11 +1561,11 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
               <h2 className="text-2xl font-bold tracking-wide text-[#78350f]">
                 RECHNUNG
               </h2>
-              <p className="text-xs text-stone-600">
-                {invoiceStatusOptions.find(
-                  (option) => option.value === draft.status
-                )?.label || 'Original'}
-              </p>
+              {printableInvoiceStatusLabel ? (
+                <p className="text-xs text-stone-600">
+                  {printableInvoiceStatusLabel}
+                </p>
+              ) : null}
             </div>
           </header>
 
@@ -1566,7 +1582,7 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                   {'\n'}
                   {draft.senderCity}
                   {'\n\n'}
-                  Telefon: {draft.senderPhone}
+                  Telefon: {formatPhoneDisplay(draft.senderPhone)}
                   {'\n'}
                   E-Mail: {draft.senderEmail}
                   {'\n'}
@@ -1596,14 +1612,6 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
               </h3>
               <div className="invoice-print-meta mt-2 grid gap-1 sm:grid-cols-2">
                 <p>Rechnungsnummer: {draft.invoiceNumber}</p>
-                <p>
-                  Status:{' '}
-                  {
-                    invoiceStatusOptions.find(
-                      (option) => option.value === draft.status
-                    )?.label
-                  }
-                </p>
                 <p>Rechnungsdatum: {formatDisplayDate(draft.invoiceDate)}</p>
                 <p>Leistungszeitraum: {draft.servicePeriod}</p>
                 <p>Fälligkeit: {formatDisplayDate(draft.dueDate)}</p>

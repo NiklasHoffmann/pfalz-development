@@ -174,3 +174,33 @@ export function formatCompactNumber(
     compactDisplay: 'short',
   }).format(value);
 }
+
+/**
+ * Format phone numbers for display while preserving non-numeric custom inputs.
+ */
+export function formatPhoneDisplay(value?: string | null): string {
+  if (!value?.trim()) {
+    return '-';
+  }
+
+  const trimmedValue = value.trim();
+  const compactValue = trimmedValue.replace(/[()\s/.-]+/g, '');
+  const normalizedValue = compactValue.startsWith('00')
+    ? `+${compactValue.slice(2)}`
+    : compactValue;
+
+  if (!/^\+?\d+$/.test(normalizedValue)) {
+    return value.trim();
+  }
+
+  if (/^01\d{8,9}$/.test(normalizedValue)) {
+    return `${normalizedValue.slice(0, 4)} ${normalizedValue.slice(4)}`;
+  }
+
+  if (/^\+491\d{8,9}$/.test(normalizedValue)) {
+    const nationalNumber = normalizedValue.slice(3);
+    return `+49 ${nationalNumber.slice(0, 3)} ${nationalNumber.slice(3)}`;
+  }
+
+  return trimmedValue;
+}

@@ -6,6 +6,7 @@ import ConfirmDialog from '@/components/ui/ConfirmDialog';
 import Input from '@/components/ui/Form/Input';
 import Textarea from '@/components/ui/Form/Textarea';
 import { readJsonResponse } from '@/lib/api-client';
+import { formatPhoneDisplay } from '@/lib/format';
 import { formatIban } from '@/lib/iban';
 
 interface InvoiceProfile {
@@ -349,7 +350,7 @@ export function InvoiceSettingsAdminSection({
                 {'\n\n'}
                 E-Mail: {currentProfile.senderEmail || '-'}
                 {'\n'}
-                Telefon: {currentProfile.senderPhone || '-'}
+                Telefon: {formatPhoneDisplay(currentProfile.senderPhone)}
                 {'\n'}
                 Steuernummer: {currentProfile.senderTaxNumber || '-'}
               </p>
