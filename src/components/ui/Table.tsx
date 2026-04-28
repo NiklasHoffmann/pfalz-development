@@ -46,6 +46,9 @@ export default function Table<T extends Record<string, unknown>>({
     );
   }
 
+  const renderCellValue = (row: T, column: Column<T>) =>
+    column.render ? column.render(row) : String(row[column.key] ?? '');
+
   return (
     <div
       className={cn(
@@ -53,7 +56,41 @@ export default function Table<T extends Record<string, unknown>>({
         className
       )}
     >
-      <div className="overflow-x-auto">
+      <div className="divide-y divide-stone-200 dark:divide-stone-800 sm:hidden">
+        {data.map((row, index) => (
+          <article
+            key={String(row.id ?? index)}
+            onClick={() => onRowClick?.(row)}
+            className={cn(
+              'space-y-3 px-4 py-4 transition-colors odd:bg-white even:bg-stone-50/55 dark:odd:bg-transparent dark:even:bg-stone-900/35',
+              onRowClick &&
+                'cursor-pointer hover:bg-stone-100 dark:hover:bg-stone-900',
+              rowClassName?.(row)
+            )}
+          >
+            {columns.map((column) => (
+              <div
+                key={String(column.key)}
+                className="grid gap-1 rounded-xl border border-stone-200/80 bg-stone-50/80 px-3 py-2.5 dark:border-stone-800 dark:bg-stone-950/40"
+              >
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">
+                  {column.label}
+                </span>
+                <div
+                  className={cn(
+                    'min-w-0 text-sm leading-6 text-stone-700 dark:text-stone-200',
+                    column.className
+                  )}
+                >
+                  {renderCellValue(row, column)}
+                </div>
+              </div>
+            ))}
+          </article>
+        ))}
+      </div>
+
+      <div className="hidden overflow-x-auto sm:block">
         <table className="min-w-full border-collapse text-left text-sm">
           <thead className="sticky top-0 z-10 border-b border-stone-200 bg-stone-100/95 backdrop-blur dark:border-stone-800 dark:bg-stone-900/95">
             <tr>
@@ -90,9 +127,7 @@ export default function Table<T extends Record<string, unknown>>({
                       column.className
                     )}
                   >
-                    {column.render
-                      ? column.render(row)
-                      : String(row[column.key] ?? '')}
+                    {renderCellValue(row, column)}
                   </td>
                 ))}
               </tr>

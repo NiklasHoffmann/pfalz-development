@@ -75,6 +75,10 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [mobileNavState, setMobileNavState] = useState({
+    isOpen: false,
+    pathname,
+  });
   const visibleNavigationItems = navigationItems.filter(
     (item) => !item.roles || item.roles.includes(staffUser.role)
   );
@@ -83,6 +87,19 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
     return isNavigationItemActive(pathname, href, item.matchMode);
   });
   const activeSectionLabel = activeNavigationItem?.label || 'Übersicht';
+  const isMobileNavOpen =
+    mobileNavState.isOpen && mobileNavState.pathname === pathname;
+
+  function toggleMobileNav() {
+    setMobileNavState((current) => ({
+      isOpen: !(current.isOpen && current.pathname === pathname),
+      pathname,
+    }));
+  }
+
+  function closeMobileNav() {
+    setMobileNavState({ isOpen: false, pathname });
+  }
 
   async function handleLogout() {
     setIsLoggingOut(true);
@@ -200,7 +217,10 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
           )}
         >
           <header
-            className={cn(styles.header, 'admin-shell-header fixed top-4 z-30')}
+            className={cn(
+              styles.header,
+              'admin-shell-header sticky top-3 z-30 xl:fixed xl:top-4'
+            )}
           >
             <div
               aria-hidden="true"
@@ -225,55 +245,80 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center xl:hidden">
-                  <div className="rounded-[1.5rem] border border-stone-200/80 bg-white/70 px-4 py-3 backdrop-blur-sm dark:border-stone-700/80 dark:bg-stone-900/45">
-                    <p className="font-medium">{staffUser.name}</p>
-                    <p className="text-sm text-stone-500 dark:text-stone-400">
-                      {staffUser.email}
-                    </p>
+                <div className="flex flex-col gap-3 xl:hidden">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0 rounded-[1.5rem] border border-stone-200/80 bg-white/70 px-4 py-3 backdrop-blur-sm dark:border-stone-700/80 dark:bg-stone-900/45">
+                      <p className="truncate font-medium">{staffUser.name}</p>
+                      <p className="truncate text-sm text-stone-500 dark:text-stone-400">
+                        {staffUser.email}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={toggleMobileNav}
+                      aria-expanded={isMobileNavOpen}
+                      aria-controls="admin-mobile-nav"
+                      className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white/80 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900/65 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
+                    >
+                      {isMobileNavOpen
+                        ? 'Navigation schließen'
+                        : 'Navigation öffnen'}
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => void handleLogout()}
-                    disabled={isLoggingOut}
-                    className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50 xl:hidden"
-                  >
-                    Abmelden
-                  </button>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div className="rounded-full border border-stone-200 bg-white/80 px-4 py-2 text-sm text-stone-700 dark:border-stone-700 dark:bg-stone-900/60 dark:text-stone-200">
+                      Aktiver Bereich: {activeSectionLabel}
+                    </div>
+                    <p className="text-sm text-stone-500 dark:text-stone-400">
+                      {visibleNavigationItems.length} Bereiche verfügbar
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => void handleLogout()}
+                      disabled={isLoggingOut}
+                      className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
+                    >
+                      Abmelden
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <nav className="mt-4 flex flex-wrap gap-2 xl:hidden">
-                {visibleNavigationItems.map((item) => {
-                  const href = withLocale(locale, item.href);
-                  const isActive = isNavigationItemActive(
-                    pathname,
-                    href,
-                    item.matchMode
-                  );
+              {isMobileNavOpen ? (
+                <nav
+                  id="admin-mobile-nav"
+                  className="mt-4 grid gap-2 sm:grid-cols-2 xl:hidden"
+                >
+                  {visibleNavigationItems.map((item) => {
+                    const href = withLocale(locale, item.href);
+                    const isActive = isNavigationItemActive(
+                      pathname,
+                      href,
+                      item.matchMode
+                    );
 
-                  return (
-                    <Link
-                      key={item.href}
-                      href={href}
-                      className={cn(
-                        'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition',
-                        isActive
-                          ? 'border border-amber-300/80 bg-amber-100/85 text-amber-900 dark:border-amber-300/35 dark:bg-amber-300/15 dark:text-amber-200'
-                          : 'border border-stone-300/80 bg-white/80 text-stone-700 hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900/65 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50'
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </nav>
+                    return (
+                      <Link
+                        key={item.href}
+                        href={href}
+                        onClick={closeMobileNav}
+                        className={cn(
+                          'inline-flex min-h-11 items-center justify-center rounded-[1.15rem] px-4 py-3 text-center text-sm font-medium transition',
+                          isActive
+                            ? 'border border-amber-300/80 bg-amber-100/85 text-amber-900 dark:border-amber-300/35 dark:bg-amber-300/15 dark:text-amber-200'
+                            : 'border border-stone-300/80 bg-white/80 text-stone-700 hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900/65 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50'
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </nav>
+              ) : null}
             </div>
           </header>
 
-          <main className="min-w-0 pt-52 sm:pt-44 lg:pt-40 xl:pt-36">
-            {children}
-          </main>
+          <main className="min-w-0 pt-6 xl:pt-36">{children}</main>
         </div>
       </div>
     </div>

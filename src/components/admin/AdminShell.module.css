@@ -6,16 +6,16 @@
   --admin-shell-content-left: 0.75rem;
 }
 
+.header {
+  left: var(--admin-shell-inline);
+  right: var(--admin-shell-inline);
+  width: auto;
+}
+
 @media (min-width: 640px) {
   .shell {
     --admin-shell-inline: 1rem;
     --admin-shell-content-left: 1rem;
-  }
-
-  .header {
-    left: var(--admin-shell-inline);
-    right: var(--admin-shell-inline);
-    width: auto;
   }
 }
 
