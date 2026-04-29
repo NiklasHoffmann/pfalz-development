@@ -89,6 +89,7 @@ function localeToIntroductionPortraitAlt(locale: string, name: string): string {
 function resolveIntroductionPortrait(
   locale: string
 ): HomePageData['introduction']['portrait'] {
+  const preferredExtensions = ['.avif', '.webp', '.jpg', '.jpeg', '.png'];
   const portraitDirectory = path.join(
     process.cwd(),
     'public',
@@ -100,15 +101,22 @@ function resolveIntroductionPortrait(
     return undefined;
   }
 
-  const portraitFile = readdirSync(portraitDirectory, {
+  const portraitFiles = readdirSync(portraitDirectory, {
     withFileTypes: true,
-  }).find(
-    (entry) =>
-      entry.isFile() &&
-      ['.jpg', '.jpeg', '.png', '.webp', '.avif'].includes(
-        path.extname(entry.name).toLowerCase()
-      )
-  );
+  })
+    .filter((entry) => entry.isFile())
+    .map((entry) => ({
+      entry,
+      extension: path.extname(entry.name).toLowerCase(),
+    }))
+    .filter(({ extension }) => preferredExtensions.includes(extension))
+    .sort(
+      (left, right) =>
+        preferredExtensions.indexOf(left.extension) -
+        preferredExtensions.indexOf(right.extension)
+    );
+
+  const portraitFile = portraitFiles[0]?.entry;
 
   if (!portraitFile) {
     return undefined;
