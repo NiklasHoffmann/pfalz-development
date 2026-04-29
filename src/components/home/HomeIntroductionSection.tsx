@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 
 interface HomeIntroductionSectionProps {
@@ -6,6 +7,12 @@ interface HomeIntroductionSectionProps {
   description: string;
   points: string[];
   conclusion: string;
+  portrait?: {
+    src: string;
+    alt: string;
+    name: string;
+    label: string;
+  };
 }
 
 export function HomeIntroductionSection({
@@ -14,6 +21,7 @@ export function HomeIntroductionSection({
   description,
   points,
   conclusion,
+  portrait,
 }: HomeIntroductionSectionProps) {
   return (
     <RevealOnScroll
@@ -22,26 +30,68 @@ export function HomeIntroductionSection({
       className="surface-section-muted border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
-            {eyebrow}
-          </p>
-          <h2
-            id="home-introduction-title"
-            className="mx-auto mt-5 max-w-4xl text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl"
+        <div
+          className={`mx-auto grid items-center gap-10 ${portrait ? 'lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-12' : ''}`}
+        >
+          {portrait ? (
+            <RevealOnScroll
+              className="relative mx-auto w-full max-w-[17rem] sm:max-w-[19rem] lg:max-w-[21rem]"
+              delayMs={60}
+            >
+              <div className="relative overflow-hidden rounded-[2rem] border border-stone-200/85 bg-stone-950 shadow-[0_24px_60px_rgba(28,25,23,0.18)] dark:border-stone-700/80 dark:shadow-[0_28px_70px_rgba(0,0,0,0.34)]">
+                <div className="absolute inset-x-0 top-0 z-10 h-28 bg-[linear-gradient(180deg,rgba(12,10,9,0.42),transparent)]" />
+                <div className="absolute inset-x-0 bottom-0 z-10 h-36 bg-[linear-gradient(180deg,transparent,rgba(12,10,9,0.78))]" />
+                <Image
+                  src={portrait.src}
+                  alt={portrait.alt}
+                  width={960}
+                  height={1200}
+                  sizes="(max-width: 640px) min(100vw - 3rem, 17rem), (max-width: 1024px) 19rem, 21rem"
+                  className="aspect-[4/5] h-full w-full scale-[1.06] object-cover object-[center_16%] [transform:scaleX(-1)]"
+                />
+                <div className="border-white/14 bg-stone-950/72 absolute inset-x-4 bottom-4 z-20 rounded-[1rem] border px-3.5 py-2.5 text-white shadow-[0_12px_24px_rgba(0,0,0,0.24)] backdrop-blur-md">
+                  <p className="text-[0.96rem] font-semibold tracking-[0.01em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.65)]">
+                    {portrait.name}
+                  </p>
+                  <p className="mt-1 text-[0.68rem] uppercase tracking-[0.18em] text-amber-100/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.7)]">
+                    {portrait.label}
+                  </p>
+                </div>
+              </div>
+            </RevealOnScroll>
+          ) : null}
+
+          <div
+            className={
+              portrait
+                ? 'min-w-0 text-center lg:text-left'
+                : 'mx-auto max-w-4xl text-center'
+            }
           >
-            {title}
-          </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-stone-800 dark:text-stone-100 sm:text-lg">
-            {description}
-          </p>
-          <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base">
-            {conclusion}
-          </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
+              {eyebrow}
+            </p>
+            <h2
+              id="home-introduction-title"
+              className={`mt-5 text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl ${portrait ? 'mx-auto max-w-3xl lg:mx-0' : 'mx-auto max-w-4xl'}`}
+            >
+              {title}
+            </h2>
+            <p
+              className={`mt-5 text-base leading-8 text-stone-800 dark:text-stone-100 sm:text-lg ${portrait ? 'mx-auto max-w-3xl lg:mx-0' : 'mx-auto max-w-3xl'}`}
+            >
+              {description}
+            </p>
+            <p
+              className={`mt-5 text-sm leading-7 text-stone-700 dark:text-stone-200 sm:text-base ${portrait ? 'mx-auto max-w-3xl lg:mx-0' : 'mx-auto max-w-3xl'}`}
+            >
+              {conclusion}
+            </p>
+          </div>
         </div>
 
         <ul
-          className="card-grid-balance-md-xl mx-auto mt-12 grid max-w-5xl gap-4 [--card-grid-gap:1rem] md:grid-cols-2 xl:grid-cols-3"
+          className={`card-grid-balance-md-xl mx-auto mt-10 grid gap-4 [--card-grid-gap:1rem] md:grid-cols-2 xl:grid-cols-3 ${portrait ? 'max-w-6xl' : 'max-w-5xl'}`}
           aria-label={title}
         >
           {points.map((point, index) => (

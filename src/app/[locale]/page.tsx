@@ -1,3 +1,5 @@
+import { existsSync, readdirSync } from 'node:fs';
+import path from 'node:path';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
@@ -70,6 +72,54 @@ function localeToSeoDescription(locale: string): string {
   }
 
   return 'Webdesign und Website-Erstellung für Unternehmen in der Pfalz mit lokalen SEO-Grundlagen, klaren Paketen und direktem Kontakt per E-Mail, Telefon, WhatsApp oder Formular.';
+}
+
+function localeToIntroductionPortraitAlt(locale: string, name: string): string {
+  if (locale === 'en') {
+    return `Portrait of ${name}, founder of ${siteConfig.name}`;
+  }
+
+  if (locale === 'pfl') {
+    return `Portraet vun ${name} vun ${siteConfig.name}`;
+  }
+
+  return `Porträt von ${name} von ${siteConfig.name}`;
+}
+
+function resolveIntroductionPortrait(
+  locale: string
+): HomePageData['introduction']['portrait'] {
+  const portraitDirectory = path.join(
+    process.cwd(),
+    'public',
+    'images',
+    'portrait'
+  );
+
+  if (!existsSync(portraitDirectory)) {
+    return undefined;
+  }
+
+  const portraitFile = readdirSync(portraitDirectory, {
+    withFileTypes: true,
+  }).find(
+    (entry) =>
+      entry.isFile() &&
+      ['.jpg', '.jpeg', '.png', '.webp', '.avif'].includes(
+        path.extname(entry.name).toLowerCase()
+      )
+  );
+
+  if (!portraitFile) {
+    return undefined;
+  }
+
+  return {
+    src: `/images/portrait/${portraitFile.name}`,
+    alt: localeToIntroductionPortraitAlt(locale, siteConfig.creator.name),
+    name: siteConfig.creator.name,
+    label: siteConfig.name,
+  };
 }
 
 function withLocaleBasePath(basePath: string, href: string): string {
@@ -311,6 +361,7 @@ export default async function HomePage({ params }: HomePageProps) {
       description: t('home.introduction.description'),
       points: t.raw('home.introduction.points') as string[],
       conclusion: t('home.introduction.conclusion'),
+      portrait: resolveIntroductionPortrait(locale),
     },
     services: {
       title: t('home.services.title'),

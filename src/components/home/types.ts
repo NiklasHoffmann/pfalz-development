@@ -131,6 +131,12 @@ export type HomePageData = {
     description: string;
     points: string[];
     conclusion: string;
+    portrait?: {
+      src: string;
+      alt: string;
+      name: string;
+      label: string;
+    };
   };
   services: {
     title: string;

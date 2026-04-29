@@ -52,6 +52,7 @@ export function HomePageView({ data }: HomePageViewProps) {
           description={data.introduction.description}
           points={data.introduction.points}
           conclusion={data.introduction.conclusion}
+          portrait={data.introduction.portrait}
         />
         <HomeAudienceSection
           audiencesTitle={data.audiences.title}
