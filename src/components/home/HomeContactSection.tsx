@@ -148,17 +148,6 @@ export function HomeContactSection({
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
-                  {details.emailLabel}
-                </p>
-                <a
-                  href={`mailto:${details.emailValue}`}
-                  className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
-                >
-                  {details.emailValue}
-                </a>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
                   {details.phoneLabel}
                 </p>
                 <a
