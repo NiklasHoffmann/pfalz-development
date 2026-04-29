@@ -49,11 +49,11 @@ export function HomeIntroductionSection({
                   sizes="(max-width: 640px) min(100vw - 3rem, 17rem), (max-width: 1024px) 19rem, 21rem"
                   className="aspect-[4/5] h-full w-full scale-[1.06] object-cover object-[center_16%] [transform:scaleX(-1)]"
                 />
-                <div className="border-white/14 bg-stone-950/72 absolute inset-x-4 bottom-4 z-20 rounded-[1rem] border px-3.5 py-2.5 text-white shadow-[0_12px_24px_rgba(0,0,0,0.24)] backdrop-blur-md">
-                  <p className="text-[0.96rem] font-semibold tracking-[0.01em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.65)]">
+                <div className="border-white/18 bg-stone-950/82 absolute inset-x-4 bottom-4 z-20 rounded-[1rem] border px-4 py-3 text-white shadow-[0_12px_24px_rgba(0,0,0,0.32)] backdrop-blur-md">
+                  <p className="text-base font-semibold leading-tight tracking-[0.01em] text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.75)]">
                     {portrait.name}
                   </p>
-                  <p className="mt-1 text-[0.68rem] uppercase tracking-[0.18em] text-amber-100/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.7)]">
+                  <p className="mt-1.5 text-[0.74rem] font-medium uppercase tracking-[0.2em] text-amber-50 [text-shadow:0_1px_3px_rgba(0,0,0,0.78)]">
                     {portrait.label}
                   </p>
                 </div>
