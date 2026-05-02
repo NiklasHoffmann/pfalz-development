@@ -33,11 +33,23 @@ export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith('/api/')) {
+    if (
+      configuredAdminHost &&
+      !isAdminHost &&
+      matchesPathPrefix(pathname, '/api/admin')
+    ) {
+      return new NextResponse(null, { status: 404 });
+    }
+
     if (isAdminHost && !isAllowedAdminApiPath(pathname)) {
       return new NextResponse(null, { status: 404 });
     }
 
     return NextResponse.next();
+  }
+
+  if (configuredAdminHost && !isAdminHost && isAllowedAdminPagePath(pathname)) {
+    return new NextResponse(null, { status: 404 });
   }
 
   if (isAdminHost && !isAllowedAdminPagePath(pathname)) {
