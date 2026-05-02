@@ -151,10 +151,7 @@ function getExpectedOrigin(request: NextRequest) {
     .get('x-forwarded-proto')
     ?.split(',')[0]
     ?.trim();
-  const forwardedHost = request.headers
-    .get('x-forwarded-host')
-    ?.split(',')[0]
-    ?.trim();
+  const forwardedHost = getRequestHost(request.headers);
 
   if (forwardedProto && forwardedHost) {
     return `${forwardedProto}://${forwardedHost}`;
