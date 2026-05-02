@@ -59,6 +59,7 @@ const envSchema = z
     ADMIN_ALLOWED_IPS: z.string().optional(),
     ADMIN_SESSION_SECRET: z.string().min(32).optional(),
     ADMIN_SESSION_DURATION_HOURS: z.string().transform(Number).default('12'),
+    ADMIN_PROXY_SHARED_SECRET: z.string().min(24).optional(),
   })
   .superRefine((value, ctx) => {
     const hasTurnstileSiteKey = Boolean(

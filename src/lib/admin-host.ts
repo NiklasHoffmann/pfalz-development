@@ -1,8 +1,12 @@
+import { timingSafeEqual } from 'node:crypto';
 import { env } from '@/lib/env';
 
 interface HeaderReader {
   get(name: string): string | null | undefined;
 }
+
+const ADMIN_PROXY_SECRET_HEADER = 'x-admin-proxy-secret';
+const ADMIN_PROXY_FORWARDED_HOST_HEADER = 'x-admin-forwarded-host';
 
 function trimTrailingSlash(value: string) {
   return value.replace(/\/+$/, '');
@@ -20,6 +24,32 @@ function normalizeHost(value: string | null | undefined) {
   } catch {
     return candidate.toLowerCase().replace(/:\d+$/, '');
   }
+}
+
+function safeEquals(a: string, b: string) {
+  const aBuffer = Buffer.from(a);
+  const bBuffer = Buffer.from(b);
+
+  if (aBuffer.length !== bBuffer.length) {
+    return false;
+  }
+
+  return timingSafeEqual(aBuffer, bBuffer);
+}
+
+function getTrustedProxyHost(headerReader: HeaderReader) {
+  const configuredSecret = env.ADMIN_PROXY_SHARED_SECRET?.trim();
+  const providedSecret = headerReader.get(ADMIN_PROXY_SECRET_HEADER)?.trim();
+
+  if (!configuredSecret || !providedSecret) {
+    return null;
+  }
+
+  if (!safeEquals(providedSecret, configuredSecret)) {
+    return null;
+  }
+
+  return normalizeHost(headerReader.get(ADMIN_PROXY_FORWARDED_HOST_HEADER));
 }
 
 export function getAdminAppUrl() {
@@ -44,8 +74,11 @@ export function getConfiguredAdminHost() {
 }
 
 export function getRequestHost(headerReader: HeaderReader) {
-  return normalizeHost(
-    headerReader.get('x-forwarded-host') || headerReader.get('host')
+  return (
+    getTrustedProxyHost(headerReader) ||
+    normalizeHost(
+      headerReader.get('x-forwarded-host') || headerReader.get('host')
+    )
   );
 }
 
