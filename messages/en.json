@@ -139,6 +139,15 @@
         "primaryCta": "Send an email",
         "secondaryCta": "Call",
         "tertiaryCta": "Write on WhatsApp",
+        "emailReveal": {
+          "title": "Send an email",
+          "description": "I will open the contact directly in your email app.",
+          "verifyCta": "Open email app",
+          "openMailCta": "Open email app",
+          "loading": "Preparing email...",
+          "success": "The email is ready.",
+          "unavailable": "The email link could not be unlocked right now. Please use the form instead."
+        },
         "whatsAppMessage": "Hello, I am interested in a website for my business in the Palatinate. I would like to briefly discuss my project.",
         "personLabel": "Contact person",
         "ownerName": "Niklas Hoffmann",

@@ -139,6 +139,15 @@
         "primaryCta": "E-Mail schreiwe",
         "secondaryCta": "Aarufe",
         "tertiaryCta": "WhatsApp schreiwe",
+        "emailReveal": {
+          "title": "E-Mail schreiwe",
+          "description": "Isch mach dir direkt de Kontakt in de Mail-App uff.",
+          "verifyCta": "Mail-App uffmache",
+          "openMailCta": "Mail-App uffmache",
+          "loading": "Mail werd vorbereitet...",
+          "success": "Die Mail is bereit.",
+          "unavailable": "De Mail-Link hot grad net freigebbe werre kenne. Nutz bitte alternativ des Formular."
+        },
         "whatsAppMessage": "Hallo, isch interessier mich fer e Website fer mei Betrieb in de Palz. Isch würd gern kurz iwwer mei Projekt babble.",
         "personLabel": "Asprechpardner",
         "ownerName": "Niklas Hoffmann",

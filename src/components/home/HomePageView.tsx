@@ -85,6 +85,7 @@ export function HomePageView({ data }: HomePageViewProps) {
           whatsAppMessage={data.contact.whatsAppMessage}
           privacyHref={data.contact.privacyHref}
           form={data.contact.form}
+          emailReveal={data.contact.emailReveal}
           details={data.contact.details}
         />
         <HomeSeoLinksSection

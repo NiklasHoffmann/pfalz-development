@@ -45,6 +45,8 @@ export type ContactFormCopy = {
   eyebrow: string;
   title: string;
   description: string;
+  openCta: string;
+  closeCta: string;
   submit: string;
   privacyNote: string;
   privacyLinkLabel: string;
@@ -85,6 +87,16 @@ export type ContactFormCopy = {
       placeholder: string;
     };
   };
+};
+
+export type ContactEmailRevealCopy = {
+  title: string;
+  description: string;
+  verifyCta: string;
+  openMailCta: string;
+  loading: string;
+  success: string;
+  unavailable: string;
 };
 
 export type NavItem = {
@@ -182,6 +194,7 @@ export type HomePageData = {
     whatsAppMessage: string;
     privacyHref: string;
     form: ContactFormCopy;
+    emailReveal: ContactEmailRevealCopy;
     details: ContactDetails;
   };
   footer: {

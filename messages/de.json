@@ -139,6 +139,15 @@
         "primaryCta": "E-Mail schreiben",
         "secondaryCta": "Anrufen",
         "tertiaryCta": "WhatsApp schreiben",
+        "emailReveal": {
+          "title": "E-Mail schreiben",
+          "description": "Ich öffne dir direkt den Kontakt per E-Mail.",
+          "verifyCta": "E-Mail-App öffnen",
+          "openMailCta": "E-Mail-App öffnen",
+          "loading": "E-Mail wird vorbereitet...",
+          "success": "Die E-Mail ist bereit.",
+          "unavailable": "Der E-Mail-Link konnte gerade nicht freigegeben werden. Bitte nutze alternativ das Formular."
+        },
         "whatsAppMessage": "Hallo, ich interessiere mich für eine Website für meinen Betrieb in der Pfalz. Ich würde gern kurz über mein Projekt sprechen.",
         "personLabel": "Ansprechpartner",
         "ownerName": "Niklas Hoffmann",

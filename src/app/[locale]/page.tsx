@@ -415,6 +415,15 @@ export default async function HomePage({ params }: HomePageProps) {
       whatsAppMessage: t('home.contact.whatsAppMessage'),
       privacyHref: `${basePath}/datenschutz`,
       form: contactFormCopy,
+      emailReveal: {
+        title: t('home.contact.emailReveal.title'),
+        description: t('home.contact.emailReveal.description'),
+        verifyCta: t('home.contact.emailReveal.verifyCta'),
+        openMailCta: t('home.contact.emailReveal.openMailCta'),
+        loading: t('home.contact.emailReveal.loading'),
+        success: t('home.contact.emailReveal.success'),
+        unavailable: t('home.contact.emailReveal.unavailable'),
+      },
       details: resolvedContactDetails,
     },
     footer: {

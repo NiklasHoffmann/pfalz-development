@@ -10,6 +10,7 @@ declare global {
         container: string | HTMLElement,
         options: Record<string, unknown>
       ) => string;
+      execute: (widgetId: string) => void;
       remove: (widgetId: string) => void;
       reset: (widgetId: string) => void;
     };
@@ -20,12 +21,20 @@ type TurnstileWidgetProps = {
   siteKey: string;
   onTokenChange: (token: string | null) => void;
   resetNonce?: number;
+  executeNonce?: number;
+  appearance?: 'interaction-only' | 'always';
+  execution?: 'render' | 'execute';
+  action?: string;
 };
 
 export function TurnstileWidget({
   siteKey,
   onTokenChange,
   resetNonce = 0,
+  executeNonce = 0,
+  appearance = 'interaction-only',
+  execution = 'render',
+  action = 'contact_form',
 }: TurnstileWidgetProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | null>(null);
@@ -50,34 +59,46 @@ export function TurnstileWidget({
 
     widgetIdRef.current = window.turnstile.render(containerRef.current, {
       sitekey: siteKey,
-      appearance: 'interaction-only',
-      execution: 'render',
+      appearance,
+      execution,
       theme: 'auto',
       size: 'flexible',
-      action: 'contact_form',
+      action,
       'before-interactive-callback': () => {
-        setIsInteractiveVisible(true);
+        if (appearance === 'interaction-only') {
+          setIsInteractiveVisible(true);
+        }
       },
       'after-interactive-callback': () => {
-        setIsInteractiveVisible(false);
+        if (appearance === 'interaction-only') {
+          setIsInteractiveVisible(false);
+        }
       },
       callback: (token: string) => {
-        setIsInteractiveVisible(false);
+        if (appearance === 'interaction-only') {
+          setIsInteractiveVisible(false);
+        }
         onTokenChangeRef.current(token);
       },
       'expired-callback': () => {
-        setIsInteractiveVisible(false);
+        if (appearance === 'interaction-only') {
+          setIsInteractiveVisible(false);
+        }
         onTokenChangeRef.current(null);
         if (widgetIdRef.current && window.turnstile) {
           window.turnstile.reset(widgetIdRef.current);
         }
       },
       'error-callback': () => {
-        setIsInteractiveVisible(false);
+        if (appearance === 'interaction-only') {
+          setIsInteractiveVisible(false);
+        }
         onTokenChangeRef.current(null);
       },
       'timeout-callback': () => {
-        setIsInteractiveVisible(true);
+        if (appearance === 'interaction-only') {
+          setIsInteractiveVisible(true);
+        }
         onTokenChangeRef.current(null);
       },
     });
@@ -88,7 +109,21 @@ export function TurnstileWidget({
         widgetIdRef.current = null;
       }
     };
-  }, [scriptLoaded, siteKey]);
+  }, [action, appearance, execution, scriptLoaded, siteKey]);
+
+  useEffect(() => {
+    if (execution !== 'execute') {
+      return;
+    }
+
+    if (!widgetIdRef.current || !window.turnstile || executeNonce < 1) {
+      return;
+    }
+
+    onTokenChangeRef.current(null);
+    window.turnstile.reset(widgetIdRef.current);
+    window.turnstile.execute(widgetIdRef.current);
+  }, [executeNonce, execution]);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -125,7 +160,7 @@ export function TurnstileWidget({
       />
       <div
         className={`overflow-hidden transition-all duration-300 ease-out ${
-          isInteractiveVisible
+          appearance === 'always' || isInteractiveVisible
             ? 'mt-2 max-h-56 opacity-100'
             : 'max-h-0 opacity-0'
         }`}

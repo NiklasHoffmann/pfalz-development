@@ -1,9 +1,14 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
-import type { ContactDetails, ContactFormCopy } from './types';
+import { useCallback, useEffect, useState } from 'react';
+import type {
+  ContactDetails,
+  ContactEmailRevealCopy,
+  ContactFormCopy,
+} from './types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
+import { TurnstileWidget } from '@/components/ui/TurnstileWidget';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 
 const ContactForm = dynamic(
@@ -29,6 +34,7 @@ interface HomeContactSectionProps {
   whatsAppMessage: string;
   privacyHref: string;
   form: ContactFormCopy;
+  emailReveal: ContactEmailRevealCopy;
   details: ContactDetails;
 }
 
@@ -43,12 +49,28 @@ export function HomeContactSection({
   whatsAppMessage,
   privacyHref,
   form,
+  emailReveal,
   details,
 }: HomeContactSectionProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [hasRequestedFormUi, setHasRequestedFormUi] = useState(false);
   const [formSessionKey, setFormSessionKey] = useState(0);
+  const [emailRevealToken, setEmailRevealToken] = useState<string | null>(null);
+  const [emailRevealResetNonce, setEmailRevealResetNonce] = useState(0);
+  const [emailRevealExecuteNonce, setEmailRevealExecuteNonce] = useState(0);
+  const [emailRevealStatus, setEmailRevealStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({
+    type: null,
+    message: '',
+  });
+  const [isEmailRevealSubmitting, setIsEmailRevealSubmitting] = useState(false);
+  const [shouldRevealOnceTokenReady, setShouldRevealOnceTokenReady] =
+    useState(false);
   const contactDialogId = 'contact-form-dialog';
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
+  const hasProtectedEmailReveal = Boolean(turnstileSiteKey);
 
   const phoneHref = details.phoneValue.replace(/\s+/g, '');
   const phoneDisplay =
@@ -60,6 +82,7 @@ export function HomeContactSection({
     whatsAppMessage
   );
   const whatsAppDisplay = details.whatsAppValue;
+  const mailtoHref = `mailto:${details.emailValue}`;
 
   function handleFormOpenChange(open: boolean) {
     if (open) {
@@ -72,6 +95,135 @@ export function HomeContactSection({
       setFormSessionKey((current) => current + 1);
     }
   }
+
+  const requestEmailReveal = useCallback(
+    async (token: string) => {
+      setIsEmailRevealSubmitting(true);
+      setEmailRevealStatus({
+        type: null,
+        message: '',
+      });
+
+      try {
+        const response = await fetch('/api/contact/reveal-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            turnstileToken: token,
+          }),
+        });
+
+        const result = (await response.json()) as {
+          success: boolean;
+          data?: {
+            mailto: string;
+          };
+          error?: string;
+        };
+
+        if (!response.ok || !result.success || !result.data?.mailto) {
+          if (result.error === 'Spam protection verification failed') {
+            throw new Error(form.status.botCheckFailed);
+          }
+
+          throw new Error(result.error || emailReveal.unavailable);
+        }
+
+        setShouldRevealOnceTokenReady(false);
+        setEmailRevealStatus({
+          type: 'success',
+          message: emailReveal.success,
+        });
+        window.location.href = result.data.mailto;
+      } catch (error) {
+        const message =
+          error instanceof Error ? error.message : emailReveal.unavailable;
+        setEmailRevealStatus({
+          type: 'error',
+          message,
+        });
+        setShouldRevealOnceTokenReady(false);
+        setEmailRevealToken(null);
+        setEmailRevealResetNonce((current) => current + 1);
+      } finally {
+        setIsEmailRevealSubmitting(false);
+      }
+    },
+    [emailReveal.success, emailReveal.unavailable, form.status.botCheckFailed]
+  );
+
+  async function handleEmailRevealRequest() {
+    if (!hasProtectedEmailReveal) {
+      window.location.href = mailtoHref;
+      return;
+    }
+
+    if (isEmailRevealSubmitting) {
+      return;
+    }
+
+    setShouldRevealOnceTokenReady(true);
+
+    if (!emailRevealToken) {
+      setEmailRevealStatus({
+        type: null,
+        message: '',
+      });
+      setEmailRevealExecuteNonce((current) => current + 1);
+      return;
+    }
+
+    await requestEmailReveal(emailRevealToken);
+  }
+
+  useEffect(() => {
+    if (
+      !shouldRevealOnceTokenReady ||
+      !emailRevealToken ||
+      isEmailRevealSubmitting
+    ) {
+      return;
+    }
+
+    void requestEmailReveal(emailRevealToken);
+  }, [
+    emailRevealToken,
+    isEmailRevealSubmitting,
+    requestEmailReveal,
+    shouldRevealOnceTokenReady,
+  ]);
+
+  useEffect(() => {
+    if (
+      !hasProtectedEmailReveal ||
+      !shouldRevealOnceTokenReady ||
+      emailRevealToken ||
+      isEmailRevealSubmitting
+    ) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setShouldRevealOnceTokenReady(false);
+      setEmailRevealStatus({
+        type: 'error',
+        message: emailReveal.unavailable,
+      });
+      setEmailRevealResetNonce((current) => current + 1);
+    }, 8000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [
+    emailReveal.unavailable,
+    emailRevealToken,
+    hasProtectedEmailReveal,
+    isEmailRevealSubmitting,
+    shouldRevealOnceTokenReady,
+  ]);
 
   return (
     <RevealOnScroll
@@ -96,12 +248,18 @@ export function HomeContactSection({
               {description}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href={`mailto:${details.emailValue}`}
-                className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-stone-800 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
+              <button
+                type="button"
+                onClick={() => {
+                  void handleEmailRevealRequest();
+                }}
+                disabled={isEmailRevealSubmitting || shouldRevealOnceTokenReady}
+                className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
               >
-                {primaryCta}
-              </a>
+                {isEmailRevealSubmitting || shouldRevealOnceTokenReady
+                  ? emailReveal.loading
+                  : primaryCta}
+              </button>
               <a
                 href={`tel:${phoneHref}`}
                 className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-white dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
@@ -130,6 +288,31 @@ export function HomeContactSection({
                 {openFormLabel}
               </button>
             </div>
+
+            {hasProtectedEmailReveal && turnstileSiteKey ? (
+              <div className="mt-3">
+                <TurnstileWidget
+                  siteKey={turnstileSiteKey}
+                  onTokenChange={setEmailRevealToken}
+                  resetNonce={emailRevealResetNonce}
+                  executeNonce={emailRevealExecuteNonce}
+                  execution="execute"
+                  action="email_reveal"
+                />
+              </div>
+            ) : null}
+
+            {emailRevealStatus.message ? (
+              <p
+                className={`mt-3 text-sm ${
+                  emailRevealStatus.type === 'error'
+                    ? 'text-rose-700 dark:text-rose-300'
+                    : 'text-emerald-700 dark:text-emerald-300'
+                }`}
+              >
+                {emailRevealStatus.message}
+              </p>
+            ) : null}
 
             <p className="mt-8 text-sm text-stone-600 dark:text-stone-300">
               {details.regionNote}
