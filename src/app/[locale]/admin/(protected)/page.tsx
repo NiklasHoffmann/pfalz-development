@@ -70,22 +70,22 @@ export default async function AdminOverviewPage({
         role: staffUser.role,
       }}
     >
-      <section className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900 sm:p-8">
-        <div className="flex flex-col gap-3 border-b border-stone-200 pb-5 dark:border-stone-800">
+      <section className="rounded-[1.9rem] border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900 sm:p-6">
+        <div className="flex flex-col gap-2.5 border-b border-stone-200 pb-4 dark:border-stone-800">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
             Admin-Start
           </p>
-          <h1 className="text-3xl font-semibold tracking-tight">
+          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
             Arbeitsbereiche
           </h1>
         </div>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+        <div className="mt-5 grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
           {visibleEntries.map((entry) => (
             <Link
               key={entry.href}
               href={withLocale(locale, entry.href)}
-              className="group rounded-[1.75rem] border border-stone-200 bg-stone-50/80 p-5 transition hover:border-amber-300 hover:bg-amber-50/70 dark:border-stone-800 dark:bg-stone-950/40 dark:hover:border-amber-700 dark:hover:bg-amber-950/10"
+              className="group rounded-[1.35rem] border border-stone-200 bg-stone-50/80 px-4 py-4 transition hover:border-amber-300 hover:bg-amber-50/70 dark:border-stone-800 dark:bg-stone-950/40 dark:hover:border-amber-700 dark:hover:bg-amber-950/10"
             >
               <p className="text-sm font-semibold text-stone-950 transition group-hover:text-amber-900 dark:text-stone-50 dark:group-hover:text-amber-200">
                 {entry.label}
