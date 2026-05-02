@@ -146,10 +146,6 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
                 <p className="mt-3 text-lg font-semibold tracking-tight">
                   Arbeitsbereich
                 </p>
-                <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                  Die wichtigsten Admin-Flächen sind hier gebündelt und mit
-                  kurzen Wegen erreichbar.
-                </p>
               </div>
 
               <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-hidden">
@@ -238,10 +234,6 @@ export function AdminShell({ locale, staffUser, children }: AdminShellProps) {
                   </div>
                   <p className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
                     Interner Arbeitsbereich
-                  </p>
-                  <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                    Klare Navigation, kompakte Statusinfos und schnelle Aktionen
-                    für den Tagesbetrieb.
                   </p>
                 </div>
 

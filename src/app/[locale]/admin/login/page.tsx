@@ -56,10 +56,6 @@ export default async function AdminLoginPage({ params }: AdminLoginPageProps) {
             <h1 className="mt-3 text-3xl font-semibold tracking-tight">
               Ersten Admin anlegen
             </h1>
-            <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Es existiert noch kein interner Benutzer. Lege jetzt den ersten
-              Staff-Account für den Intake-Admin an.
-            </p>
             <div className="mt-4 rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-600 dark:border-stone-800 dark:bg-stone-950/60 dark:text-stone-300">
               {canBootstrapWithoutAdminApiKey
                 ? 'Lokales Erstsetup ist ohne Admin API Key freigeschaltet, weil noch kein Staff-User existiert.'
@@ -82,10 +78,6 @@ export default async function AdminLoginPage({ params }: AdminLoginPageProps) {
           <h1 className="mt-3 text-3xl font-semibold tracking-tight">
             Admin-Anmeldung
           </h1>
-          <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-stone-300">
-            Zugriff für Admins und Bearbeiter auf Formulare, Zugangslinks und
-            Einreichungen.
-          </p>
           <div className="mt-6">
             <AdminLoginForm locale={locale} />
           </div>
