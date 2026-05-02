@@ -452,10 +452,6 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
             <h1 className="text-3xl font-semibold tracking-tight">
               Formular anlegen
             </h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Erstellt ein neues Intake-Formular aus einer Startvorlage oder als
-              Duplikat eines bestehenden Formulars.
-            </p>
           </div>
           <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-600 dark:border-stone-800 dark:bg-stone-950/60 dark:text-stone-300">
             {isLoadingAvailableForms
@@ -608,11 +604,6 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
             <h2 className="text-3xl font-semibold tracking-tight">
               Formular per JSON importieren
             </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Füge hier ein DB-taugliches Formular-JSON ein, lass es
-              serverseitig prüfen und speichere es erst nach einer Vorschau
-              bewusst in die Datenbank.
-            </p>
           </div>
           <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-600 dark:border-stone-800 dark:bg-stone-950/60 dark:text-stone-300">
             Copy-Paste statt manueller Formulareingabe

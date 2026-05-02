@@ -403,11 +403,6 @@ export function AccessLinksAdminSection() {
             <h1 className="text-3xl font-semibold tracking-tight">
               Zugangslink anlegen
             </h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Erstellt einen individuellen Projektzugang für Kunden. Der
-              erzeugte Link kann direkt verschickt oder als QR-Wert
-              weiterverarbeitet werden.
-            </p>
           </div>
           <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-600 dark:border-stone-800 dark:bg-stone-950/60 dark:text-stone-300">
             {isLoadingForms

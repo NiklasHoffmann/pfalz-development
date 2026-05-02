@@ -8,7 +8,7 @@ import { readJsonResponse } from '@/lib/api-client';
 
 interface AdminDataSectionProps<T extends Record<string, unknown>> {
   title: string;
-  description: string;
+  description?: string;
   endpoint: string;
   columns: Column<T>[];
   emptyMessage: string;
@@ -21,7 +21,6 @@ interface AdminDataSectionProps<T extends Record<string, unknown>> {
 
 export function AdminDataSection<T extends Record<string, unknown>>({
   title,
-  description,
   endpoint,
   columns,
   emptyMessage,
@@ -102,9 +101,6 @@ export function AdminDataSection<T extends Record<string, unknown>>({
           <h1 className="mt-2 text-3xl font-semibold tracking-tight">
             {title}
           </h1>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-            {description}
-          </p>
           <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-stone-600 dark:text-stone-300">
             <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 dark:border-stone-700 dark:bg-stone-950/60">
               {isLoading ? 'Lädt...' : `${rows.length} Einträge`}

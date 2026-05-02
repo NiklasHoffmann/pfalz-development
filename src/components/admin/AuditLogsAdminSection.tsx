@@ -259,10 +259,6 @@ export function AuditLogsAdminSection() {
             <h1 className="mt-2 text-3xl font-semibold tracking-tight">
               Audit-Log
             </h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Nachvollziehbare Historie für Admin-Aktionen inklusive Akteur,
-              Ressource, Request-Pfad und bereinigten Metadaten.
-            </p>
             <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-stone-600 dark:text-stone-300">
               <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 dark:border-stone-700 dark:bg-stone-950/60">
                 {isLoading ? 'Lädt...' : `${rows.length} Einträge`}
@@ -362,10 +358,6 @@ export function AuditLogsAdminSection() {
               <h2 className="mt-2 text-xl font-semibold tracking-tight">
                 Letzte Audit-Einträge
               </h2>
-              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
-                Wähle einen Eintrag aus der Liste, um darunter die komplette
-                Detailansicht mit Request-Kontext und Metadaten zu sehen.
-              </p>
             </div>
             {selectedLog ? (
               <div className="rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm shadow-sm dark:border-stone-800 dark:bg-stone-900/60">
@@ -408,10 +400,6 @@ export function AuditLogsAdminSection() {
               <h2 className="mt-2 text-2xl font-semibold tracking-tight">
                 {selectedLog ? selectedLog.action : 'Kein Eintrag ausgewählt'}
               </h2>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-                Vollständiger Eintrag mit Akteur, Ressource, technischem
-                Request-Kontext und bereinigten Metadaten in lesbarer Breite.
-              </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {selectedLog ? (

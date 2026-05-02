@@ -368,10 +368,6 @@ export function FormDetailAdminSection({
               <h2 className="text-2xl font-semibold tracking-tight">
                 Struktur
               </h2>
-              <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                Vollständige Sections und Fragen, so wie sie später im
-                Kundenfragebogen verwendet werden.
-              </p>
             </div>
             <div className="flex flex-wrap gap-2">
               <button

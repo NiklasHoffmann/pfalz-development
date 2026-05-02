@@ -273,10 +273,6 @@ export function InvoiceSettingsAdminSection({
             <h1 className="text-3xl font-semibold tracking-tight">
               Rechnungs-Stammdaten
             </h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-stone-600 dark:text-stone-300">
-              Absender, Zahlungsdaten und Standardhinweis werden hier zentral
-              gepflegt und bei neuen Rechnungen automatisch übernommen.
-            </p>
           </div>
 
           <div className="flex flex-wrap gap-2">

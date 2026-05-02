@@ -410,10 +410,6 @@ export function StaffAdminSection() {
           <h2 className="text-2xl font-semibold tracking-tight">
             Bestehende Nutzer
           </h2>
-          <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
-            Rolle, Aktiv-Status und Passwort vorhandener Staff-Accounts
-            verwalten.
-          </p>
         </div>
 
         {isLoading ? (

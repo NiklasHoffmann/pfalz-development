@@ -441,10 +441,6 @@ export function SubmissionDetailAdminSection({
               <h2 className="text-2xl font-semibold tracking-tight">
                 Antworten
               </h2>
-              <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
-                Snapshot der Antworten auf Basis des zum Link gehoerenden
-                Formularstands.
-              </p>
             </div>
             <div className="flex flex-wrap gap-2 text-xs font-medium text-stone-600 dark:text-stone-300">
               <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 dark:border-stone-700 dark:bg-stone-950/60">
