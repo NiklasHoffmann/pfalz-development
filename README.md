@@ -130,6 +130,7 @@ ADMIN_APP_URL=
 ADMIN_ENFORCE_IP_ALLOWLIST=true
 ADMIN_ALLOWED_IPS=
 ADMIN_SESSION_SECRET=
+ADMIN_PROXY_SHARED_SECRET=
 ```
 
 Notes:
@@ -141,6 +142,7 @@ Notes:
 - For a private Tailscale admin, set `ADMIN_APP_URL` to the VPS MagicDNS host such as `https://my-vps.my-tailnet.ts.net`.
 - `ADMIN_ENFORCE_IP_ALLOWLIST` defaults to `true`. Set it to `false` if your reverse proxy or private network is the primary admin barrier.
 - `ADMIN_ALLOWED_IPS` should be set whenever `ADMIN_ENFORCE_IP_ALLOWLIST=true`. Without it, the admin area is only reachable from local loopback addresses.
+- `ADMIN_PROXY_SHARED_SECRET` is only needed when a private local reverse proxy injects the admin host into a public app gateway such as Coolify or Traefik. It must match the value configured in that proxy exactly.
 - First-user bootstrap without `ADMIN_API_KEY` is restricted to local development requests only.
 - The complete template lives in `.env.example`.
 
@@ -222,6 +224,7 @@ For a Tailscale-only admin, use:
 NEXT_PUBLIC_APP_URL=https://pfalz-development.de
 ADMIN_APP_URL=https://my-vps.my-tailnet.ts.net
 ADMIN_ENFORCE_IP_ALLOWLIST=false
+ADMIN_PROXY_SHARED_SECRET=
 ```
 
 The provided compose setup starts:
@@ -246,6 +249,8 @@ docker run -p 3000:3000 \
 ```
 
 If the admin should only be reachable inside Tailscale, set `ADMIN_APP_URL` to the Tailscale hostname and switch `ADMIN_ENFORCE_IP_ALLOWLIST=false`.
+
+If that private admin host is forwarded through a local proxy into Coolify or Traefik, also set `ADMIN_PROXY_SHARED_SECRET` and configure the proxy to send matching `X-Admin-Forwarded-Host` and `X-Admin-Proxy-Secret` headers.
 
 The image uses a standalone Next.js production build and starts with `node server.js`.
 

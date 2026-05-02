@@ -20,6 +20,7 @@ export function createInternalMetadata({
   const metadataBaseUrl = baseUrl || siteConfig.url;
 
   return {
+    metadataBase: new URL(metadataBaseUrl),
     title: {
       absolute: title,
     },

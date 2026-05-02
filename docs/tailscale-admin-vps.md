@@ -46,6 +46,7 @@ NEXT_PUBLIC_APP_URL=https://pfalz-development.de
 ADMIN_APP_URL=https://my-vps.my-tailnet.ts.net
 ADMIN_ENFORCE_IP_ALLOWLIST=false
 ADMIN_SESSION_SECRET=replace-with-a-long-random-secret
+ADMIN_PROXY_SHARED_SECRET=replace-with-a-long-random-secret
 INTAKE_SESSION_SECRET=replace-with-a-long-random-secret
 INTAKE_SHARE_LINK_SECRET=replace-with-a-long-random-secret
 MONGODB_URI=your.mongodb.connection.string
@@ -56,6 +57,15 @@ Why `ADMIN_APP_URL` matters here:
 - admin pages and admin APIs only answer on the configured admin host
 - password reset links point to the Tailscale host instead of the public domain
 - `/admin/*` on the public host can return `404` instead of exposing the admin entry point
+
+If your Tailscale hostname is forwarded through a local reverse proxy into Coolify or Traefik, configure a shared secret between that proxy and the app. The proxy should inject:
+
+```nginx
+proxy_set_header X-Admin-Forwarded-Host my-vps.my-tailnet.ts.net;
+proxy_set_header X-Admin-Proxy-Secret <same-secret-as-ADMIN_PROXY_SHARED_SECRET>;
+```
+
+That keeps the public host blocked while still allowing the private Tailscale host to reach the app through the local proxy hop.
 
 ## Reverse Proxy Requirement
 
@@ -101,6 +111,7 @@ Set this in production:
 NEXT_PUBLIC_APP_URL=https://pfalz-development.de
 ADMIN_APP_URL=https://my-vps.my-tailnet.ts.net
 ADMIN_ENFORCE_IP_ALLOWLIST=false
+ADMIN_PROXY_SHARED_SECRET=replace-with-a-long-random-secret
 ```
 
 That keeps the app simple and leaves the network restriction to Tailscale plus your VPS reverse proxy.
