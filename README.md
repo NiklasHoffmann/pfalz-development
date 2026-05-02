@@ -138,6 +138,7 @@ Notes:
 - `INTAKE_SESSION_SECRET` and `INTAKE_SHARE_LINK_SECRET` are required in production for signed intake access.
 - `ADMIN_SESSION_SECRET` is required for admin authentication in every environment.
 - `ADMIN_APP_URL` is optional. Set it when the admin should live on a dedicated host such as `https://admin.pfalz-development.de`.
+- For a private Tailscale admin, set `ADMIN_APP_URL` to the VPS MagicDNS host such as `https://my-vps.my-tailnet.ts.net`.
 - `ADMIN_ENFORCE_IP_ALLOWLIST` defaults to `true`. Set it to `false` if your reverse proxy or private network is the primary admin barrier.
 - `ADMIN_ALLOWED_IPS` should be set whenever `ADMIN_ENFORCE_IP_ALLOWLIST=true`. Without it, the admin area is only reachable from local loopback addresses.
 - First-user bootstrap without `ADMIN_API_KEY` is restricted to local development requests only.
@@ -215,6 +216,14 @@ ADMIN_ENFORCE_IP_ALLOWLIST=true
 ADMIN_ALLOWED_IPS=
 ```
 
+For a Tailscale-only admin, use:
+
+```env
+NEXT_PUBLIC_APP_URL=https://pfalz-development.de
+ADMIN_APP_URL=https://my-vps.my-tailnet.ts.net
+ADMIN_ENFORCE_IP_ALLOWLIST=false
+```
+
 The provided compose setup starts:
 
 - the Next.js app on port `3000`
@@ -235,6 +244,8 @@ docker run -p 3000:3000 \
 	-e ADMIN_ALLOWED_IPS=... \
 	pfalz-development
 ```
+
+If the admin should only be reachable inside Tailscale, set `ADMIN_APP_URL` to the Tailscale hostname and switch `ADMIN_ENFORCE_IP_ALLOWLIST=false`.
 
 The image uses a standalone Next.js production build and starts with `node server.js`.
 

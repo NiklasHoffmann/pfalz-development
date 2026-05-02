@@ -13,6 +13,7 @@ For this project, the simplest production setup is:
 
 - public website stays public on your normal domain
 - admin is only reachable through Tailscale
+- `ADMIN_APP_URL` points to the VPS Tailscale MagicDNS host
 - the app keeps normal admin login and session checks
 - `ADMIN_ENFORCE_IP_ALLOWLIST=false` so you do not have to maintain per-device IPs in the app
 
@@ -35,6 +36,26 @@ Recommended: run the Next.js app behind an HTTP reverse proxy such as Nginx or C
 - internal admin access: `https://<machine-name>.<tailnet>.ts.net/admin/login` or `https://<tailscale-ip>/admin/login`
 - Next.js app: local backend on `127.0.0.1:3000`
 - reverse proxy: forwards requests to `127.0.0.1:3000` and sets forwarded IP headers
+
+## Required App Configuration
+
+To make the existing host checks in this app work for a private Tailscale admin, set these values in production:
+
+```env
+NEXT_PUBLIC_APP_URL=https://pfalz-development.de
+ADMIN_APP_URL=https://my-vps.my-tailnet.ts.net
+ADMIN_ENFORCE_IP_ALLOWLIST=false
+ADMIN_SESSION_SECRET=replace-with-a-long-random-secret
+INTAKE_SESSION_SECRET=replace-with-a-long-random-secret
+INTAKE_SHARE_LINK_SECRET=replace-with-a-long-random-secret
+MONGODB_URI=your.mongodb.connection.string
+```
+
+Why `ADMIN_APP_URL` matters here:
+
+- admin pages and admin APIs only answer on the configured admin host
+- password reset links point to the Tailscale host instead of the public domain
+- `/admin/*` on the public host can return `404` instead of exposing the admin entry point
 
 ## Reverse Proxy Requirement
 
@@ -72,11 +93,13 @@ Install Tailscale on:
 
 Log all devices into the same tailnet.
 
-### 3. Disable the app-side IP allowlist
+### 3. Point the admin host to Tailscale and disable the app-side IP allowlist
 
 Set this in production:
 
 ```env
+NEXT_PUBLIC_APP_URL=https://pfalz-development.de
+ADMIN_APP_URL=https://my-vps.my-tailnet.ts.net
 ADMIN_ENFORCE_IP_ALLOWLIST=false
 ```
 
@@ -95,7 +118,7 @@ Examples:
 - `https://my-vps.my-tailnet.ts.net/admin/login`
 - `https://100.101.102.50/admin/login`
 
-The public domain should keep serving the public site normally, while your proxy should block public admin access.
+The public domain should keep serving the public site normally. With `ADMIN_APP_URL` set to the Tailscale host, the app already refuses admin page and admin API traffic on the wrong host.
 
 ## Optional Extra Layer
 
