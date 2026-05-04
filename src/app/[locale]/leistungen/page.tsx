@@ -8,6 +8,7 @@ import type { NavItem } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/header-controls.server';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
+import { isTurnstileEnabled } from '@/lib/turnstile';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
@@ -546,10 +547,13 @@ export default async function LeistungenPage({ params }: LeistungenPageProps) {
   const navT = await getTranslations({ locale, namespace: 'navigation' });
   const legalT = await getTranslations({ locale, namespace: 'legal' });
   const commonT = await getTranslations({ locale, namespace: 'common' });
-  const footerWhatsAppHref = buildWhatsAppHref(
-    siteConfig.contact.whatsAppDisplay,
-    commonT('home.contact.whatsAppMessage')
-  );
+  const shouldHideDirectContactLinks = isTurnstileEnabled();
+  const footerWhatsAppHref = shouldHideDirectContactLinks
+    ? undefined
+    : buildWhatsAppHref(
+        siteConfig.contact.whatsAppDisplay,
+        commonT('home.contact.whatsAppMessage')
+      );
   const copy = getLeistungenCopy(locale);
 
   const basePath = locale === 'de' ? '' : `/${locale}`;

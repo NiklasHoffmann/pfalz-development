@@ -5,6 +5,7 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import type { SeoPageContent } from '@/content/seo/types';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/header-controls.server';
+import { isTurnstileEnabled } from '@/lib/turnstile';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations } from 'next-intl/server';
 
@@ -64,14 +65,17 @@ export async function SeoLandingPage({
     locale,
     siteConfig.name
   );
+  const shouldHideDirectContactLinks = isTurnstileEnabled();
   const basePath = locale === 'de' ? '' : `/${locale}`;
   const homeHref = basePath || '/';
   const homeLinkHref = '/';
   const localizedHomeLinkHref = localizeHref(homeLinkHref, locale);
-  const footerWhatsAppHref = buildWhatsAppHref(
-    siteConfig.contact.whatsAppDisplay,
-    commonT('home.contact.whatsAppMessage')
-  );
+  const footerWhatsAppHref = shouldHideDirectContactLinks
+    ? undefined
+    : buildWhatsAppHref(
+        siteConfig.contact.whatsAppDisplay,
+        commonT('home.contact.whatsAppMessage')
+      );
   const headerControls = await getHeaderControlsCopy(locale);
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },

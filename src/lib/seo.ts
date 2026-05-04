@@ -107,10 +107,12 @@ export function createSeoSchemas({
   locale,
   content,
   canonicalUrl,
+  hideDirectContactLinks = false,
 }: {
   locale: string;
   content: SeoPageContent;
   canonicalUrl: string;
+  hideDirectContactLinks?: boolean;
 }) {
   const inLanguage = localeToLanguageTag(locale);
 
@@ -137,8 +139,12 @@ export function createSeoSchemas({
         '@type': 'ProfessionalService',
         name: siteConfig.name,
         url: siteConfig.url,
-        email: siteConfig.contact.email,
-        telephone: siteConfig.contact.phoneHref,
+        ...(hideDirectContactLinks
+          ? {}
+          : {
+              email: siteConfig.contact.email,
+              telephone: siteConfig.contact.phoneHref,
+            }),
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Froebelstrasse 20',

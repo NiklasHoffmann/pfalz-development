@@ -82,6 +82,7 @@ export function HomePageView({ data }: HomePageViewProps) {
           secondaryCta={data.contact.secondaryCta}
           tertiaryCta={data.contact.tertiaryCta}
           openFormLabel={data.contact.openFormLabel}
+          revealEnabled={data.contact.revealEnabled}
           whatsAppMessage={data.contact.whatsAppMessage}
           privacyHref={data.contact.privacyHref}
           form={data.contact.form}

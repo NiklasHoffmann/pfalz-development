@@ -9,6 +9,7 @@ import {
   localeToPathPrefix,
   PALATINATE_HREFLANG,
 } from '@/lib/seo';
+import { isTurnstileEnabled } from '@/lib/turnstile';
 import { siteConfig } from '@/config/site';
 
 interface WeingutSektgutWebsitePageProps {
@@ -60,6 +61,7 @@ export default async function WeingutSektgutWebsitePage({
     locale,
     content,
     canonicalUrl,
+    hideDirectContactLinks: isTurnstileEnabled(),
   });
 
   return (

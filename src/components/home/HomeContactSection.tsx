@@ -11,6 +11,14 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { TurnstileWidget } from '@/components/ui/TurnstileWidget';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 
+type RevealedContact = {
+  mailto: string;
+  emailValue: string;
+  phoneHref: string;
+  phoneDisplay: string;
+  whatsAppValue: string;
+};
+
 const ContactForm = dynamic(
   () =>
     import('@/components/ui/ContactForm').then((module) => module.ContactForm),
@@ -31,6 +39,7 @@ interface HomeContactSectionProps {
   secondaryCta: string;
   tertiaryCta: string;
   openFormLabel: string;
+  revealEnabled: boolean;
   whatsAppMessage: string;
   privacyHref: string;
   form: ContactFormCopy;
@@ -46,6 +55,7 @@ export function HomeContactSection({
   secondaryCta,
   tertiaryCta,
   openFormLabel,
+  revealEnabled,
   whatsAppMessage,
   privacyHref,
   form,
@@ -65,24 +75,49 @@ export function HomeContactSection({
     type: null,
     message: '',
   });
+  const [contactRevealAnnouncement, setContactRevealAnnouncement] =
+    useState('');
+  const [hasQueuedInitialReveal, setHasQueuedInitialReveal] = useState(false);
+  const [revealedContact, setRevealedContact] =
+    useState<RevealedContact | null>(null);
   const [isEmailRevealSubmitting, setIsEmailRevealSubmitting] = useState(false);
-  const [shouldRevealOnceTokenReady, setShouldRevealOnceTokenReady] =
+  const [isExplicitRevealSubmitting, setIsExplicitRevealSubmitting] =
     useState(false);
   const contactDialogId = 'contact-form-dialog';
-  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
-  const hasProtectedEmailReveal = Boolean(turnstileSiteKey);
+  const turnstileSiteKey = revealEnabled
+    ? process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
+    : undefined;
+  const hasProtectedContactReveal = Boolean(revealEnabled && turnstileSiteKey);
 
-  const phoneHref = details.phoneValue.replace(/\s+/g, '');
-  const phoneDisplay =
-    phoneHref.startsWith('0') && phoneHref.length > 5
-      ? `${phoneHref.slice(0, 5)} ${phoneHref.slice(5)}`
-      : details.phoneValue;
-  const whatsAppHref = buildWhatsAppHref(
-    details.whatsAppValue,
-    whatsAppMessage
-  );
-  const whatsAppDisplay = details.whatsAppValue;
-  const mailtoHref = `mailto:${details.emailValue}`;
+  const fallbackPhoneValue = details.phoneValue.trim();
+  const fallbackPhoneHref = fallbackPhoneValue
+    ? fallbackPhoneValue.replace(/\s+/g, '')
+    : '';
+  const fallbackPhoneDisplay =
+    fallbackPhoneHref.startsWith('0') && fallbackPhoneHref.length > 5
+      ? `${fallbackPhoneHref.slice(0, 5)} ${fallbackPhoneHref.slice(5)}`
+      : fallbackPhoneValue;
+  const currentMailtoHref =
+    revealedContact?.mailto ||
+    (!hasProtectedContactReveal && details.emailValue
+      ? `mailto:${details.emailValue}`
+      : '');
+  const currentEmailValue =
+    revealedContact?.emailValue ||
+    (!hasProtectedContactReveal ? details.emailValue.trim() : '');
+  const currentPhoneHref =
+    revealedContact?.phoneHref ||
+    (!hasProtectedContactReveal ? fallbackPhoneHref : '');
+  const currentPhoneDisplay =
+    revealedContact?.phoneDisplay ||
+    (!hasProtectedContactReveal ? fallbackPhoneDisplay : '');
+  const currentWhatsAppValue =
+    revealedContact?.whatsAppValue ||
+    (!hasProtectedContactReveal ? details.whatsAppValue.trim() : '');
+  const currentWhatsAppHref = currentWhatsAppValue
+    ? buildWhatsAppHref(currentWhatsAppValue, whatsAppMessage)
+    : '';
+  const isContactReady = Boolean(revealedContact) || !hasProtectedContactReveal;
 
   function handleFormOpenChange(open: boolean) {
     if (open) {
@@ -97,12 +132,16 @@ export function HomeContactSection({
   }
 
   const requestEmailReveal = useCallback(
-    async (token: string) => {
+    async (token: string, showErrors: boolean) => {
       setIsEmailRevealSubmitting(true);
-      setEmailRevealStatus({
-        type: null,
-        message: '',
-      });
+      setIsExplicitRevealSubmitting(showErrors);
+
+      if (showErrors) {
+        setEmailRevealStatus({
+          type: null,
+          message: '',
+        });
+      }
 
       try {
         const response = await fetch('/api/contact/reveal-email', {
@@ -119,11 +158,23 @@ export function HomeContactSection({
           success: boolean;
           data?: {
             mailto: string;
+            emailValue: string;
+            phoneHref: string;
+            phoneDisplay: string;
+            whatsAppValue: string;
           };
           error?: string;
         };
 
-        if (!response.ok || !result.success || !result.data?.mailto) {
+        if (
+          !response.ok ||
+          !result.success ||
+          !result.data?.mailto ||
+          !result.data.emailValue ||
+          !result.data.phoneHref ||
+          !result.data.phoneDisplay ||
+          !result.data.whatsAppValue
+        ) {
           if (result.error === 'Spam protection verification failed') {
             throw new Error(form.status.botCheckFailed);
           }
@@ -131,99 +182,126 @@ export function HomeContactSection({
           throw new Error(result.error || emailReveal.unavailable);
         }
 
-        setShouldRevealOnceTokenReady(false);
+        setRevealedContact({
+          mailto: result.data.mailto,
+          emailValue: result.data.emailValue,
+          phoneHref: result.data.phoneHref,
+          phoneDisplay: result.data.phoneDisplay,
+          whatsAppValue: result.data.whatsAppValue,
+        });
         setEmailRevealStatus({
           type: 'success',
-          message: emailReveal.success,
+          message: showErrors ? emailReveal.success : '',
         });
-        window.location.href = result.data.mailto;
       } catch (error) {
-        const message =
-          error instanceof Error ? error.message : emailReveal.unavailable;
-        setEmailRevealStatus({
-          type: 'error',
-          message,
-        });
-        setShouldRevealOnceTokenReady(false);
+        setRevealedContact(null);
+
+        if (showErrors) {
+          const message =
+            error instanceof Error ? error.message : emailReveal.unavailable;
+
+          setEmailRevealStatus({
+            type: 'error',
+            message,
+          });
+        }
+
         setEmailRevealToken(null);
         setEmailRevealResetNonce((current) => current + 1);
       } finally {
         setIsEmailRevealSubmitting(false);
+        setIsExplicitRevealSubmitting(false);
       }
     },
     [emailReveal.success, emailReveal.unavailable, form.status.botCheckFailed]
   );
 
+  function prepareEmailReveal() {
+    if (
+      isContactReady ||
+      isEmailRevealSubmitting ||
+      !hasProtectedContactReveal
+    ) {
+      return;
+    }
+
+    if (emailRevealToken) {
+      void requestEmailReveal(emailRevealToken, false);
+      return;
+    }
+
+    setEmailRevealExecuteNonce((current) => current + 1);
+  }
+
   async function handleEmailRevealRequest() {
-    if (!hasProtectedEmailReveal) {
-      window.location.href = mailtoHref;
+    if (
+      isContactReady ||
+      isEmailRevealSubmitting ||
+      !hasProtectedContactReveal
+    ) {
       return;
     }
 
-    if (isEmailRevealSubmitting) {
-      return;
-    }
-
-    setShouldRevealOnceTokenReady(true);
+    setEmailRevealStatus({
+      type: null,
+      message: '',
+    });
 
     if (!emailRevealToken) {
-      setEmailRevealStatus({
-        type: null,
-        message: '',
-      });
       setEmailRevealExecuteNonce((current) => current + 1);
       return;
     }
 
-    await requestEmailReveal(emailRevealToken);
+    await requestEmailReveal(emailRevealToken, true);
   }
 
   useEffect(() => {
     if (
-      !shouldRevealOnceTokenReady ||
-      !emailRevealToken ||
-      isEmailRevealSubmitting
+      !hasProtectedContactReveal ||
+      isContactReady ||
+      hasQueuedInitialReveal
     ) {
       return;
     }
 
-    void requestEmailReveal(emailRevealToken);
-  }, [
-    emailRevealToken,
-    isEmailRevealSubmitting,
-    requestEmailReveal,
-    shouldRevealOnceTokenReady,
-  ]);
+    setHasQueuedInitialReveal(true);
+    setEmailRevealExecuteNonce((current) => current + 1);
+  }, [hasProtectedContactReveal, hasQueuedInitialReveal, isContactReady]);
 
   useEffect(() => {
     if (
-      !hasProtectedEmailReveal ||
-      !shouldRevealOnceTokenReady ||
-      emailRevealToken ||
+      !hasProtectedContactReveal ||
+      !emailRevealToken ||
+      revealedContact ||
       isEmailRevealSubmitting
     ) {
       return;
     }
 
-    const timeoutId = window.setTimeout(() => {
-      setShouldRevealOnceTokenReady(false);
-      setEmailRevealStatus({
-        type: 'error',
-        message: emailReveal.unavailable,
-      });
-      setEmailRevealResetNonce((current) => current + 1);
-    }, 8000);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
+    void requestEmailReveal(emailRevealToken, false);
   }, [
-    emailReveal.unavailable,
     emailRevealToken,
-    hasProtectedEmailReveal,
+    hasProtectedContactReveal,
     isEmailRevealSubmitting,
-    shouldRevealOnceTokenReady,
+    requestEmailReveal,
+    revealedContact,
   ]);
+
+  useEffect(() => {
+    if (!hasProtectedContactReveal || !revealedContact) {
+      return;
+    }
+
+    setContactRevealAnnouncement(emailReveal.success);
+  }, [emailReveal.success, hasProtectedContactReveal, revealedContact]);
+
+  useEffect(() => {
+    if (emailRevealStatus.type !== 'error' || !emailRevealStatus.message) {
+      return;
+    }
+
+    setContactRevealAnnouncement(emailRevealStatus.message);
+  }, [emailRevealStatus.message, emailRevealStatus.type]);
 
   return (
     <RevealOnScroll
@@ -236,7 +314,23 @@ export function HomeContactSection({
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
           {navLabel}
         </p>
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+        <p
+          id="contact-reveal-status"
+          className="sr-only"
+          role="status"
+          aria-live="polite"
+        >
+          {contactRevealAnnouncement}
+        </p>
+        <div
+          className="mt-12 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start"
+          aria-busy={
+            hasProtectedContactReveal &&
+            !isContactReady &&
+            isEmailRevealSubmitting
+          }
+          aria-describedby="contact-reveal-status"
+        >
           <div className="min-w-0">
             <h2
               id="home-contact-title"
@@ -248,32 +342,77 @@ export function HomeContactSection({
               {description}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <button
-                type="button"
-                onClick={() => {
-                  void handleEmailRevealRequest();
-                }}
-                disabled={isEmailRevealSubmitting || shouldRevealOnceTokenReady}
-                className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
-              >
-                {isEmailRevealSubmitting || shouldRevealOnceTokenReady
-                  ? emailReveal.loading
-                  : primaryCta}
-              </button>
-              <a
-                href={`tel:${phoneHref}`}
-                className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-white dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
-              >
-                {secondaryCta}
-              </a>
-              <a
-                href={whatsAppHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-full border border-emerald-500/65 bg-emerald-100/85 px-6 py-3 text-sm font-semibold text-emerald-950 shadow-[0_1px_2px_rgba(6,95,70,0.12)] transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-emerald-100 dark:border-emerald-300/60 dark:bg-emerald-950/50 dark:text-emerald-50 dark:hover:bg-emerald-900/70 sm:w-auto"
-              >
-                {tertiaryCta}
-              </a>
+              {currentMailtoHref ? (
+                <a
+                  href={currentMailtoHref}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-stone-800 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
+                >
+                  {primaryCta}
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    void handleEmailRevealRequest();
+                  }}
+                  onMouseEnter={prepareEmailReveal}
+                  onFocus={prepareEmailReveal}
+                  disabled={isExplicitRevealSubmitting}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-6 py-3 text-sm font-semibold text-stone-50 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-amber-400 dark:text-stone-950 dark:hover:bg-amber-300 sm:w-auto"
+                >
+                  {isExplicitRevealSubmitting
+                    ? emailReveal.loading
+                    : primaryCta}
+                </button>
+              )}
+              {currentPhoneHref ? (
+                <a
+                  href={`tel:${currentPhoneHref}`}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-white dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
+                >
+                  {secondaryCta}
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    void handleEmailRevealRequest();
+                  }}
+                  onMouseEnter={prepareEmailReveal}
+                  onFocus={prepareEmailReveal}
+                  disabled={isExplicitRevealSubmitting}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-stone-300 bg-white/90 px-6 py-3 text-sm font-semibold text-stone-900 transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-white disabled:cursor-not-allowed disabled:opacity-70 dark:border-stone-600/90 dark:bg-stone-800/90 dark:text-stone-50 dark:hover:bg-stone-700 sm:w-auto"
+                >
+                  {isExplicitRevealSubmitting
+                    ? emailReveal.loading
+                    : secondaryCta}
+                </button>
+              )}
+              {currentWhatsAppHref ? (
+                <a
+                  href={currentWhatsAppHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-emerald-500/65 bg-emerald-100/85 px-6 py-3 text-sm font-semibold text-emerald-950 shadow-[0_1px_2px_rgba(6,95,70,0.12)] transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-emerald-100 dark:border-emerald-300/60 dark:bg-emerald-950/50 dark:text-emerald-50 dark:hover:bg-emerald-900/70 sm:w-auto"
+                >
+                  {tertiaryCta}
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    void handleEmailRevealRequest();
+                  }}
+                  onMouseEnter={prepareEmailReveal}
+                  onFocus={prepareEmailReveal}
+                  disabled={isExplicitRevealSubmitting}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-emerald-500/65 bg-emerald-100/85 px-6 py-3 text-sm font-semibold text-emerald-950 shadow-[0_1px_2px_rgba(6,95,70,0.12)] transition-[transform,background-color,color,border-color] duration-200 ease-linear hover:-translate-y-0.5 hover:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-70 dark:border-emerald-300/60 dark:bg-emerald-950/50 dark:text-emerald-50 dark:hover:bg-emerald-900/70 sm:w-auto"
+                >
+                  {isExplicitRevealSubmitting
+                    ? emailReveal.loading
+                    : tertiaryCta}
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => {
@@ -289,7 +428,7 @@ export function HomeContactSection({
               </button>
             </div>
 
-            {hasProtectedEmailReveal && turnstileSiteKey ? (
+            {hasProtectedContactReveal && turnstileSiteKey ? (
               <div className="mt-3">
                 <TurnstileWidget
                   siteKey={turnstileSiteKey}
@@ -297,18 +436,23 @@ export function HomeContactSection({
                   resetNonce={emailRevealResetNonce}
                   executeNonce={emailRevealExecuteNonce}
                   execution="execute"
-                  action="email_reveal"
+                  action="contact_reveal"
                 />
               </div>
             ) : null}
 
             {emailRevealStatus.message ? (
               <p
+                id="contact-reveal-feedback"
                 className={`mt-3 text-sm ${
                   emailRevealStatus.type === 'error'
                     ? 'text-rose-700 dark:text-rose-300'
                     : 'text-emerald-700 dark:text-emerald-300'
                 }`}
+                role={emailRevealStatus.type === 'error' ? 'alert' : 'status'}
+                aria-live={
+                  emailRevealStatus.type === 'error' ? 'assertive' : 'polite'
+                }
               >
                 {emailRevealStatus.message}
               </p>
@@ -331,27 +475,44 @@ export function HomeContactSection({
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
+                  {details.emailLabel}
+                </p>
+                {currentMailtoHref && currentEmailValue ? (
+                  <a
+                    href={currentMailtoHref}
+                    className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
+                  >
+                    {currentEmailValue}
+                  </a>
+                ) : null}
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
                   {details.phoneLabel}
                 </p>
-                <a
-                  href={`tel:${phoneHref}`}
-                  className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
-                >
-                  {phoneDisplay}
-                </a>
+                {currentPhoneHref && currentPhoneDisplay ? (
+                  <a
+                    href={`tel:${currentPhoneHref}`}
+                    className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
+                  >
+                    {currentPhoneDisplay}
+                  </a>
+                ) : null}
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
                   {details.whatsAppLabel}
                 </p>
-                <a
-                  href={whatsAppHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
-                >
-                  {whatsAppDisplay}
-                </a>
+                {currentWhatsAppHref && currentWhatsAppValue ? (
+                  <a
+                    href={currentWhatsAppHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 block break-all text-sm font-semibold text-stone-900 hover:underline dark:text-stone-50 sm:text-base"
+                  >
+                    {currentWhatsAppValue}
+                  </a>
+                ) : null}
               </div>
               <address className="not-italic">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">

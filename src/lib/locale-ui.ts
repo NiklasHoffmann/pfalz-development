@@ -128,18 +128,16 @@ export function getMobileDockItems(
   const basePath = localeToBasePath(locale);
   const homeHref = basePath || '/';
   const shortLabels = getMobileShortLabels(locale);
+  const shouldHideDirectContactLinks = Boolean(
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
+  );
   const whatsAppMessageByLocale = {
     de: 'Hallo, ich interessiere mich für eine Website für meinen Betrieb in der Pfalz. Ich würde gern kurz über mein Projekt sprechen.',
     en: 'Hello, I am interested in a website for my business in the Palatinate. I would like to briefly discuss my project.',
     pfl: 'Hallo, isch interessier mich fer e Website fer mei Betrieb in de Palz. Isch würd gern kurz iwwer mei Projekt babble.',
   } as const;
   const currentLocale = getCurrentLocale(locale);
-  const whatsAppHref = buildWhatsAppHref(
-    siteConfig.contact.whatsAppDisplay,
-    whatsAppMessageByLocale[currentLocale]
-  );
-
-  return [
+  const items: MobileNavItem[] = [
     {
       label: labels.home,
       href: homeHref,
@@ -155,12 +153,20 @@ export function getMobileDockItems(
       href: `${basePath}/branchen`,
       shortLabel: shortLabels.industry,
     },
-    {
-      label: labels.whatsapp,
-      href: whatsAppHref,
-      shortLabel: shortLabels.whatsapp,
-    },
   ];
+
+  if (!shouldHideDirectContactLinks) {
+    items.push({
+      label: labels.whatsapp,
+      href: buildWhatsAppHref(
+        siteConfig.contact.whatsAppDisplay,
+        whatsAppMessageByLocale[currentLocale]
+      ),
+      shortLabel: shortLabels.whatsapp,
+    });
+  }
+
+  return items;
 }
 
 export function getDockLogicalPath(pathname: string): string {

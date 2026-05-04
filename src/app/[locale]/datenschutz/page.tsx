@@ -5,6 +5,7 @@ import type { NavItem } from '@/components/home/types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { siteConfig } from '@/config/site';
 import { getHeaderControlsCopy } from '@/lib/header-controls.server';
+import { isTurnstileEnabled } from '@/lib/turnstile';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 import { getTranslations } from 'next-intl/server';
 import { createPageMetadata, PALATINATE_HREFLANG } from '@/lib/seo';
@@ -59,10 +60,12 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const commonT = await getTranslations({ locale, namespace: 'common' });
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
   const basePath = locale === 'de' ? '' : `/${locale}`;
-  const footerWhatsAppHref = buildWhatsAppHref(
-    siteConfig.contact.whatsAppDisplay,
-    commonT('home.contact.whatsAppMessage')
-  );
+  const footerWhatsAppHref = isTurnstileEnabled()
+    ? undefined
+    : buildWhatsAppHref(
+        siteConfig.contact.whatsAppDisplay,
+        commonT('home.contact.whatsAppMessage')
+      );
   const headerControls = await getHeaderControlsCopy(locale);
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },

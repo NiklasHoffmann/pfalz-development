@@ -9,6 +9,7 @@ import {
   localeToPathPrefix,
   PALATINATE_HREFLANG,
 } from '@/lib/seo';
+import { isTurnstileEnabled } from '@/lib/turnstile';
 import { siteConfig } from '@/config/site';
 
 interface WebdesignSpeyerPageProps {
@@ -54,6 +55,7 @@ export default async function WebdesignSpeyerPage({
     locale,
     content,
     canonicalUrl,
+    hideDirectContactLinks: isTurnstileEnabled(),
   });
 
   return (

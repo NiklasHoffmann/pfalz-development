@@ -191,6 +191,7 @@ export type HomePageData = {
     secondaryCta: string;
     tertiaryCta: string;
     openFormLabel: string;
+    revealEnabled: boolean;
     whatsAppMessage: string;
     privacyHref: string;
     form: ContactFormCopy;
@@ -202,7 +203,7 @@ export type HomePageData = {
     imprintLabel: string;
     privacyLabel: string;
     whatsAppLabel: string;
-    whatsAppHref: string;
+    whatsAppHref?: string;
     imprintHref: string;
     privacyHref: string;
   };

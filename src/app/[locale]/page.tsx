@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site';
 import { getIndustryNavLabel, localeToBasePath } from '@/lib/locale-ui';
 import { getHeaderControlsCopy } from '@/lib/header-controls.server';
 import { PALATINATE_HREFLANG } from '@/lib/seo';
+import { isTurnstileEnabled } from '@/lib/turnstile';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 import type {
   CardItem,
@@ -313,12 +314,17 @@ export default async function HomePage({ params }: HomePageProps) {
   const contactDetails = t.raw('home.contact') as ContactDetails;
   const contactFormCopy = t.raw('home.contact.form') as ContactFormCopy;
   const legalT = await getTranslations({ locale, namespace: 'legal' });
+  const hasProtectedContactReveal = isTurnstileEnabled();
   const resolvedContactDetails: ContactDetails = {
     ...contactDetails,
     ownerName: siteConfig.creator.name,
-    emailValue: siteConfig.contact.email,
-    phoneValue: siteConfig.contact.phoneDisplay,
-    whatsAppValue: siteConfig.contact.whatsAppDisplay,
+    emailValue: hasProtectedContactReveal ? '' : siteConfig.contact.email,
+    phoneValue: hasProtectedContactReveal
+      ? ''
+      : siteConfig.contact.phoneDisplay,
+    whatsAppValue: hasProtectedContactReveal
+      ? ''
+      : siteConfig.contact.whatsAppDisplay,
   };
   const footerWhatsAppHref = buildWhatsAppHref(
     siteConfig.contact.whatsAppDisplay,
@@ -412,6 +418,7 @@ export default async function HomePage({ params }: HomePageProps) {
       secondaryCta: t('home.contact.secondaryCta'),
       tertiaryCta: t('home.contact.tertiaryCta'),
       openFormLabel: t('home.contact.form.openCta'),
+      revealEnabled: hasProtectedContactReveal,
       whatsAppMessage: t('home.contact.whatsAppMessage'),
       privacyHref: `${basePath}/datenschutz`,
       form: contactFormCopy,
@@ -431,7 +438,7 @@ export default async function HomePage({ params }: HomePageProps) {
       imprintLabel: legalT('imprint.title'),
       privacyLabel: legalT('privacy.title'),
       whatsAppLabel: legalT('footerWhatsAppCta'),
-      whatsAppHref: footerWhatsAppHref,
+      whatsAppHref: hasProtectedContactReveal ? undefined : footerWhatsAppHref,
       imprintHref: `${basePath}/impressum`,
       privacyHref: `${basePath}/datenschutz`,
     },
@@ -448,20 +455,28 @@ export default async function HomePage({ params }: HomePageProps) {
     url: canonicalUrl,
     image: `${siteConfig.url}${siteConfig.ogImage}`,
     priceRange: 'EUR 1,090+',
-    email: siteConfig.contact.email,
-    telephone: siteConfig.contact.phoneHref,
+    ...(hasProtectedContactReveal
+      ? {}
+      : {
+          email: siteConfig.contact.email,
+          telephone: siteConfig.contact.phoneHref,
+        }),
     founder: {
       '@type': 'Person',
       name: siteConfig.creator.name,
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: siteConfig.contact.phoneHref,
-      email: siteConfig.contact.email,
       contactType: 'customer support',
       url: `${canonicalUrl}#kontakt`,
       areaServed: 'DE',
       availableLanguage: ['de', 'en', PALATINATE_HREFLANG],
+      ...(hasProtectedContactReveal
+        ? {}
+        : {
+            email: siteConfig.contact.email,
+            telephone: siteConfig.contact.phoneHref,
+          }),
     },
     sameAs: [siteConfig.links.github],
     areaServed: [

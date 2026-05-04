@@ -9,6 +9,7 @@ import {
   localeToPathPrefix,
   PALATINATE_HREFLANG,
 } from '@/lib/seo';
+import { isTurnstileEnabled } from '@/lib/turnstile';
 import { siteConfig } from '@/config/site';
 
 interface WebsiteRelaunchPageProps {
@@ -54,6 +55,7 @@ export default async function WebsiteRelaunchPage({
     locale,
     content,
     canonicalUrl,
+    hideDirectContactLinks: isTurnstileEnabled(),
   });
 
   return (

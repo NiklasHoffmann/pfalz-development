@@ -123,7 +123,7 @@ export function TurnstileWidget({
     onTokenChangeRef.current(null);
     window.turnstile.reset(widgetIdRef.current);
     window.turnstile.execute(widgetIdRef.current);
-  }, [executeNonce, execution]);
+  }, [executeNonce, execution, scriptLoaded]);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
