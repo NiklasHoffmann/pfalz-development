@@ -61,6 +61,8 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
   const basePath = locale === 'de' ? '' : `/${locale}`;
   const imprintHref = `${basePath}/impressum`;
+  const privacyEmail =
+    siteConfig.contact.privacyEmail || siteConfig.contact.email;
   const footerWhatsAppHref = isTurnstileEnabled()
     ? undefined
     : buildWhatsAppHref(
@@ -117,12 +119,12 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
                 <p>Fröbelstraße 20</p>
                 <p>67433 Neustadt an der Weinstraße</p>
                 <p>
-                  {t('privacy.contactReferenceText')}{' '}
+                  E-Mail:{' '}
                   <a
-                    href={imprintHref}
+                    href={`mailto:${privacyEmail}`}
                     className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                   >
-                    {t('privacy.contactReferenceLinkLabel')}
+                    {privacyEmail}
                   </a>
                 </p>
               </RevealOnScroll>
