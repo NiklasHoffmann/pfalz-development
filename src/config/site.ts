@@ -6,6 +6,7 @@ export const siteConfig = {
   ogImage: '/pfalz-development-logo-light.png',
   contact: {
     email: 'kontakt@pfalz-development.de',
+    imprintEmail: 'impressum@pfalz-development.de',
     phoneDisplay: '06321 1876643',
     phoneHref: '+4963211876643',
     whatsAppDisplay: '+49 179 1565808',

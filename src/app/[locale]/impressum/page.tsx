@@ -67,6 +67,12 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
         siteConfig.contact.whatsAppDisplay,
         commonT('home.contact.whatsAppMessage')
       );
+  const imprintEmail =
+    siteConfig.contact.imprintEmail || siteConfig.contact.email;
+  const imprintMobileHref = siteConfig.contact.whatsAppDisplay.replace(
+    /\s+/g,
+    ''
+  );
   const headerControls = await getHeaderControlsCopy(locale);
   const navItems: NavItem[] = [
     { label: navT('home'), href: homeHref },
@@ -119,34 +125,21 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                 <p className="mt-3">
                   E-Mail:{' '}
                   <a
-                    href={`mailto:${siteConfig.contact.email}`}
+                    href={`mailto:${imprintEmail}`}
                     className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                   >
-                    {siteConfig.contact.email}
+                    {imprintEmail}
                   </a>
                 </p>
                 <p className="mt-2">
                   {t('imprint.phoneLabel')}:{' '}
                   <a
-                    href={`tel:${siteConfig.contact.phoneHref}`}
+                    href={`tel:${imprintMobileHref}`}
                     className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                   >
-                    {siteConfig.contact.phoneDisplay}
+                    {siteConfig.contact.whatsAppDisplay}
                   </a>
                 </p>
-                {footerWhatsAppHref ? (
-                  <p className="mt-2">
-                    {t('imprint.whatsAppLabel')}:{' '}
-                    <a
-                      href={footerWhatsAppHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-amber-700 hover:underline dark:text-amber-300"
-                    >
-                      {siteConfig.contact.whatsAppDisplay}
-                    </a>
-                  </p>
-                ) : null}
               </RevealOnScroll>
 
               <RevealOnScroll as="section" delayMs={140}>
