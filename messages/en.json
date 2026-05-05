@@ -270,6 +270,8 @@
       "overviewTitle": "Overview",
       "overviewText": "This website processes personal data only to the extent required for operating the website and handling inquiries.",
       "responsibleTitle": "Responsible entity",
+      "contactReferenceText": "You can find the legally required contact details in the",
+      "contactReferenceLinkLabel": "imprint",
       "dataTypesTitle": "Types of Data Processed",
       "dataTypesText": "Depending on your use of this website, the processed data may include inventory data, contact data, content data, usage data, connection data, and meta/log data (e.g. technical access data).",
       "purposesTitle": "Purposes of Processing",

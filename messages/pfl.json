@@ -270,6 +270,8 @@
       "overviewTitle": "Überblick",
       "overviewText": "Die Website verarbeitet personenbezogene Date nur in dem Umfang, wie's fer de Betrieb vun de Website un die Bearbeitung vun Aafrooche nötig is.",
       "responsibleTitle": "Verantwortliche Stell",
+      "contactReferenceText": "Die gesetzlisch nötige Kontaktdade findsch im",
+      "contactReferenceLinkLabel": "Imbressum",
       "dataTypesTitle": "Verarbeitete Datearte",
       "dataTypesText": "Je no Nutzung vun de Website kenne insbesondere Bestandsdate, Kontaktdate, Inhaltsdate, Nutzungsdate, Verbindungsdate un Meta- un Protokolldate (z. B. technische Zugriffsdaten) verarbeitet werde.",
       "purposesTitle": "Zweck vun de Verarbeitung",

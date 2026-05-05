@@ -60,6 +60,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
   const commonT = await getTranslations({ locale, namespace: 'common' });
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
   const basePath = locale === 'de' ? '' : `/${locale}`;
+  const imprintHref = `${basePath}/impressum`;
   const footerWhatsAppHref = isTurnstileEnabled()
     ? undefined
     : buildWhatsAppHref(
@@ -116,12 +117,12 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
                 <p>Fröbelstraße 20</p>
                 <p>67433 Neustadt an der Weinstraße</p>
                 <p>
-                  E-Mail:{' '}
+                  {t('privacy.contactReferenceText')}{' '}
                   <a
-                    href="mailto:kontakt@pfalz-development.de"
+                    href={imprintHref}
                     className="font-medium text-amber-700 hover:underline dark:text-amber-300"
                   >
-                    kontakt@pfalz-development.de
+                    {t('privacy.contactReferenceLinkLabel')}
                   </a>
                 </p>
               </RevealOnScroll>
@@ -240,7 +241,7 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
         privacyLabel={t('privacy.title')}
         whatsAppLabel={t('footerWhatsAppCta')}
         whatsAppHref={footerWhatsAppHref}
-        imprintHref={`${basePath}/impressum`}
+        imprintHref={imprintHref}
         privacyHref={`${basePath}/datenschutz`}
       />
     </div>

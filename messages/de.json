@@ -270,6 +270,8 @@
       "overviewTitle": "Überblick",
       "overviewText": "Diese Website verarbeitet personenbezogene Daten nur in dem Umfang, der für den Betrieb der Website und die Bearbeitung von Anfragen erforderlich ist.",
       "responsibleTitle": "Verantwortliche Stelle",
+      "contactReferenceText": "Die gesetzlich erforderlichen Kontaktdaten findest du im",
+      "contactReferenceLinkLabel": "Impressum",
       "dataTypesTitle": "Verarbeitete Datenarten",
       "dataTypesText": "Je nach Nutzung dieser Website können insbesondere Bestandsdaten, Kontaktdaten, Inhaltsdaten, Nutzungsdaten, Verbindungsdaten sowie Meta- und Protokolldaten (z. B. technische Zugriffsdaten) verarbeitet werden.",
       "purposesTitle": "Zwecke der Verarbeitung",

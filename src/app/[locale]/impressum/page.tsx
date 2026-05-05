@@ -60,7 +60,8 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
   const commonT = await getTranslations({ locale, namespace: 'common' });
   const homeHref = locale === 'de' ? '/' : `/${locale}`;
   const basePath = locale === 'de' ? '' : `/${locale}`;
-  const footerWhatsAppHref = isTurnstileEnabled()
+  const shouldHideOptionalContactLinks = isTurnstileEnabled();
+  const footerWhatsAppHref = shouldHideOptionalContactLinks
     ? undefined
     : buildWhatsAppHref(
         siteConfig.contact.whatsAppDisplay,
@@ -133,17 +134,19 @@ export default async function ImpressumPage({ params }: ImpressumPageProps) {
                     {siteConfig.contact.phoneDisplay}
                   </a>
                 </p>
-                <p className="mt-2">
-                  {t('imprint.whatsAppLabel')}:{' '}
-                  <a
-                    href={footerWhatsAppHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-medium text-amber-700 hover:underline dark:text-amber-300"
-                  >
-                    {siteConfig.contact.whatsAppDisplay}
-                  </a>
-                </p>
+                {footerWhatsAppHref ? (
+                  <p className="mt-2">
+                    {t('imprint.whatsAppLabel')}:{' '}
+                    <a
+                      href={footerWhatsAppHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium text-amber-700 hover:underline dark:text-amber-300"
+                    >
+                      {siteConfig.contact.whatsAppDisplay}
+                    </a>
+                  </p>
+                ) : null}
               </RevealOnScroll>
 
               <RevealOnScroll as="section" delayMs={140}>
