@@ -17,6 +17,12 @@ const isLocalHostname =
   parsedPublicAppUrl?.hostname === '127.0.0.1';
 const shouldEnforceHttpsHeaders =
   parsedPublicAppUrl?.protocol === 'https:' && !isLocalHostname;
+const allowedDevOrigins = [
+  '*.trycloudflare.com',
+  ...(parsedPublicAppUrl?.hostname && !isLocalHostname
+    ? [parsedPublicAppUrl.hostname]
+    : []),
+];
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -35,11 +41,12 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  allowedDevOrigins,
   typescript: {
     ignoreBuildErrors: false,
   },
   images: {
-    qualities: [35, 40, 45, 50, 60, 75, 100],
+    qualities: [24, 28, 35, 40, 45, 50, 60, 75, 100],
     remotePatterns: [
       {
         protocol: 'https',
