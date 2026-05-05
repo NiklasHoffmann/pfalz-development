@@ -137,6 +137,12 @@ export function getMobileDockItems(
     pfl: 'Hallo, isch interessier mich fer e Website fer mei Betrieb in de Palz. Isch würd gern kurz iwwer mei Projekt babble.',
   } as const;
   const currentLocale = getCurrentLocale(locale);
+  const contactDockHref = shouldHideDirectContactLinks
+    ? `${homeHref}#kontakt`
+    : buildWhatsAppHref(
+        siteConfig.contact.whatsAppDisplay,
+        whatsAppMessageByLocale[currentLocale]
+      );
   const items: MobileNavItem[] = [
     {
       label: labels.home,
@@ -153,18 +159,13 @@ export function getMobileDockItems(
       href: `${basePath}/branchen`,
       shortLabel: shortLabels.industry,
     },
-  ];
-
-  if (!shouldHideDirectContactLinks) {
-    items.push({
+    {
       label: labels.whatsapp,
-      href: buildWhatsAppHref(
-        siteConfig.contact.whatsAppDisplay,
-        whatsAppMessageByLocale[currentLocale]
-      ),
+      href: contactDockHref,
       shortLabel: shortLabels.whatsapp,
-    });
-  }
+      variant: 'whatsapp',
+    },
+  ];
 
   return items;
 }

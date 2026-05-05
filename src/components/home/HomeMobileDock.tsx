@@ -54,7 +54,9 @@ export function HomeMobileDock({
       >
         <div className="grid grid-cols-4 gap-2">
           {normalizedItems.map(({ item, target }) => {
-            const isWhatsApp = item.href.startsWith('https://wa.me/');
+            const isWhatsApp =
+              item.variant === 'whatsapp' ||
+              item.href.startsWith('https://wa.me/');
             const isActive = activeHrefOverride
               ? item.href === activeHrefOverride
               : activeHashHref

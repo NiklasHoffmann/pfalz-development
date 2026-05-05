@@ -106,6 +106,7 @@ export type NavItem = {
 
 export type MobileNavItem = NavItem & {
   shortLabel: string;
+  variant?: 'default' | 'whatsapp';
 };
 
 export type SeoLinkItem = {

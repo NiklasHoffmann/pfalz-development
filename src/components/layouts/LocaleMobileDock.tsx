@@ -39,9 +39,7 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
     }
 
     const homeItem = items.find((item) => !item.href.includes('#'));
-    const whatsAppItem = items.find((item) =>
-      item.href.startsWith('https://wa.me/')
-    );
+    const whatsAppItem = items.find((item) => item.variant === 'whatsapp');
 
     if (!homeItem || !whatsAppItem) {
       return;
