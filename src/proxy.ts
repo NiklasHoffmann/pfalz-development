@@ -64,18 +64,6 @@ function applyContentSecurityPolicy(
   response.headers.set('Content-Security-Policy', contentSecurityPolicy);
 }
 
-function buildNotFoundRewrite(request: NextRequest, pathname: string) {
-  const segments = pathname.split('/').filter(Boolean);
-  const firstSegment = segments[0];
-  const locale = routing.locales.includes(
-    firstSegment as (typeof routing.locales)[number]
-  )
-    ? firstSegment
-    : routing.defaultLocale;
-
-  return NextResponse.rewrite(new URL(`/${locale}/404`, request.url));
-}
-
 function matchesPathPrefix(pathname: string, prefix: string) {
   return pathname === prefix || pathname.startsWith(`${prefix}/`);
 }
@@ -145,11 +133,11 @@ export default function middleware(request: NextRequest) {
   }
 
   if (configuredAdminHost && !isAdminHost && isAllowedAdminPagePath(pathname)) {
-    return buildNotFoundRewrite(request, pathname);
+    return new NextResponse(null, { status: 404 });
   }
 
   if (isAdminHost && !isAllowedAdminPagePath(pathname)) {
-    return buildNotFoundRewrite(request, pathname);
+    return new NextResponse(null, { status: 404 });
   }
 
   const response = proxy(request);
