@@ -438,6 +438,7 @@ export function HomeContactSection({
                   onClick={() => {
                     void handleEmailRevealRequest();
                   }}
+                  onPointerDown={prepareEmailReveal}
                   onMouseEnter={prepareEmailReveal}
                   onFocus={prepareEmailReveal}
                   disabled={isExplicitRevealSubmitting}
@@ -461,6 +462,7 @@ export function HomeContactSection({
                   onClick={() => {
                     void handleEmailRevealRequest();
                   }}
+                  onPointerDown={prepareEmailReveal}
                   onMouseEnter={prepareEmailReveal}
                   onFocus={prepareEmailReveal}
                   disabled={isExplicitRevealSubmitting}
@@ -486,6 +488,7 @@ export function HomeContactSection({
                   onClick={() => {
                     void handleEmailRevealRequest();
                   }}
+                  onPointerDown={prepareEmailReveal}
                   onMouseEnter={prepareEmailReveal}
                   onFocus={prepareEmailReveal}
                   disabled={isExplicitRevealSubmitting}

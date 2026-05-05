@@ -159,7 +159,7 @@ export function TurnstileWidget({
       {shouldLoadScript && !isTurnstileReady ? (
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           onLoad={() => {
             setScriptLoaded(true);
           }}
