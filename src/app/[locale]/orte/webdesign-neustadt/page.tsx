@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
+import { JsonLdScript } from '@/components/seo/JsonLdScript';
 import { SeoLandingPage } from '@/components/seo/SeoLandingPage';
 import { webdesignNeustadtContentByLocale } from '@/content/seo/webdesign-neustadt';
 import {
@@ -61,18 +62,8 @@ export default async function WebdesignNeustadtPage({
   return (
     <>
       <SeoLandingPage content={content} locale={locale} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceSchema),
-        }}
-      />
+      <JsonLdScript data={faqSchema} />
+      <JsonLdScript data={serviceSchema} />
     </>
   );
 }

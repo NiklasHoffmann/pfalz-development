@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
+import { JsonLdScript } from '@/components/seo/JsonLdScript';
 import { SeoLandingPage } from '@/components/seo/SeoLandingPage';
 import { restaurantWebsiteContentByLocale } from '@/content/seo/restaurant-website';
 import {
@@ -61,18 +62,8 @@ export default async function RestaurantWebsitePage({
   return (
     <>
       <SeoLandingPage content={content} locale={locale} activeNav="industry" />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceSchema),
-        }}
-      />
+      <JsonLdScript data={faqSchema} />
+      <JsonLdScript data={serviceSchema} />
     </>
   );
 }

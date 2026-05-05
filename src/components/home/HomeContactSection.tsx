@@ -9,16 +9,13 @@ import type {
 } from './types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { TurnstileWidget } from '@/components/ui/TurnstileWidget';
-import { writeContactRevealUnlocked } from '@/lib/contact-reveal';
+import {
+  readRevealedContact,
+  type RevealedContactPayload,
+  writeContactRevealUnlocked,
+  writeRevealedContact,
+} from '@/lib/contact-reveal';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
-
-type RevealedContact = {
-  mailto: string;
-  emailValue: string;
-  phoneHref: string;
-  phoneDisplay: string;
-  whatsAppValue: string;
-};
 
 const ContactForm = dynamic(
   () =>
@@ -63,6 +60,11 @@ export function HomeContactSection({
   emailReveal,
   details,
 }: HomeContactSectionProps) {
+  const contactDialogId = 'contact-form-dialog';
+  const turnstileSiteKey = revealEnabled
+    ? process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
+    : undefined;
+  const hasProtectedContactReveal = Boolean(revealEnabled && turnstileSiteKey);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [hasRequestedFormUi, setHasRequestedFormUi] = useState(false);
   const [formSessionKey, setFormSessionKey] = useState(0);
@@ -80,15 +82,14 @@ export function HomeContactSection({
     useState('');
   const [hasQueuedInitialReveal, setHasQueuedInitialReveal] = useState(false);
   const [revealedContact, setRevealedContact] =
-    useState<RevealedContact | null>(null);
+    useState<RevealedContactPayload | null>(null);
+  const [hasRestoredCachedContact, setHasRestoredCachedContact] = useState(
+    () => !hasProtectedContactReveal
+  );
+  const [isContactRevealPending, setIsContactRevealPending] = useState(false);
   const [isEmailRevealSubmitting, setIsEmailRevealSubmitting] = useState(false);
   const [isExplicitRevealSubmitting, setIsExplicitRevealSubmitting] =
     useState(false);
-  const contactDialogId = 'contact-form-dialog';
-  const turnstileSiteKey = revealEnabled
-    ? process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
-    : undefined;
-  const hasProtectedContactReveal = Boolean(revealEnabled && turnstileSiteKey);
 
   const fallbackPhoneValue = details.phoneValue.trim();
   const fallbackPhoneHref = fallbackPhoneValue
@@ -119,6 +120,8 @@ export function HomeContactSection({
     ? buildWhatsAppHref(currentWhatsAppValue, whatsAppMessage)
     : '';
   const isContactReady = Boolean(revealedContact) || !hasProtectedContactReveal;
+  const shouldShowContactLoading =
+    hasProtectedContactReveal && !isContactReady && isContactRevealPending;
 
   function handleFormOpenChange(open: boolean) {
     if (open) {
@@ -134,6 +137,7 @@ export function HomeContactSection({
 
   const requestEmailReveal = useCallback(
     async (token: string, showErrors: boolean) => {
+      setIsContactRevealPending(true);
       setIsEmailRevealSubmitting(true);
       setIsExplicitRevealSubmitting(showErrors);
 
@@ -190,6 +194,7 @@ export function HomeContactSection({
           phoneDisplay: result.data.phoneDisplay,
           whatsAppValue: result.data.whatsAppValue,
         });
+        writeRevealedContact(result.data);
         setEmailRevealStatus({
           type: 'success',
           message: showErrors ? emailReveal.success : '',
@@ -210,12 +215,30 @@ export function HomeContactSection({
         setEmailRevealToken(null);
         setEmailRevealResetNonce((current) => current + 1);
       } finally {
+        setIsContactRevealPending(false);
         setIsEmailRevealSubmitting(false);
         setIsExplicitRevealSubmitting(false);
       }
     },
     [emailReveal.success, emailReveal.unavailable, form.status.botCheckFailed]
   );
+
+  useEffect(() => {
+    if (!hasProtectedContactReveal) {
+      setIsContactRevealPending(false);
+      setHasRestoredCachedContact(true);
+      return;
+    }
+
+    const cachedContact = readRevealedContact();
+
+    if (cachedContact) {
+      setRevealedContact(cachedContact);
+      setIsContactRevealPending(false);
+    }
+
+    setHasRestoredCachedContact(true);
+  }, [hasProtectedContactReveal]);
 
   function prepareEmailReveal() {
     if (
@@ -249,6 +272,7 @@ export function HomeContactSection({
     });
 
     if (!emailRevealToken) {
+      setIsContactRevealPending(true);
       setEmailRevealExecuteNonce((current) => current + 1);
       return;
     }
@@ -260,14 +284,21 @@ export function HomeContactSection({
     if (
       !hasProtectedContactReveal ||
       isContactReady ||
-      hasQueuedInitialReveal
+      hasQueuedInitialReveal ||
+      !hasRestoredCachedContact
     ) {
       return;
     }
 
+    setIsContactRevealPending(true);
     setHasQueuedInitialReveal(true);
     setEmailRevealExecuteNonce((current) => current + 1);
-  }, [hasProtectedContactReveal, hasQueuedInitialReveal, isContactReady]);
+  }, [
+    hasProtectedContactReveal,
+    hasQueuedInitialReveal,
+    hasRestoredCachedContact,
+    isContactReady,
+  ]);
 
   useEffect(() => {
     if (
@@ -450,6 +481,17 @@ export function HomeContactSection({
               </div>
             ) : null}
 
+            {shouldShowContactLoading && !emailRevealStatus.message ? (
+              <p
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-amber-300/80 bg-amber-50/90 px-3 py-1.5 text-sm font-medium text-amber-900 dark:border-amber-300/30 dark:bg-amber-950/45 dark:text-amber-100"
+                role="status"
+                aria-live="polite"
+              >
+                <span className="h-2 w-2 animate-pulse rounded-full bg-amber-500 dark:bg-amber-300" />
+                {emailReveal.loading}
+              </p>
+            ) : null}
+
             {emailRevealStatus.message ? (
               <p
                 id="contact-reveal-feedback"
@@ -473,6 +515,14 @@ export function HomeContactSection({
           </div>
 
           <div className="bg-white/72 dark:bg-stone-950/38 rounded-[1.5rem] border border-white/65 p-5 shadow-[0_14px_36px_rgba(28,25,23,0.08)] backdrop-blur-sm dark:border-stone-600/70 sm:p-6">
+            {shouldShowContactLoading ? (
+              <div className="mb-5 rounded-[1.25rem] border border-amber-300/70 bg-amber-50/85 px-4 py-3 text-sm text-amber-950 dark:border-amber-300/25 dark:bg-amber-950/35 dark:text-amber-100">
+                <div className="flex items-center gap-2 font-semibold">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-amber-500 dark:bg-amber-300" />
+                  {emailReveal.loading}
+                </div>
+              </div>
+            ) : null}
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-300">
@@ -493,6 +543,8 @@ export function HomeContactSection({
                   >
                     {currentEmailValue}
                   </a>
+                ) : shouldShowContactLoading ? (
+                  <div className="mt-2 h-5 w-full animate-pulse rounded-full bg-stone-200/90 dark:bg-stone-700/80" />
                 ) : null}
               </div>
               <div>
@@ -506,6 +558,8 @@ export function HomeContactSection({
                   >
                     {currentPhoneDisplay}
                   </a>
+                ) : shouldShowContactLoading ? (
+                  <div className="mt-2 h-5 w-40 animate-pulse rounded-full bg-stone-200/90 dark:bg-stone-700/80" />
                 ) : null}
               </div>
               <div>
@@ -521,6 +575,8 @@ export function HomeContactSection({
                   >
                     {currentWhatsAppValue}
                   </a>
+                ) : shouldShowContactLoading ? (
+                  <div className="mt-2 h-5 w-36 animate-pulse rounded-full bg-stone-200/90 dark:bg-stone-700/80" />
                 ) : null}
               </div>
               <address className="not-italic">

@@ -3,6 +3,7 @@ import path from 'node:path';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
+import { JsonLdScript } from '@/components/seo/JsonLdScript';
 import { siteConfig } from '@/config/site';
 import { getIndustryNavLabel, localeToBasePath } from '@/lib/locale-ui';
 import { getHeaderControlsCopy } from '@/lib/header-controls.server';
@@ -576,24 +577,9 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <HomePageView data={pageData} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(localBusinessSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
+      <JsonLdScript data={websiteSchema} />
+      <JsonLdScript data={localBusinessSchema} />
+      <JsonLdScript data={faqSchema} />
     </>
   );
 }

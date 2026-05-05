@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
+import { JsonLdScript } from '@/components/seo/JsonLdScript';
 import { SeoLandingPage } from '@/components/seo/SeoLandingPage';
 import { weingutSektgutWebsiteContentByLocale } from '@/content/seo/weingut-sektgut-website';
 import {
@@ -67,18 +68,8 @@ export default async function WeingutSektgutWebsitePage({
   return (
     <>
       <SeoLandingPage content={content} locale={locale} activeNav="industry" />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceSchema),
-        }}
-      />
+      <JsonLdScript data={faqSchema} />
+      <JsonLdScript data={serviceSchema} />
     </>
   );
 }

@@ -31,9 +31,7 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
   const pathname = usePathname();
   const [hash, setHash] = useState('');
   const [activeHrefOverride, setActiveHrefOverride] = useState<string>();
-  const [hasUnlockedContact, setHasUnlockedContact] = useState(() =>
-    readContactRevealUnlocked()
-  );
+  const [hasUnlockedContact, setHasUnlockedContact] = useState(false);
   const logicalPathname = getDockLogicalPath(pathname);
   const items = getMobileDockItems(locale, getNavigationLabels(locale), {
     hasUnlockedContact,

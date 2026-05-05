@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from 'next';
+import { headers } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 import { LocaleMobileDock } from '@/components/layouts/LocaleMobileDock';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 import { siteConfig } from '@/config/site';
+import { NONCE_HEADER_NAME } from '@/lib/csp';
 import { localeToHtmlLang } from '@/lib/seo';
 import { routing } from '@/routing';
 import '../globals.css';
@@ -128,6 +130,7 @@ export default async function LocaleLayout({
   params: Promise<unknown>;
 }) {
   const locale = await resolveLocale(params);
+  const nonce = (await headers()).get(NONCE_HEADER_NAME) ?? undefined;
   setRequestLocale(locale);
 
   return (
@@ -137,7 +140,15 @@ export default async function LocaleLayout({
       className="loading"
     >
       <head>
+        <link
+          rel="preconnect"
+          href="https://challenges.cloudflare.com"
+          crossOrigin=""
+        />
+        <link rel="dns-prefetch" href="//challenges.cloudflare.com" />
         <script
+          nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -167,6 +178,7 @@ export default async function LocaleLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
+          nonce={nonce}
           storageKey="nextjs-theme"
         >
           {children}
