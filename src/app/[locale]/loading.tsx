@@ -1,31 +1,22 @@
-import { StatusPageFrame } from '@/components/ui/StatusPageFrame';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export default function Loading() {
   return (
-    <StatusPageFrame
-      eyebrow="Bitte kurz warten"
-      title="Inhalt wird vorbereitet"
-      description="Die Seite wird gerade geladen und aufgebaut. Das dauert in der Regel nur einen kurzen Moment."
-      statusLabel="Status"
-      statusValue="Inhalt lädt"
-      asideEyebrow="Live-Aufbau"
-      asideTitle="Die Seite ist gleich da"
-      asideDescription="Daten, Inhalte und Oberfläche werden gerade zusammengesetzt, damit du direkt in der finalen Ansicht landest."
-      asideBody={
-        <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-          <LoadingSpinner
-            size="lg"
-            className="border-stone-500 border-t-amber-300"
-          />
-          <div>
-            <p className="text-sm font-medium text-white">Wird geladen</p>
-            <p className="mt-1 text-sm text-stone-300">
-              Bitte die Seite nicht neu laden.
-            </p>
-          </div>
-        </div>
-      }
-    />
+    <div
+      className="surface-page flex min-h-screen items-center justify-center px-4"
+      role="status"
+      aria-live="polite"
+      aria-label="Inhalt lädt"
+    >
+      <div className="bg-white/92 dark:bg-stone-900/88 flex items-center gap-3 rounded-full border border-stone-300/85 px-5 py-3 shadow-[0_14px_32px_rgba(28,25,23,0.08)] dark:border-stone-700/80 dark:shadow-[0_16px_34px_rgba(0,0,0,0.26)]">
+        <LoadingSpinner
+          size="md"
+          className="border-stone-400 border-t-amber-500 dark:border-stone-600 dark:border-t-amber-300"
+        />
+        <p className="text-sm font-medium text-stone-800 dark:text-stone-100">
+          Inhalt lädt...
+        </p>
+      </div>
+    </div>
   );
 }

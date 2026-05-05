@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type {
   ContactDetails,
   ContactEmailRevealCopy,
@@ -61,6 +61,7 @@ export function HomeContactSection({
   details,
 }: HomeContactSectionProps) {
   const contactDialogId = 'contact-form-dialog';
+  const contactSectionRef = useRef<HTMLDivElement | null>(null);
   const turnstileSiteKey = revealEnabled
     ? process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
     : undefined;
@@ -86,6 +87,8 @@ export function HomeContactSection({
   const [hasRestoredCachedContact, setHasRestoredCachedContact] = useState(
     () => !hasProtectedContactReveal
   );
+  const [shouldLoadEmailRevealWidget, setShouldLoadEmailRevealWidget] =
+    useState(() => !hasProtectedContactReveal);
   const [isContactRevealPending, setIsContactRevealPending] = useState(false);
   const [isEmailRevealSubmitting, setIsEmailRevealSubmitting] = useState(false);
   const [isExplicitRevealSubmitting, setIsExplicitRevealSubmitting] =
@@ -227,6 +230,7 @@ export function HomeContactSection({
     if (!hasProtectedContactReveal) {
       setIsContactRevealPending(false);
       setHasRestoredCachedContact(true);
+      setShouldLoadEmailRevealWidget(true);
       return;
     }
 
@@ -240,6 +244,36 @@ export function HomeContactSection({
     setHasRestoredCachedContact(true);
   }, [hasProtectedContactReveal]);
 
+  useEffect(() => {
+    if (!hasProtectedContactReveal || shouldLoadEmailRevealWidget) {
+      return;
+    }
+
+    const node = contactSectionRef.current;
+
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoadEmailRevealWidget(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '240px 0px',
+      }
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasProtectedContactReveal, shouldLoadEmailRevealWidget]);
+
   function prepareEmailReveal() {
     if (
       isContactReady ||
@@ -248,6 +282,8 @@ export function HomeContactSection({
     ) {
       return;
     }
+
+    setShouldLoadEmailRevealWidget(true);
 
     if (emailRevealToken) {
       void requestEmailReveal(emailRevealToken, false);
@@ -271,6 +307,8 @@ export function HomeContactSection({
       message: '',
     });
 
+    setShouldLoadEmailRevealWidget(true);
+
     if (!emailRevealToken) {
       setIsContactRevealPending(true);
       setEmailRevealExecuteNonce((current) => current + 1);
@@ -285,7 +323,8 @@ export function HomeContactSection({
       !hasProtectedContactReveal ||
       isContactReady ||
       hasQueuedInitialReveal ||
-      !hasRestoredCachedContact
+      !hasRestoredCachedContact ||
+      !shouldLoadEmailRevealWidget
     ) {
       return;
     }
@@ -298,6 +337,7 @@ export function HomeContactSection({
     hasQueuedInitialReveal,
     hasRestoredCachedContact,
     isContactReady,
+    shouldLoadEmailRevealWidget,
   ]);
 
   useEffect(() => {
@@ -350,7 +390,10 @@ export function HomeContactSection({
       aria-labelledby="home-contact-title"
       className="border-t border-stone-200/85 px-4 py-20 dark:border-stone-700/80 sm:px-6 sm:py-24 lg:px-10"
     >
-      <div className="mx-auto max-w-7xl rounded-[2rem] border border-amber-200/80 bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.18),transparent_32%),linear-gradient(180deg,rgba(255,251,235,0.96),rgba(255,255,255,0.9))] px-6 py-8 shadow-[0_24px_72px_rgba(120,53,15,0.1)] dark:border-amber-300/20 dark:bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.12),transparent_28%),linear-gradient(180deg,rgba(41,37,36,0.94),rgba(28,25,23,0.88))] dark:shadow-[0_28px_80px_rgba(0,0,0,0.34)] sm:px-8 sm:py-10">
+      <div
+        ref={contactSectionRef}
+        className="mx-auto max-w-7xl rounded-[2rem] border border-amber-200/80 bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.18),transparent_32%),linear-gradient(180deg,rgba(255,251,235,0.96),rgba(255,255,255,0.9))] px-6 py-8 shadow-[0_24px_72px_rgba(120,53,15,0.1)] dark:border-amber-300/20 dark:bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.12),transparent_28%),linear-gradient(180deg,rgba(41,37,36,0.94),rgba(28,25,23,0.88))] dark:shadow-[0_28px_80px_rgba(0,0,0,0.34)] sm:px-8 sm:py-10"
+      >
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-200">
           {navLabel}
         </p>
@@ -475,6 +518,7 @@ export function HomeContactSection({
                   onTokenChange={setEmailRevealToken}
                   resetNonce={emailRevealResetNonce}
                   executeNonce={emailRevealExecuteNonce}
+                  shouldLoadScript={shouldLoadEmailRevealWidget}
                   execution="execute"
                   action="contact_reveal"
                 />

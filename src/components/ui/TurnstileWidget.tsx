@@ -22,6 +22,7 @@ type TurnstileWidgetProps = {
   onTokenChange: (token: string | null) => void;
   resetNonce?: number;
   executeNonce?: number;
+  shouldLoadScript?: boolean;
   appearance?: 'interaction-only' | 'always';
   execution?: 'render' | 'execute';
   action?: string;
@@ -32,6 +33,7 @@ export function TurnstileWidget({
   onTokenChange,
   resetNonce = 0,
   executeNonce = 0,
+  shouldLoadScript = true,
   appearance = 'interaction-only',
   execution = 'render',
   action = 'contact_form',
@@ -42,6 +44,9 @@ export function TurnstileWidget({
   const hasMountedRef = useRef(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [isInteractiveVisible, setIsInteractiveVisible] = useState(false);
+  const isTurnstileReady =
+    scriptLoaded ||
+    (typeof window !== 'undefined' && Boolean(window.turnstile));
 
   useEffect(() => {
     onTokenChangeRef.current = onTokenChange;
@@ -49,7 +54,7 @@ export function TurnstileWidget({
 
   useEffect(() => {
     if (
-      !scriptLoaded ||
+      !isTurnstileReady ||
       !window.turnstile ||
       widgetIdRef.current ||
       !containerRef.current
@@ -109,7 +114,7 @@ export function TurnstileWidget({
         widgetIdRef.current = null;
       }
     };
-  }, [action, appearance, execution, scriptLoaded, siteKey]);
+  }, [action, appearance, execution, isTurnstileReady, siteKey]);
 
   useEffect(() => {
     if (execution !== 'execute') {
@@ -123,7 +128,7 @@ export function TurnstileWidget({
     onTokenChangeRef.current(null);
     window.turnstile.reset(widgetIdRef.current);
     window.turnstile.execute(widgetIdRef.current);
-  }, [executeNonce, execution, scriptLoaded]);
+  }, [executeNonce, execution, isTurnstileReady]);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -151,13 +156,15 @@ export function TurnstileWidget({
 
   return (
     <>
-      <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-        strategy="afterInteractive"
-        onLoad={() => {
-          setScriptLoaded(true);
-        }}
-      />
+      {shouldLoadScript && !isTurnstileReady ? (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          strategy="lazyOnload"
+          onLoad={() => {
+            setScriptLoaded(true);
+          }}
+        />
+      ) : null}
       <div
         className={`overflow-hidden transition-all duration-300 ease-out ${
           appearance === 'always' || isInteractiveVisible
