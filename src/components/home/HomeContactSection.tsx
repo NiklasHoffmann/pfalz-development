@@ -9,6 +9,7 @@ import type {
 } from './types';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { TurnstileWidget } from '@/components/ui/TurnstileWidget';
+import { writeContactRevealUnlocked } from '@/lib/contact-reveal';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 
 type RevealedContact = {
@@ -302,6 +303,14 @@ export function HomeContactSection({
 
     setContactRevealAnnouncement(emailRevealStatus.message);
   }, [emailRevealStatus.message, emailRevealStatus.type]);
+
+  useEffect(() => {
+    if (!hasProtectedContactReveal) {
+      return;
+    }
+
+    writeContactRevealUnlocked(Boolean(revealedContact?.whatsAppValue));
+  }, [hasProtectedContactReveal, revealedContact?.whatsAppValue]);
 
   return (
     <RevealOnScroll

@@ -3,6 +3,10 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { HomeMobileDock } from '@/components/home/HomeMobileDock';
+import {
+  getContactRevealEventName,
+  readContactRevealUnlocked,
+} from '@/lib/contact-reveal';
 import { isInternalIntakePath } from '@/lib/intake/path';
 import {
   getDockLogicalPath,
@@ -27,11 +31,39 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
   const pathname = usePathname();
   const [hash, setHash] = useState('');
   const [activeHrefOverride, setActiveHrefOverride] = useState<string>();
+  const [hasUnlockedContact, setHasUnlockedContact] = useState(() =>
+    readContactRevealUnlocked()
+  );
   const logicalPathname = getDockLogicalPath(pathname);
-  const items = getMobileDockItems(locale, getNavigationLabels(locale));
+  const items = getMobileDockItems(locale, getNavigationLabels(locale), {
+    hasUnlockedContact,
+  });
   const homeItemHref = items.find((item) => !item.href.includes('#'))?.href;
   const resolvedActiveHrefOverride =
     logicalPathname === '/' ? (activeHrefOverride ?? homeItemHref) : undefined;
+
+  useEffect(() => {
+    const updateContactState = () => {
+      setHasUnlockedContact(readContactRevealUnlocked());
+    };
+
+    const handleContactRevealChange = () => {
+      updateContactState();
+    };
+
+    updateContactState();
+    window.addEventListener(
+      getContactRevealEventName(),
+      handleContactRevealChange
+    );
+
+    return () => {
+      window.removeEventListener(
+        getContactRevealEventName(),
+        handleContactRevealChange
+      );
+    };
+  }, []);
 
   useEffect(() => {
     if (logicalPathname !== '/') {

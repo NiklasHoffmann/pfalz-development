@@ -123,6 +123,9 @@ export function getMobileDockItems(
     home: string;
     about: string;
     whatsapp: string;
+  },
+  options?: {
+    hasUnlockedContact?: boolean;
   }
 ): MobileNavItem[] {
   const basePath = localeToBasePath(locale);
@@ -138,7 +141,12 @@ export function getMobileDockItems(
   } as const;
   const currentLocale = getCurrentLocale(locale);
   const contactDockHref = shouldHideDirectContactLinks
-    ? `${homeHref}#kontakt`
+    ? options?.hasUnlockedContact
+      ? buildWhatsAppHref(
+          siteConfig.contact.whatsAppDisplay,
+          whatsAppMessageByLocale[currentLocale]
+        )
+      : `${homeHref}#kontakt`
     : buildWhatsAppHref(
         siteConfig.contact.whatsAppDisplay,
         whatsAppMessageByLocale[currentLocale]
