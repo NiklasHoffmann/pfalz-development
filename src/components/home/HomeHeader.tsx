@@ -47,8 +47,6 @@ export function HomeHeader({
                   height={163}
                   sizes="(max-width: 640px) 136px, (max-width: 1024px) 148px, 160px"
                   quality={24}
-                  priority
-                  fetchPriority="high"
                   className="pointer-events-none h-[3.81rem] w-auto object-contain dark:hidden sm:h-[4.25rem] lg:h-[4.64rem]"
                 />
                 <Image
@@ -58,8 +56,6 @@ export function HomeHeader({
                   height={163}
                   sizes="(max-width: 640px) 136px, (max-width: 1024px) 148px, 160px"
                   quality={24}
-                  priority
-                  fetchPriority="high"
                   className="pointer-events-none hidden h-[3.81rem] w-auto object-contain dark:block sm:h-[4.25rem] lg:h-[4.64rem]"
                 />
               </span>

@@ -78,8 +78,6 @@ export function HomeHeroSection({
               alt=""
               aria-hidden="true"
               fill
-              preload
-              fetchPriority="high"
               sizes="(max-width: 1024px) calc(100vw - 2.5rem), 38rem"
               quality={45}
               className="opacity-24 absolute inset-0 h-full w-full object-cover dark:opacity-20"
