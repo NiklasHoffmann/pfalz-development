@@ -255,6 +255,11 @@ export function HomeContactSection({
       return;
     }
 
+    const preloadRootMargin =
+      typeof window !== 'undefined' && window.innerWidth < 768
+        ? '1600px 0px'
+        : '960px 0px';
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -263,7 +268,7 @@ export function HomeContactSection({
         }
       },
       {
-        rootMargin: '240px 0px',
+        rootMargin: preloadRootMargin,
       }
     );
 
