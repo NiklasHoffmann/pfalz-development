@@ -80,6 +80,17 @@ function matchesPathPrefix(pathname: string, prefix: string) {
   return pathname === prefix || pathname.startsWith(`${prefix}/`);
 }
 
+function hasHiddenPathSegment(pathname: string) {
+  return pathname
+    .split('/')
+    .filter(Boolean)
+    .some((segment) => segment.startsWith('.'));
+}
+
+function isStaticAssetPath(pathname: string) {
+  return /(^|\/)[^/.][^/]*\.[^/]+$/.test(pathname);
+}
+
 function isAllowedAdminPagePath(pathname: string) {
   const adminBases = [
     '/admin',
@@ -103,8 +114,16 @@ export default function middleware(request: NextRequest) {
   );
   const { pathname } = request.nextUrl;
 
+  if (hasHiddenPathSegment(pathname)) {
+    return new NextResponse(null, { status: 404 });
+  }
+
   if (pathname.endsWith('.map')) {
     return new NextResponse(null, { status: 404 });
+  }
+
+  if (isStaticAssetPath(pathname)) {
+    return NextResponse.next();
   }
 
   if (pathname.startsWith('/api/')) {
@@ -140,8 +159,8 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match app and API pathnames except Next internals and static files.
-    '/((?!_next|_vercel|.*\\..*).*)',
+    // Match app, API, and direct path probes except Next internals.
+    '/((?!_next|_vercel).*)',
     // Block direct access to source maps, including under /_next/static.
     '/(.*)\\.map',
   ],
