@@ -68,7 +68,7 @@ function getOrteMetaTitle(locale: string): string {
     return 'Lokale Webdesign-Seide fer Neustadt, Landau un Speyer | Pfalz Development';
   }
 
-  return 'Website erstellen lassen in Neustadt, Landau und Speyer | Pfalz Development';
+  return 'Website erstellen lassen in Neustadt an der Weinstraße, Landau in der Pfalz und Speyer | Pfalz Development';
 }
 
 function getOrteMetaDescription(locale: string): string {
@@ -210,7 +210,8 @@ function getOrteCopy(locale: string): OrtePageCopy {
   }
 
   return {
-    title: 'Website erstellen lassen für Neustadt, Landau und Speyer',
+    title:
+      'Website erstellen lassen in Neustadt an der Weinstraße, Landau in der Pfalz und Speyer',
     intro:
       'Wenn dein Unternehmen in Neustadt an der Weinstraße, Landau in der Pfalz oder Speyer sitzt und du eine Website erstellen lassen willst, findest du hier den passenden lokalen Einstieg. Welche Seite am besten passt, hängt nicht nur von der Stadt ab, sondern auch davon, wie dein Unternehmen wahrgenommen werden soll.',
     highlight:
