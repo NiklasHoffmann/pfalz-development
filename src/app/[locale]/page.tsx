@@ -185,6 +185,12 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
         description:
           'For wineries and sparkling wine estates that want to present wines, tastings, events, and direct inquiries in a structured way.',
       },
+      {
+        label: 'Website for Trades Businesses',
+        href: withLocaleBasePath(basePath, '/branchen/handwerk-website'),
+        description:
+          'For trades businesses that need clear service pages, stronger local trust, and a direct path to regional inquiries.',
+      },
     ];
   }
 
@@ -208,6 +214,12 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
         description:
           'Fer Weinbetriewe, die Weine, Proobe, Termine un direkte Aafrooche übersichtlich un professionell zeige wolle.',
       },
+      {
+        label: 'Website fer Handwerksbetriewe',
+        href: withLocaleBasePath(basePath, '/branchen/handwerk-website'),
+        description:
+          'Fer Handwerksbetriewe mit klare Leischdunge, regionalem Vertrauen un direktem Weg zu passendi Aafrooche.',
+      },
     ];
   }
 
@@ -229,6 +241,12 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
       href: withLocaleBasePath(basePath, '/branchen/weingut-sektgut-website'),
       description:
         'Für Weinbetriebe mit Fokus auf Weinproben, Veranstaltungen, Produktdarstellung und direkte Anfragen über die eigene Website.',
+    },
+    {
+      label: 'Website für Handwerksbetriebe',
+      href: withLocaleBasePath(basePath, '/branchen/handwerk-website'),
+      description:
+        'Für Handwerksbetriebe mit Fokus auf klare Leistungen, regionale Sichtbarkeit und direkte Anfragen über die eigene Website.',
     },
   ];
 }

@@ -1,0 +1,308 @@
+[
+  {
+    "path": "/",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 1
+  },
+  {
+    "path": "/en",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.9
+  },
+  {
+    "path": "/pfl",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.9
+  },
+  {
+    "path": "/leistungen",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.9
+  },
+  {
+    "path": "/leistungen/webdesign-pfalz",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/leistungen/webentwicklung-pfalz",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/leistungen/website-relaunch",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/leistungen/website-wartung",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/branchen",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/branchen/ferienwohnung-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/branchen/handwerk-website",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/branchen/restaurant-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/branchen/weingut-sektgut-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/orte",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/orte/webdesign-neustadt",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/orte/webdesign-landau",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/orte/webdesign-speyer",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/leistungen",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/en/leistungen/webdesign-pfalz",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/leistungen/webentwicklung-pfalz",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/leistungen/website-relaunch",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/leistungen/website-wartung",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/branchen",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/en/branchen/ferienwohnung-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/branchen/handwerk-website",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/branchen/restaurant-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/branchen/weingut-sektgut-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/orte",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/en/orte/webdesign-neustadt",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/orte/webdesign-landau",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/en/orte/webdesign-speyer",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/leistungen",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/pfl/leistungen/webdesign-pfalz",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/leistungen/webentwicklung-pfalz",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/leistungen/website-relaunch",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/leistungen/website-wartung",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/branchen",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/pfl/branchen/ferienwohnung-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/branchen/handwerk-website",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/branchen/restaurant-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/branchen/weingut-sektgut-website",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/orte",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "path": "/pfl/orte/webdesign-neustadt",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/orte/webdesign-landau",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/orte/webdesign-speyer",
+    "lastModified": "2026-04-12T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/impressum",
+    "lastModified": "2026-03-01T00:00:00.000Z",
+    "changeFrequency": "monthly",
+    "priority": 0.2
+  },
+  {
+    "path": "/datenschutz",
+    "lastModified": "2026-03-01T00:00:00.000Z",
+    "changeFrequency": "monthly",
+    "priority": 0.2
+  },
+  {
+    "path": "/en/impressum",
+    "lastModified": "2026-03-01T00:00:00.000Z",
+    "changeFrequency": "monthly",
+    "priority": 0.2
+  },
+  {
+    "path": "/en/datenschutz",
+    "lastModified": "2026-03-01T00:00:00.000Z",
+    "changeFrequency": "monthly",
+    "priority": 0.2
+  },
+  {
+    "path": "/pfl/impressum",
+    "lastModified": "2026-03-01T00:00:00.000Z",
+    "changeFrequency": "monthly",
+    "priority": 0.2
+  },
+  {
+    "path": "/pfl/datenschutz",
+    "lastModified": "2026-03-01T00:00:00.000Z",
+    "changeFrequency": "monthly",
+    "priority": 0.2
+  }
+]

@@ -69,26 +69,26 @@ function getPrimaryNavigationLabel(locale: string, appName: string): string {
 
 function getBranchenMetaTitle(locale: string): string {
   if (locale === 'en') {
-    return 'Industry Websites for Holiday Rentals, Restaurants, and Wineries | Pfalz Development';
+    return 'Industry Websites for Hospitality, Trades, and Wineries | Pfalz Development';
   }
 
   if (locale === 'pfl') {
-    return 'Branche-Websites fer Gastgeber, Restaurants un Winzer | Pfalz Development';
+    return 'Branche-Websites fer Gastgeber, Handwerk un Winzer | Pfalz Development';
   }
 
-  return 'Branchen-Websites für Ferienwohnungen, Restaurants und Weingüter | Pfalz Development';
+  return 'Branchen-Websites für Ferienwohnungen, Handwerk und Weingüter | Pfalz Development';
 }
 
 function getBranchenMetaDescription(locale: string): string {
   if (locale === 'en') {
-    return 'Industry-specific websites for holiday rentals, restaurants, wineries, and similar businesses in the Palatinate with clear structure, trust signals, and qualified inquiry paths.';
+    return 'Industry-specific websites for holiday rentals, trades businesses, wineries, and similar businesses in the Palatinate with clear structure, trust signals, and qualified inquiry paths.';
   }
 
   if (locale === 'pfl') {
-    return 'Branche-Websites fer Gastgeber, Restaurants, Winzer un ähnliche Betriewe in de Palz mit klarer Struktur, Vertrauen un passendem Aafrooch-Weg.';
+    return 'Branche-Websites fer Gastgeber, Handwerksbetriewe, Winzer un ähnliche Betriewe in de Palz mit klarer Struktur, Vertrauen un passendem Aafrooch-Weg.';
   }
 
-  return 'Branchenspezifische Websites für Ferienwohnungen, Restaurants, Winzer und ähnliche Betriebe in der Pfalz mit klarer Struktur, Vertrauen und qualifizierten Anfragewegen.';
+  return 'Branchenspezifische Websites für Ferienwohnungen, Handwerksbetriebe, Winzer und ähnliche Betriebe in der Pfalz mit klarer Struktur, Vertrauen und qualifizierten Anfragewegen.';
 }
 
 function getBranchenCopy(locale: string): BranchenPageCopy {
@@ -177,6 +177,24 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
             'Separated user paths for tasting, events, and purchase interest',
             'Clear product and estate story for trust and positioning',
             'Contact flow that pre-qualifies requests by intent',
+          ],
+        },
+        {
+          badge: 'Trades',
+          title: 'Trades Businesses',
+          description:
+            'For trades businesses that need clear service pages, stronger regional trust, and direct inquiry paths.',
+          outcome:
+            'Goal: more qualified local inquiries through clear services, trust signals, and visible contact paths.',
+          href: '/branchen/handwerk-website',
+          scenario: [
+            'Visitors do not quickly understand which services are offered or in which region the business works.',
+            'References, trust signals, and contact paths are too weak on mobile devices.',
+          ],
+          focus: [
+            'Clear service structure with strong local relevance',
+            'Trust through examples, references, and straightforward language',
+            'Direct mobile CTA path for quote and callback inquiries',
           ],
         },
       ],
@@ -275,6 +293,24 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
             'Kontaktweg mit Vorqualifizierung no Anliegen',
           ],
         },
+        {
+          badge: 'Handwerk',
+          title: 'Handwerksbetriewe',
+          description:
+            'Fer Handwerksbetriewe mit klare Leischdunge, regionalem Vertrauen un direktem Weg zu Aafrooche.',
+          outcome:
+            'Ziel: meh regionale un passendi Aafrooche durch klare Leischdunge, Vertrauen un sichtbare Kontaktwege.',
+          href: '/branchen/handwerk-website',
+          scenario: [
+            'Besucher verstehe net schnell genug, was der Betrieb macht un wo er arbeitet.',
+            'Referenze, Vertrauen un Kontaktwege sinn uff em Handy zu schwach sichtbar.',
+          ],
+          focus: [
+            'Klare Leistungsstruktur mit regionalem Bezug',
+            'Vertrauen durch Beispiele, Referenze un direkte Sprache',
+            'Einfacher Handy-CTA fer Aafrooch oder Rieggrooff',
+          ],
+        },
       ],
       cta: 'Brancheseid uffmache',
       supportTitle: 'Net sicher, was am beschde passt?',
@@ -368,6 +404,24 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
           'Eigene Nutzerpfade für Verkostung, Events und Kaufinteresse',
           'Klare Angebotsdarstellung plus Vertrauen über Betriebsgeschichte',
           'Kontaktweg mit Vorqualifizierung je nach Anfrageziel',
+        ],
+      },
+      {
+        badge: 'Handwerk',
+        title: 'Handwerksbetriebe',
+        description:
+          'Für Handwerksbetriebe mit klarer Leistungsdarstellung, regionalem Vertrauen und direkten Anfragewegen.',
+        outcome:
+          'Ziel: mehr qualifizierte regionale Anfragen durch klare Leistungen, Vertrauen und sichtbare Kontaktwege.',
+        href: '/branchen/handwerk-website',
+        scenario: [
+          'Besucher erkennen nicht schnell genug, welche Leistungen angeboten werden und für welche Region der Betrieb arbeitet.',
+          'Referenzen, Vertrauenselemente und Kontaktwege sind mobil nicht klar genug priorisiert.',
+        ],
+        focus: [
+          'Klare Leistungsstruktur mit regionalem Bezug',
+          'Vertrauensaufbau über Beispiele, Referenzen und direkte Sprache',
+          'Sichtbarer mobiler CTA-Pfad für Angebots- und Rückrufanfragen',
         ],
       },
     ],
