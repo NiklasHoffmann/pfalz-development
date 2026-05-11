@@ -6,13 +6,13 @@ import {
 export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
   parseLocalizedSeoPageContent({
     de: {
-      title: 'Webdesign Speyer | Pfalz Development',
+      title: 'Website erstellen lassen in Speyer | Webdesign Speyer',
       description:
-        'Webdesign für Unternehmen in Speyer: professioneller Auftritt, mehr Vertrauen und qualifiziertere Anfragen.',
-      h1: 'Webdesign in Speyer für Unternehmen, die online klarer auftreten wollen',
+        'Website erstellen lassen in Speyer: professioneller Auftritt, mehr Vertrauen und qualifiziertere Anfragen.',
+      h1: 'Website erstellen lassen in Speyer für Unternehmen, die online klarer auftreten wollen',
       eyebrow: 'Ortsseite',
       intro:
-        'Speyer ist für viele Unternehmen ein Umfeld, in dem Entscheidungen seltener aus Impuls und häufiger aus Vertrauen, Seriosität und Verlässlichkeit entstehen. Wer hier nach einem Anbieter sucht, will nicht zuerst Lautstärke oder Effekte sehen, sondern einen klaren Eindruck davon bekommen, wie professionell der Betrieb arbeitet. Genau das muss die Website transportieren, bevor überhaupt eine Anfrage gestellt wird.',
+        'Wer in Speyer eine Website erstellen lassen will, braucht vor allem einen Auftritt, der Seriosität, Verlässlichkeit und Professionalität früh sichtbar macht. Speyer ist für viele Unternehmen ein Umfeld, in dem Entscheidungen seltener aus Impuls und häufiger aus Vertrauen entstehen. Genau das muss die Website transportieren, bevor überhaupt eine Anfrage gestellt wird.',
       sections: [
         {
           title:
@@ -68,6 +68,12 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
           question: 'Kann die Seite später um weitere Inhalte ergänzt werden?',
           answer:
             'Ja. Zusätzliche Leistungs-, Branchen- oder Ortsseiten können später sauber ergänzt werden.',
+        },
+        {
+          question:
+            'Kann ich in Speyer eine Website erstellen lassen, die professioneller und vertrauenswürdiger wirkt?',
+          answer:
+            'Ja. Genau darauf ist der Aufbau in Speyer ausgerichtet: klare Struktur, ruhiger professioneller Eindruck und ein nachvollziehbarer Weg zur Kontaktaufnahme.',
         },
       ],
       cta: {

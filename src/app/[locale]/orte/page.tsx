@@ -68,7 +68,7 @@ function getOrteMetaTitle(locale: string): string {
     return 'Lokale Webdesign-Seide fer Neustadt, Landau un Speyer | Pfalz Development';
   }
 
-  return 'Lokale Webdesign-Seiten für Neustadt, Landau und Speyer | Pfalz Development';
+  return 'Website erstellen lassen in Neustadt, Landau und Speyer | Pfalz Development';
 }
 
 function getOrteMetaDescription(locale: string): string {
@@ -80,7 +80,7 @@ function getOrteMetaDescription(locale: string): string {
     return 'Lokale Webdesign-Seide fer Neustadt an de Weischdroß, Landau in de Palz un Speyer mit klarem Regionalbezug un direktem Weg zur Aafrooch.';
   }
 
-  return 'Lokale Webdesign-Seiten für Neustadt an der Weinstraße, Landau in der Pfalz und Speyer mit klarem Regionalbezug und direktem Weg zur Anfrage.';
+  return 'Website erstellen lassen in Neustadt an der Weinstraße, Landau in der Pfalz und Speyer mit klarem Regionalbezug und direktem Weg zur Anfrage.';
 }
 
 function getOrteCopy(locale: string): OrtePageCopy {
@@ -210,9 +210,9 @@ function getOrteCopy(locale: string): OrtePageCopy {
   }
 
   return {
-    title: 'Webdesign für Neustadt, Landau und Speyer',
+    title: 'Website erstellen lassen für Neustadt, Landau und Speyer',
     intro:
-      'Wenn dein Unternehmen in Neustadt an der Weinstraße, Landau in der Pfalz oder Speyer sitzt, findest du hier den passenden lokalen Einstieg für dein Website-Projekt. Welche Seite am besten passt, hängt nicht nur von der Stadt ab, sondern auch davon, wie dein Unternehmen wahrgenommen werden soll.',
+      'Wenn dein Unternehmen in Neustadt an der Weinstraße, Landau in der Pfalz oder Speyer sitzt und du eine Website erstellen lassen willst, findest du hier den passenden lokalen Einstieg. Welche Seite am besten passt, hängt nicht nur von der Stadt ab, sondern auch davon, wie dein Unternehmen wahrgenommen werden soll.',
     highlight:
       'Wähle die Seite, die am besten zu deinem regionalen Geschäftsumfeld passt, und nutze sie als direkten Einstieg zu mehr Klarheit, Vertrauen und passenden Anfragen.',
     navTitle: 'Orte',
@@ -236,27 +236,27 @@ function getOrteCopy(locale: string): OrtePageCopy {
     cards: [
       {
         badge: 'Ort',
-        title: 'Webdesign Neustadt an der Weinstraße',
+        title: 'Website erstellen lassen in Neustadt an der Weinstraße',
         description:
-          'Für Unternehmen rund um Neustadt und die Weinstraße, die regional mehr Vertrauen und eine klarere Positionierung brauchen.',
+          'Für Unternehmen rund um Neustadt und die Weinstraße, die eine Website mit stärkerem Regionalbezug und mehr Vertrauen erstellen lassen möchten.',
         outcome:
           'Fokus: gastgebernahe Zielgruppen, regionale Relevanz und ein stärkerer vertrauensbasierter Ersteindruck.',
         href: '/orte/webdesign-neustadt',
       },
       {
         badge: 'Ort',
-        title: 'Webdesign Landau in der Pfalz',
+        title: 'Website erstellen lassen in Landau in der Pfalz',
         description:
-          'Für Unternehmen in Landau, die moderner auftreten und mobil schneller verstanden werden möchten.',
+          'Für Unternehmen in Landau, die eine Website mit modernerem Auftritt und stärkerer mobiler Wirkung erstellen lassen möchten.',
         outcome:
           'Fokus: Handel, Gastronomie, Services und ein schnellerer, zeitgemäßer erster Eindruck.',
         href: '/orte/webdesign-landau',
       },
       {
         badge: 'Ort',
-        title: 'Webdesign Speyer',
+        title: 'Website erstellen lassen in Speyer',
         description:
-          'Für Unternehmen in Speyer, die professioneller, vertrauenswürdiger und klarer online wirken möchten.',
+          'Für Unternehmen in Speyer, die eine Website mit professionellerem Auftritt und mehr Vertrauen erstellen lassen möchten.',
         outcome:
           'Fokus: Glaubwürdigkeit, Klarheit und ein vertrauensvollerer Weg zur Kontaktaufnahme.',
         href: '/orte/webdesign-speyer',

@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   keywords: [
     'Webdesign Pfalz',
     'Website erstellen lassen Pfalz',
+    'Website erstellen lassen Neustadt an der Weinstraße',
+    'Website erstellen lassen Landau in der Pfalz',
+    'Website erstellen lassen Speyer',
     'Webentwickler Neustadt an der Weinstraße',
     'Webdesign Landau',
     'Website für Ferienwohnung',

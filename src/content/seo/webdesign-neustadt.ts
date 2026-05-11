@@ -6,13 +6,14 @@ import {
 export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
   parseLocalizedSeoPageContent({
     de: {
-      title: 'Webdesign Neustadt an der Weinstraße | Pfalz Development',
+      title:
+        'Website erstellen lassen in Neustadt an der Weinstraße | Webdesign Neustadt',
       description:
-        'Webdesign für Unternehmen in Neustadt an der Weinstraße: regional passender Auftritt für mehr Vertrauen und passende Anfragen aus Neustadt und dem Umland.',
-      h1: 'Webdesign in Neustadt an der Weinstraße für Unternehmen mit klarem Angebotsfokus',
+        'Website erstellen lassen in Neustadt an der Weinstraße: regional passender Auftritt für mehr Vertrauen und passende Anfragen aus Neustadt und dem Umland.',
+      h1: 'Website erstellen lassen in Neustadt an der Weinstraße für Unternehmen mit klarem Angebotsfokus',
       eyebrow: 'Ortsseite',
       intro:
-        'Neustadt an der Weinstraße verbindet lokale Stammkundschaft, touristische Nachfrage und viele Angebote, die stark über Atmosphäre und persönlichen Eindruck funktionieren. Genau deshalb muss eine Website hier mehr können als nur informieren: Sie sollte sofort zeigen, wofür dein Betrieb steht, ob er zur Region passt und wie aus Interesse ohne Umwege eine Anfrage oder Buchung wird.',
+        'Wer in Neustadt an der Weinstraße eine Website erstellen lassen will, braucht mehr als eine hübsche Startseite. Gerade hier muss der Auftritt regionale Passung, Vertrauen und den Weg zur Anfrage schnell sichtbar machen. Neustadt an der Weinstraße verbindet lokale Stammkundschaft, touristische Nachfrage und viele Angebote, die stark über Atmosphäre und persönlichen Eindruck funktionieren.',
 
       sections: [
         {
@@ -77,6 +78,12 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
           question: 'Hilft die Website auch bei lokaler Auffindbarkeit?',
           answer:
             'Ja. Saubere technische Basis, klare Inhalte und lokale Signale schaffen die Grundlage dafür, bei regionalen Suchanfragen besser eingeordnet zu werden.',
+        },
+        {
+          question:
+            'Kann ich in Neustadt an der Weinstraße eine Website erstellen lassen, die auch lokal besser gefunden wird?',
+          answer:
+            'Ja. Genau dafür werden Seitenstruktur, regionale Inhalte, interne Verlinkung und die technische Basis so aufgebaut, dass die Website nicht nur gut aussieht, sondern auch lokal besser eingeordnet werden kann.',
         },
       ],
 

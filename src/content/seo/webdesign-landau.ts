@@ -6,13 +6,14 @@ import {
 export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
   parseLocalizedSeoPageContent({
     de: {
-      title: 'Webdesign Landau in der Pfalz | Pfalz Development',
+      title:
+        'Website erstellen lassen in Landau in der Pfalz | Webdesign Landau',
       description:
-        'Webdesign für Unternehmen in Landau in der Pfalz: moderner Auftritt, starke mobile Wirkung und schnellerer Weg zu mehr Anfragen.',
-      h1: 'Webdesign in Landau in der Pfalz für Unternehmen mit klaren Zielen',
+        'Website erstellen lassen in Landau in der Pfalz: moderner Auftritt, starke mobile Wirkung und schnellerer Weg zu mehr Anfragen.',
+      h1: 'Website erstellen lassen in Landau in der Pfalz für Unternehmen mit klaren Zielen',
       eyebrow: 'Ortsseite',
       intro:
-        'Landau ist für viele Unternehmen ein Umfeld, in dem Angebote schnell verglichen, spontan geprüft und oft direkt auf dem Smartphone bewertet werden. Gerade für Handel, Gastronomie, Dienstleistungen und jüngere Marken reicht eine bloße Präsenz deshalb nicht aus. Die Website muss sofort verständlich sein, aktuell wirken und den Weg zur Kontaktaufnahme oder Entscheidung spürbar verkürzen.',
+        'Wer in Landau in der Pfalz eine Website erstellen lassen will, muss vor allem schnell verständlich und mobil überzeugend auftreten. Landau ist für viele Unternehmen ein Umfeld, in dem Angebote schnell verglichen, spontan geprüft und oft direkt auf dem Smartphone bewertet werden. Gerade für Handel, Gastronomie, Dienstleistungen und jüngere Marken reicht eine bloße Präsenz deshalb nicht aus.',
       sections: [
         {
           title:
@@ -68,6 +69,12 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
           question: 'Lässt sich die Website später weiter ausbauen?',
           answer:
             'Ja. Zusätzliche Leistungs-, Branchen- oder Ortsseiten können später sauber ergänzt werden.',
+        },
+        {
+          question:
+            'Kann ich in Landau in der Pfalz eine Website erstellen lassen, die mobil besser funktioniert?',
+          answer:
+            'Ja. Gerade für Landau wird der Aufbau so geplant, dass Inhalte, Kontaktwege und Nutzerführung auf dem Smartphone schnell erfassbar sind und direkte Anfragen leichter entstehen.',
         },
       ],
       cta: {
