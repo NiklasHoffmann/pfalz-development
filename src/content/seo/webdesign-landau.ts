@@ -8,7 +8,7 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
     de: {
       title: 'Webdesign Landau in der Pfalz | Pfalz Development',
       description:
-        'Webdesign für Unternehmen in Landau in der Pfalz: moderne Website, klare Positionierung und ein sauberer Weg zu mehr passenden Anfragen.',
+        'Webdesign für Unternehmen in Landau in der Pfalz: moderner Auftritt, starke mobile Wirkung und schnellerer Weg zu mehr Anfragen.',
       h1: 'Webdesign in Landau in der Pfalz für Unternehmen mit klaren Zielen',
       eyebrow: 'Ortsseite',
       intro:
@@ -91,7 +91,7 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
     en: {
       title: 'Web Design Landau in der Pfalz | Pfalz Development',
       description:
-        'Web design for businesses in Landau in der Pfalz: clear positioning, strong local relevance, and a website built to generate better inquiries.',
+        'Web design for businesses in Landau in der Pfalz: a modern presence, stronger mobile impact, and a faster path to better inquiries.',
       h1: 'Web design in Landau in der Pfalz for businesses with clear goals',
       eyebrow: 'Location Page',
       intro:
@@ -174,7 +174,7 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Webdesign Landau in de Palz | Pfalz Development',
       description:
-        'Webdesign fer Betriewe in Landau in de Palz: klare Positionierung, regionale Relevanz un en Website mit besserem Weg zur Aafrooch.',
+        'Webdesign fer Betriewe in Landau in de Palz: moderner Uffedrit, starke mobile Wirkung un en schnellerer Weg zu meh Aafrooche.',
       h1: 'Webdesign in Landau in de Palz fer Betriewe mit klarem Ziel',
       eyebrow: 'Ortsseid',
       intro:

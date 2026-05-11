@@ -81,14 +81,14 @@ function getBranchenMetaTitle(locale: string): string {
 
 function getBranchenMetaDescription(locale: string): string {
   if (locale === 'en') {
-    return 'Industry-specific websites for small businesses, hospitality, trades, wineries, and similar businesses in the Palatinate with clear structure and inquiry-focused setup.';
+    return 'Industry websites for small businesses, trades, restaurants, wineries, and holiday rentals in the Palatinate, clearly structured and built to drive inquiries.';
   }
 
   if (locale === 'pfl') {
-    return 'Branche-Websites fer klanne Betriewe, Gastgeber, Handwerksbetriewe, Winzer un ähnliche Betriewe in de Palz mit klarer Struktur un passendem Aafrooch-Weg.';
+    return 'Branche-Websites fer klanne Betriewe, Handwerk, Gastro, Winzer un Feriewohnunge in de Palz, klar aufgebaut un uff Aafrooche ausgericht.';
   }
 
-  return 'Branchenspezifische Websites für kleine Unternehmen, Ferienwohnungen, Handwerksbetriebe, Winzer und ähnliche Betriebe in der Pfalz mit klarer Struktur und qualifizierten Anfragewegen.';
+  return 'Branchen-Websites für kleine Unternehmen, Handwerk, Gastronomie, Wein und Ferienwohnungen in der Pfalz, klar strukturiert und auf Anfragen ausgerichtet.';
 }
 
 function getBranchenCopy(locale: string): BranchenPageCopy {

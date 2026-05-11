@@ -66,14 +66,14 @@ function localeToSeoTitle(locale: string): string {
 
 function localeToSeoDescription(locale: string): string {
   if (locale === 'en') {
-    return 'Web design for local businesses in the Palatinate with clear positioning, local SEO foundations, fixed packages, and direct contact via email, phone, WhatsApp, or form.';
+    return 'Web design and web development for businesses in the Palatinate: clear positioning, fast websites, and a direct path to better inquiries.';
   }
 
   if (locale === 'pfl') {
-    return 'Webdesign fer Betriewe in de Palz mit klare Positionierung, lokale SEO-Grundlage, feste Pakede un direktem Kontakt per Mail, Telefon, WhatsApp odder Formular.';
+    return 'Webdesign un Webentwicklung fer Betriewe in de Palz: klare Positionierung, schnelle Websites un en direkder Weg zu bessere Aafrooche.';
   }
 
-  return 'Webdesign und Website-Erstellung für Unternehmen in der Pfalz mit lokalen SEO-Grundlagen, klaren Paketen und direktem Kontakt per E-Mail, Telefon, WhatsApp oder Formular.';
+  return 'Webdesign und Webentwicklung für Unternehmen in der Pfalz: klare Positionierung, schnelle Websites und ein direkter Weg zu mehr Anfragen.';
 }
 
 function localeToIntroductionPortraitAlt(locale: string, name: string): string {

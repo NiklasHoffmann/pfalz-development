@@ -8,7 +8,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
     de: {
       title: 'Webdesign Speyer | Pfalz Development',
       description:
-        'Webdesign für Unternehmen in Speyer: klare Positionierung, moderne Website und ein direkter Weg zu mehr passenden Anfragen.',
+        'Webdesign für Unternehmen in Speyer: professioneller Auftritt, mehr Vertrauen und qualifiziertere Anfragen.',
       h1: 'Webdesign in Speyer für Unternehmen, die online klarer auftreten wollen',
       eyebrow: 'Ortsseite',
       intro:
@@ -91,7 +91,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
     en: {
       title: 'Web Design Speyer | Pfalz Development',
       description:
-        'Web design for businesses in Speyer: clear positioning, a modern website, and a direct path to better qualified inquiries.',
+        'Web design for businesses in Speyer: a more professional presence, stronger trust, and better qualified inquiries.',
       h1: 'Web design in Speyer for businesses that need a clearer online presence',
       eyebrow: 'Location Page',
       intro:
@@ -174,7 +174,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Webdesign Speyer | Pfalz Development',
       description:
-        'Webdesign fer Betriewe in Speyer: klare Positionierung, moderne Website un en direkder Weg zu bessere Aafrooche.',
+        'Webdesign fer Betriewe in Speyer: professioneller Uffedrit, meh Vertraue un qualifiziertere Aafrooche.',
       h1: 'Webdesign in Speyer fer Betriewe, die online klarer wirke wolle',
       eyebrow: 'Ortsseid',
       intro:

@@ -8,7 +8,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
     de: {
       title: 'Webdesign Neustadt an der Weinstraße | Pfalz Development',
       description:
-        'Webdesign für Unternehmen in Neustadt an der Weinstraße: klare Positionierung, schnelle Website und persönliche Zusammenarbeit für mehr passende Anfragen.',
+        'Webdesign für Unternehmen in Neustadt an der Weinstraße: regional passender Auftritt für mehr Vertrauen und passende Anfragen aus Neustadt und dem Umland.',
       h1: 'Webdesign in Neustadt an der Weinstraße für Unternehmen mit klarem Angebotsfokus',
       eyebrow: 'Ortsseite',
       intro:
@@ -105,7 +105,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
     en: {
       title: 'Web Design Neustadt an der Weinstraße | Pfalz Development',
       description:
-        'Web design for businesses in Neustadt an der Weinstraße: clear positioning, strong local trust signals, and websites built to generate qualified inquiries.',
+        'Web design for businesses in Neustadt an der Weinstraße: regionally aligned websites that build trust and generate better inquiries from Neustadt and the surrounding area.',
       h1: 'Web design in Neustadt an der Weinstraße for businesses that need clearer online positioning',
       eyebrow: 'Location Page',
       intro:
@@ -193,7 +193,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Webdesign Neustadt an de Weischdroß | Pfalz Development',
       description:
-        'Webdesign fer Betriewe in Neustadt an de Weischdroß: klare Positionierung, starke Vertrauenssignale un en Website, die lokale Aafrooche erleichtert.',
+        'Webdesign fer Betriewe in Neustadt an de Weischdroß: regional passender Uffedrit fer meh Vertraue un passendi Aafrooche aus Neustadt un em Umland.',
       h1: 'Webdesign in Neustadt an de Weischdroß fer Betriewe mit klarem Angebotsfokus',
       eyebrow: 'Ortsseid',
       intro:

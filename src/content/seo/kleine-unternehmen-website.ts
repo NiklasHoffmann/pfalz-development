@@ -8,7 +8,7 @@ export const kleineUnternehmenWebsiteContentByLocale: LocalizedSeoPageContent =
     de: {
       title: 'Website für kleine Unternehmen in der Pfalz | Pfalz Development',
       description:
-        'Website für kleine Unternehmen in der Pfalz: klarer Auftritt, bessere mobile Nutzung und direkte Anfragen für lokale Betriebe ohne Branchen-Spezialseite.',
+        'Website für kleine Unternehmen in der Pfalz: klarer Auftritt, saubere mobile Nutzung und mehr passende Anfragen für lokale Betriebe.',
       h1: 'Websites für kleine Unternehmen in der Pfalz, die klar wirken und Anfragen fördern',
       eyebrow: 'Branchenlösung',
       intro:
@@ -91,7 +91,7 @@ export const kleineUnternehmenWebsiteContentByLocale: LocalizedSeoPageContent =
       title:
         'Website for Small Businesses in the Palatinate | Pfalz Development',
       description:
-        'Website for small businesses in the Palatinate: clear positioning, stronger mobile usability, and better direct inquiries for local companies.',
+        'Website for small businesses in the Palatinate: clear positioning, smooth mobile usability, and more qualified inquiries for local companies.',
       h1: 'Websites for small businesses in the Palatinate that create clarity and support inquiries',
       eyebrow: 'Industry Solution',
       intro:
@@ -174,7 +174,7 @@ export const kleineUnternehmenWebsiteContentByLocale: LocalizedSeoPageContent =
     pfl: {
       title: 'Website fer klanne Betriewe in de Palz | Pfalz Development',
       description:
-        'Website fer klanne Betriewe in de Palz: klarer Auftritt, bessere Handy-Nutzung un mehr direkte Aafrooche fer lokale Unnernehme.',
+        'Website fer klanne Betriewe in de Palz: klarer Uffedrit, saubere Handy-Nutzung un meh passendi Aafrooche fer lokale Betriewe.',
       h1: 'Websites fer klanne Betriewe in de Palz, die Klarheit schaffe un Aafrooche fördere',
       eyebrow: 'Branche-Lösung',
       intro:
