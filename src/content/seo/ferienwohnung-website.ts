@@ -106,7 +106,7 @@ export const ferienwohnungWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Holiday rental websites in the Palatinate that drive more direct inquiries',
       eyebrow: 'Industry Solution',
       intro:
-        'Many holiday rentals depend heavily on booking platforms for visibility. That can bring reach, but it also reduces margins and limits control. A dedicated website gives you more independence, presents your property professionally, and guides potential guests directly to an inquiry. I implement this setup end to end: clear content, strong trust signals, and a frictionless path to booking requests.',
+        'Many holiday rentals depend heavily on booking platforms for visibility. That can bring reach, but it also reduces margins and limits control. A dedicated website gives you more independence, presents your property professionally, and guides potential guests directly to an inquiry. With clear content, strong trust signals, and a frictionless booking path, more of that interest can turn into direct requests.',
 
       sections: [
         {

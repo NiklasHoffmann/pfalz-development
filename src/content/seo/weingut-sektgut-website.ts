@@ -12,7 +12,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites für Winzer, Weingüter und Sektgüter in der Pfalz',
       eyebrow: 'Branchenlösung',
       intro:
-        'Gerade in der Pfalz entscheidet der digitale Ersteindruck oft darüber, ob aus Interesse ein Besuch, eine Bestellung oder eine Anfrage wird. Eine starke Website zeigt Sortiment, Philosophie und Angebote klar strukturiert und führt Besucher gezielt zum nächsten Schritt. Genau darauf ist diese Branchenlösung ausgerichtet, inklusive kompletter Umsetzung aus einer Hand.',
+        'Gerade in der Pfalz wird ein Weingut oft zuerst online erlebt, noch bevor jemand zur Probe kommt, bestellt oder eine Veranstaltung anfragt. Dann muss die Website sofort zeigen, welche Weine, Termine und Besuchsanlässe relevant sind und wie der Kontakt funktioniert. Wenn Sortiment, Veranstaltungen und Betriebsprofil unklar nebeneinanderstehen, gehen genau diese Anfragen schnell verloren.',
 
       sections: [
         {
@@ -196,7 +196,7 @@ export const weingutSektgutWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites fer Winzer, Woigieder un Sekdgieder in de Palz',
       eyebrow: 'Branche-Lösung',
       intro:
-        'In de Palz entscheidet de erschte digitale Eindruck oft, ob aus Interesse en Besuch, en Bestellung oder en Aafrooch wird. En starke Website zeigt Sortiment, Betriebsgschicht un Agebote klar un führt Besucher gezielt zum neggschde Schritt. Isch iwernehm do die komplette Umsetzung.',
+        'In de Palz wird en Woigud oft erscht online erlebt, noch bevor jemand zur Proob kommt, bestellt oder en Termin aafrocht. Dann muss die Website sofort zeige, welche Weine, Termine un Besuchsanlässe wichtig sinn un wie der Kontakt läuft. Wenn Sortiment, Veranstaltungen un Betriebsprofil unklar nebeneinanderstehe, gehn genau die Aafrooche schnell verlore.',
 
       sections: [
         {

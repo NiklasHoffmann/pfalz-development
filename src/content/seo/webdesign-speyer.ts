@@ -12,7 +12,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
       h1: 'Webdesign in Speyer für Unternehmen, die online klarer auftreten wollen',
       eyebrow: 'Ortsseite',
       intro:
-        'Speyer ist für viele Unternehmen ein Ort, an dem Vertrauen, Seriosität und ein professioneller Gesamteindruck besonders stark wirken. Wenn ein Betrieb hier online geprüft wird, zählt vor allem, ob Angebot, Vertrauen und nächster Schritt schnell verständlich sind. Eine gute Website soll nicht nur modern wirken, sondern Verlässlichkeit ausstrahlen und passende Anfragen erleichtern.',
+        'Speyer ist für viele Unternehmen ein Umfeld, in dem Entscheidungen seltener aus Impuls und häufiger aus Vertrauen, Seriosität und Verlässlichkeit entstehen. Wer hier nach einem Anbieter sucht, will nicht zuerst Lautstärke oder Effekte sehen, sondern einen klaren Eindruck davon bekommen, wie professionell der Betrieb arbeitet. Genau das muss die Website transportieren, bevor überhaupt eine Anfrage gestellt wird.',
       sections: [
         {
           title:
@@ -42,7 +42,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
             'Speyer passt besonders zu Betrieben, bei denen Vertrauen vor der Anfrage entsteht',
           paragraphs: [
             'Viele etablierte Betriebe, beratende Angebote und lokale Dienstleistungen profitieren davon, wenn die Website nicht laut, sondern klar, geordnet und glaubwürdig wirkt.',
-            'Genau dort setzt diese Seite an: Sie verbindet regionalen Bezug mit einem professionellen Außenauftritt und einem nachvollziehbaren Weg zur Kontaktaufnahme.',
+            'Genau dort entsteht der größte Hebel: Ein regional verständlicher Auftritt, kombiniert mit Ruhe, Professionalität und einem klaren Weg zur Kontaktaufnahme, verbessert oft sowohl den ersten Eindruck als auch die Qualität der Anfragen.',
           ],
         },
       ],
@@ -52,7 +52,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
           question:
             'Passt das auch für beratende oder etablierte kleinere Unternehmen in Speyer?',
           answer:
-            'Ja. Gerade beratende oder etablierte kleinere Unternehmen profitieren davon, wenn Angebot, Vertrauen und Kontaktweg online schnell verständlich werden.',
+            'Ja. Gerade in Speyer profitieren beratende und etablierte kleinere Unternehmen davon, wenn der Auftritt ruhig, klar und professionell wirkt, noch bevor der erste Kontakt entsteht.',
         },
         {
           question: 'Kann eine bestehende Website modernisiert werden?',
@@ -71,9 +71,9 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Kostenlose Erstberatung für Speyer anfragen',
+        primaryLabel: 'Professionellen Auftritt für Speyer besprechen',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Webdesign-Leistungsseite ansehen',
+        secondaryLabel: 'Webdesign für vertrauensvolle Anfragen ansehen',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {
@@ -95,7 +95,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
       h1: 'Web design in Speyer for businesses that need a clearer online presence',
       eyebrow: 'Location Page',
       intro:
-        'Speyer is a place where trust, seriousness, and a professional outward presence often matter especially strongly for local businesses. When a business here is checked online, the key question is whether the offer, trust signals, and next step are immediately clear. A strong website should not only look modern, but also feel reliable and well-structured.',
+        'Speyer is a place where decisions are often shaped less by impulse and more by trust, seriousness, and reliability. When a business is checked online here, people want a clear sense of professionalism before they ever reach out. The website therefore has to feel calm, structured, and dependable rather than simply modern.',
       sections: [
         {
           title:
@@ -124,7 +124,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
             'Speyer is a strong fit for businesses where trust shapes the inquiry decision',
           paragraphs: [
             'Many established businesses, advisory offers, and local services benefit when the website feels calm, clear, and credible rather than loud or generic.',
-            'That is exactly where this page fits: it connects regional relevance with a professional outward presence and a clear path toward contact.',
+            'That is often the strongest lever here: combining regional relevance with calm professionalism and a clear path toward contact improves both first impression and inquiry quality.',
           ],
         },
       ],
@@ -134,7 +134,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
           question:
             'Is this suitable for advisory businesses or established smaller businesses in Speyer?',
           answer:
-            'Yes. Advisory businesses and established smaller businesses benefit strongly when their offer, trust signals, and contact path are easy to understand online.',
+            'Yes. In Speyer especially, advisory businesses and established smaller companies benefit when the website feels calm, credible, and professionally structured before the first inquiry happens.',
         },
         {
           question:
@@ -154,9 +154,9 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Request a free consultation for Speyer',
+        primaryLabel: 'Plan a more credible website for Speyer',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'View the main web design page',
+        secondaryLabel: 'See web design for trust-based inquiries',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {
@@ -178,7 +178,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
       h1: 'Webdesign in Speyer fer Betriewe, die online klarer wirke wolle',
       eyebrow: 'Ortsseid',
       intro:
-        'Speyer is fer viele Betriewe en Ort, wo Vertraue, Seriosität un en professioneller Gesamteindruck besonders stark wirke. Wenn en Betrieb do online geprieft wird, zählt vor allem, ob Angebot, Vertraue un neggschder Schritt direkt klar sinn. E starke Website soll net nur modern aussehe, sondern verlässlich wirke un passendi Aafrooche erleichtere.',
+        'Speyer is fer viele Betriewe en Umfeld, in dem Entscheidungen seltener aus em Impuls un öfter aus Vertraue, Seriosität un Verlässlichkeit entstehe. Wer do nach eme Anbieter sucht, will net zuerst Lautstärke oder Effekte sehe, sondern en klare Eindruck davon kriege, wie professionell der Betrieb arbeitet. Genau des muss die Website transportiere, noch bevor überhaupt e Aafrooch gestellt wird.',
       sections: [
         {
           title:
@@ -207,7 +207,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
             'Speyer passt besonders zu Betriebe, bei dene Vertraue vor de Aafrooch entsteht',
           paragraphs: [
             'Viele etablierte Betriewe, beratende Angebote un lokale Dinschdleischdunge profitiere davon, wenn die Website net laut, sondern klar, geordnet un glaubwürdig wirkt.',
-            'Genau do setzt die Seid aa: Sie verbindet regionale Passung mit eme professionellen Uffedrit un eme nachvollziehbare Weg zur Kontaktaufnahme.',
+            'Genau do liegt de größte Hebel: E regional verständlicher Uffedrit, kombiniert mit Ruhe, Professionalität un eme nachvollziehbare Weg zur Kontaktaufnahme, verbessert oft Eindruck un Aafroochqualität gleichzeitig.',
           ],
         },
       ],
@@ -217,7 +217,7 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
           question:
             'Passt des aa fer beratende oder etablierte klannere Betriewe in Speyer?',
           answer:
-            'Ajo. Grad beratende oder etablierte klannere Betriewe profitiere stark, wenn Angebot, Vertraue un Kontaktweg online schnell klar werre.',
+            'Ajo. Grad in Speyer profitiere beratende un etablierte klannere Betriewe davon, wenn der Uffedrit ruhig, klar un professionell wirkt, noch bevor der erschte Kontakt entsteht.',
         },
         {
           question: 'Kann e bestehendi Website modernisiert werre?',
@@ -236,9 +236,9 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Kostenlose Erstberatung fer Speyer aafrooche',
+        primaryLabel: 'Professionelle Uffedrit fer Speyer bespreche',
         primaryHref: '/#kontakt',
-        secondaryLabel: "Webdesign-Leischdung aa'gugge",
+        secondaryLabel: 'Webdesign fer vertrauensvolle Aafrooche aa gugge',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {

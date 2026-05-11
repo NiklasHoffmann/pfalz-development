@@ -12,14 +12,14 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
       h1: 'Webdesign in Landau in der Pfalz für Unternehmen mit klaren Zielen',
       eyebrow: 'Ortsseite',
       intro:
-        'Landau ist für viele Unternehmen ein lebendiges Umfeld aus Handel, Gastronomie, Dienstleistungen und einer jüngeren, mobilen Zielgruppe. Eine Website muss hier heute mehr leisten als nur präsent zu sein. Sie sollte in wenigen Sekunden klar machen, was dein Angebot ist, warum es relevant ist und wie eine Anfrage einfach möglich wird.',
+        'Landau ist für viele Unternehmen ein Umfeld, in dem Angebote schnell verglichen, spontan geprüft und oft direkt auf dem Smartphone bewertet werden. Gerade für Handel, Gastronomie, Dienstleistungen und jüngere Marken reicht eine bloße Präsenz deshalb nicht aus. Die Website muss sofort verständlich sein, aktuell wirken und den Weg zur Kontaktaufnahme oder Entscheidung spürbar verkürzen.',
       sections: [
         {
           title:
             'Warum in Landau der erste Eindruck besonders schnell entschieden wird',
           paragraphs: [
             'Viele Unternehmen wirken online austauschbar, obwohl ihr Angebot im Alltag sehr unterschiedlich ist. Wer in Landau nach einem passenden Anbieter sucht, vergleicht oft schnell, mobil und mit wenig Geduld.',
-            'Wenn Angebot, Nutzen und nächster Schritt klarer dargestellt sind als bei vergleichbaren Auftritten, steigt die Wahrscheinlichkeit für eine direkte Kontaktaufnahme deutlich.',
+            'Wenn Angebot, Nutzen und nächster Schritt klarer dargestellt sind als bei vergleichbaren Auftritten, steigt die Wahrscheinlichkeit für eine direkte Kontaktaufnahme deutlich. In genau diesem schnelleren Auswahlverhalten liegt in Landau oft der entscheidende Hebel.',
           ],
         },
         {
@@ -52,7 +52,7 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
           question:
             'Passt das auch für Gastronomie, Handel oder kleinere Dienstleister in Landau?',
           answer:
-            'Ja. Gerade Gastronomie, Handel und kleinere Dienstleister profitieren davon, wenn Angebot, Vertrauen und Kontaktweg online schnell verständlich werden.',
+            'Ja. Gerade in Landau profitieren Gastronomie, Handel und kleinere Dienstleister davon, wenn Angebot, nächster Schritt und mobile Nutzbarkeit sofort sitzen und keine Zeit verloren geht.',
         },
         {
           question: 'Kann eine bestehende Website überarbeitet werden?',
@@ -71,9 +71,9 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Kostenlose Erstberatung für Landau anfragen',
+        primaryLabel: 'Modernen Auftritt für Landau anfragen',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Webdesign-Leistungsseite ansehen',
+        secondaryLabel: 'Webdesign für schnelle Anfragen ansehen',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {
@@ -95,14 +95,14 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
       h1: 'Web design in Landau in der Pfalz for businesses with clear goals',
       eyebrow: 'Location Page',
       intro:
-        'Landau is a lively environment for retail, hospitality, services, and businesses that often speak to a younger, mobile-first audience. A website here should do more than simply exist. It needs to communicate the offer quickly, build trust, and make the next step obvious.',
+        'Landau is an environment where offers are often compared quickly, checked spontaneously, and judged on mobile first. For retail, hospitality, services, and younger local brands, simply being online is not enough. The website has to feel current, communicate the offer immediately, and shorten the path toward action.',
       sections: [
         {
           title:
             'Why first impressions are decided especially quickly in Landau',
           paragraphs: [
             'Many businesses look interchangeable online even when their actual offers are very different. In Landau, visitors often compare quickly, on mobile devices, and with little patience.',
-            'If your website explains the offer, benefit, and next step more clearly than competing pages, the chance of direct contact usually increases significantly.',
+            'If your website explains the offer, benefit, and next step more clearly than competing pages, the chance of direct contact usually increases significantly. That faster comparison behavior is often the real conversion factor in Landau.',
           ],
         },
         {
@@ -135,7 +135,7 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
           question:
             'Is this suitable for hospitality, retail, or smaller service businesses in Landau?',
           answer:
-            'Yes. Hospitality, retail, and smaller service businesses benefit strongly when their offer, trust signals, and contact path are easy to understand online.',
+            'Yes. In Landau especially, hospitality, retail, and smaller service businesses benefit when the offer, next step, and mobile experience are immediately clear and easy to act on.',
         },
         {
           question: 'Can an existing website be improved instead of replaced?',
@@ -154,9 +154,9 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Request a free consultation for Landau',
+        primaryLabel: 'Plan a stronger website for Landau',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'View the main web design page',
+        secondaryLabel: 'See web design for faster inquiries',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {
@@ -178,14 +178,14 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
       h1: 'Webdesign in Landau in de Palz fer Betriewe mit klarem Ziel',
       eyebrow: 'Ortsseid',
       intro:
-        'Landau is fer viele Betriewe en lebendigs Umfeld aus Handel, Gastro, Dinschdleischdung un ere jüngere, mobile Zielgruppe. E Website muss do heit mehr könne als nur do sei. Sie soll schnell zeige, was du anbietsch, warum des relevant is un wie mer direkt mit dir Kontakt uffnimmt.',
+        'Landau is fer viele Betriewe en Umfeld, in dem Angebote schnell vergliche, spontan geprüft un oft direkt uff em Handy bewertet werre. Grad fer Handel, Gastro, Dinschdleischdung un jüngere lokale Marke langt bloß präsent sei do net. Die Website muss sofort verständlich sei, aktuell wirke un de Weg zur Kontaktaufnahme oder Entscheidung spürbar verkürze.',
       sections: [
         {
           title:
             'Warum in Landau de erschte Eindruck besonders schnell entschieden wird',
           paragraphs: [
             'Viele Betriewe wirke online austauschbar, obwohl ihr Angebot in Wirklichkeit ganz unterschiedlich is. In Landau vergleiche Besucher oft schnell, mobil un mit wenig Geduld.',
-            'Wenn Angebot, Nutzen un nächschder Schritt klarer sind als bei vergleischbare Seite, steigt die Chance uff direkte Kontaktaufnahme spürbar.',
+            'Wenn Angebot, Nutzen un nächschder Schritt klarer sind als bei vergleischbare Seite, steigt die Chance uff direkte Kontaktaufnahme spürbar. Genau in dem schnellere Auswahlverhalte liegt in Landau oft der größte Hebel.',
           ],
         },
         {
@@ -216,7 +216,7 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
           question:
             'Passt des aa fer Gastro, Handel oder klannere Dinschdleischder in Landau?',
           answer:
-            'Ajo. Grad Gastro, Handel un klannere Dinschdleischder profitiere stark, wenn Angebot, Vertraue un Kontaktweg online schnell klar werre.',
+            'Ajo. Grad in Landau profitiere Gastro, Handel un klannere Dinschdleischder davon, wenn Angebot, nächschder Schritt un Handy-Nutzung sofort passe un kei Zeit verloren geht.',
         },
         {
           question: 'Kann e bestehendi Website verbessert werre?',
@@ -235,9 +235,9 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Kostenlose Erstberatung fer Landau aafrooche',
+        primaryLabel: 'Moderner Uffedrit fer Landau aafrooche',
         primaryHref: '/#kontakt',
-        secondaryLabel: "Webdesign-Leischdung aa'gugge",
+        secondaryLabel: 'Webdesign fer schnellere Aafrooche aa gugge',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {

@@ -12,7 +12,7 @@ export const websiteChecklisteLokaleBetriebeContentByLocale: LocalizedSeoPageCon
       h1: 'Website-Checkliste für lokale Betriebe in der Pfalz',
       eyebrow: 'Ratgeber',
       intro:
-        'Viele lokale Betriebe haben bereits eine Website, aber oft fehlen genau die Punkte, die im Alltag über Vertrauen, Anfragen und Sichtbarkeit entscheiden. Diese Checkliste fasst die wichtigsten Bausteine zusammen, damit schnell erkennbar wird, wo die eigene Seite bereits stark ist und wo sie Interessenten unnötig verliert.',
+        'Viele lokale Betriebe haben bereits eine Website, aber zu oft scheitert es an den einfachen Dingen: Das Angebot ist unklar, der Kontaktweg versteckt oder die mobile Nutzung unnötig holprig. Genau diese Punkte entscheiden im Alltag darüber, ob ein Besucher anfragt oder abspringt. Mit dieser Checkliste lässt sich schnell prüfen, wo die eigene Seite schon trägt und wo sie noch sichtbar Potenzial verschenkt.',
       sections: [
         {
           title: '1. Ist sofort klar, was dein Betrieb anbietet?',
@@ -96,7 +96,7 @@ export const websiteChecklisteLokaleBetriebeContentByLocale: LocalizedSeoPageCon
       h1: 'Website checklist for local businesses in the Palatinate',
       eyebrow: 'Guide',
       intro:
-        'Many local businesses already have a website, but often miss the exact elements that influence trust, inquiries, and visibility in day-to-day business. This checklist highlights the main building blocks so you can quickly see where your website already performs well and where it still loses potential customers.',
+        'Many local businesses already have a website, but the practical basics are often missing: the offer is unclear, contact paths are hidden, or mobile usage creates friction. Those are exactly the issues that decide whether a visitor reaches out or leaves. This checklist helps you review where your website already works well and where it still loses real business opportunities.',
       sections: [
         {
           title: '1. Is it immediately clear what your business offers?',
@@ -179,7 +179,7 @@ export const websiteChecklisteLokaleBetriebeContentByLocale: LocalizedSeoPageCon
       h1: 'Website-Checklischd fer lokale Betriewe in de Palz',
       eyebrow: 'Rodsgeber',
       intro:
-        'Viel lokale Betriewe hawwe schon e Website, awer oft fehle genau die Punkte, die im Alltag über Vertrauen, Aafrooche un Sichtbarkeit entscheide. Die Checklischd zeigt die wichtigschde Bausteine, damit schnell klar wird, wo die eigne Seit schon gut is un wo sie noch Interessente verliert.',
+        'Viel lokale Betriewe hawwe schon e Website, awer oft fehle genau die praktische Grundlage: Das Angebot is unklar, der Kontaktweg versteckt oder die Handy-Nutzung unnötig holprig. Genau des entscheidet im Alltag, ob en Besucher aafrocht oder abspringt. Mit der Checklischd kannsch schnell prüfe, wo die eigne Seit schon gut funktioniert un wo noch sichtbar Potenzial verschenkt wird.',
       sections: [
         {
           title: '1. Is sofort klar, was dei Betrieb anbietet?',

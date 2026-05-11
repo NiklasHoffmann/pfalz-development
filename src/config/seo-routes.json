@@ -66,6 +66,12 @@
     "priority": 0.7
   },
   {
+    "path": "/branchen/kleine-unternehmen-website",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
     "path": "/branchen/restaurant-website",
     "lastModified": "2026-04-12T00:00:00.000Z",
     "changeFrequency": "weekly",
@@ -162,6 +168,12 @@
     "priority": 0.7
   },
   {
+    "path": "/en/branchen/kleine-unternehmen-website",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
     "path": "/en/branchen/restaurant-website",
     "lastModified": "2026-04-12T00:00:00.000Z",
     "changeFrequency": "weekly",
@@ -253,6 +265,12 @@
   },
   {
     "path": "/pfl/branchen/handwerk-website",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "path": "/pfl/branchen/kleine-unternehmen-website",
     "lastModified": "2026-05-11T00:00:00.000Z",
     "changeFrequency": "weekly",
     "priority": 0.7

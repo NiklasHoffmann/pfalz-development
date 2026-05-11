@@ -215,6 +215,15 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
         description:
           'For trades businesses that need clear service pages, stronger local trust, and a direct path to regional inquiries.',
       },
+      {
+        label: 'Website for Small Businesses',
+        href: withLocaleBasePath(
+          basePath,
+          '/branchen/kleine-unternehmen-website'
+        ),
+        description:
+          'For smaller local businesses that need a clear, flexible website without fitting into a narrow industry page.',
+      },
     ];
   }
 
@@ -244,6 +253,15 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
         description:
           'Fer Handwerksbetriewe mit klare Leischdunge, regionalem Vertrauen un direktem Weg zu passendi Aafrooche.',
       },
+      {
+        label: 'Website fer klanne Betriewe',
+        href: withLocaleBasePath(
+          basePath,
+          '/branchen/kleine-unternehmen-website'
+        ),
+        description:
+          'Fer klannere lokale Betriewe, die en klare un flexible Website ohne en enge Branche-Schublad brauche.',
+      },
     ];
   }
 
@@ -271,6 +289,15 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
       href: withLocaleBasePath(basePath, '/branchen/handwerk-website'),
       description:
         'Für Handwerksbetriebe mit Fokus auf klare Leistungen, regionale Sichtbarkeit und direkte Anfragen über die eigene Website.',
+    },
+    {
+      label: 'Website für kleine Unternehmen',
+      href: withLocaleBasePath(
+        basePath,
+        '/branchen/kleine-unternehmen-website'
+      ),
+      description:
+        'Für kleinere lokale Unternehmen, die einen klaren und professionellen Auftritt ohne branchenspezifische Spezialseite brauchen.',
     },
   ];
 }

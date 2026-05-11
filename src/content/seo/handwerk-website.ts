@@ -12,7 +12,7 @@ export const handwerkWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites für Handwerksbetriebe in der Pfalz, die Vertrauen schaffen und Anfragen fördern',
       eyebrow: 'Branchenlösung',
       intro:
-        'Bei Handwerksbetrieben zählt oft der erste Eindruck: In wenigen Sekunden muss klar sein, welche Leistungen angeboten werden, wo der Betrieb arbeitet und wie eine Anfrage gestellt werden kann. Wenn Referenzen, Kontaktwege und Angebotsklarheit fehlen, gehen passende Aufträge verloren. Diese Branchenlösung ist genau darauf aufgebaut: klar, regional und direkt auf echte Anfragen ausgerichtet.',
+        'Bei Handwerksbetrieben entscheidet die Website oft schon vor dem ersten Telefonat, ob ein Auftrag zustande kommt. Wer nach Maler, Sanitär, Elektrik, Montage oder Reparatur sucht, will sofort erkennen, welche Leistungen angeboten werden, in welcher Region gearbeitet wird und wie schnell Kontakt möglich ist. Wenn genau diese Punkte fehlen, gehen passende Anfragen an den nächsten Betrieb.',
       sections: [
         {
           title: 'Was eine gute Handwerker-Website heute leisten muss',
@@ -35,7 +35,7 @@ export const handwerkWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Typische Schwächen auf bestehenden Handwerksseiten',
           paragraphs: [
             'Oft sind Leistungen zu allgemein beschrieben, Kontaktmöglichkeiten versteckt oder der regionale Bezug bleibt unklar. Auf Mobilgeräten entsteht dann unnötige Reibung genau in dem Moment, in dem jemand schnell Hilfe oder ein Angebot sucht.',
-            'Dazu kommen veraltete Inhalte, fehlende Vertrauenselemente und unklare Call-to-Actions. Das schwächt die Seite sowohl für Besucher als auch für Suchmaschinen.',
+            'Dazu kommen veraltete Inhalte, fehlende Referenzen, unsichtbare Notfall- oder Rückrufmöglichkeiten und unklare Call-to-Actions. Das schwächt die Seite sowohl für Besucher als auch für Suchmaschinen.',
             'Ein fokussierter Neuaufbau beseitigt diese Stolperstellen und macht aus der Website ein klares Werkzeug für regionale Sichtbarkeit und direkte Kontaktaufnahme.',
           ],
         },
@@ -100,7 +100,7 @@ export const handwerkWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites for trades businesses in the Palatinate that build trust and improve inquiries',
       eyebrow: 'Industry Solution',
       intro:
-        'For trades businesses, first impressions matter fast. Visitors need to understand services, region, and contact options within seconds. If trust signals, references, and clear contact paths are missing, valuable local inquiries are lost. This page is built to solve exactly that.',
+        'For trades businesses, first impressions matter fast. Visitors need to understand services, region, and contact options within seconds. If trust signals, references, and clear contact paths are missing, valuable local inquiries are lost. A focused website solves that by making services, credibility, and the next step immediately clear.',
       sections: [
         {
           title: 'What a strong trades website must deliver today',
@@ -183,7 +183,7 @@ export const handwerkWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites fer Handwerksbetriewe in de Palz, die Vertrauen schaffe un Aafrooche foerdere',
       eyebrow: 'Branche-Lösung',
       intro:
-        'Bei Handwerksbetriewe zählt oft de erschte Eindruck: In paar Sekunne muss klar sei, was gemacht wird, wo der Betrieb arbeitet un wie mer aafrooche kann. Wenn Referenze, Kontaktweg un klare Leistungen fehle, gehn passende Uffträge verlore. Genau do setzt die Branche-Lösung aa.',
+        'Bei Handwerksbetriewe entscheidet die Website oft schon vor em erschte Telefonat, ob en Ufftrag zustand kommt. Wer no Maler, Sanitär, Elektrik, Montage oder Reparatur sucht, will sofort sehe, was gemacht wird, in welcher Region geschafft wird un wie schnell mer Kontakt uffnehme kann. Wenn genau des fehlt, gehn passendi Aafrooche schnell an de nächste Betrieb.',
       sections: [
         {
           title: 'Was e guude Handwerker-Website heit leischde muss',
@@ -205,7 +205,7 @@ export const handwerkWebsiteContentByLocale: LocalizedSeoPageContent =
           title: 'Typische Schwäche uff bestehende Handwerksseite',
           paragraphs: [
             'Oft sinn Leistungen zu allgemein, Kontaktmöglichkeiten versteckt oder der regionale Bezug bleibt unklar. Mobil sorgt des schnell fer unnötige Reibung.',
-            'Veraltete Inhalte, fehlendes Vertrauen un unklare CTA schwäche die Seid fer Besucher un Google zugleich.',
+            'Veraltete Inhalte, fehlende Referenze, unsichtbare Rieggrooff- oder Notfall-Möglichkeiten un unklare CTA schwäche die Seid fer Besucher un Google zugleich.',
             'En klarer Neuaufbau macht aus de Website wieder en brauchbares Werkzeug fer regionale Sichtbarkeit un Aafrooche.',
           ],
         },

@@ -12,7 +12,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites für Restaurants in der Pfalz, die Anfragen fördern',
       eyebrow: 'Branchenlösung',
       intro:
-        'Bei Restaurants entscheidet oft in wenigen Sekunden, ob ein Besucher bleibt oder abspringt. Wenn Speisekarte, Öffnungszeiten, Kontakt und Reservierung nicht sofort auffindbar sind, geht Potenzial verloren. Diese Branchenlösung ist darauf ausgelegt, Gäste klar zu führen und Anfragen planbar zu steigern. Ich übernehme die Umsetzung so, dass die Seite im Tagesgeschäft wirklich arbeitet.',
+        'Bei Restaurants wird die Website oft genau dann geprüft, wenn jemand schnell entscheiden will: heute Abend essen gehen, einen Tisch reservieren oder Öffnungszeiten checken. Wenn Speisekarte, Zeiten, Lage oder Reservierungsweg nicht sofort klar sind, springt der Gast meist ab statt weiterzusuchen. Eine starke Restaurant-Website nimmt diese Reibung raus und macht aus spontanen Besuchen eher echte Reservierungen oder Anfragen.',
 
       sections: [
         {
@@ -107,7 +107,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Restaurant websites in the Palatinate that increase inquiries',
       eyebrow: 'Industry Solution',
       intro:
-        'For restaurants, visitors decide in seconds whether they stay or leave. If menu, opening hours, contact, and reservation options are not instantly clear, opportunities are lost. I implement this setup so guests are guided clearly and direct inquiries improve measurably.',
+        'For restaurants, visitors decide in seconds whether they stay or leave. If menu, opening hours, contact, and reservation options are not instantly clear, opportunities are lost. A strong restaurant website guides guests clearly, reduces friction, and turns more visits into reservations or direct inquiries.',
 
       sections: [
         {
@@ -192,7 +192,7 @@ export const restaurantWebsiteContentByLocale: LocalizedSeoPageContent =
       h1: 'Websites fer Restaurants in de Palz, die Aafrooche foerdere',
       eyebrow: 'Branche-Lösung',
       intro:
-        'Im Restaurant entscheidet oft in paar Sekunne, ob en Besucher bleibt oder geht. Wenn Speisekard, Öffnungszeiten, Kontakt un Reservierung net sofort zu finne sinn, geht Potenzial verlore. Die Lösung führt Geste klar un macht direkte Aafrooche planbarer, un isch setz des komplett um.',
+        'Bei Restaurants wird die Website oft genau dann uffgemacht, wenn jemand schnell entscheide will: heit Owend esse gehe, en Tisch reserviere oder die Öffnungszeiten prüfe. Wenn Speisekard, Zeite, Lage oder Reservierungsweg net sofort klar sinn, springt der Gast meist ab. En starke Restaurant-Seid nimmt genau die Reibung raus un macht aus spontane Besuche eher echte Reservierunge oder Aafrooche.',
 
       sections: [
         {

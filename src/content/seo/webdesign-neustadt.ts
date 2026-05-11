@@ -12,7 +12,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       h1: 'Webdesign in Neustadt an der Weinstraße für Unternehmen mit klarem Angebotsfokus',
       eyebrow: 'Ortsseite',
       intro:
-        'Neustadt an der Weinstraße ist für viele Unternehmen ein Umfeld aus regionaler Sichtbarkeit, Tourismus, Gastgebertum und persönlichem Vertrauen. Wenn jemand hier nach einem Betrieb oder Dienstleister sucht, entscheidet oft die Website, ob aus Interesse auch eine Anfrage wird. Sie muss schnell zeigen, was du anbietest, warum es zu deinem Unternehmen passt und wie der nächste Schritt aussieht.',
+        'Neustadt an der Weinstraße verbindet lokale Stammkundschaft, touristische Nachfrage und viele Angebote, die stark über Atmosphäre und persönlichen Eindruck funktionieren. Genau deshalb muss eine Website hier mehr können als nur informieren: Sie sollte sofort zeigen, wofür dein Betrieb steht, ob er zur Region passt und wie aus Interesse ohne Umwege eine Anfrage oder Buchung wird.',
 
       sections: [
         {
@@ -20,7 +20,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
             'Warum in Neustadt Vertrauen und regionale Passung besonders zählen',
           paragraphs: [
             'Viele kleinere Unternehmen, Gastgeber und regionale Dienstleister werden heute zuerst online geprüft, noch bevor ein Anruf oder eine Anfrage kommt. Wenn Angebot, Nutzen und Kontaktweg nicht sofort verständlich sind, geht Aufmerksamkeit schnell verloren.',
-            'Gerade im Umfeld der Weinstraße ist der Wettbewerb oft nicht riesig, aber sehr vergleichbar. Wer online klarer wirkt, verständlicher kommuniziert und professioneller auftritt, hat im Alltag einen direkten Vorteil.',
+            'Gerade im Umfeld der Weinstraße ist der Wettbewerb oft nicht riesig, aber sehr vergleichbar. Wer online klarer wirkt, regionale Nähe glaubwürdig transportiert und Gäste oder Interessenten schneller abholt, hat im Alltag einen direkten Vorteil.',
           ],
         },
         {
@@ -60,7 +60,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
           question:
             'Passt das auch für kleinere Betriebe, Gastgeber oder Weinbetriebe?',
           answer:
-            'Ja. Gerade kleinere Unternehmen, Gastgeber oder Weinbetriebe profitieren stark von einer klaren Website, weil Angebot, Vertrauen und Kontaktweg oft in wenigen Sekunden entschieden werden.',
+            'Ja. Gerade in Neustadt profitieren Gastgeber, Weinbetriebe und kleinere Unternehmen davon, wenn Region, Atmosphäre und Kontaktweg online sofort zusammenpassen und verständlich werden.',
         },
         {
           question: 'Übernimmst du auch Texte und Struktur?',
@@ -81,9 +81,9 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       ],
 
       cta: {
-        primaryLabel: 'Kostenlose Erstberatung für Neustadt anfragen',
+        primaryLabel: 'Website für Neustadt unverbindlich besprechen',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Webdesign-Leistungsseite ansehen',
+        secondaryLabel: 'Webdesign für regionale Betriebe ansehen',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
 
@@ -109,14 +109,14 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       h1: 'Web design in Neustadt an der Weinstraße for businesses that need clearer online positioning',
       eyebrow: 'Location Page',
       intro:
-        'Neustadt an der Weinstraße combines regional visibility, tourism, hospitality, and strong personal trust signals. When someone looks for a local provider here, the website often decides whether they reach out or move on. It has to communicate the offer quickly, build trust, and make the next step obvious.',
+        'Neustadt an der Weinstraße combines local customer demand, tourism, and businesses that depend heavily on personal impression. That means a website has to do more than explain the basics. It should quickly show what the business stands for, why it fits the region, and how interest turns into an inquiry or booking without friction.',
 
       sections: [
         {
           title: 'Why trust and regional fit matter especially in Neustadt',
           paragraphs: [
             'Many smaller businesses, hospitality offers, and local service providers are checked online before any phone call or inquiry happens. If the offer, relevance, and contact path are not immediately clear, potential customers leave within seconds.',
-            'In the wider Weinstraße environment, the market is often not extremely large, but many providers look similar at first glance. A clearer and more professional website creates a practical advantage in exactly that situation.',
+            'In the wider Weinstraße environment, the market is often not extremely large, but many providers look similar at first glance. A website that communicates regional fit, atmosphere, and relevance more clearly creates a practical advantage in exactly that situation.',
           ],
         },
         {
@@ -154,7 +154,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
           question:
             'Is this suitable for smaller businesses, hospitality businesses, or wine-related businesses?',
           answer:
-            'Yes. Smaller businesses, hospitality businesses, and wine-related businesses benefit strongly because offer clarity, trust, and contact paths often decide whether an inquiry happens at all.',
+            'Yes. In Neustadt especially, hospitality businesses, wine-related businesses, and smaller local companies benefit when regional fit, atmosphere, and contact flow are immediately clear online.',
         },
         {
           question: 'Do you also help with copy and structure?',
@@ -169,9 +169,9 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       ],
 
       cta: {
-        primaryLabel: 'Request a free consultation for Neustadt',
+        primaryLabel: 'Talk through your Neustadt website',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'View the main web design page',
+        secondaryLabel: 'See web design for local businesses',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
 
@@ -197,7 +197,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       h1: 'Webdesign in Neustadt an de Weischdroß fer Betriewe mit klarem Angebotsfokus',
       eyebrow: 'Ortsseid',
       intro:
-        'Neustadt an de Weischdroß is fer viele Betriewe en Umfeld aus regionaler Sichtbarkeit, Tourismus, Gastgebertum un persönlichem Vertraue. Wenn jemand do nach eme Betrieb oder Dinschdleischder sucht, entscheidet oft die Website, ob sich einer meldet oder weiterklickt. Sie muss schnell zeige, was du anbietsch, warum des passt un wie der neggschde Schritt aussieht.',
+        'Neustadt an de Weischdroß verbindet lokale Stammkundschaft, touristische Nachfrage un viele Angebote, die stark iwwer Atmosphäre un persönlichen Eindruck funktioniere. Genau deshalb muss e Website do mehr könne als bloß informiere: Sie soll sofort zeige, wofür dei Betrieb steht, ob er zur Region passt un wie aus Interesse ohne Umweg e Aafrooch oder Buchung wird.',
 
       sections: [
         {
@@ -205,7 +205,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
             'Warum in Neustadt Vertraue un regionale Passung besonders zähle',
           paragraphs: [
             'Viele lokale Betriewe, Gastgeber un regionale Dinschdleischder werre zuerst online geprüft, bevor überhaupt en Anruf oder e Mail kommt. Wenn Angebot, Nutzen un Kontaktweg net direkt klar sinn, isch die Aufmerksamkeit schnell widder weg.',
-            'Gerade im Umfeld vun de Weischdroß isch die Konkurrenz oft net riesig, awer viele wirke uff de erschte Blick ähnlich. Wer online klarer un professioneller rüberkommt, hot im Alltag en direkte Vorteil.',
+            'Gerade im Umfeld vun de Weischdroß isch die Konkurrenz oft net riesig, awer viele wirke uff de erschte Blick ähnlich. Wer online klarer wirkt, regionale Nähe glaubwürdig rüberbringt un Gäste oder Interessente schneller abholt, hot im Alltag en direkte Vorteil.',
           ],
         },
         {
@@ -243,7 +243,7 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
           question:
             'Passt des aa fer klannere Betriewe, Gastgeber oder Weinbetriebe?',
           answer:
-            'Ajo. Grad klannere Betriewe, Gastgeber oder Weinbetriebe profitiere stark davon, wenn Angebot, Vertraue un Kontaktweg schnell klar sinn.',
+            'Ajo. Grad in Neustadt profitiere Gastgeber, Weinbetriebe un klannere Betriewe davon, wenn Region, Atmosphäre un Kontaktweg online sofort zamme passe un direkt verständlich werre.',
         },
         {
           question: 'Hilfsch du aa bei Text un Struktur?',
@@ -258,9 +258,9 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       ],
 
       cta: {
-        primaryLabel: 'Kostenlose Erstberatung fer Neustadt aafrooche',
+        primaryLabel: 'Website fer Neustadt unverbindlich bespreche',
         primaryHref: '/#kontakt',
-        secondaryLabel: "Webdesign-Leischdung aa'gugge",
+        secondaryLabel: 'Webdesign fer regionale Betriewe aa gugge',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
 

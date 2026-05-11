@@ -69,26 +69,26 @@ function getPrimaryNavigationLabel(locale: string, appName: string): string {
 
 function getBranchenMetaTitle(locale: string): string {
   if (locale === 'en') {
-    return 'Industry Websites for Hospitality, Trades, and Wineries | Pfalz Development';
+    return 'Industry Websites for Small Businesses in the Palatinate | Pfalz Development';
   }
 
   if (locale === 'pfl') {
-    return 'Branche-Websites fer Gastgeber, Handwerk un Winzer | Pfalz Development';
+    return 'Branche-Websites fer klanne Betriewe in de Palz | Pfalz Development';
   }
 
-  return 'Branchen-Websites für Ferienwohnungen, Handwerk und Weingüter | Pfalz Development';
+  return 'Branchen-Websites für kleine Unternehmen in der Pfalz | Pfalz Development';
 }
 
 function getBranchenMetaDescription(locale: string): string {
   if (locale === 'en') {
-    return 'Industry-specific websites for holiday rentals, trades businesses, wineries, and similar businesses in the Palatinate with clear structure, trust signals, and qualified inquiry paths.';
+    return 'Industry-specific websites for small businesses, hospitality, trades, wineries, and similar businesses in the Palatinate with clear structure and inquiry-focused setup.';
   }
 
   if (locale === 'pfl') {
-    return 'Branche-Websites fer Gastgeber, Handwerksbetriewe, Winzer un ähnliche Betriewe in de Palz mit klarer Struktur, Vertrauen un passendem Aafrooch-Weg.';
+    return 'Branche-Websites fer klanne Betriewe, Gastgeber, Handwerksbetriewe, Winzer un ähnliche Betriewe in de Palz mit klarer Struktur un passendem Aafrooch-Weg.';
   }
 
-  return 'Branchenspezifische Websites für Ferienwohnungen, Handwerksbetriebe, Winzer und ähnliche Betriebe in der Pfalz mit klarer Struktur, Vertrauen und qualifizierten Anfragewegen.';
+  return 'Branchenspezifische Websites für kleine Unternehmen, Ferienwohnungen, Handwerksbetriebe, Winzer und ähnliche Betriebe in der Pfalz mit klarer Struktur und qualifizierten Anfragewegen.';
 }
 
 function getBranchenCopy(locale: string): BranchenPageCopy {
@@ -195,6 +195,24 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
             'Clear service structure with strong local relevance',
             'Trust through examples, references, and straightforward language',
             'Direct mobile CTA path for quote and callback inquiries',
+          ],
+        },
+        {
+          badge: 'Small Business',
+          title: 'Small Businesses',
+          description:
+            'For smaller local businesses that need a clear, flexible website without fitting into a narrow industry template.',
+          outcome:
+            'Goal: clearer positioning, better trust, and more qualified inquiries for smaller local companies.',
+          href: '/branchen/kleine-unternehmen-website',
+          scenario: [
+            'The business is too specific for a broad template, but not specific enough for a narrow industry page.',
+            'Visitors do not quickly understand the offer, region, or why they should make contact.',
+          ],
+          focus: [
+            'Clear positioning for local offers and small business realities',
+            'Compact structure with visible trust and contact signals',
+            'Practical mobile setup for direct inquiries without complexity',
           ],
         },
       ],
@@ -311,6 +329,24 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
             'Einfacher Handy-CTA fer Aafrooch oder Rieggrooff',
           ],
         },
+        {
+          badge: 'Klanne Betriewe',
+          title: 'Klanne Betriewe',
+          description:
+            'Fer klannere lokale Betriewe, die e klare un flexible Website brauche, ohne in e enge Branche-Schublad zu passe.',
+          outcome:
+            'Ziel: mehr Klarheit, Vertrauen un passendi Aafrooche fer klannere lokale Unnernehme.',
+          href: '/branchen/kleine-unternehmen-website',
+          scenario: [
+            'Der Betrieb is zu individuell fer e Standard-Vorlage, awer net spitz genug fer e enge Branche-Seid.',
+            'Besucher verstehe Angebot, Region un Kontaktweg net schnell genug.',
+          ],
+          focus: [
+            'Klare Positionierung fer lokale Angebote un kleine Betriebe',
+            'Kompakter Aufbau mit sichtbarem Vertrauen un Kontakt',
+            'Praktische Handy-Nutzung ohne unnötige Komplexität',
+          ],
+        },
       ],
       cta: 'Brancheseid uffmache',
       supportTitle: 'Net sicher, was am beschde passt?',
@@ -422,6 +458,24 @@ function getBranchenCopy(locale: string): BranchenPageCopy {
           'Klare Leistungsstruktur mit regionalem Bezug',
           'Vertrauensaufbau über Beispiele, Referenzen und direkte Sprache',
           'Sichtbarer mobiler CTA-Pfad für Angebots- und Rückrufanfragen',
+        ],
+      },
+      {
+        badge: 'Kleine Unternehmen',
+        title: 'Kleine Unternehmen',
+        description:
+          'Für kleinere lokale Unternehmen, die einen klaren und flexiblen Website-Auftritt ohne enge Branchenschablone brauchen.',
+        outcome:
+          'Ziel: mehr Klarheit, mehr Vertrauen und mehr passende Anfragen für kleinere lokale Betriebe.',
+        href: '/branchen/kleine-unternehmen-website',
+        scenario: [
+          'Der Betrieb passt nicht sauber in eine enge Branchenseite, braucht aber trotzdem einen professionellen Anfrage-Auftritt.',
+          'Besucher verstehen Angebot, Region und Kontaktweg auf der aktuellen Seite nicht schnell genug.',
+        ],
+        focus: [
+          'Klare Positionierung für lokale Angebote und kleine Unternehmen',
+          'Kompakter Seitenaufbau mit sichtbaren Vertrauenssignalen',
+          'Pragmatischer mobiler Anfragepfad ohne unnötige Komplexität',
         ],
       },
     ],
