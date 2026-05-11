@@ -12,37 +12,38 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
       h1: 'Website erstellen lassen in Speyer für Unternehmen, die online klarer auftreten wollen',
       eyebrow: 'Ortsseite',
       intro:
-        'Wer in Speyer eine Website erstellen lassen will, braucht vor allem einen Auftritt, der Seriosität, Verlässlichkeit und Professionalität früh sichtbar macht. Speyer ist für viele Unternehmen ein Umfeld, in dem Entscheidungen seltener aus Impuls und häufiger aus Vertrauen entstehen. Genau das muss die Website transportieren, bevor überhaupt eine Anfrage gestellt wird.',
+        'Wer in Speyer eine Website erstellen lassen will, braucht meist keinen lauten Auftritt, sondern einen, der früh Ruhe, Verlässlichkeit und fachliche Sicherheit ausstrahlt. Viele Entscheidungen entstehen hier nicht aus Impuls, sondern nach einem stillen Vertrauenscheck. Genau deshalb muss die Website schon vor der ersten Kontaktaufnahme zeigen, dass der Betrieb strukturiert arbeitet und professionell einzuordnen ist.',
       sections: [
         {
           title:
-            'Warum in Speyer ein professioneller und vertrauensvoller Auftritt besonders wichtig ist',
+            'Warum Speyer online stärker auf Verlässlichkeit als auf Lautstärke reagiert',
           paragraphs: [
-            'Viele Betriebe haben online zwar eine Präsenz, aber keine klare Führung für Besucher. Dadurch bleibt unklar, was angeboten wird, warum es relevant ist und wie Kontakt aufgenommen werden kann.',
-            'Gerade in Speyer zählt oft, ob ein Unternehmen seriös, strukturiert und vertrauenswürdig wirkt. Wenn dein Auftritt verständlicher und professioneller wirkt als vergleichbare Seiten, verbessert das nicht nur den ersten Eindruck, sondern meist auch die Qualität eingehender Anfragen.',
+            'Viele Betriebe haben online zwar eine Präsenz, aber keine klare Führung für Besucher. Dadurch bleibt unklar, was angeboten wird, wie gearbeitet wird und warum man gerade diesem Anbieter vertrauen sollte.',
+            'In Speyer zählt häufig, ob ein Unternehmen ruhig, strukturiert und glaubwürdig wirkt. Wenn dein Auftritt diese Verlässlichkeit besser transportiert als vergleichbare Seiten, verbessert das nicht nur den ersten Eindruck, sondern oft auch die Qualität der späteren Gespräche.',
           ],
         },
         {
           title:
-            'Was Unternehmen in Speyer von ihrer Website wirklich brauchen',
+            'Welche Inhalte in Speyer vor dem ersten Gespräch Vertrauen schaffen',
           paragraphs: [
-            'Eine Website sollte Leistungen klar zeigen, auf dem Smartphone gut funktionieren und den Weg zur Anfrage ohne unnötige Reibung möglich machen. Dazu gehören verständliche Inhalte, sichtbare Kontaktwege und eine saubere Seitenstruktur.',
-            'Besonders wichtig ist dabei ein Auftritt, der Erfahrung, Stabilität und Professionalität vermittelt. So wird die Website zu einem verlässlichen Werkzeug für neue Anfragen statt nur zu einer statischen Firmenpräsenz.',
+            'Wichtig sind in Speyer nicht nur Leistungen und Kontaktwege, sondern auch Signale von Erfahrung und Ordnung. Besucher wollen oft verstehen, wie ein Betrieb arbeitet, worauf er spezialisiert ist und ob die Zusammenarbeit voraussichtlich seriös und nachvollziehbar läuft.',
+            'Deshalb helfen hier häufig sauber aufgebaute Leistungsseiten, klare Abläufe, sichtbare Ansprechpartner, Referenzen oder vertrauensbildende Details deutlich mehr als ein möglichst auffälliger Auftritt. So entsteht Sicherheit schon vor dem Gespräch.',
           ],
         },
         {
-          title: 'Von der Positionierung bis zur fertigen Umsetzung',
+          title: 'Wie Kompetenz online sichtbar wird, ohne überladen zu wirken',
           paragraphs: [
-            'Am Anfang klären wir, welche Leistungen im Vordergrund stehen, welche Zielgruppe erreicht werden soll und welche Anfragen für dein Unternehmen wirklich relevant sind. Daraus ergibt sich ein klarer Seitenaufbau mit nachvollziehbarer Nutzerführung.',
-            'Danach übernehme ich Konzeption, Design und technische Umsetzung. Das Ergebnis ist eine Website, die professionell auftritt, lokal verständlich bleibt und Besucher systematisch zum Kontakt führt.',
+            'Viele Seiten verlieren Vertrauen nicht durch zu wenig Inhalt, sondern durch schlecht sortierten Inhalt. In Speyer funktioniert deshalb oft besser, Kompetenz klar zu ordnen, statt alles gleichzeitig beweisen zu wollen.',
+            'Am Anfang wird festgelegt, welche Leistungen, Nachweise und Kontaktpunkte wirklich tragen sollen. Daraus entsteht ein Seitenaufbau, der Kompetenz sichtbar macht, ohne die Nutzerführung zu überladen.',
+            'Das Ergebnis ist eine Website, die sachlich stark wirkt und Besucher kontrolliert zum passenden nächsten Schritt führt.',
           ],
         },
         {
           title:
-            'Speyer passt besonders zu Betrieben, bei denen Vertrauen vor der Anfrage entsteht',
+            'Für welche Betriebe dieser Speyer-Fokus besonders gut funktioniert',
           paragraphs: [
-            'Viele etablierte Betriebe, beratende Angebote und lokale Dienstleistungen profitieren davon, wenn die Website nicht laut, sondern klar, geordnet und glaubwürdig wirkt.',
-            'Genau dort entsteht der größte Hebel: Ein regional verständlicher Auftritt, kombiniert mit Ruhe, Professionalität und einem klaren Weg zur Kontaktaufnahme, verbessert oft sowohl den ersten Eindruck als auch die Qualität der Anfragen.',
+            'Besonders stark ist dieser Ansatz für etablierte Betriebe, beratende Angebote, Gesundheits- oder Fachthemen und lokale Dienstleistungen, bei denen Menschen nicht den lautesten, sondern den verlässlichsten Eindruck suchen.',
+            'Genau dort entsteht der größte Hebel: Ein regional verständlicher Auftritt, kombiniert mit Ruhe, Professionalität und sauberer Führung, verbessert oft sowohl den ersten Eindruck als auch die Passung der eingehenden Anfragen.',
           ],
         },
       ],
@@ -55,19 +56,26 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
             'Ja. Gerade in Speyer profitieren beratende und etablierte kleinere Unternehmen davon, wenn der Auftritt ruhig, klar und professionell wirkt, noch bevor der erste Kontakt entsteht.',
         },
         {
+          question:
+            'Muss eine Website in Speyer eher ausführlich oder eher kompakt sein?',
+          answer:
+            'Nicht unbedingt lang, aber klar sortiert. Entscheidend ist, dass Leistungen, Vertrauenssignale und Kontaktweg nachvollziehbar aufgebaut sind. Eine kompakte Seite kann funktionieren, wenn sie die richtigen Fragen sauber beantwortet.',
+        },
+        {
           question: 'Kann eine bestehende Website modernisiert werden?',
           answer:
             'Ja. Je nach Ausgangslage kann ein Relaunch, eine strukturelle Überarbeitung oder ein kompletter Neuaufbau sinnvoll sein.',
         },
         {
-          question: 'Unterstützt du auch bei Inhalten und Seitenstruktur?',
+          question:
+            'Unterstützt du auch bei Inhalten, Referenzen und Seitenstruktur?',
           answer:
-            'Ja. Ich unterstütze bei Aufbau, Priorisierung und klarer Anfrageführung, nicht nur beim Design.',
+            'Ja. Ich unterstütze bei Aufbau, Priorisierung, vertrauensbildenden Inhalten und klarer Anfrageführung, nicht nur beim Design.',
         },
         {
           question: 'Kann die Seite später um weitere Inhalte ergänzt werden?',
           answer:
-            'Ja. Zusätzliche Leistungs-, Branchen- oder Ortsseiten können später sauber ergänzt werden.',
+            'Ja. Zusätzliche Leistungs-, Branchen- oder Ortsseiten können später sauber ergänzt werden, wenn mehr Suchanlässe oder Themen sichtbar werden sollen.',
         },
         {
           question:
@@ -77,9 +85,9 @@ export const webdesignSpeyerContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Professionellen Auftritt für Speyer besprechen',
+        primaryLabel: 'Vertrauensvollen Auftritt für Speyer besprechen',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Webdesign für vertrauensvolle Anfragen ansehen',
+        secondaryLabel: 'Webdesign für seriöse Anfragen ansehen',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {

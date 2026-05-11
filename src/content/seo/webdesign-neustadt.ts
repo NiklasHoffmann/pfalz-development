@@ -13,38 +13,39 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       h1: 'Website erstellen lassen in Neustadt an der Weinstraße für Unternehmen mit klarem Angebotsfokus',
       eyebrow: 'Ortsseite',
       intro:
-        'Wer in Neustadt an der Weinstraße eine Website erstellen lassen will, braucht mehr als eine hübsche Startseite. Gerade hier muss der Auftritt regionale Passung, Vertrauen und den Weg zur Anfrage schnell sichtbar machen. Neustadt an der Weinstraße verbindet lokale Stammkundschaft, touristische Nachfrage und viele Angebote, die stark über Atmosphäre und persönlichen Eindruck funktionieren.',
+        'Wer in Neustadt an der Weinstraße eine Website erstellen lassen will, muss oft zwei Dinge gleichzeitig abdecken: regionale Stammkundschaft und Menschen, die spontan aus Ausflug, Urlaub oder Empfehlung auf ein Angebot stoßen. Gerade deshalb reicht eine hübsche Startseite hier nicht. Die Website muss sofort zeigen, was angeboten wird, wie sich der Betrieb anfühlt und warum eine Anfrage oder Buchung genau hier sinnvoll ist.',
 
       sections: [
         {
           title:
-            'Warum in Neustadt Vertrauen und regionale Passung besonders zählen',
+            'Warum Neustadt online oft zwischen Stammkundschaft und Besuchern entscheidet',
           paragraphs: [
-            'Viele kleinere Unternehmen, Gastgeber und regionale Dienstleister werden heute zuerst online geprüft, noch bevor ein Anruf oder eine Anfrage kommt. Wenn Angebot, Nutzen und Kontaktweg nicht sofort verständlich sind, geht Aufmerksamkeit schnell verloren.',
-            'Gerade im Umfeld der Weinstraße ist der Wettbewerb oft nicht riesig, aber sehr vergleichbar. Wer online klarer wirkt, regionale Nähe glaubwürdig transportiert und Gäste oder Interessenten schneller abholt, hat im Alltag einen direkten Vorteil.',
+            'Viele kleinere Unternehmen, Gastgeber und regionale Dienstleister in Neustadt leben nicht nur von wiederkehrenden Kontakten, sondern auch von Menschen, die kurzfristig vergleichen und schnell entscheiden. Genau diese zweite Gruppe springt sofort ab, wenn Angebot, Stimmung und nächster Schritt nicht in wenigen Sekunden greifbar werden.',
+            'Im Umfeld der Weinstraße sehen viele Angebote auf den ersten Blick sympathisch aus. Den Unterschied macht deshalb nicht bloß Sichtbarkeit, sondern ob ein Betrieb online glaubwürdig zeigt: Das hier passt regional, wirkt persönlich und ist ohne Umweg anfragbar.',
           ],
         },
         {
-          title: 'Was Unternehmen in Neustadt online konkret brauchen',
+          title: 'Was in Neustadt online zuerst überzeugen muss',
           paragraphs: [
-            'Entscheidend ist nicht nur schönes Design. Eine gute Website muss Leistungen sauber strukturieren, Vertrauen aufbauen und den Weg zur Anfrage einfach machen, egal ob es um Ferienunterkunft, Weinbetrieb, Gastronomie oder lokalen Service geht.',
-            'Dazu gehören heute eine gute Darstellung auf dem Smartphone, klare Seitenhierarchien, verständliche Texte und sichtbare Kontaktmöglichkeiten. So wird aus einer reinen Online-Visitenkarte ein aktiver Vertriebsbaustein für regionale und touristisch geprägte Anfragen.',
+            'Wichtig sind in Neustadt vor allem drei Dinge: ein sofort verständliches Angebot, ein glaubwürdiger Eindruck von Atmosphäre oder Arbeitsweise und ein schneller Weg zu Anfrage, Reservierung oder Kontakt. Das betrifft Weinbetriebe, Gastgeber, Gastronomie und lokale Services gleichermaßen, nur jeweils mit anderem Schwerpunkt.',
+            'Dafür braucht die Seite keine Show, sondern gute Bildauswahl, klare Leistungsseiten, mobile Nutzbarkeit und Texte, die nicht allgemein bleiben. So entsteht ein Auftritt, der nicht nur informiert, sondern Besucher wirklich in die nächste Handlung führt.',
           ],
         },
         {
           title:
-            'So läuft die Zusammenarbeit von Neustadt aus pragmatisch und direkt',
+            'Wie der Auftritt regionale Nähe zeigt, ohne beliebig zu wirken',
           paragraphs: [
-            'Am Anfang geht es um dein Angebot, deine Zielgruppe und die Frage, welche Anfragen du wirklich gewinnen willst. Daraus entsteht eine klare Struktur für Inhalte, Navigation und Kontaktpunkte.',
-            'Anschließend übernehme ich Konzeption, Design und technische Umsetzung. Das Ergebnis ist keine lose Vorlage, sondern eine einsatzbereite Website, die auf lokale Sichtbarkeit und Verständlichkeit ausgelegt ist.',
-            'Wenn Inhalte später wachsen sollen, kann die Seite Schritt für Schritt um weitere Leistungs-, Branchen- oder Ortsseiten erweitert werden.',
+            'Regionale Passung heißt in Neustadt nicht, ein paar Ortsnamen auf die Seite zu schreiben. Sie entsteht dann, wenn Bilder, Sprache, Seitenstruktur und Kontaktpunkte so wirken, als kämen sie wirklich aus dem Betrieb und nicht aus einer austauschbaren Vorlage.',
+            'Deshalb wird zuerst geklärt, welche Wirkung online entstehen soll: eher gastlich, eher hochwertig, eher bodenständig oder eher beratend. Erst daraus ergeben sich Aufbau, Texte, Seitentiefe und die Form der Kontaktführung.',
+            'So entsteht kein generischer Auftritt mit lokaler Überschrift, sondern eine Website, die Neustadt und das jeweilige Angebot glaubwürdig zusammenbringt.',
           ],
         },
         {
-          title: 'Neustadt profitiert besonders von klaren lokalen Einstiegen',
+          title:
+            'Wann in Neustadt lokale Unterseiten besonders sinnvoll werden',
           paragraphs: [
-            'Eine gute Website hilft nicht nur im direkten Gespräch mit Besuchern, sondern auch dabei, lokal besser gefunden zu werden. Dazu gehören passende Seitentitel, klare Überschriften, saubere technische Basis und Inhalte, die Google regional einordnen kann.',
-            'Gerade in Kombination mit einem gepflegten Google-Unternehmensprofil entsteht daraus eine belastbare Grundlage für Anfragen aus Neustadt, der Weinstraße und dem nahen Umland.',
+            'Gerade in Neustadt lohnt es sich oft, nicht alles auf eine einzige Startseite zu pressen. Wer unterschiedliche Leistungen, saisonale Themen oder klar trennbare Zielgruppen hat, profitiert häufig von eigenen Unterseiten mit sauberem lokalem Zuschnitt.',
+            'Zusammen mit einem gepflegten Google-Unternehmensprofil entsteht daraus eine deutlich belastbarere Grundlage für Anfragen aus Neustadt, der Weinstraße und dem nahen Umland als mit einer bloßen Standard-Visitenkarte.',
           ],
         },
       ],
@@ -53,15 +54,21 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       faq: [
         {
           question:
-            'Ist das nur für neue Websites oder auch für Relaunches geeignet?',
+            'Passt das in Neustadt auch, wenn ich Stammkundschaft und neue Besucher gleichzeitig ansprechen will?',
           answer:
-            'Beides ist möglich. Wenn bereits eine Website existiert, kann sie strukturell und technisch neu aufgebaut oder gezielt verbessert werden.',
+            'Ja. Gerade das ist in Neustadt oft der Kernfall. Die Website kann so aufgebaut werden, dass vertraute lokale Kunden sich schnell orientieren und neue Besucher trotzdem sofort verstehen, worum es geht und wie sie anfragen oder buchen können.',
+        },
+        {
+          question:
+            'Wie lokal darf die Seite wirken, ohne kitschig oder beliebig zu werden?',
+          answer:
+            'So lokal wie nötig, aber nicht dekorativ um ihrer selbst willen. Entscheidend ist, dass Region, Bildsprache und Ton zum Betrieb passen und Vertrauen stützen, statt nur Kulisse zu spielen.',
         },
         {
           question:
             'Passt das auch für kleinere Betriebe, Gastgeber oder Weinbetriebe?',
           answer:
-            'Ja. Gerade in Neustadt profitieren Gastgeber, Weinbetriebe und kleinere Unternehmen davon, wenn Region, Atmosphäre und Kontaktweg online sofort zusammenpassen und verständlich werden.',
+            'Ja. Gerade Gastgeber, Weinbetriebe und kleinere Unternehmen in Neustadt profitieren davon, wenn Angebot, Atmosphäre und Kontaktweg online sofort zusammenpassen und nicht erst erklärt werden müssen.',
         },
         {
           question: 'Übernimmst du auch Texte und Struktur?',
@@ -70,14 +77,9 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
         },
         {
           question:
-            'Kann die Website später um weitere Seiten erweitert werden?',
+            'Wann sind zusätzliche Unterseiten für Neustadt oder die Weinstraße sinnvoll?',
           answer:
-            'Ja. Leistungsseiten, Branchenseiten oder zusätzliche Ortsseiten können später ohne Bruch ergänzt werden.',
-        },
-        {
-          question: 'Hilft die Website auch bei lokaler Auffindbarkeit?',
-          answer:
-            'Ja. Saubere technische Basis, klare Inhalte und lokale Signale schaffen die Grundlage dafür, bei regionalen Suchanfragen besser eingeordnet zu werden.',
+            'Dann, wenn Leistungen, Zielgruppen oder Suchanlässe klar voneinander abweichen. Statt alles auf einer Seite zu vermischen, lassen sich so regionale Schwerpunkte verständlicher und suchseitig sauberer abbilden.',
         },
         {
           question:
@@ -88,9 +90,9 @@ export const webdesignNeustadtContentByLocale: LocalizedSeoPageContent =
       ],
 
       cta: {
-        primaryLabel: 'Website für Neustadt unverbindlich besprechen',
+        primaryLabel: 'Website für Neustadt mit regionalem Profil besprechen',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Webdesign für regionale Betriebe ansehen',
+        secondaryLabel: 'Beispiele für lokale Websites ansehen',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
 

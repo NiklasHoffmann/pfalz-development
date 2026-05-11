@@ -13,37 +13,35 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
       h1: 'Website erstellen lassen in Landau in der Pfalz für Unternehmen mit klaren Zielen',
       eyebrow: 'Ortsseite',
       intro:
-        'Wer in Landau in der Pfalz eine Website erstellen lassen will, muss vor allem schnell verständlich und mobil überzeugend auftreten. Landau ist für viele Unternehmen ein Umfeld, in dem Angebote schnell verglichen, spontan geprüft und oft direkt auf dem Smartphone bewertet werden. Gerade für Handel, Gastronomie, Dienstleistungen und jüngere Marken reicht eine bloße Präsenz deshalb nicht aus.',
+        'Wer in Landau in der Pfalz eine Website erstellen lassen will, muss vor allem in kurzer Zeit überzeugen. Viele Entscheidungen beginnen hier unterwegs, zwischen zwei Vergleichen oder direkt nach einem ersten Impuls auf dem Smartphone. Gerade für Handel, Gastronomie, Dienstleistungen und jüngere Marken reicht eine bloße Präsenz deshalb nicht aus. Die Seite muss schnell zünden, sauber führen und sofort professionell wirken.',
       sections: [
         {
-          title:
-            'Warum in Landau der erste Eindruck besonders schnell entschieden wird',
+          title: 'Warum Landau online oft in wenigen Sekunden vorsortiert',
           paragraphs: [
-            'Viele Unternehmen wirken online austauschbar, obwohl ihr Angebot im Alltag sehr unterschiedlich ist. Wer in Landau nach einem passenden Anbieter sucht, vergleicht oft schnell, mobil und mit wenig Geduld.',
-            'Wenn Angebot, Nutzen und nächster Schritt klarer dargestellt sind als bei vergleichbaren Auftritten, steigt die Wahrscheinlichkeit für eine direkte Kontaktaufnahme deutlich. In genau diesem schnelleren Auswahlverhalten liegt in Landau oft der entscheidende Hebel.',
+            'Viele Unternehmen wirken online austauschbar, obwohl ihr Angebot im Alltag sehr unterschiedlich ist. In Landau wird diese Austauschbarkeit besonders schnell abgestraft, weil Besucher oft spontan vergleichen, Tabs schließen und nur bei klaren Seiten weiterklicken.',
+            'Wenn Leistung, Nutzen und nächster Schritt sichtbarer sind als bei vergleichbaren Auftritten, entsteht der Vorsprung nicht erst nach langem Lesen, sondern schon in den ersten Sekunden. Genau dieses schnelle Vorsortieren ist in Landau oft der eigentliche Hebel.',
+          ],
+        },
+        {
+          title: 'Was auf dem Smartphone in Landau sofort sitzen muss',
+          paragraphs: [
+            'In Landau muss mobil zuerst das Wesentliche stimmen: Was wird angeboten, für wen ist es gedacht und wie geht es jetzt weiter? Wenn diese drei Fragen auf dem Handy nicht sofort beantwortet werden, verliert die Seite genau die Nutzer, die eigentlich schon Interesse hatten.',
+            'Deshalb sind klare Einstiege, kurze Wege zu Preisen oder Leistungen, sichtbare Kontaktmöglichkeiten und starke mobile Lesbarkeit wichtiger als jede Designgeste. So wird aus Aufmerksamkeit schneller eine Anfrage, Reservierung oder ein Rückruf.',
+          ],
+        },
+        {
+          title: 'Wie Landauer Angebote online direkter zur Handlung führen',
+          paragraphs: [
+            'Viele Landauer Betriebe brauchen keine Website, die nur informiert, sondern eine, die spürbar auf Handlung gebaut ist. Das kann eine schnelle Termin-Anfrage sein, ein Menüaufruf, eine Kontaktaufnahme, ein Produktinteresse oder ein klarer Klick zur passenden Leistung.',
+            'Genau deshalb beginnt die Arbeit nicht bei Farben, sondern bei der Frage, welche Handlung der Besucher möglichst reibungslos ausführen soll. Daraus entstehen Seitenlogik, Prioritäten, mobile Reihenfolge und erst danach Design und Umsetzung.',
           ],
         },
         {
           title:
-            'Was Unternehmen in Landau von einer modernen Website erwarten',
+            'Wann in Landau ein moderner Auftritt wirklich einen Unterschied macht',
           paragraphs: [
-            'Eine moderne Website braucht klare Inhalte, gute mobile Nutzbarkeit und eine Struktur, die Besucher ohne Umwege zur richtigen Information bringt. Gerade in einem jüngeren und dynamischeren Umfeld zählt, dass die Seite schnell verstanden wird und direkt professionell wirkt.',
-            'Dazu gehören verständliche Leistungsseiten, vertrauensbildende Details und sichtbare Kontaktwege. So entsteht aus einer bloßen Präsenz ein aktiver Baustein für neue Anfragen, Rückrufe oder Beratungsgespräche.',
-          ],
-        },
-        {
-          title: 'Von der Struktur bis zur Umsetzung aus einer Hand',
-          paragraphs: [
-            'Am Anfang geht es darum, welche Leistungen im Vordergrund stehen, welche Zielgruppe erreicht werden soll und welche Anfrage du tatsächlich gewinnen willst. Daraus entsteht eine klare Seitenlogik für Inhalte, Navigation und Kontaktpunkte.',
-            'Ich übernehme danach Konzeption, Design und technische Umsetzung. Das Ergebnis ist eine Website, die professionell wirkt, lokal verständlich ist und ohne unnötige Reibung funktioniert.',
-          ],
-        },
-        {
-          title:
-            'Landau passt besonders zu Unternehmen mit modernem Außenauftritt',
-          paragraphs: [
-            'Für viele Betriebe in Landau reicht es nicht, nur "auch im Internet" präsent zu sein. Die Website muss einen zeitgemäßen Eindruck hinterlassen und zeigen, dass Angebot, Stil und Zielgruppe zusammenpassen.',
-            'Genau deshalb funktioniert hier ein klarer, moderner und mobil starker Auftritt besonders gut, egal ob für Gastronomie, Handel, Services oder neue lokale Marken.',
+            'Ein moderner Auftritt bringt in Landau dann am meisten, wenn Zielgruppe, Stil und Erwartung eng zusammenhängen. Gerade bei Gastronomie, Handel, Beauty, Fitness, Beratung oder neuen lokalen Marken wird online sehr schnell bewertet, ob ein Angebot aktuell und relevant wirkt.',
+            'Wenn die Website dieses Gefühl sauber bestätigt, entsteht aus einer eher flüchtigen Aufmerksamkeit deutlich leichter eine echte Anfrage. Das ist mehr als Optik, nämlich saubere Vorauswahl schon vor dem ersten Kontakt.',
           ],
         },
       ],
@@ -56,6 +54,12 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
             'Ja. Gerade in Landau profitieren Gastronomie, Handel und kleinere Dienstleister davon, wenn Angebot, nächster Schritt und mobile Nutzbarkeit sofort sitzen und keine Zeit verloren geht.',
         },
         {
+          question:
+            'Hilft das auch, wenn viele Besucher über Instagram oder Google Maps auf die Website kommen?',
+          answer:
+            'Ja. Dann muss die Seite besonders schnell orientieren. Wer von Instagram, Maps oder einer spontanen Google-Suche kommt, erwartet sofort klare Infos, mobile Lesbarkeit und einen direkten Weg zur nächsten Handlung.',
+        },
+        {
           question: 'Kann eine bestehende Website überarbeitet werden?',
           answer:
             'Ja. Je nach Ausgangslage kann ein Relaunch, eine strukturelle Überarbeitung oder ein kompletter Neuaufbau sinnvoll sein.',
@@ -66,9 +70,10 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
             'Ja. Ich unterstütze bei Struktur, Priorisierung und klarer Anfrageführung, nicht nur beim visuellen Design.',
         },
         {
-          question: 'Lässt sich die Website später weiter ausbauen?',
+          question:
+            'Brauche ich in Landau eher eine kompakte Seite oder mehrere Unterseiten?',
           answer:
-            'Ja. Zusätzliche Leistungs-, Branchen- oder Ortsseiten können später sauber ergänzt werden.',
+            'Das hängt davon ab, wie unterschiedlich deine Leistungen und Suchanlässe sind. Für manche Betriebe reicht eine sehr fokussierte Struktur, andere profitieren klar von getrennten Leistungs- oder Landingpages.',
         },
         {
           question:
@@ -78,9 +83,9 @@ export const webdesignLandauContentByLocale: LocalizedSeoPageContent =
         },
       ],
       cta: {
-        primaryLabel: 'Modernen Auftritt für Landau anfragen',
+        primaryLabel: 'Mobile starke Website für Landau anfragen',
         primaryHref: '/#kontakt',
-        secondaryLabel: 'Webdesign für schnelle Anfragen ansehen',
+        secondaryLabel: 'Webdesign für schnelle Entscheidungen ansehen',
         secondaryHref: '/leistungen/webdesign-pfalz',
       },
       related: {
