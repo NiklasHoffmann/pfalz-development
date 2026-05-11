@@ -91,26 +91,26 @@ function getPrimaryNavigationLabel(locale: string, appName: string): string {
 
 function getLeistungenMetaTitle(locale: string): string {
   if (locale === 'en') {
-    return 'Web Design, Relaunch, and Website Support in the Palatinate | Pfalz Development';
+    return 'Web Design, Web Development, Relaunch, and Website Support | Pfalz Development';
   }
 
   if (locale === 'pfl') {
-    return 'Webdesign, Relaunch un Website-Pflege in de Palz | Pfalz Development';
+    return 'Webdesign, Webentwicklung, Relaunch un Website-Pflege | Pfalz Development';
   }
 
-  return 'Webdesign, Relaunch und Website-Betreuung in der Pfalz | Pfalz Development';
+  return 'Webdesign, Webentwicklung, Relaunch und Website-Betreuung | Pfalz Development';
 }
 
 function getLeistungenMetaDescription(locale: string): string {
   if (locale === 'en') {
-    return 'Overview of web design, website relaunch, and ongoing website support for businesses in the Palatinate with clear structure, SEO basics, and inquiry-focused implementation.';
+    return 'Overview of web design, web development, website relaunch, and ongoing website support for businesses in the Palatinate with clear structure and inquiry-focused implementation.';
   }
 
   if (locale === 'pfl') {
-    return 'Iwwersicht zu Webdesign, Website-Relaunch un laufender Website-Pflege fer Betriewe in de Palz mit klarer Struktur, Google-Grundlage un Aafrooch-Fokus.';
+    return 'Iwwersicht zu Webdesign, Webentwicklung, Website-Relaunch un laufender Website-Pflege fer Betriewe in de Palz mit klarer Struktur un Aafrooch-Fokus.';
   }
 
-  return 'Überblick zu Webdesign, Website-Relaunch und laufender Website-Betreuung für Unternehmen in der Pfalz mit klarer Struktur, SEO-Basis und anfrageorientierter Umsetzung.';
+  return 'Überblick zu Webdesign, Webentwicklung, Website-Relaunch und laufender Website-Betreuung für Unternehmen in der Pfalz mit klarer Struktur und anfrageorientierter Umsetzung.';
 }
 
 function getLeistungenCopy(locale: string): LeistungenPageCopy {
@@ -225,6 +225,13 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
             'Your central business website with clear positioning, conversion-focused structure, and modern technical setup.',
           href: '/leistungen/webdesign-pfalz',
           badge: 'Core Service',
+        },
+        {
+          title: 'Web Development Palatinate',
+          description:
+            'Technical implementation with fast performance, stable structure, and a setup that can grow with new content and pages.',
+          href: '/leistungen/webentwicklung-pfalz',
+          badge: 'Service',
         },
         {
           title: 'Website Relaunch',
@@ -362,6 +369,13 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
           badge: 'Kern-Leischdung',
         },
         {
+          title: 'Webentwicklung Palz',
+          description:
+            'Technische Umsetzung mit schneller Leistung, stabiler Struktur un sauberer Grundlage fer spätere Erweiterunge.',
+          href: '/leistungen/webentwicklung-pfalz',
+          badge: 'Leischdung',
+        },
+        {
           title: 'Website-Relaunch',
           description:
             'Fer veraltete Seide, die strategisch neu aufgebaut werre soll, damit Vertrauen un Aafrooche steige.',
@@ -494,6 +508,13 @@ function getLeistungenCopy(locale: string): LeistungenPageCopy {
           'Die zentrale Unternehmenswebsite mit klarer Botschaft, gutem Seitenaufbau und moderner technischer Basis.',
         href: '/leistungen/webdesign-pfalz',
         badge: 'Kernleistung',
+      },
+      {
+        title: 'Webentwicklung Pfalz',
+        description:
+          'Technische Umsetzung mit schneller Ladezeit, sauberer Struktur und einer Website-Basis, die sich später gezielt ausbauen lässt.',
+        href: '/leistungen/webentwicklung-pfalz',
+        badge: 'Leistung',
       },
       {
         title: 'Website Relaunch',

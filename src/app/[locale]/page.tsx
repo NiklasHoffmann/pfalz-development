@@ -233,6 +233,19 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
   ];
 }
 
+function withServiceLinks(basePath: string, items: CardItem[]): CardItem[] {
+  const serviceHrefs = [
+    `${basePath}/leistungen/webdesign-pfalz`,
+    `${basePath}/leistungen/webentwicklung-pfalz`,
+    `${basePath}/leistungen/website-wartung`,
+  ];
+
+  return items.map((item, index) => ({
+    ...item,
+    href: serviceHrefs[index] ?? `${basePath}/leistungen`,
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: HomePageProps): Promise<Metadata> {
@@ -380,7 +393,7 @@ export default async function HomePage({ params }: HomePageProps) {
     },
     services: {
       title: t('home.services.title'),
-      items: serviceItems,
+      items: withServiceLinks(basePath, serviceItems),
     },
     seoLinks: {
       title: localeToSeoLinksTitle(locale),

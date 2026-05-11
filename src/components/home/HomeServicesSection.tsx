@@ -50,15 +50,23 @@ export function HomeServicesSection({
               delayMs={80 + index * 90}
               className="bg-stone-50/96 flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-stone-200/90 p-8 shadow-[0_18px_45px_rgba(28,25,23,0.06)] backdrop-blur-[1px] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_55px_rgba(28,25,23,0.1)] dark:border-stone-500/65 dark:bg-stone-800/75 dark:shadow-[0_20px_50px_rgba(0,0,0,0.22)]"
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-300">
-                0{index + 1}
-              </p>
-              <h3 className="mt-4 text-2xl font-bold text-stone-950 dark:text-white">
-                {item.title}
-              </h3>
-              <p className="mt-4 flex-1 text-base leading-7 text-stone-800 dark:text-stone-100">
-                {item.description}
-              </p>
+              <a
+                href={item.href}
+                className="group flex h-full min-w-0 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-800"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-300">
+                  0{index + 1}
+                </p>
+                <h3 className="mt-4 text-2xl font-bold text-stone-950 transition group-hover:text-amber-800 dark:text-white dark:group-hover:text-amber-200">
+                  {item.title}
+                </h3>
+                <p className="mt-4 flex-1 text-base leading-7 text-stone-800 dark:text-stone-100">
+                  {item.description}
+                </p>
+                <p className="mt-6 text-sm font-semibold text-amber-700 dark:text-amber-200">
+                  Mehr erfahren
+                </p>
+              </a>
             </RevealOnScroll>
           ))}
         </div>
