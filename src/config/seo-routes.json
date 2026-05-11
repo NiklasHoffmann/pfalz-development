@@ -102,6 +102,18 @@
     "priority": 0.7
   },
   {
+    "path": "/ratgeber/website-checkliste-lokale-betriebe",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.6
+  },
+  {
+    "path": "/ratgeber/website-kosten-pfalz",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.6
+  },
+  {
     "path": "/en/leistungen",
     "lastModified": "2026-05-11T00:00:00.000Z",
     "changeFrequency": "weekly",
@@ -186,6 +198,18 @@
     "priority": 0.7
   },
   {
+    "path": "/en/ratgeber/website-checkliste-lokale-betriebe",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.6
+  },
+  {
+    "path": "/en/ratgeber/website-kosten-pfalz",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.6
+  },
+  {
     "path": "/pfl/leistungen",
     "lastModified": "2026-05-11T00:00:00.000Z",
     "changeFrequency": "weekly",
@@ -268,6 +292,18 @@
     "lastModified": "2026-04-12T00:00:00.000Z",
     "changeFrequency": "weekly",
     "priority": 0.7
+  },
+  {
+    "path": "/pfl/ratgeber/website-checkliste-lokale-betriebe",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.6
+  },
+  {
+    "path": "/pfl/ratgeber/website-kosten-pfalz",
+    "lastModified": "2026-05-11T00:00:00.000Z",
+    "changeFrequency": "weekly",
+    "priority": 0.6
   },
   {
     "path": "/impressum",

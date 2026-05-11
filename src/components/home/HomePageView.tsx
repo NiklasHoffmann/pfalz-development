@@ -94,6 +94,13 @@ export function HomePageView({ data }: HomePageViewProps) {
           ctaLabel={data.seoLinks.ctaLabel}
           items={data.seoLinks.items}
         />
+        {data.guideLinks ? (
+          <HomeSeoLinksSection
+            title={data.guideLinks.title}
+            ctaLabel={data.guideLinks.ctaLabel}
+            items={data.guideLinks.items}
+          />
+        ) : null}
         <HomeFooter
           note={data.footer.note}
           imprintLabel={data.footer.imprintLabel}

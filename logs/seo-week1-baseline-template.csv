@@ -14,3 +14,5 @@ date,week,url,primary_keyword,index_status,gsc_impressions,gsc_clicks,gsc_ctr_pe
 2026-05-11,7,/orte/webdesign-neustadt,webdesign neustadt an der weinstrasse,unknown,0,0,0,0,0,0,"Seite live, aber nicht in Top-Seiten des GSC Exports","Lokalen Query-Report in GSC prüfen"
 2026-05-11,7,/orte/webdesign-landau,webdesign landau in der pfalz,unknown,0,0,0,0,0,0,"Seite live, aber nicht in Top-Seiten des GSC Exports","Lokalen Query-Report in GSC prüfen"
 2026-05-11,7,/orte/webdesign-speyer,webdesign speyer,unknown,0,0,0,0,0,0,"Seite live, aber nicht in Top-Seiten des GSC Exports","Lokalen Query-Report in GSC prüfen"
+2026-05-11,7,/ratgeber/website-checkliste-lokale-betriebe,website checkliste lokale betriebe,pending,0,0,0,0,0,0,"Neue Ratgeberseite angelegt, noch nicht live gemessen","Nach Deploy in GSC einreichen und interne Klickpfade beobachten"
+2026-05-11,7,/ratgeber/website-kosten-pfalz,website kosten pfalz,pending,0,0,0,0,0,0,"Neue Ratgeberseite angelegt, noch nicht live gemessen","Nach Deploy in GSC einreichen und Preis-Intent-Queries prüfen"

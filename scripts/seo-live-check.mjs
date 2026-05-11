@@ -1,11 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const baseUrl =
-  (process.env.SEO_CHECK_BASE_URL || 'https://pfalz-development.de').replace(
-    /\/$/,
-    ''
-  );
+const baseUrl = (
+  process.env.SEO_CHECK_BASE_URL || 'https://pfalz-development.de'
+).replace(/\/$/, '');
 const routesPath = path.resolve('src/config/seo-routes.json');
 
 function extractTitle(html) {

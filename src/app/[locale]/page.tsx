@@ -164,6 +164,30 @@ function localeToSeoLinksCtaLabel(locale: string): string {
   return 'Seite öffnen';
 }
 
+function localeToGuideLinksTitle(locale: string): string {
+  if (locale === 'en') {
+    return 'Guides in focus';
+  }
+
+  if (locale === 'pfl') {
+    return 'Rodsgeber im Fokus';
+  }
+
+  return 'Ratgeber im Fokus';
+}
+
+function localeToGuideLinksCtaLabel(locale: string): string {
+  if (locale === 'en') {
+    return 'Open guide';
+  }
+
+  if (locale === 'pfl') {
+    return 'Rodsgeber uffmache';
+  }
+
+  return 'Ratgeber öffnen';
+}
+
 function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
   if (locale === 'en') {
     return [
@@ -247,6 +271,69 @@ function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
       href: withLocaleBasePath(basePath, '/branchen/handwerk-website'),
       description:
         'Für Handwerksbetriebe mit Fokus auf klare Leistungen, regionale Sichtbarkeit und direkte Anfragen über die eigene Website.',
+    },
+  ];
+}
+
+function localeToGuideLinkItems(
+  locale: string,
+  basePath: string
+): SeoLinkItem[] {
+  if (locale === 'en') {
+    return [
+      {
+        label: 'Website Checklist for Local Businesses',
+        href: withLocaleBasePath(
+          basePath,
+          '/ratgeber/website-checkliste-lokale-betriebe'
+        ),
+        description:
+          'A practical guide for checking clarity, trust, mobile usability, and inquiry paths on local business websites.',
+      },
+      {
+        label: 'Website Costs in the Palatinate',
+        href: withLocaleBasePath(basePath, '/ratgeber/website-kosten-pfalz'),
+        description:
+          'An overview of which factors influence website pricing and what local businesses should compare in real offers.',
+      },
+    ];
+  }
+
+  if (locale === 'pfl') {
+    return [
+      {
+        label: 'Website-Checklischd fer lokale Betriewe',
+        href: withLocaleBasePath(
+          basePath,
+          '/ratgeber/website-checkliste-lokale-betriebe'
+        ),
+        description:
+          'Praktische Hilf fer Klarheit, Vertrauen, Handy-Nutzung un Aafrooch-Weg uff lokale Website-Seide.',
+      },
+      {
+        label: 'Website-Koschde in de Palz',
+        href: withLocaleBasePath(basePath, '/ratgeber/website-kosten-pfalz'),
+        description:
+          'Üwersicht, wovun Preise abhänge un woruff lokale Betriewe bei echte Angebote achte sollte.',
+      },
+    ];
+  }
+
+  return [
+    {
+      label: 'Website-Checkliste für lokale Betriebe',
+      href: withLocaleBasePath(
+        basePath,
+        '/ratgeber/website-checkliste-lokale-betriebe'
+      ),
+      description:
+        'Praktischer Ratgeber für Klarheit, Vertrauen, mobile Nutzung und direkte Anfragewege auf lokalen Unternehmensseiten.',
+    },
+    {
+      label: 'Website-Kosten in der Pfalz',
+      href: withLocaleBasePath(basePath, '/ratgeber/website-kosten-pfalz'),
+      description:
+        'Überblick darüber, welche Faktoren Website-Preise beeinflussen und worauf lokale Betriebe bei Angeboten achten sollten.',
     },
   ];
 }
@@ -417,6 +504,11 @@ export default async function HomePage({ params }: HomePageProps) {
       title: localeToSeoLinksTitle(locale),
       ctaLabel: localeToSeoLinksCtaLabel(locale),
       items: localeToSeoLinkItems(locale, basePath),
+    },
+    guideLinks: {
+      title: localeToGuideLinksTitle(locale),
+      ctaLabel: localeToGuideLinksCtaLabel(locale),
+      items: localeToGuideLinkItems(locale, basePath),
     },
     audiences: {
       title: t('home.audiences.title'),

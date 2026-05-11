@@ -161,6 +161,11 @@ export type HomePageData = {
     ctaLabel: string;
     items: SeoLinkItem[];
   };
+  guideLinks?: {
+    title: string;
+    ctaLabel: string;
+    items: SeoLinkItem[];
+  };
   audiences: {
     title: string;
     items: string[];
