@@ -116,6 +116,11 @@ export type SeoLinkItem = {
   description: string;
 };
 
+export type ResourceLinkItem = {
+  label: string;
+  href: string;
+};
+
 export type HomePageData = {
   appName: string;
   locale: SupportedLocale;
@@ -145,6 +150,10 @@ export type HomePageData = {
     description: string;
     points: string[];
     conclusion: string;
+    resources?: {
+      intro: string;
+      items: ResourceLinkItem[];
+    };
     portrait?: {
       src: string;
       alt: string;

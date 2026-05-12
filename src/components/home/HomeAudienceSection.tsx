@@ -74,6 +74,10 @@ function getAudienceBackgroundImage(audience: string, index: number): string {
   return audienceFallbackImages[index % audienceFallbackImages.length];
 }
 
+function getAudienceImageAlt(audience: string): string {
+  return `Symbolbild für ${audience}`;
+}
+
 export function HomeAudienceSection({
   audiencesTitle,
   audiences,
@@ -108,8 +112,7 @@ export function HomeAudienceSection({
               >
                 <Image
                   src={getAudienceBackgroundImage(item, index)}
-                  alt=""
-                  aria-hidden="true"
+                  alt={getAudienceImageAlt(item)}
                   fill
                   sizes={AUDIENCE_IMAGE_SIZES}
                   quality={50}

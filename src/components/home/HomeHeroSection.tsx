@@ -87,9 +87,9 @@ export function HomeHeroSection({
               className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(255,255,255,0.86),_rgba(248,245,239,0.94))] dark:bg-[linear-gradient(180deg,_rgba(28,25,23,0.86),_rgba(28,25,23,0.94))]"
             />
 
-            <h2 className="relative z-10 text-sm font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
+            <p className="relative z-10 text-sm font-semibold uppercase tracking-[0.2em] text-amber-800 dark:text-amber-200">
               {trustTitle}
-            </h2>
+            </p>
             <ul
               className="relative z-10 mt-6 grid gap-4"
               aria-label={trustTitle}

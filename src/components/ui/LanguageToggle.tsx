@@ -12,6 +12,18 @@ const LOCALE_SCROLL_RESTORE_KEY = 'locale-switch-scroll-restore';
 const SUPPORTED_LOCALES: SupportedLocale[] = ['de', 'en', 'pfl'];
 const DEFAULT_LOCALE: SupportedLocale = 'de';
 
+function localeToFlagAlt(locale: SupportedLocale): string {
+  if (locale === 'en') {
+    return 'Englisch';
+  }
+
+  if (locale === 'pfl') {
+    return 'Pfälzisch';
+  }
+
+  return 'Deutsch';
+}
+
 function normalizePathname(pathname: string): string {
   if (!pathname || pathname === '/') {
     return '/';
@@ -62,10 +74,9 @@ function FlagSwatch({ locale }: { locale: SupportedLocale }) {
     >
       <Image
         src={iconByLocale[locale]}
-        alt=""
+        alt={localeToFlagAlt(locale)}
         width={24}
         height={16}
-        aria-hidden="true"
         className="h-full w-full object-cover"
       />
     </span>
@@ -264,9 +275,19 @@ export function LanguageToggle({ currentLocale, labels }: LanguageToggleProps) {
 
       {/* Preload icons to avoid visual flash when switching locales */}
       <div className="hidden" aria-hidden="true">
-        <Image src="/icons/germany.svg" alt="" width={24} height={16} />
-        <Image src="/icons/united-kingdom.svg" alt="" width={24} height={16} />
-        <Image src="/icons/dubbeglas.svg" alt="" width={24} height={16} />
+        <Image src="/icons/germany.svg" alt="Deutsch" width={24} height={16} />
+        <Image
+          src="/icons/united-kingdom.svg"
+          alt="Englisch"
+          width={24}
+          height={16}
+        />
+        <Image
+          src="/icons/dubbeglas.svg"
+          alt="Pfälzisch"
+          width={24}
+          height={16}
+        />
       </div>
     </div>
   );

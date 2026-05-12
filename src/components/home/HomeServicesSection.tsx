@@ -57,9 +57,9 @@ export function HomeServicesSection({
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-300">
                   0{index + 1}
                 </p>
-                <h3 className="mt-4 text-2xl font-bold text-stone-950 transition group-hover:text-amber-800 dark:text-white dark:group-hover:text-amber-200">
+                <p className="mt-4 text-2xl font-bold text-stone-950 transition group-hover:text-amber-800 dark:text-white dark:group-hover:text-amber-200">
                   {item.title}
-                </h3>
+                </p>
                 <p className="mt-4 flex-1 text-base leading-7 text-stone-800 dark:text-stone-100">
                   {item.description}
                 </p>

@@ -90,8 +90,7 @@ export function HomeMobileDock({
                     <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[linear-gradient(180deg,#25D366,#16A34A)] text-white shadow-[0_8px_18px_rgba(5,150,105,0.2)] ring-1 ring-white/55 dark:ring-white/10">
                       <Image
                         src="/icons/whatsapp.svg"
-                        alt=""
-                        aria-hidden="true"
+                        alt="WhatsApp"
                         width={20}
                         height={20}
                         className="h-5 w-5"

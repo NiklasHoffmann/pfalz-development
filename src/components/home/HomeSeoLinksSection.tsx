@@ -14,9 +14,9 @@ export function HomeSeoLinksSection({
   return (
     <section className="border-t border-stone-200/85 px-4 py-16 dark:border-stone-700/80 sm:px-6 sm:py-20 lg:px-10">
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 dark:text-amber-100">
           {title}
-        </h2>
+        </p>
         <div className="card-grid-balance-md-lg mt-10 grid gap-4 [--card-grid-gap:1rem] md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
             <a

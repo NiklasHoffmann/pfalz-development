@@ -17,6 +17,7 @@ import type {
   FaqItem,
   HomePageData,
   PackageItem,
+  ResourceLinkItem,
   SeoLinkItem,
   SupportedLocale,
 } from '@/components/home/types';
@@ -186,6 +187,57 @@ function localeToGuideLinksCtaLabel(locale: string): string {
   }
 
   return 'Ratgeber öffnen';
+}
+
+function localeToResourceLinksIntro(locale: string): string {
+  if (locale === 'en') {
+    return 'If local visibility matters to you, these are the two external basics I usually think along with:';
+  }
+
+  if (locale === 'pfl') {
+    return 'Wenn lokale Sichtbarkeit wichtig is, denke isch die zwei externe Grundlagen fast immer mit:';
+  }
+
+  return 'Wenn lokale Sichtbarkeit wichtig ist, denke ich diese zwei externen Grundlagen fast immer mit:';
+}
+
+function localeToResourceLinkItems(locale: string): ResourceLinkItem[] {
+  if (locale === 'en') {
+    return [
+      {
+        label: 'Google Business Profile',
+        href: 'https://www.google.com/business/',
+      },
+      {
+        label: 'Google Search Console',
+        href: 'https://search.google.com/search-console/about',
+      },
+    ];
+  }
+
+  if (locale === 'pfl') {
+    return [
+      {
+        label: 'Google-Unternehmensprofil',
+        href: 'https://www.google.com/business/',
+      },
+      {
+        label: 'Google Search Console',
+        href: 'https://search.google.com/search-console/about',
+      },
+    ];
+  }
+
+  return [
+    {
+      label: 'Google-Unternehmensprofil',
+      href: 'https://www.google.com/business/',
+    },
+    {
+      label: 'Google Search Console',
+      href: 'https://search.google.com/search-console/about',
+    },
+  ];
 }
 
 function localeToSeoLinkItems(locale: string, basePath: string): SeoLinkItem[] {
@@ -524,6 +576,10 @@ export default async function HomePage({ params }: HomePageProps) {
       description: t('home.introduction.description'),
       points: t.raw('home.introduction.points') as string[],
       conclusion: t('home.introduction.conclusion'),
+      resources: {
+        intro: localeToResourceLinksIntro(locale),
+        items: localeToResourceLinkItems(locale),
+      },
       portrait: resolveIntroductionPortrait(locale),
     },
     services: {

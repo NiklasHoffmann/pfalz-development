@@ -7,6 +7,13 @@ interface HomeIntroductionSectionProps {
   description: string;
   points: string[];
   conclusion: string;
+  resources?: {
+    intro: string;
+    items: {
+      label: string;
+      href: string;
+    }[];
+  };
   portrait?: {
     src: string;
     alt: string;
@@ -21,6 +28,7 @@ export function HomeIntroductionSection({
   description,
   points,
   conclusion,
+  resources,
   portrait,
 }: HomeIntroductionSectionProps) {
   return (
@@ -87,6 +95,28 @@ export function HomeIntroductionSection({
             >
               {conclusion}
             </p>
+            {resources ? (
+              <div
+                className={`mt-6 ${portrait ? 'mx-auto max-w-3xl lg:mx-0' : 'mx-auto max-w-3xl'}`}
+              >
+                <p className="text-sm leading-6 text-stone-700 dark:text-stone-200 sm:text-base">
+                  {resources.intro}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {resources.items.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="bg-white/92 inline-flex items-center rounded-full border border-stone-300/80 px-4 py-2 text-sm font-medium text-stone-900 shadow-sm transition hover:-translate-y-0.5 hover:border-amber-500/55 hover:bg-white dark:border-stone-600/80 dark:bg-stone-900/70 dark:text-stone-50 dark:hover:border-amber-300/55 dark:hover:bg-stone-800"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
 
