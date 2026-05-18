@@ -79,6 +79,17 @@ function isStaticAssetPath(pathname: string) {
   return /(^|\/)[^/.][^/]*\.[^/]+$/.test(pathname);
 }
 
+function isMetadataRoutePath(pathname: string) {
+  const metadataBases = [
+    '/opengraph-image',
+    '/twitter-image',
+    '/icon',
+    '/apple-icon',
+  ];
+
+  return metadataBases.some((base) => matchesPathPrefix(pathname, base));
+}
+
 function isAllowedAdminPagePath(pathname: string) {
   const adminBases = [
     '/admin',
@@ -111,6 +122,10 @@ export default function middleware(request: NextRequest) {
   }
 
   if (isStaticAssetPath(pathname)) {
+    return NextResponse.next();
+  }
+
+  if (isMetadataRoutePath(pathname)) {
     return NextResponse.next();
   }
 
