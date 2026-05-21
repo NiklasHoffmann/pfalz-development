@@ -1273,6 +1273,7 @@ export function IntakeQuestionnaireShell({
 
       <Form
         className="mt-6 space-y-6"
+        noValidate
         onSubmit={async (event) => {
           event.preventDefault();
           if (isLastStep) {
