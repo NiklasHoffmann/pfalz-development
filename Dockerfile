@@ -34,25 +34,28 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+RUN apk add --no-cache su-exec
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Set the correct permission for prerender cache
 RUN mkdir -p .next logs
-RUN chown -R nextjs:nodejs .next logs
+RUN chown -R nextjs:nodejs .next logs && chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Automatically leverage output traces to reduce image size
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-USER nextjs
-
 EXPOSE 3000
 
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
 	CMD wget -qO- http://127.0.0.1:3000/api/health >/dev/null || exit 1
