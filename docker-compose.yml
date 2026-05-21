@@ -9,6 +9,9 @@ services:
       - MONGODB_URI=mongodb://mongodb:27017/nextjs-starter
       - NODE_ENV=production
       - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - INTAKE_UPLOAD_DIR=/app/storage/intake
+    volumes:
+      - intake_uploads:/app/storage/intake
     depends_on:
       - mongodb
     networks:
@@ -28,6 +31,7 @@ services:
 
 volumes:
   mongodb_data:
+  intake_uploads:
 
 networks:
   app-network:

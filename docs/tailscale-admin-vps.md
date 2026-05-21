@@ -45,6 +45,7 @@ To make the existing host checks in this app work for a private Tailscale admin,
 NEXT_PUBLIC_APP_URL=https://pfalz-development.de
 ADMIN_APP_URL=https://my-vps.my-tailnet.ts.net
 ADMIN_ENFORCE_IP_ALLOWLIST=false
+INTAKE_UPLOAD_DIR=/app/storage/intake
 ADMIN_SESSION_SECRET=replace-with-a-long-random-secret
 ADMIN_PROXY_SHARED_SECRET=replace-with-a-long-random-secret
 INTAKE_SESSION_SECRET=replace-with-a-long-random-secret
@@ -57,6 +58,12 @@ Why `ADMIN_APP_URL` matters here:
 - admin pages and admin APIs only answer on the configured admin host
 - password reset links point to the Tailscale host instead of the public domain
 - `/admin/*` on the public host can return `404` instead of exposing the admin entry point
+
+Why `INTAKE_UPLOAD_DIR` matters here:
+
+- customer uploads are written to the local filesystem
+- without a persistent mount, files can disappear on redeploy or container replacement
+- in Coolify, mount persistent storage to `/app/storage/intake`
 
 If your Tailscale hostname is forwarded through a local reverse proxy into Coolify or Traefik, configure a shared secret between that proxy and the app. The proxy should inject:
 

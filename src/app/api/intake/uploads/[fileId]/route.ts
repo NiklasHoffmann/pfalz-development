@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import { errorResponse, handleApiError } from '@/lib/api-response';
-import { hasValidAdminApiKey } from '@/lib/api-auth';
+import {
+  requireIntakeAdminAccess,
+  requireIntakeAdminMutationAccess,
+} from '@/lib/api-auth';
 import { getIntakeContextFromSession } from '@/lib/intake/access';
 import { INTAKE_SESSION_COOKIE_NAME } from '@/lib/intake/constants';
 import { decodeIntakeSession } from '@/lib/intake/session';
@@ -48,6 +51,18 @@ function buildDownloadHeaders(filename: string, mimeType: string) {
   };
 }
 
+async function hasAdminReadAccess(request: NextRequest) {
+  const authState = await requireIntakeAdminAccess(
+    request,
+    ['admin', 'editor'],
+    {
+      allowApiKey: true,
+    }
+  );
+
+  return !('status' in authState);
+}
+
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ fileId: string }> }
@@ -61,17 +76,16 @@ export async function GET(
       return errorResponse('File not found', 404);
     }
 
-    const hasAdminAccess = hasValidAdminApiKey(request);
+    const boundContext = await getSessionBoundContext(
+      request,
+      fileAsset.submissionId
+    );
+    const hasAdminAccess = boundContext
+      ? false
+      : await hasAdminReadAccess(request);
 
-    if (!hasAdminAccess) {
-      const boundContext = await getSessionBoundContext(
-        request,
-        fileAsset.submissionId
-      );
-
-      if (!boundContext) {
-        return errorResponse('Unauthorized intake access', 403);
-      }
+    if (!boundContext && !hasAdminAccess) {
+      return errorResponse('Unauthorized intake access', 403);
     }
 
     const buffer = await readIntakeStorageFile(fileAsset.storagePath);
@@ -109,20 +123,27 @@ export async function DELETE(
       return errorResponse('File not found', 404);
     }
 
-    const hasAdminAccess = hasValidAdminApiKey(request);
+    const boundContext = await getSessionBoundContext(
+      request,
+      fileAsset.submissionId
+    );
 
-    if (!hasAdminAccess) {
-      const boundContext = await getSessionBoundContext(
-        request,
-        fileAsset.submissionId
-      );
-
-      if (!boundContext) {
-        return errorResponse('Unauthorized intake access', 403);
-      }
-
+    if (boundContext) {
       if (boundContext.submission.submittedAt) {
         return errorResponse('Submission is already completed', 409);
+      }
+    } else {
+      const authState = await requireIntakeAdminMutationAccess(
+        request,
+        ['admin', 'editor'],
+        'intake-upload-delete',
+        {
+          allowApiKey: true,
+        }
+      );
+
+      if ('status' in authState) {
+        return authState;
       }
     }
 

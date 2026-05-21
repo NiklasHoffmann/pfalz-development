@@ -125,6 +125,7 @@ CONTACT_TO_EMAIL=
 ```env
 INTAKE_SESSION_SECRET=
 INTAKE_SHARE_LINK_SECRET=
+INTAKE_UPLOAD_DIR=storage/intake
 ADMIN_API_KEY=
 ADMIN_APP_URL=
 ADMIN_ENFORCE_IP_ALLOWLIST=true
@@ -137,6 +138,7 @@ Notes:
 
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` must either both be set or both be omitted.
 - `INTAKE_SESSION_SECRET` and `INTAKE_SHARE_LINK_SECRET` are required in production for signed intake access.
+- `INTAKE_UPLOAD_DIR` should point to a persistent directory in production so questionnaire uploads survive redeploys.
 - `ADMIN_SESSION_SECRET` is required for admin authentication in every environment.
 - `ADMIN_APP_URL` is optional. Set it when the admin should live on a dedicated host such as `https://admin.pfalz-development.de`.
 - For a private Tailscale admin, set `ADMIN_APP_URL` to the VPS MagicDNS host such as `https://my-vps.my-tailnet.ts.net`.
@@ -231,6 +233,15 @@ The provided compose setup starts:
 
 - the Next.js app on port `3000`
 - MongoDB on port `27017`
+- a persistent upload volume mounted at `/app/storage/intake`
+
+For production uploads, make sure `INTAKE_UPLOAD_DIR` points to a persistent path. In Docker or Coolify, a safe default is:
+
+```env
+INTAKE_UPLOAD_DIR=/app/storage/intake
+```
+
+If you deploy with Coolify, add a persistent storage mount that targets `/app/storage/intake`. Otherwise customer uploads can disappear on rebuild or container replacement.
 
 ### Dockerfile
 
