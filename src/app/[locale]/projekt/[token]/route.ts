@@ -4,6 +4,7 @@ import { resolveAccessFromToken } from '@/lib/intake/access';
 import { INTAKE_SESSION_COOKIE_NAME } from '@/lib/intake/constants';
 import { buildQuestionnairePath } from '@/lib/intake/path';
 import { encodeIntakeSession } from '@/lib/intake/session';
+import { getPublicOrigin } from '@/lib/public-origin';
 
 export async function GET(
   request: NextRequest,
@@ -27,7 +28,7 @@ export async function GET(
   const response = NextResponse.redirect(
     new URL(
       buildQuestionnairePath(locale, resolved.accessLink.formSnapshot.slug),
-      request.url
+      getPublicOrigin(request)
     ),
     307
   );

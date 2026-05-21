@@ -7,6 +7,7 @@ import {
 import { INTAKE_SESSION_COOKIE_NAME } from '@/lib/intake/constants';
 import { buildQuestionnairePath } from '@/lib/intake/path';
 import { encodeIntakeSession } from '@/lib/intake/session';
+import { getPublicOrigin } from '@/lib/public-origin';
 import { verifyAccessLinkShareToken } from '@/lib/intake/share-link';
 
 export async function GET(
@@ -46,7 +47,7 @@ export async function GET(
   const response = NextResponse.redirect(
     new URL(
       buildQuestionnairePath(locale, resolved.accessLink.formSnapshot.slug),
-      request.url
+      getPublicOrigin(request)
     ),
     307
   );
