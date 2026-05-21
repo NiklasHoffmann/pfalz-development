@@ -123,13 +123,20 @@ function toOptionalIsoString(value?: string | Date | null) {
   return date.toISOString();
 }
 
-function mapSubmissionAnswerFiles(files?: SubmissionAnswerFile[]) {
+function buildAdminFileDownloadPath(submissionId: string, fileAssetId: string) {
+  return `/api/admin/submissions/${submissionId}/files/${fileAssetId}`;
+}
+
+function mapSubmissionAnswerFiles(
+  submissionId: string,
+  files?: SubmissionAnswerFile[]
+) {
   return (files || []).map((file) => ({
     fileAssetId: file.fileAssetId,
     originalFilename: file.originalFilename,
     mimeType: file.mimeType,
     size: file.size,
-    downloadPath: `/api/intake/uploads/${file.fileAssetId}`,
+    downloadPath: buildAdminFileDownloadPath(submissionId, file.fileAssetId),
   }));
 }
 
@@ -274,7 +281,7 @@ export function buildAdminSubmissionPrintExport(
             formattedValue:
               answer?.displayValue ||
               formatSubmissionAnswerValue(answer?.value),
-            files: mapSubmissionAnswerFiles(answer?.files),
+            files: mapSubmissionAnswerFiles(detail.id, answer?.files),
           };
         }),
       })),
@@ -287,7 +294,7 @@ export function buildAdminSubmissionPrintExport(
           displayValue: answer.displayValue,
           formattedValue:
             answer.displayValue || formatSubmissionAnswerValue(answer.value),
-          files: mapSubmissionAnswerFiles(answer.files),
+          files: mapSubmissionAnswerFiles(detail.id, answer.files),
         })),
     },
   };

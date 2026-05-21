@@ -130,6 +130,14 @@ function getSubmissionStatusClasses(status: string) {
   }
 }
 
+function isPreviewableImageMimeType(mimeType: string) {
+  return mimeType.startsWith('image/');
+}
+
+function buildAdminFilePath(submissionId: string, fileId: string) {
+  return `/api/admin/submissions/${submissionId}/files/${fileId}`;
+}
+
 export function SubmissionDetailAdminSection({
   submissionId,
   locale,
@@ -306,6 +314,23 @@ export function SubmissionDetailAdminSection({
   );
   const fallbackAnswers = detail.answers.filter(
     (answer) => !knownQuestionKeys.has(answer.questionKey)
+  );
+  const questionLabelMap = new Map(
+    sections.flatMap((section) =>
+      section.questions.map(
+        (question) => [question.key, question.label] as const
+      )
+    )
+  );
+  const mediaEntries = detail.answers.flatMap((answer) =>
+    (answer.files || []).map((file) => ({
+      questionKey: answer.questionKey,
+      questionLabel:
+        questionLabelMap.get(answer.questionKey) || answer.questionKey,
+      file,
+      downloadPath: buildAdminFilePath(detail.id, file.fileAssetId),
+      previewPath: `${buildAdminFilePath(detail.id, file.fileAssetId)}?disposition=inline`,
+    }))
   );
 
   return (
@@ -534,7 +559,7 @@ export function SubmissionDetailAdminSection({
                               {answer.files.map((file) => (
                                 <a
                                   key={file.fileAssetId}
-                                  href={`/api/intake/uploads/${file.fileAssetId}`}
+                                  href={`/api/admin/submissions/${detail.id}/files/${file.fileAssetId}`}
                                   target="_blank"
                                   rel="noreferrer"
                                   className="inline-flex items-center rounded-full border border-stone-300 px-3 py-1 text-xs font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
@@ -592,6 +617,98 @@ export function SubmissionDetailAdminSection({
         </section>
 
         <aside className="space-y-6 xl:sticky xl:top-4">
+          <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="border-b border-stone-200 pb-5 dark:border-stone-800">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Medien
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
+                    Alle hochgeladenen Dateien dieser Einreichung gesammelt mit
+                    Direktansicht und Download.
+                  </p>
+                </div>
+                <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-medium text-stone-600 dark:border-stone-700 dark:bg-stone-950/60 dark:text-stone-300">
+                  {mediaEntries.length} Datei
+                  {mediaEntries.length === 1 ? '' : 'en'}
+                </span>
+              </div>
+            </div>
+
+            {mediaEntries.length ? (
+              <div className="mt-5 space-y-4">
+                {mediaEntries.map(
+                  ({
+                    questionKey,
+                    questionLabel,
+                    file,
+                    downloadPath,
+                    previewPath,
+                  }) => (
+                    <article
+                      key={file.fileAssetId}
+                      className="rounded-[1.4rem] border border-stone-200 bg-stone-50 px-4 py-4 dark:border-stone-800 dark:bg-stone-950/60"
+                    >
+                      {isPreviewableImageMimeType(file.mimeType) ? (
+                        <a href={previewPath} target="_blank" rel="noreferrer">
+                          <img
+                            src={previewPath}
+                            alt={file.originalFilename}
+                            className="h-40 w-full rounded-2xl border border-stone-200 object-cover dark:border-stone-800"
+                            loading="lazy"
+                          />
+                        </a>
+                      ) : (
+                        <div className="flex h-24 items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-white text-sm font-medium text-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
+                          Keine Vorschau für {file.mimeType}
+                        </div>
+                      )}
+
+                      <div className="mt-4">
+                        <p className="text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                          {questionLabel}
+                        </p>
+                        <p className="mt-1 break-words text-sm font-medium text-stone-950 dark:text-stone-50">
+                          {file.originalFilename}
+                        </p>
+                        <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">
+                          Key: {questionKey} · {file.mimeType} ·{' '}
+                          {(file.size / 1024 / 1024).toFixed(2)} MB
+                        </p>
+                      </div>
+
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {isPreviewableImageMimeType(file.mimeType) && (
+                          <a
+                            href={previewPath}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center justify-center rounded-full border border-stone-300 px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
+                          >
+                            Ansehen
+                          </a>
+                        )}
+                        <a
+                          href={downloadPath}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-full bg-stone-950 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-200"
+                        >
+                          Herunterladen
+                        </a>
+                      </div>
+                    </article>
+                  )
+                )}
+              </div>
+            ) : (
+              <div className="mt-5 rounded-[1.4rem] border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm text-stone-600 dark:border-stone-700 dark:bg-stone-950/40 dark:text-stone-300">
+                Für diese Einreichung wurden noch keine Medien hochgeladen.
+              </div>
+            )}
+          </section>
+
           <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900">
             <div className="border-b border-stone-200 pb-5 dark:border-stone-800">
               <h2 className="text-2xl font-semibold tracking-tight">
