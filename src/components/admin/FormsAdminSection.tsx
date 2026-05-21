@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AdminDataSection } from '@/components/admin/AdminDataSection';
+import { intakeTemplateOptions } from '@/content/intake/templates';
 import Checkbox from '@/components/ui/Form/Checkbox';
 import Input from '@/components/ui/Form/Input';
 import Select from '@/components/ui/Form/Select';
@@ -100,20 +101,7 @@ interface FormsAdminSectionProps {
   locale: string;
 }
 
-const templateOptions = [
-  {
-    value: 'website-relaunch',
-    label: 'Website-Relaunch',
-  },
-  {
-    value: 'branding-logo',
-    label: 'Branding und Logo',
-  },
-  {
-    value: 'content-seo',
-    label: 'Content und SEO',
-  },
-];
+const templateOptions = intakeTemplateOptions;
 
 const initialFormState: FormCreationState = {
   mode: 'template',
