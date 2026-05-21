@@ -303,6 +303,24 @@ function progressForStep(currentStepIndex: number, totalSteps: number): number {
   return Math.round(((currentStepIndex + 1) / totalSteps) * 100);
 }
 
+function getSectionValidationErrors(
+  section: IntakeSectionDefinition,
+  answers: AnswerMap
+): ErrorMap {
+  const nextErrors: ErrorMap = {};
+
+  for (const question of getVisibleQuestions(section, answers)) {
+    const value = answers[question.key];
+    const message = validateQuestion(question, value);
+
+    if (message) {
+      nextErrors[question.key] = message;
+    }
+  }
+
+  return nextErrors;
+}
+
 function SaveIndicator({ saveState }: { saveState: SaveState }) {
   const labels: Record<SaveState, string> = {
     idle: 'Noch nicht gespeichert',
@@ -322,6 +340,63 @@ function SaveIndicator({ saveState }: { saveState: SaveState }) {
     <p className={cn('text-sm font-medium', tone[saveState])}>
       {labels[saveState]}
     </p>
+  );
+}
+
+function ErrorSummary({
+  hasAttemptedSubmit,
+  totalErrorCount,
+  currentStepErrorCount,
+  errorSteps,
+  onSelectStep,
+}: {
+  hasAttemptedSubmit: boolean;
+  totalErrorCount: number;
+  currentStepErrorCount: number;
+  errorSteps: Array<{
+    index: number;
+    title: string;
+    errorCount: number;
+    isCurrent: boolean;
+  }>;
+  onSelectStep: (stepIndex: number) => void;
+}) {
+  if (!hasAttemptedSubmit || totalErrorCount === 0) {
+    return null;
+  }
+
+  return (
+    <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-4 text-sm text-red-900 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-100">
+      <p className="font-semibold">
+        Es fehlen noch {totalErrorCount} Angabe
+        {totalErrorCount === 1 ? '' : 'n'}.
+      </p>
+      <p className="mt-1 leading-6 text-red-800 dark:text-red-200">
+        Bitte prüfe die markierten Felder, bevor du den Fragebogen absendest.
+        {currentStepErrorCount > 0
+          ? ` Auf diesem Schritt fehlen noch ${currentStepErrorCount} Angabe${currentStepErrorCount === 1 ? '' : 'n'}.`
+          : ' Auf diesem Schritt ist aktuell nichts mehr offen.'}
+      </p>
+      {errorSteps.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {errorSteps.map((step) => (
+            <button
+              key={step.index}
+              type="button"
+              onClick={() => onSelectStep(step.index)}
+              className={cn(
+                'inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-medium transition',
+                step.isCurrent
+                  ? 'border-red-700 bg-red-700 text-white dark:border-red-400 dark:bg-red-400 dark:text-red-950'
+                  : 'border-red-300 bg-white text-red-900 hover:border-red-500 dark:border-red-800 dark:bg-red-950/20 dark:text-red-100 dark:hover:border-red-600'
+              )}
+            >
+              {step.title} ({step.errorCount})
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -822,6 +897,7 @@ export function IntakeQuestionnaireShell({
   );
   const [currentStepIndex, setCurrentStepIndex] = useState(initialStepIndex);
   const [errors, setErrors] = useState<ErrorMap>({});
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [uploadingQuestionKeys, setUploadingQuestionKeys] =
     useState<UploadStateMap>({});
@@ -833,6 +909,37 @@ export function IntakeQuestionnaireShell({
   const visibleQuestions = currentSection
     ? getVisibleQuestions(currentSection, answers)
     : [];
+  const errorSteps = orderedSections
+    .map((section, index) => {
+      const errorCount = getVisibleQuestions(section, answers).filter(
+        (question) => Boolean(errors[question.key])
+      ).length;
+
+      if (errorCount === 0) {
+        return null;
+      }
+
+      return {
+        index,
+        title: section.title,
+        errorCount,
+        isCurrent: index === currentStepIndex,
+      };
+    })
+    .filter(
+      (
+        step
+      ): step is {
+        index: number;
+        title: string;
+        errorCount: number;
+        isCurrent: boolean;
+      } => step !== null
+    );
+  const currentStepErrorCount = visibleQuestions.filter((question) =>
+    Boolean(errors[question.key])
+  ).length;
+  const totalErrorCount = Object.keys(errors).length;
   const progressPercent = progressForStep(
     currentStepIndex,
     orderedSections.length
@@ -1052,20 +1159,29 @@ export function IntakeQuestionnaireShell({
     );
   }
 
-  function validateCurrentSection() {
+  function validateAllSections() {
     const nextErrors: ErrorMap = {};
+    let firstInvalidStepIndex = -1;
 
-    for (const question of visibleQuestions) {
-      const value = answers[question.key];
-      const message = validateQuestion(question, value);
+    orderedSections.forEach((section, index) => {
+      const sectionErrors = getSectionValidationErrors(section, answers);
 
-      if (message) {
-        nextErrors[question.key] = message;
+      if (
+        Object.keys(sectionErrors).length > 0 &&
+        firstInvalidStepIndex === -1
+      ) {
+        firstInvalidStepIndex = index;
       }
-    }
+
+      Object.assign(nextErrors, sectionErrors);
+    });
 
     setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+
+    return {
+      isValid: Object.keys(nextErrors).length === 0,
+      firstInvalidStepIndex,
+    };
   }
 
   async function handlePrevious() {
@@ -1081,10 +1197,6 @@ export function IntakeQuestionnaireShell({
   }
 
   async function handleNext() {
-    if (!validateCurrentSection()) {
-      return;
-    }
-
     if (hasPendingUploads) {
       setSaveState('error');
       return;
@@ -1104,7 +1216,15 @@ export function IntakeQuestionnaireShell({
   }
 
   async function handleSubmit() {
-    if (!validateCurrentSection()) {
+    setHasAttemptedSubmit(true);
+
+    const validationResult = validateAllSections();
+
+    if (!validationResult.isValid) {
+      if (validationResult.firstInvalidStepIndex >= 0) {
+        setCurrentStepIndex(validationResult.firstInvalidStepIndex);
+      }
+
       return;
     }
 
@@ -1163,6 +1283,14 @@ export function IntakeQuestionnaireShell({
         }}
         isLoading={isPending}
       >
+        <ErrorSummary
+          hasAttemptedSubmit={hasAttemptedSubmit}
+          totalErrorCount={totalErrorCount}
+          currentStepErrorCount={currentStepErrorCount}
+          errorSteps={errorSteps}
+          onSelectStep={setCurrentStepIndex}
+        />
+
         {visibleQuestions.map((question) => (
           <QuestionField
             key={question.id}
@@ -1194,6 +1322,12 @@ export function IntakeQuestionnaireShell({
             {isLastStep ? 'Fragebogen absenden' : 'Weiter'}
           </button>
         </div>
+
+        {isLastStep && (
+          <p className="text-sm leading-6 text-stone-500 dark:text-stone-400 sm:text-right">
+            Pflichtfelder werden erst beim Absenden vollständig geprüft.
+          </p>
+        )}
       </Form>
     </section>
   );
