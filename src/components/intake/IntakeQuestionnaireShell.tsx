@@ -101,6 +101,10 @@ function isIntakeFileReferenceArray(
   return Array.isArray(value) && value.every(isIntakeFileReference);
 }
 
+function isPreviewableImageMimeType(mimeType: string) {
+  return mimeType.startsWith('image/');
+}
+
 function evaluateVisibilityRule(
   rule: IntakeVisibilityRule,
   answers: AnswerMap
@@ -732,7 +736,15 @@ function QuestionField({
                 key={fileReference.fileAssetId}
                 className="flex flex-col gap-3 rounded-2xl border border-stone-200 bg-white px-4 py-3 dark:border-stone-800 dark:bg-stone-900 sm:flex-row sm:items-center sm:justify-between"
               >
-                <div>
+                <div className="space-y-3">
+                  {isPreviewableImageMimeType(fileReference.mimeType) && (
+                    <img
+                      src={`/api/intake/uploads/${fileReference.fileAssetId}?disposition=inline`}
+                      alt={fileReference.originalFilename}
+                      className="h-28 w-full rounded-2xl border border-stone-200 object-cover dark:border-stone-800 sm:w-44"
+                      loading="lazy"
+                    />
+                  )}
                   <a
                     href={`/api/intake/uploads/${fileReference.fileAssetId}`}
                     className="font-medium text-stone-900 underline decoration-stone-300 underline-offset-4 dark:text-stone-50 dark:decoration-stone-700"

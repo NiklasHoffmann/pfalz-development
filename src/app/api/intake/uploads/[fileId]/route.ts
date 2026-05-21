@@ -43,10 +43,14 @@ async function getSessionBoundContext(
   return getIntakeContextFromSession(session, session.formSlug);
 }
 
-function buildDownloadHeaders(filename: string, mimeType: string) {
+function buildDownloadHeaders(
+  filename: string,
+  mimeType: string,
+  disposition: 'attachment' | 'inline' = 'attachment'
+) {
   return {
     'Content-Type': mimeType,
-    'Content-Disposition': `attachment; filename*=UTF-8''${encodeURIComponent(filename)}`,
+    'Content-Disposition': `${disposition}; filename*=UTF-8''${encodeURIComponent(filename)}`,
     'Cache-Control': 'private, no-store',
   };
 }
@@ -88,13 +92,20 @@ export async function GET(
       return errorResponse('Unauthorized intake access', 403);
     }
 
+    const disposition =
+      request.nextUrl.searchParams.get('disposition') === 'inline' &&
+      fileAsset.mimeType.startsWith('image/')
+        ? 'inline'
+        : 'attachment';
+
     const buffer = await readIntakeStorageFile(fileAsset.storagePath);
 
     return new NextResponse(buffer, {
       status: 200,
       headers: buildDownloadHeaders(
         fileAsset.originalFilename,
-        fileAsset.mimeType
+        fileAsset.mimeType,
+        disposition
       ),
     });
   } catch (error) {
