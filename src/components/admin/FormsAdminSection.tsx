@@ -355,6 +355,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
       duplicateFromFormId: currentState.duplicateFromFormId,
     }));
     setIsSubmitting(false);
+    router.push(withLocale(locale, `/admin/forms/${result.data.id}`));
   }
 
   async function handlePreviewImport() {
@@ -441,6 +442,7 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
     setExpandedPreviewSections([]);
     setIsRawJsonExpanded(false);
     setIsImportingForm(false);
+    router.push(withLocale(locale, `/admin/forms/${result.data.id}`));
   }
 
   return (
