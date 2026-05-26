@@ -102,6 +102,7 @@ interface FormsAdminSectionProps {
 }
 
 const templateOptions = intakeTemplateOptions;
+const INTAKE_FORMS_UPDATED_EVENT = 'intake:forms-updated';
 
 const initialFormState: FormCreationState = {
   mode: 'template',
@@ -342,6 +343,11 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
     }
 
     setSubmitSuccess(`Formular "${result.data.title}" wurde angelegt.`);
+    window.dispatchEvent(
+      new CustomEvent(INTAKE_FORMS_UPDATED_EVENT, {
+        detail: { selectedFormId: result.data.id },
+      })
+    );
     setReloadToken((currentValue) => currentValue + 1);
     setFormState((currentState) => ({
       ...initialFormState,
@@ -423,6 +429,11 @@ export function FormsAdminSection({ locale }: FormsAdminSectionProps) {
     }
 
     setImportSuccess(`Formular "${result.data.title}" wurde gespeichert.`);
+    window.dispatchEvent(
+      new CustomEvent(INTAKE_FORMS_UPDATED_EVENT, {
+        detail: { selectedFormId: result.data.id },
+      })
+    );
     setReloadToken((currentValue) => currentValue + 1);
     setImportPreview(null);
     setImportJson('');

@@ -20,6 +20,7 @@ interface IntakeAccessLinkRow {
   createdAt: string;
   formSnapshot: {
     title: string;
+    slug?: string;
   };
 }
 
@@ -34,6 +35,12 @@ interface AccessLinkCreateResult {
   accessUrl: string;
   qrValue: string;
   tokenPreview: string;
+  accessLink?: {
+    formSnapshot?: {
+      title?: string;
+      slug?: string;
+    };
+  };
 }
 
 interface AccessLinkUpdateResult {
@@ -46,6 +53,8 @@ interface AccessLinkShareResult {
   accessUrl: string;
   qrValue: string;
   tokenPreview: string;
+  formTitle?: string;
+  formSlug?: string;
 }
 
 interface AccessLinkFormState {
@@ -58,6 +67,8 @@ interface AccessLinkFormState {
   expiresAt: string;
   locale: 'de' | 'en' | 'pfl';
 }
+
+const INTAKE_FORMS_UPDATED_EVENT = 'intake:forms-updated';
 
 const initialFormState: AccessLinkFormState = {
   formId: '',
@@ -94,7 +105,7 @@ export function AccessLinksAdminSection() {
   useEffect(() => {
     let isCancelled = false;
 
-    async function loadForms() {
+    async function loadForms(preferredFormId?: string) {
       setIsLoadingForms(true);
       const response = await fetch('/api/admin/forms', {
         credentials: 'include',
@@ -125,9 +136,17 @@ export function AccessLinksAdminSection() {
           .filter((form) => form.id);
 
         setForms(nextForms);
+        const hasPreferredForm = Boolean(
+          preferredFormId &&
+          nextForms.some((form) => form.id === preferredFormId)
+        );
         setFormState((currentState) => ({
           ...currentState,
-          formId: currentState.formId || nextForms[0]?.id || '',
+          formId: hasPreferredForm
+            ? (preferredFormId as string)
+            : nextForms.some((form) => form.id === currentState.formId)
+              ? currentState.formId
+              : nextForms[0]?.id || '',
         }));
       }
 
@@ -136,8 +155,19 @@ export function AccessLinksAdminSection() {
 
     void loadForms();
 
+    function handleFormsUpdated(event: Event) {
+      const customEvent = event as CustomEvent<{ selectedFormId?: string }>;
+      void loadForms(customEvent.detail?.selectedFormId);
+    }
+
+    window.addEventListener(INTAKE_FORMS_UPDATED_EVENT, handleFormsUpdated);
+
     return () => {
       isCancelled = true;
+      window.removeEventListener(
+        INTAKE_FORMS_UPDATED_EVENT,
+        handleFormsUpdated
+      );
     };
   }, []);
 
@@ -249,7 +279,13 @@ export function AccessLinksAdminSection() {
       return;
     }
 
-    setCreatedResult(result.data);
+    setCreatedResult({
+      accessUrl: result.data.accessUrl,
+      qrValue: result.data.qrValue,
+      tokenPreview: result.data.tokenPreview,
+      formTitle: result.data.accessLink?.formSnapshot?.title,
+      formSlug: result.data.accessLink?.formSnapshot?.slug,
+    });
     setSubmitSuccess(
       'Zugangslink wurde erstellt und steht sofort zur Verfügung.'
     );
@@ -325,6 +361,8 @@ export function AccessLinksAdminSection() {
         accessUrl: result.data.accessUrl,
         qrValue: result.data.qrValue,
         tokenPreview: result.data.accessLink.tokenPreview,
+        formTitle: result.data.accessLink.formSnapshot?.title,
+        formSlug: result.data.accessLink.formSnapshot?.slug,
       });
       setSubmitSuccess(undefined);
     }
@@ -362,7 +400,13 @@ export function AccessLinksAdminSection() {
       return;
     }
 
-    setCreatedResult(result.data);
+    setCreatedResult({
+      accessUrl: result.data.accessUrl,
+      qrValue: result.data.qrValue,
+      tokenPreview: result.data.tokenPreview,
+      formTitle: row.formSnapshot?.title,
+      formSlug: row.formSnapshot?.slug,
+    });
     setSubmitSuccess(undefined);
     setActionMessage(
       'Bestehender Zugangslink wurde zum erneuten Teilen bereitgestellt.'
@@ -541,6 +585,19 @@ export function AccessLinksAdminSection() {
             <div className="space-y-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
+                  Formular
+                </p>
+                <p className="mt-2 text-sm font-medium text-stone-700 dark:text-stone-200">
+                  {createdResult.formTitle || 'Ohne Titel'}
+                </p>
+                {createdResult.formSlug && (
+                  <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+                    Slug: {createdResult.formSlug}
+                  </p>
+                )}
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
                   Direktlink
                 </p>
                 <p className="mt-2 break-all text-sm text-stone-700 dark:text-stone-200">
@@ -706,8 +763,15 @@ export function AccessLinksAdminSection() {
                   {row.formSnapshot?.title || '-'}
                 </p>
                 <p className="text-xs text-stone-500 dark:text-stone-400">
-                  Token: {row.tokenPreview}
+                  {row.formSnapshot?.slug
+                    ? `Slug: ${row.formSnapshot.slug}`
+                    : `Token: ${row.tokenPreview}`}
                 </p>
+                {row.formSnapshot?.slug && (
+                  <p className="text-xs text-stone-500 dark:text-stone-400">
+                    Token: {row.tokenPreview}
+                  </p>
+                )}
               </div>
             ),
           },
