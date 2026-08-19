@@ -46,9 +46,9 @@ const lineItemSchema = new Schema(
   {
     id: { type: String, required: true },
     description: { type: String, required: true, trim: true },
-    quantity: { type: Number, required: true, min: 0 },
-    unitPrice: { type: Number, required: true, min: 0 },
-    total: { type: Number, required: true, min: 0 },
+    quantity: { type: Number, required: true },
+    unitPrice: { type: Number, required: true },
+    total: { type: Number, required: true },
   },
   { _id: false }
 );

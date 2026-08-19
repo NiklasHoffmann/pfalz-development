@@ -224,7 +224,7 @@ function getPrintableInvoiceStatusLabel(status: InvoiceStatus) {
 }
 
 function buildEpcPayload(draft: InvoiceDraft, amount: number) {
-  if (!draft.paymentPayee.trim() || !draft.paymentIban.trim()) {
+  if (!draft.paymentPayee.trim() || !draft.paymentIban.trim() || amount <= 0) {
     return '';
   }
 
@@ -1382,7 +1382,6 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                       <Input
                         label="Menge"
                         type="number"
-                        min="0"
                         step="0.01"
                         value={String(line.quantity)}
                         onChange={(event) =>
@@ -1394,7 +1393,6 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                       <Input
                         label="Einzelpreis"
                         type="number"
-                        min="0"
                         step="0.01"
                         value={String(line.unitPrice)}
                         onChange={(event) =>
