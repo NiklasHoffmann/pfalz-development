@@ -273,6 +273,27 @@ function createDraftFromProfile(
   };
 }
 
+function mergeDraftWithProfile(
+  draft: InvoiceDraft,
+  profile: InvoiceProfile
+): InvoiceDraft {
+  return {
+    ...draft,
+    senderCompany: profile.senderCompany,
+    senderName: profile.senderName,
+    senderStreet: profile.senderStreet,
+    senderCity: profile.senderCity,
+    senderEmail: profile.senderEmail,
+    senderPhone: profile.senderPhone,
+    senderTaxNumber: profile.senderTaxNumber,
+    paymentPayee: profile.paymentPayee,
+    paymentIban: profile.paymentIban,
+    paymentBic: profile.paymentBic,
+    paymentBank: profile.paymentBank,
+    note: profile.note,
+  };
+}
+
 function hasStoredProfile(profile: InvoiceProfile) {
   return [
     profile.senderName,
@@ -662,6 +683,22 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
     setActionError('');
     setActionMessage(
       'Neue Rechnung mit serverseitig vorgeschlagener Nummer vorbereitet.'
+    );
+  }
+
+  function applyCurrentProfileToDraft() {
+    if (!profileExists) {
+      setActionError('Bitte zuerst Stammdaten speichern.');
+      setActionMessage('');
+      return;
+    }
+
+    setDraft((current) => mergeDraftWithProfile(current, currentProfile));
+    setActionError('');
+    setActionMessage(
+      draft.id
+        ? 'Aktuelle Stammdaten wurden in den geladenen Entwurf übernommen.'
+        : 'Aktuelle Stammdaten wurden in den aktuellen Entwurf übernommen.'
     );
   }
 
@@ -1199,6 +1236,14 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
             </div>
 
             <div className="flex flex-wrap gap-2 sm:justify-end">
+              <button
+                type="button"
+                onClick={applyCurrentProfileToDraft}
+                disabled={!profileExists}
+                className="inline-flex items-center justify-center rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-800 transition hover:border-emerald-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-emerald-800 dark:bg-emerald-950/20 dark:text-emerald-200"
+              >
+                Aktuelle Stammdaten übernehmen
+              </button>
               <button
                 type="button"
                 onClick={exportDraftJson}
