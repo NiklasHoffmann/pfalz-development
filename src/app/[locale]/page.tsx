@@ -1,5 +1,3 @@
-import { existsSync, readdirSync } from 'node:fs';
-import path from 'node:path';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HomePageView } from '@/components/home/HomePageView';
@@ -89,44 +87,13 @@ function localeToIntroductionPortraitAlt(locale: string, name: string): string {
   return `Porträt von ${name} von ${siteConfig.name}`;
 }
 
+const INTRODUCTION_PORTRAIT_SRC = '/images/portrait/P4242128.webp';
+
 function resolveIntroductionPortrait(
   locale: string
 ): HomePageData['introduction']['portrait'] {
-  const preferredExtensions = ['.avif', '.webp', '.jpg', '.jpeg', '.png'];
-  const portraitDirectory = path.join(
-    process.cwd(),
-    'public',
-    'images',
-    'portrait'
-  );
-
-  if (!existsSync(portraitDirectory)) {
-    return undefined;
-  }
-
-  const portraitFiles = readdirSync(portraitDirectory, {
-    withFileTypes: true,
-  })
-    .filter((entry) => entry.isFile())
-    .map((entry) => ({
-      entry,
-      extension: path.extname(entry.name).toLowerCase(),
-    }))
-    .filter(({ extension }) => preferredExtensions.includes(extension))
-    .sort(
-      (left, right) =>
-        preferredExtensions.indexOf(left.extension) -
-        preferredExtensions.indexOf(right.extension)
-    );
-
-  const portraitFile = portraitFiles[0]?.entry;
-
-  if (!portraitFile) {
-    return undefined;
-  }
-
   return {
-    src: `/images/portrait/${portraitFile.name}`,
+    src: INTRODUCTION_PORTRAIT_SRC,
     alt: localeToIntroductionPortraitAlt(locale, siteConfig.creator.name),
     name: siteConfig.creator.name,
     label: siteConfig.name,

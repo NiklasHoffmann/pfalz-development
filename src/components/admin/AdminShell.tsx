@@ -47,6 +47,7 @@ const navigationItems: NavigationItem[] = [
     label: 'Formulare',
     roles: ['admin'] as IntakeStaffRole[],
   },
+  { href: '/admin/zeiterfassung', label: 'Zeiterfassung' },
   {
     href: '/admin/audit',
     label: 'Audit-Log',
