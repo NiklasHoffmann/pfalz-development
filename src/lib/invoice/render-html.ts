@@ -149,12 +149,14 @@ export function renderInvoiceHeaderHtml(
 
 interface FooterOptions {
   qrSrc: string | null;
+  /** Small logo shown in the centre of the QR code. */
+  qrBadgeSrc?: string | null;
   variant: 'pdf' | 'preview';
 }
 
 export function renderInvoiceFooterHtml(
   invoice: InvoiceViewModel,
-  { qrSrc, variant }: FooterOptions
+  { qrSrc, qrBadgeSrc, variant }: FooterOptions
 ): string {
   const padding = variant === 'pdf' ? '4mm 14mm 6mm' : '12px 0 0';
   const pageNumber =
@@ -170,10 +172,23 @@ export function renderInvoiceFooterHtml(
     .filter(Boolean)
     .join(' · ');
 
+  const qrBadge = qrBadgeSrc
+    ? `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#ffffff;border:1px solid #a7f3d0;border-radius:2.5px;padding:0.9mm;line-height:0;box-shadow:0 0 0 1px rgba(255,255,255,0.9);">
+        <img src="${esc(
+          qrBadgeSrc
+        )}" alt="" style="width:4.4mm;height:4.4mm;object-fit:contain;display:block;" />
+      </div>`
+    : '';
+
   const qrBlock = qrSrc
     ? `<div style="text-align:center;flex:0 0 auto;">
         <div style="font-size:7.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#047857;margin-bottom:1.5mm;">Scan un Pay</div>
-        <img src="${esc(qrSrc)}" alt="EPC-QR-Code für die SEPA-Überweisung" style="width:22mm;height:22mm;border:1px solid #d6d3d1;background:#ffffff;padding:1mm;box-sizing:border-box;" />
+        <div style="position:relative;width:24mm;height:24mm;border:1px solid #d6d3d1;background:#ffffff;padding:1mm;box-sizing:border-box;margin:0 auto;">
+          <img src="${esc(
+            qrSrc
+          )}" alt="EPC-QR-Code für die SEPA-Überweisung" style="width:100%;height:100%;display:block;" />
+          ${qrBadge}
+        </div>
         <div style="margin-top:1mm;color:#78716c;">${esc(invoice.totalText)}</div>
       </div>`
     : '';
