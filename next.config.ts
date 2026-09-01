@@ -27,6 +27,8 @@ const allowedDevOrigins = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   allowedDevOrigins,
+  // puppeteer-core does dynamic requires and must not be bundled by the compiler.
+  serverExternalPackages: ['puppeteer-core'],
   typescript: {
     ignoreBuildErrors: false,
   },

@@ -3,6 +3,9 @@ import Invoice from '@/models/Invoice';
 import InvoiceSettings from '@/models/InvoiceSettings';
 import type { IInvoice, IInvoiceSettings } from '@/types/invoice';
 
+export { calculateInvoiceTotals } from '@/lib/invoice/totals';
+export type { InvoiceTotals } from '@/lib/invoice/totals';
+
 const DEFAULT_YEAR = new Date().getFullYear();
 
 export function normalizeInvoiceNoteText(value: string) {
@@ -233,40 +236,6 @@ export function normalizeInvoiceDates(
   return {
     invoiceDate: new Date(invoiceDate),
     dueDate: dueDate ? new Date(dueDate) : null,
-  };
-}
-
-export function calculateInvoiceTotals(
-  lineItems: Array<{
-    id: string;
-    description: string;
-    quantity: number;
-    unitPrice: number;
-  }>
-) {
-  const normalizedLineItems = lineItems.map((lineItem) => {
-    const quantity = Number(lineItem.quantity) || 0;
-    const unitPrice = Number(lineItem.unitPrice) || 0;
-    const total = Number((quantity * unitPrice).toFixed(2));
-
-    return {
-      ...lineItem,
-      quantity,
-      unitPrice,
-      total,
-    };
-  });
-
-  const subtotal = Number(
-    normalizedLineItems
-      .reduce((sum, lineItem) => sum + lineItem.total, 0)
-      .toFixed(2)
-  );
-
-  return {
-    lineItems: normalizedLineItems,
-    subtotal,
-    total: subtotal,
   };
 }
 

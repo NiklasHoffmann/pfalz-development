@@ -27,6 +27,10 @@ const envFields = z.object({
   NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().optional(),
   TURNSTILE_SECRET_KEY: z.string().optional(),
 
+  // Headless Chromium for invoice PDF rendering. Set in the Docker image;
+  // locally point this at a Chrome/Edge binary.
+  PUPPETEER_EXECUTABLE_PATH: z.string().min(1).optional(),
+
   // Logging
   LOG_LEVEL: z
     .enum(['error', 'warn', 'info', 'http', 'verbose', 'debug', 'silly'])

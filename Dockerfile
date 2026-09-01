@@ -34,7 +34,16 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN apk add --no-cache su-exec
+# Chromium for invoice PDF rendering (puppeteer-core drives the system binary).
+RUN apk add --no-cache \
+	su-exec \
+	chromium \
+	nss \
+	freetype \
+	harfbuzz \
+	ca-certificates \
+	ttf-freefont
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
