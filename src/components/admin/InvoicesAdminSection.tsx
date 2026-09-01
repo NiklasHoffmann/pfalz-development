@@ -797,10 +797,10 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
       <style jsx global>{`
         @media print {
           /*
-           * Reserve a bottom strip on every sheet for the "Seite X von Y" line.
-           * The named "invoice" page in globals.css fills that strip with the
-           * counter; keeping the same margin here means the reservation still
-           * holds if named-page margin boxes aren't supported.
+           * Bottom strip on every sheet: holds the "Seite X von Y" line (filled
+           * by the named "invoice" page in globals.css) and sits below the
+           * fixed footer. Repeated here unnamed so the strip is still reserved
+           * if named-page margin boxes aren't supported.
            */
           @page {
             size: A4;
@@ -829,6 +829,22 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
             max-width: none !important;
             background: #ffffff !important;
             box-shadow: none !important;
+          }
+
+          /*
+           * A transformed/filtered ancestor would become the containing block
+           * for the position: fixed footer and break its per-page repeat, so
+           * clear those on every wrapper around the printed invoice.
+           */
+          .admin-shell,
+          .admin-shell > .relative,
+          .admin-shell-content,
+          .admin-shell-content main,
+          .invoice-admin-root,
+          .invoice-print-shell {
+            transform: none !important;
+            filter: none !important;
+            perspective: none !important;
           }
 
           .admin-shell-content,
@@ -866,44 +882,55 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
             max-width: none !important;
             min-height: 0 !important;
             display: block !important;
-            padding: 12mm !important;
+            padding: 12mm 12mm 0 !important;
             background: #fcfbf7 !important;
             page: invoice !important;
+            transform: none !important;
+            filter: none !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
 
-          /*
-           * Table layout so the footer lives in a real <tfoot>: Chromium repeats
-           * it on every page and reserves its height, so long invoices keep the
-           * payment block on each sheet without the body text sliding under it.
-           * Height = A4 (297mm) minus the @page bottom margin (16mm, holds the
-           * "Seite X von Y" line) minus the root padding (2 x 12mm).
-           */
           .invoice-print-layout {
             width: 100% !important;
-            height: 257mm !important;
             border-collapse: collapse !important;
             table-layout: fixed !important;
           }
 
           .invoice-print-layout > tbody > tr > td {
-            height: 100% !important;
             padding: 0 !important;
             vertical-align: top !important;
           }
 
-          .invoice-print-layout > tfoot {
+          /*
+           * The visible footer is pinned to every sheet via position: fixed
+           * below; this empty <tfoot> repeats on every page and reserves the
+           * same height so the invoice body never runs underneath it. Keep the
+           * height in sync with the footer's rendered height (payment block +
+           * QR + padding).
+           */
+          .invoice-print-foot-reserve {
             display: table-footer-group !important;
           }
 
-          .invoice-print-layout > tfoot > tr > td {
+          .invoice-print-foot-reserve > tr > td {
             padding: 0 !important;
-            vertical-align: bottom !important;
+            border: 0 !important;
+          }
+
+          .invoice-print-foot-reserve-box {
+            height: 68mm !important;
           }
 
           .invoice-print-footer {
-            padding-top: 8mm !important;
+            position: fixed !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 16mm !important;
+            margin: 0 !important;
+            padding: 8mm 12mm 10mm !important;
+            background: #fcfbf7 !important;
+            border-top: 1px solid #ede4d6 !important;
             break-inside: avoid !important;
             page-break-inside: avoid !important;
           }
@@ -1283,7 +1310,12 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
               </button>
               <button
                 type="button"
-                onClick={() => window.print()}
+                onClick={() => {
+                  // Scroll to top first: a scrolled viewport can offset the
+                  // position: fixed print footer in Chrome.
+                  window.scrollTo({ top: 0 });
+                  window.requestAnimationFrame(() => window.print());
+                }}
                 className="inline-flex items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-200 dark:hover:border-stone-100 dark:hover:text-stone-50"
               >
                 Drucken
@@ -1775,62 +1807,64 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
                 </td>
               </tr>
             </tbody>
-            <tfoot>
+            <tfoot
+              className="invoice-print-foot-reserve hidden"
+              aria-hidden="true"
+            >
               <tr>
-                <td className="p-0 align-bottom">
-                  <footer className="invoice-print-footer mt-6 border-t border-[#ede4d6] pt-4 text-[13px] text-stone-600">
-                    <div className="invoice-print-payment invoice-print-payment-box grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
-                      <div>
-                        <p className="leading-6">
-                          <strong>Zahlungsbedingungen:</strong> Bitte bis
-                          spätestens {formatDisplayDate(draft.dueDate)} unter
-                          Angabe der Rechnungsnummer {draft.invoiceNumber}{' '}
-                          überweisen.
-                        </p>
-                        <p className="mt-1 leading-6">
-                          <strong>Bankverbindung:</strong> IBAN{' '}
-                          {formatIban(draft.paymentIban)}, BIC{' '}
-                          {draft.paymentBic.toUpperCase()}, Bank{' '}
-                          {draft.paymentBank}
-                        </p>
-                      </div>
-                      {qrDataUrl ? (
-                        <div className="rounded-xl border border-[#ddd2c1] bg-[#fffdfa] p-2 text-center shadow-none">
-                          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                            Scan un Pay
-                          </p>
-                          <div className="relative mx-auto h-24 w-24">
-                            <Image
-                              src={qrDataUrl}
-                              alt="QR-Code zum Bezahlen per Banking-App"
-                              width={96}
-                              height={96}
-                              unoptimized
-                              className="h-24 w-24 rounded border border-stone-300 bg-white p-1"
-                            />
-                            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                              <div className="rounded-lg border border-emerald-200 bg-white/95 p-1 shadow-sm">
-                                <Image
-                                  src={PAYMENT_QR_LOGO_SRC}
-                                  alt="pfalz-development.de"
-                                  width={20}
-                                  height={20}
-                                  className="h-5 w-5 object-contain"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <p className="mt-2 text-[11px] text-stone-600">
-                            {formatMoney(total)} EUR
-                          </p>
-                        </div>
-                      ) : null}
-                    </div>
-                  </footer>
+                <td>
+                  <div className="invoice-print-foot-reserve-box" />
                 </td>
               </tr>
             </tfoot>
           </table>
+          <footer className="invoice-print-footer mt-6 border-t border-[#ede4d6] pt-4 text-[13px] text-stone-600">
+            <div className="invoice-print-payment invoice-print-payment-box grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
+              <div>
+                <p className="leading-6">
+                  <strong>Zahlungsbedingungen:</strong> Bitte bis spätestens{' '}
+                  {formatDisplayDate(draft.dueDate)} unter Angabe der
+                  Rechnungsnummer {draft.invoiceNumber} überweisen.
+                </p>
+                <p className="mt-1 leading-6">
+                  <strong>Bankverbindung:</strong> IBAN{' '}
+                  {formatIban(draft.paymentIban)}, BIC{' '}
+                  {draft.paymentBic.toUpperCase()}, Bank {draft.paymentBank}
+                </p>
+              </div>
+              {qrDataUrl ? (
+                <div className="rounded-xl border border-[#ddd2c1] bg-[#fffdfa] p-2 text-center shadow-none">
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                    Scan un Pay
+                  </p>
+                  <div className="relative mx-auto h-24 w-24">
+                    <Image
+                      src={qrDataUrl}
+                      alt="QR-Code zum Bezahlen per Banking-App"
+                      width={96}
+                      height={96}
+                      unoptimized
+                      className="h-24 w-24 rounded border border-stone-300 bg-white p-1"
+                    />
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                      <div className="rounded-lg border border-emerald-200 bg-white/95 p-1 shadow-sm">
+                        <Image
+                          src={PAYMENT_QR_LOGO_SRC}
+                          alt="pfalz-development.de"
+                          width={20}
+                          height={20}
+                          className="h-5 w-5 object-contain"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-[11px] text-stone-600">
+                    {formatMoney(total)} EUR
+                  </p>
+                </div>
+              ) : null}
+            </div>
+          </footer>
         </article>
       </section>
     </div>
