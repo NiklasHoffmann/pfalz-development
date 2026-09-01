@@ -331,24 +331,3 @@
     }
   }
 }
-
-/*
- * Invoice printing. The invoice footer is pinned to the bottom of every sheet
- * with `position: fixed`; an empty <tfoot> in the markup reserves the matching
- * height so body text never runs under it. This named page adds the bottom
- * strip that holds the automatic "Seite X von Y" line and is scoped via
- * `page: invoice`, so other print views (e.g. submissions) are untouched.
- * Margin boxes + page counters need Chromium or Safari 18.2+; elsewhere the
- * footer still repeats, only the page number is dropped.
- */
-@page invoice {
-  size: A4;
-  margin: 0 0 16mm;
-
-  @bottom-center {
-    content: 'Seite ' counter(page) ' von ' counter(pages);
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-size: 9pt;
-    color: #78716c;
-  }
-}
