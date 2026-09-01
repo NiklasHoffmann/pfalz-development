@@ -105,6 +105,7 @@ function wrapChromeTemplate(markup: string): string {
 export interface InvoicePdfAssets {
   logoDataUri: string;
   qrDataUri: string | null;
+  qrBadgeDataUri: string | null;
 }
 
 export async function renderInvoicePdf(
@@ -120,6 +121,7 @@ export async function renderInvoicePdf(
   const footerTemplate = wrapChromeTemplate(
     renderInvoiceFooterHtml(invoice, {
       qrSrc: assets.qrDataUri,
+      qrBadgeSrc: assets.qrBadgeDataUri,
       variant: 'pdf',
     })
   );

@@ -45,7 +45,8 @@ export function buildEpcQrPayload(input: EpcQrInput): string {
 
 /**
  * Renders an EPC QR payload to a PNG data URL. Returns null for an empty
- * payload. Works in the browser and in Node.
+ * payload. Works in the browser and in Node. Uses high error correction so the
+ * centred logo badge does not break scannability.
  */
 export async function renderEpcQrDataUrl(
   payload: string
@@ -55,9 +56,9 @@ export async function renderEpcQrDataUrl(
   }
 
   return QRCode.toDataURL(payload, {
-    errorCorrectionLevel: 'M',
+    errorCorrectionLevel: 'H',
     margin: 1,
-    width: 320,
+    width: 360,
     color: {
       dark: '#1c1917',
       light: '#ffffff',

@@ -9,7 +9,10 @@ import {
   type InvoiceViewModel,
 } from '@/lib/invoice/view-model';
 import { buildEpcQrPayload, renderEpcQrDataUrl } from '@/lib/invoice/epc-qr';
-import { getInvoiceLogoDataUri } from '@/lib/invoice/assets';
+import {
+  getInvoiceLogoDataUri,
+  getInvoiceQrBadgeDataUri,
+} from '@/lib/invoice/assets';
 import { renderInvoicePdf } from '@/lib/invoice/render-pdf';
 
 export const runtime = 'nodejs';
@@ -48,7 +51,7 @@ export async function POST(request: NextRequest): Promise<Response> {
       throw error;
     }
 
-    const [qrDataUri, logoDataUri] = await Promise.all([
+    const [qrDataUri, logoDataUri, qrBadgeDataUri] = await Promise.all([
       renderEpcQrDataUrl(
         buildEpcQrPayload({
           payee: invoice.payment.payee,
@@ -59,12 +62,17 @@ export async function POST(request: NextRequest): Promise<Response> {
         })
       ),
       getInvoiceLogoDataUri(),
+      getInvoiceQrBadgeDataUri().catch(() => null),
     ]);
 
     let pdf: Uint8Array<ArrayBuffer>;
 
     try {
-      pdf = await renderInvoicePdf(invoice, { logoDataUri, qrDataUri });
+      pdf = await renderInvoicePdf(invoice, {
+        logoDataUri,
+        qrDataUri,
+        qrBadgeDataUri,
+      });
     } catch (error) {
       logger.error('Invoice PDF request failed', { error });
       return errorResponse(

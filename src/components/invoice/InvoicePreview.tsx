@@ -27,7 +27,11 @@ export function InvoicePreview({
   const markup =
     renderInvoiceHeaderHtml(invoice, { logoSrc, variant: 'preview' }) +
     renderInvoiceBodyHtml(invoice) +
-    renderInvoiceFooterHtml(invoice, { qrSrc: qrDataUrl, variant: 'preview' });
+    renderInvoiceFooterHtml(invoice, {
+      qrSrc: qrDataUrl,
+      qrBadgeSrc: '/invoice-qr-badge.webp',
+      variant: 'preview',
+    });
 
   return (
     <div className="mx-auto w-full max-w-[210mm] overflow-hidden rounded-2xl border border-[#e0d5c3] bg-[#fcfbf7] shadow-sm">
