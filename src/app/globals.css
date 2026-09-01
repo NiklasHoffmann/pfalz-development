@@ -331,3 +331,23 @@
     }
   }
 }
+
+/*
+ * Invoice printing. The repeating footer itself is a real <tfoot> in the
+ * invoice markup (Chromium reprints it on every sheet). This named page only
+ * reserves a bottom strip for the automatic "Seite X von Y" line and is scoped
+ * via `page: invoice`, so other print views (e.g. submissions) are untouched.
+ * Margin boxes + page counters need Chromium or Safari 18.2+; elsewhere the
+ * footer still repeats, only the page number is dropped.
+ */
+@page invoice {
+  size: A4;
+  margin: 0 0 16mm;
+
+  @bottom-center {
+    content: 'Seite ' counter(page) ' von ' counter(pages);
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: #78716c;
+  }
+}

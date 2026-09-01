@@ -796,9 +796,15 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
     <div className="invoice-admin-root space-y-6">
       <style jsx global>{`
         @media print {
+          /*
+           * Reserve a bottom strip on every sheet for the "Seite X von Y" line.
+           * The named "invoice" page in globals.css fills that strip with the
+           * counter; keeping the same margin here means the reservation still
+           * holds if named-page margin boxes aren't supported.
+           */
           @page {
             size: A4;
-            margin: 0;
+            margin: 0 0 16mm;
           }
 
           html,
@@ -858,21 +864,45 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
             box-sizing: border-box !important;
             width: 100% !important;
             max-width: none !important;
-            min-height: 297mm !important;
-            display: flex !important;
-            flex-direction: column !important;
+            min-height: 0 !important;
+            display: block !important;
             padding: 12mm !important;
             background: #fcfbf7 !important;
+            page: invoice !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
 
-          .invoice-print-main {
-            flex: 1 1 auto !important;
+          /*
+           * Table layout so the footer lives in a real <tfoot>: Chromium repeats
+           * it on every page and reserves its height, so long invoices keep the
+           * payment block on each sheet without the body text sliding under it.
+           * Height = A4 (297mm) minus the @page bottom margin (16mm, holds the
+           * "Seite X von Y" line) minus the root padding (2 x 12mm).
+           */
+          .invoice-print-layout {
+            width: 100% !important;
+            height: 257mm !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+          }
+
+          .invoice-print-layout > tbody > tr > td {
+            height: 100% !important;
+            padding: 0 !important;
+            vertical-align: top !important;
+          }
+
+          .invoice-print-layout > tfoot {
+            display: table-footer-group !important;
+          }
+
+          .invoice-print-layout > tfoot > tr > td {
+            padding: 0 !important;
+            vertical-align: bottom !important;
           }
 
           .invoice-print-footer {
-            margin-top: auto !important;
             padding-top: 8mm !important;
             break-inside: avoid !important;
             page-break-inside: avoid !important;
@@ -1585,205 +1615,222 @@ export function InvoicesAdminSection({ locale }: { locale: string }) {
 
       <section className="invoice-print-shell mx-auto box-border w-full max-w-[210mm] overflow-hidden rounded-3xl border border-[#e8dcc8] bg-white p-0 shadow-sm dark:border-stone-700 dark:bg-stone-900 print:rounded-none print:border-0 print:shadow-none">
         <article className="invoice-print-root mx-auto box-border flex min-h-[calc(297mm-2px)] w-full max-w-[210mm] flex-col bg-[#fcfbf7] p-6 text-sm text-[#1c1917] sm:p-8">
-          <header className="grid items-start gap-4 border-b-2 border-[#92400e] pb-4 sm:grid-cols-[1fr_auto]">
-            <div className="flex items-center">
-              <Image
-                src="/pfalz-development-logo-light.webp"
-                alt="Pfalz Development"
-                width={360}
-                height={90}
-                priority
-                className="h-16 w-auto object-contain"
-              />
-            </div>
-            <div className="rounded-lg border border-[#e8dcc8] bg-[#f5efe4] px-3 py-2 text-left sm:text-right">
-              <h2 className="text-2xl font-bold tracking-wide text-[#78350f]">
-                RECHNUNG
-              </h2>
-              {printableInvoiceStatusLabel ? (
-                <p className="text-xs text-stone-600">
-                  {printableInvoiceStatusLabel}
-                </p>
-              ) : null}
-            </div>
-          </header>
+          <table className="invoice-print-layout w-full flex-1 border-collapse">
+            <tbody>
+              <tr>
+                <td className="h-full p-0 align-top">
+                  <header className="grid items-start gap-4 border-b-2 border-[#92400e] pb-4 sm:grid-cols-[1fr_auto]">
+                    <div className="flex items-center">
+                      <Image
+                        src="/pfalz-development-logo-light.webp"
+                        alt="Pfalz Development"
+                        width={360}
+                        height={90}
+                        priority
+                        className="h-16 w-auto object-contain"
+                      />
+                    </div>
+                    <div className="rounded-lg border border-[#e8dcc8] bg-[#f5efe4] px-3 py-2 text-left sm:text-right">
+                      <h2 className="text-2xl font-bold tracking-wide text-[#78350f]">
+                        RECHNUNG
+                      </h2>
+                      {printableInvoiceStatusLabel ? (
+                        <p className="text-xs text-stone-600">
+                          {printableInvoiceStatusLabel}
+                        </p>
+                      ) : null}
+                    </div>
+                  </header>
 
-          <main className="invoice-print-main flex-1">
-            <div className="invoice-print-parties mt-5 grid gap-3 md:grid-cols-2">
-              <section className="invoice-print-party-card rounded-lg border border-[#cfb290] bg-[#fffdf8] p-3 shadow-[0_1px_0_rgba(120,53,15,0.06)]">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7c5a2c]">
-                  Absender
-                </h3>
-                <p className="mt-2 whitespace-pre-line">
-                  {draft.senderName}
-                  {'\n'}
-                  {draft.senderStreet}
-                  {'\n'}
-                  {draft.senderCity}
-                  {'\n\n'}
-                  Telefon: {formatPhoneDisplay(draft.senderPhone)}
-                  {'\n'}
-                  E-Mail: {draft.senderEmail}
-                  {'\n'}
-                  Steuernummer: {draft.senderTaxNumber}
-                </p>
-              </section>
+                  <main className="invoice-print-main">
+                    <div className="invoice-print-parties mt-5 grid gap-3 md:grid-cols-2">
+                      <section className="invoice-print-party-card rounded-lg border border-[#cfb290] bg-[#fffdf8] p-3 shadow-[0_1px_0_rgba(120,53,15,0.06)]">
+                        <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7c5a2c]">
+                          Absender
+                        </h3>
+                        <p className="mt-2 whitespace-pre-line">
+                          {draft.senderName}
+                          {'\n'}
+                          {draft.senderStreet}
+                          {'\n'}
+                          {draft.senderCity}
+                          {'\n\n'}
+                          Telefon: {formatPhoneDisplay(draft.senderPhone)}
+                          {'\n'}
+                          E-Mail: {draft.senderEmail}
+                          {'\n'}
+                          Steuernummer: {draft.senderTaxNumber}
+                        </p>
+                      </section>
 
-              <section className="invoice-print-party-card rounded-lg border border-[#cfb290] bg-[#fffdf8] p-3 shadow-[0_1px_0_rgba(120,53,15,0.06)]">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7c5a2c]">
-                  Empfänger
-                </h3>
-                <p className="mt-2 whitespace-pre-line">
-                  {draft.recipientCompany}
-                  {'\n'}
-                  {draft.recipientContact}
-                  {'\n'}
-                  {draft.recipientStreet}
-                  {'\n'}
-                  {draft.recipientCity}
-                </p>
-              </section>
-            </div>
+                      <section className="invoice-print-party-card rounded-lg border border-[#cfb290] bg-[#fffdf8] p-3 shadow-[0_1px_0_rgba(120,53,15,0.06)]">
+                        <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7c5a2c]">
+                          Empfänger
+                        </h3>
+                        <p className="mt-2 whitespace-pre-line">
+                          {draft.recipientCompany}
+                          {'\n'}
+                          {draft.recipientContact}
+                          {'\n'}
+                          {draft.recipientStreet}
+                          {'\n'}
+                          {draft.recipientCity}
+                        </p>
+                      </section>
+                    </div>
 
-            <section className="invoice-print-meta-card mt-3 rounded-lg border border-[#cfb290] bg-[#fffdf8] p-3 shadow-[0_1px_0_rgba(120,53,15,0.06)]">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7c5a2c]">
-                Rechnungsdaten
-              </h3>
-              <div className="invoice-print-meta mt-2 grid gap-1 sm:grid-cols-2">
-                <p>Rechnungsnummer: {draft.invoiceNumber}</p>
-                <p>Rechnungsdatum: {formatDisplayDate(draft.invoiceDate)}</p>
-                <p>Leistungszeitraum: {draft.servicePeriod}</p>
-                <p>Fälligkeit: {formatDisplayDate(draft.dueDate)}</p>
-                <p className="invoice-print-meta-project sm:col-span-2">
-                  Projekt: {draft.project}
-                </p>
-              </div>
-            </section>
+                    <section className="invoice-print-meta-card mt-3 rounded-lg border border-[#cfb290] bg-[#fffdf8] p-3 shadow-[0_1px_0_rgba(120,53,15,0.06)]">
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7c5a2c]">
+                        Rechnungsdaten
+                      </h3>
+                      <div className="invoice-print-meta mt-2 grid gap-1 sm:grid-cols-2">
+                        <p>Rechnungsnummer: {draft.invoiceNumber}</p>
+                        <p>
+                          Rechnungsdatum: {formatDisplayDate(draft.invoiceDate)}
+                        </p>
+                        <p>Leistungszeitraum: {draft.servicePeriod}</p>
+                        <p>Fälligkeit: {formatDisplayDate(draft.dueDate)}</p>
+                        <p className="invoice-print-meta-project sm:col-span-2">
+                          Projekt: {draft.project}
+                        </p>
+                      </div>
+                    </section>
 
-            <div className="mt-4 overflow-x-auto">
-              <table className="invoice-print-table min-w-full border-collapse">
-                <thead>
-                  <tr>
-                    <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-left text-[#78350f]">
-                      Pos.
-                    </th>
-                    <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-left text-[#78350f]">
-                      Leistung
-                    </th>
-                    <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-right text-[#78350f]">
-                      Menge
-                    </th>
-                    <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-right text-[#78350f]">
-                      Einzelpreis
-                    </th>
-                    <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-right text-[#78350f]">
-                      Gesamt
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {draft.lineItems.map((line, index) => {
-                    const lineTotal =
-                      toMoney(line.quantity) * toMoney(line.unitPrice);
-                    return (
-                      <tr key={line.id}>
-                        <td className="border border-[#d7c2a8] px-2 py-2">
-                          {index + 1}
-                        </td>
-                        <td className="border border-[#d7c2a8] px-2 py-2">
-                          {line.description}
-                        </td>
-                        <td className="border border-[#d7c2a8] px-2 py-2 text-right">
-                          {formatMoney(line.quantity)}
-                        </td>
-                        <td className="border border-[#d7c2a8] px-2 py-2 text-right">
-                          {formatMoney(line.unitPrice)} EUR
-                        </td>
-                        <td className="border border-[#d7c2a8] px-2 py-2 text-right">
-                          {formatMoney(lineTotal)} EUR
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                    <div className="mt-4 overflow-x-auto">
+                      <table className="invoice-print-table min-w-full border-collapse">
+                        <thead>
+                          <tr>
+                            <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-left text-[#78350f]">
+                              Pos.
+                            </th>
+                            <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-left text-[#78350f]">
+                              Leistung
+                            </th>
+                            <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-right text-[#78350f]">
+                              Menge
+                            </th>
+                            <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-right text-[#78350f]">
+                              Einzelpreis
+                            </th>
+                            <th className="border border-[#cfb290] bg-[#efdfc7] px-2 py-2 text-right text-[#78350f]">
+                              Gesamt
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {draft.lineItems.map((line, index) => {
+                            const lineTotal =
+                              toMoney(line.quantity) * toMoney(line.unitPrice);
+                            return (
+                              <tr key={line.id}>
+                                <td className="border border-[#d7c2a8] px-2 py-2">
+                                  {index + 1}
+                                </td>
+                                <td className="border border-[#d7c2a8] px-2 py-2">
+                                  {line.description}
+                                </td>
+                                <td className="border border-[#d7c2a8] px-2 py-2 text-right">
+                                  {formatMoney(line.quantity)}
+                                </td>
+                                <td className="border border-[#d7c2a8] px-2 py-2 text-right">
+                                  {formatMoney(line.unitPrice)} EUR
+                                </td>
+                                <td className="border border-[#d7c2a8] px-2 py-2 text-right">
+                                  {formatMoney(lineTotal)} EUR
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
 
-            <div className="invoice-print-summary ml-auto mt-4 w-full max-w-[360px] overflow-hidden rounded-lg border border-[#cfb290] bg-[#fffdfa] shadow-[0_1px_0_rgba(120,53,15,0.06)]">
-              <div className="grid grid-cols-2">
-                <span className="border-b border-[#cfb290] bg-[#efdfc7] px-3 py-2 font-medium text-[#6f4d1f]">
-                  Zwischensumme
-                </span>
-                <span className="border-b border-l border-[#cfb290] px-3 py-2 text-right">
-                  {formatMoney(subtotal)} EUR
-                </span>
-                <span className="border-b border-[#cfb290] bg-[#efdfc7] px-3 py-2 font-medium text-[#6f4d1f]">
-                  Umsatzsteuer
-                </span>
-                <span className="border-b border-l border-[#cfb290] px-3 py-2 text-right">
-                  0,00 EUR
-                </span>
-                <span className="bg-[#e9d6ba] px-3 py-2 text-base font-semibold text-[#78350f]">
-                  Rechnungsbetrag
-                </span>
-                <span className="border-l border-[#cfb290] px-3 py-2 text-right text-base font-semibold text-[#78350f]">
-                  {formatMoney(total)} EUR
-                </span>
-              </div>
-            </div>
-
-            <p className="invoice-print-note mt-4 rounded-lg border border-[#d3b07d] bg-[#fbf3e5] px-3 py-2 text-sm text-[#4f3b20]">
-              {draft.note}
-            </p>
-          </main>
-
-          <footer className="invoice-print-footer mt-6 border-t border-[#ede4d6] pt-4 text-[13px] text-stone-600">
-            <div className="invoice-print-payment invoice-print-payment-box grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
-              <div>
-                <p className="leading-6">
-                  <strong>Zahlungsbedingungen:</strong> Bitte bis spätestens{' '}
-                  {formatDisplayDate(draft.dueDate)} unter Angabe der
-                  Rechnungsnummer {draft.invoiceNumber} überweisen.
-                </p>
-                <p className="mt-1 leading-6">
-                  <strong>Bankverbindung:</strong> IBAN{' '}
-                  {formatIban(draft.paymentIban)}, BIC{' '}
-                  {draft.paymentBic.toUpperCase()}, Bank {draft.paymentBank}
-                </p>
-              </div>
-              {qrDataUrl ? (
-                <div className="rounded-xl border border-[#ddd2c1] bg-[#fffdfa] p-2 text-center shadow-none">
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                    Scan un Pay
-                  </p>
-                  <div className="relative mx-auto h-24 w-24">
-                    <Image
-                      src={qrDataUrl}
-                      alt="QR-Code zum Bezahlen per Banking-App"
-                      width={96}
-                      height={96}
-                      unoptimized
-                      className="h-24 w-24 rounded border border-stone-300 bg-white p-1"
-                    />
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                      <div className="rounded-lg border border-emerald-200 bg-white/95 p-1 shadow-sm">
-                        <Image
-                          src={PAYMENT_QR_LOGO_SRC}
-                          alt="pfalz-development.de"
-                          width={20}
-                          height={20}
-                          className="h-5 w-5 object-contain"
-                        />
+                    <div className="invoice-print-summary ml-auto mt-4 w-full max-w-[360px] overflow-hidden rounded-lg border border-[#cfb290] bg-[#fffdfa] shadow-[0_1px_0_rgba(120,53,15,0.06)]">
+                      <div className="grid grid-cols-2">
+                        <span className="border-b border-[#cfb290] bg-[#efdfc7] px-3 py-2 font-medium text-[#6f4d1f]">
+                          Zwischensumme
+                        </span>
+                        <span className="border-b border-l border-[#cfb290] px-3 py-2 text-right">
+                          {formatMoney(subtotal)} EUR
+                        </span>
+                        <span className="border-b border-[#cfb290] bg-[#efdfc7] px-3 py-2 font-medium text-[#6f4d1f]">
+                          Umsatzsteuer
+                        </span>
+                        <span className="border-b border-l border-[#cfb290] px-3 py-2 text-right">
+                          0,00 EUR
+                        </span>
+                        <span className="bg-[#e9d6ba] px-3 py-2 text-base font-semibold text-[#78350f]">
+                          Rechnungsbetrag
+                        </span>
+                        <span className="border-l border-[#cfb290] px-3 py-2 text-right text-base font-semibold text-[#78350f]">
+                          {formatMoney(total)} EUR
+                        </span>
                       </div>
                     </div>
-                  </div>
-                  <p className="mt-2 text-[11px] text-stone-600">
-                    {formatMoney(total)} EUR
-                  </p>
-                </div>
-              ) : null}
-            </div>
-          </footer>
+
+                    <p className="invoice-print-note mt-4 rounded-lg border border-[#d3b07d] bg-[#fbf3e5] px-3 py-2 text-sm text-[#4f3b20]">
+                      {draft.note}
+                    </p>
+                  </main>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td className="p-0 align-bottom">
+                  <footer className="invoice-print-footer mt-6 border-t border-[#ede4d6] pt-4 text-[13px] text-stone-600">
+                    <div className="invoice-print-payment invoice-print-payment-box grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
+                      <div>
+                        <p className="leading-6">
+                          <strong>Zahlungsbedingungen:</strong> Bitte bis
+                          spätestens {formatDisplayDate(draft.dueDate)} unter
+                          Angabe der Rechnungsnummer {draft.invoiceNumber}{' '}
+                          überweisen.
+                        </p>
+                        <p className="mt-1 leading-6">
+                          <strong>Bankverbindung:</strong> IBAN{' '}
+                          {formatIban(draft.paymentIban)}, BIC{' '}
+                          {draft.paymentBic.toUpperCase()}, Bank{' '}
+                          {draft.paymentBank}
+                        </p>
+                      </div>
+                      {qrDataUrl ? (
+                        <div className="rounded-xl border border-[#ddd2c1] bg-[#fffdfa] p-2 text-center shadow-none">
+                          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                            Scan un Pay
+                          </p>
+                          <div className="relative mx-auto h-24 w-24">
+                            <Image
+                              src={qrDataUrl}
+                              alt="QR-Code zum Bezahlen per Banking-App"
+                              width={96}
+                              height={96}
+                              unoptimized
+                              className="h-24 w-24 rounded border border-stone-300 bg-white p-1"
+                            />
+                            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                              <div className="rounded-lg border border-emerald-200 bg-white/95 p-1 shadow-sm">
+                                <Image
+                                  src={PAYMENT_QR_LOGO_SRC}
+                                  alt="pfalz-development.de"
+                                  width={20}
+                                  height={20}
+                                  className="h-5 w-5 object-contain"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <p className="mt-2 text-[11px] text-stone-600">
+                            {formatMoney(total)} EUR
+                          </p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </footer>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </article>
       </section>
     </div>
