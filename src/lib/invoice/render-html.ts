@@ -85,7 +85,7 @@ export function renderInvoiceBodyHtml(
         page.carryOutText ? carryRow('Übertrag', page.carryOutText) : '',
       ].join('');
 
-      return `<table class="inv-table${pageIndex > 0 ? ' inv-table--continued' : ''}">
+      const table = `<table class="inv-table">
     <thead>
       <tr>
         <th class="inv-num">Pos.</th>
@@ -97,6 +97,10 @@ export function renderInvoiceBodyHtml(
     </thead>
     <tbody>${body}</tbody>
   </table>`;
+
+      return pageIndex > 0
+        ? `<div class="inv-continued">${table}</div>`
+        : table;
     })
     .join('\n');
 

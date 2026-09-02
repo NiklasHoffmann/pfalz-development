@@ -14,6 +14,7 @@ export const INVOICE_DOCUMENT_CSS = `
   font-size: 12.5px;
   line-height: 1.5;
   background: #fcfbf7;
+  padding-top: 6mm;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -100,8 +101,12 @@ export const INVOICE_DOCUMENT_CSS = `
   break-inside: avoid;
 }
 
-.inv-table--continued {
+.inv-continued {
   break-before: page;
+  padding-top: 6mm;
+}
+
+.inv-continued .inv-table {
   margin-top: 0;
 }
 
