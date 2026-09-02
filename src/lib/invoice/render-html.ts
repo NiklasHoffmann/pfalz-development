@@ -3,6 +3,7 @@ import { paginateInvoiceItems } from '@/lib/invoice/paginate';
 import {
   INVOICE_BACKGROUND,
   PDF_HORIZONTAL_INSET,
+  PDF_LOGO_BOTTOM_GAP_MM,
   PDF_LOGO_WIDTH_MM,
   PDF_MARGIN_BOTTOM,
   PDF_MARGIN_TOP,
@@ -242,7 +243,7 @@ export function renderInvoicePageCss(
     background-color: ${INVOICE_BACKGROUND};
     background-image: url("${logoDataUri}");
     background-repeat: no-repeat;
-    background-position: ${PDF_HORIZONTAL_INSET} bottom 5mm;
+    background-position: left ${PDF_HORIZONTAL_INSET} bottom ${PDF_LOGO_BOTTOM_GAP_MM};
     background-size: ${PDF_LOGO_WIDTH_MM} auto;
     border-bottom: 2px solid #92400e;
   }
