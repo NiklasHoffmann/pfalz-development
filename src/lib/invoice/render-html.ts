@@ -3,6 +3,7 @@ import { paginateInvoiceItems } from '@/lib/invoice/paginate';
 import {
   INVOICE_BACKGROUND,
   PDF_HORIZONTAL_INSET,
+  PDF_LOGO_WIDTH_MM,
   PDF_MARGIN_BOTTOM,
   PDF_MARGIN_TOP,
 } from '@/lib/invoice/pdf-layout';
@@ -207,8 +208,9 @@ export function renderInvoiceBodyHtml(
 /**
  * The `@page` block: full-bleed cream margins, a logo + title in the top band
  * and a "pfalz-development.de · Seite X von Y · IBAN" line in the bottom band,
- * repeated on every sheet. `logoDataUri` is a raster pre-sized to ~34mm at
- * 96dpi (margin-box `content: url()` renders images at intrinsic pixel size).
+ * repeated on every sheet. The logo is a `background-image` scaled with
+ * `background-size` (a margin-box `content: url()` can't scale a raster, so it
+ * would look pixelated).
  */
 export function renderInvoicePageCss(
   invoice: InvoiceViewModel,
@@ -226,10 +228,13 @@ export function renderInvoicePageCss(
   @top-left-corner { background: ${INVOICE_BACKGROUND}; }
   @top-right-corner { background: ${INVOICE_BACKGROUND}; }
   @top-left {
-    background: ${INVOICE_BACKGROUND};
-    content: url("${logoDataUri}");
-    vertical-align: bottom;
-    padding: 0 0 3.5mm ${PDF_HORIZONTAL_INSET};
+    content: "";
+    width: 58mm;
+    background-color: ${INVOICE_BACKGROUND};
+    background-image: url("${logoDataUri}");
+    background-repeat: no-repeat;
+    background-position: ${PDF_HORIZONTAL_INSET} bottom 5mm;
+    background-size: ${PDF_LOGO_WIDTH_MM} auto;
     border-bottom: 2px solid #92400e;
   }
   @top-center { background: ${INVOICE_BACKGROUND}; border-bottom: 2px solid #92400e; }

@@ -6,12 +6,9 @@ const dataUriCache = new Map<string, Promise<string>>();
 
 /**
  * Reads a `public/` image once and caches it as a data URI, so it can be
- * inlined into the PDF (`@page` margin boxes / QR block) where `<img src="/...">`
- * has no origin to resolve against.
- *
- * The invoice logo is pre-sized to ~34mm at 96dpi, because `@page` margin boxes
- * take images via `content: url()` and render them at intrinsic pixel size with
- * no way to scale.
+ * inlined into the PDF (`@page` margin box background / QR block) where
+ * `<img src="/...">` has no origin to resolve against. The header logo is a
+ * high-res raster scaled down with `background-size`, which stays crisp.
  */
 function readPublicDataUri(
   fileName: string,
