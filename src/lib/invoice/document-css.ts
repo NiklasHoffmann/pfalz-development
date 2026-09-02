@@ -37,8 +37,8 @@ export const INVOICE_DOCUMENT_CSS = `
   break-inside: avoid;
 }
 
-.inv-card + .inv-card--stacked {
-  margin-top: 12px;
+.inv-card--stacked {
+  margin-top: 14px;
 }
 
 .inv-card__label {
@@ -133,7 +133,7 @@ export const INVOICE_DOCUMENT_CSS = `
 
 .inv-summary__row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 42%;
 }
 
 .inv-summary__row > span {
@@ -186,12 +186,16 @@ export const INVOICE_DOCUMENT_CSS = `
 }
 
 .inv-pay__text {
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11.5px;
+  line-height: 1.5;
 }
 
 .inv-pay__text p {
   margin: 0;
+}
+
+.inv-pay__text p + p {
+  margin-top: 1px;
 }
 
 .inv-pay__text .inv-card__label {
