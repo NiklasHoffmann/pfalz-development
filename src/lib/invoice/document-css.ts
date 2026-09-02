@@ -100,6 +100,22 @@ export const INVOICE_DOCUMENT_CSS = `
   break-inside: avoid;
 }
 
+.inv-table--continued {
+  break-before: page;
+  margin-top: 0;
+}
+
+.inv-carry > td {
+  background: #f3e9d8;
+  color: #6f4d1f;
+  font-weight: 600;
+}
+
+.inv-carry > td:first-child {
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+
 .inv-num {
   text-align: right;
   white-space: nowrap;
@@ -160,9 +176,9 @@ export const INVOICE_DOCUMENT_CSS = `
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px;
-  margin-top: 12px;
-  padding: 11px 13px;
+  gap: 18px;
+  margin-top: 10px;
+  padding: 9px 12px;
   border: 1px solid #cfb290;
   border-radius: 8px;
   background: #fffdf8;
@@ -198,8 +214,8 @@ export const INVOICE_DOCUMENT_CSS = `
 
 .inv-qr__frame {
   position: relative;
-  width: 26mm;
-  height: 26mm;
+  width: 22mm;
+  height: 22mm;
   margin: 0 auto;
   padding: 1mm;
   border: 1px solid #d6d3d1;

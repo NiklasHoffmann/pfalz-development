@@ -10,7 +10,7 @@ import {
 } from '@/lib/invoice/view-model';
 import { buildEpcQrPayload, renderEpcQrDataUrl } from '@/lib/invoice/epc-qr';
 import {
-  getInvoiceLogoSvgDataUri,
+  getInvoiceLogoDataUri,
   getInvoiceQrBadgeDataUri,
 } from '@/lib/invoice/assets';
 import { renderInvoicePdf } from '@/lib/invoice/render-pdf';
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest): Promise<Response> {
           amount: invoice.totalAmount,
         })
       ),
-      getInvoiceLogoSvgDataUri(),
+      getInvoiceLogoDataUri(),
       getInvoiceQrBadgeDataUri().catch(() => null),
     ]);
 

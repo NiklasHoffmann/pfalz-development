@@ -9,11 +9,10 @@ export const INVOICE_BACKGROUND = '#fcfbf7';
 
 /** Page margins = the running header/footer bands. Sides are 0; the body insets
  *  itself so the cream reaches the sheet edge left and right. */
-export const PDF_MARGIN_TOP = '32mm';
-export const PDF_MARGIN_BOTTOM = '24mm';
+export const PDF_MARGIN_TOP = '30mm';
+export const PDF_MARGIN_BOTTOM = '19mm';
 export const PDF_HORIZONTAL_INSET = '13mm';
 
-/** Rendered width of the header logo (an SVG wrapper keeps it crisp at this
- *  physical size). */
-export const PDF_LOGO_WIDTH_MM = 34;
-export const PDF_LOGO_HEIGHT_MM = 19.1;
+/** Height of the content area between the header/footer bands (A4 297mm minus
+ *  the two margins). Used to paginate the line items for the carry-over. */
+export const PDF_CONTENT_HEIGHT_MM = 248;

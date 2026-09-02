@@ -1,11 +1,15 @@
 import { INVOICE_FONT_STACK } from '@/lib/invoice/font-stack';
+import { paginateInvoiceItems } from '@/lib/invoice/paginate';
 import {
   INVOICE_BACKGROUND,
   PDF_HORIZONTAL_INSET,
   PDF_MARGIN_BOTTOM,
   PDF_MARGIN_TOP,
 } from '@/lib/invoice/pdf-layout';
-import type { InvoiceViewModel } from '@/lib/invoice/view-model';
+import type {
+  InvoiceLineView,
+  InvoiceViewModel,
+} from '@/lib/invoice/view-model';
 
 /**
  * The invoice is built as HTML strings (not React) so it renders in a Next
@@ -56,17 +60,44 @@ export function renderInvoiceBodyHtml(
     invoice.sender.taxNumber ? `Steuernummer: ${invoice.sender.taxNumber}` : '',
   ].filter(Boolean);
 
-  const lineRows = invoice.lineItems
-    .map(
-      (lineItem) => `<tr>
+  const itemRow = (lineItem: InvoiceLineView): string => `<tr>
         <td class="inv-num">${lineItem.position}</td>
         <td>${esc(lineItem.description)}</td>
         <td class="inv-num">${esc(lineItem.quantityText)}</td>
         <td class="inv-num">${esc(lineItem.unitPriceText)}</td>
         <td class="inv-num">${esc(lineItem.totalText)}</td>
-      </tr>`
-    )
-    .join('');
+      </tr>`;
+
+  const carryRow = (
+    label: string,
+    amountText: string
+  ): string => `<tr class="inv-carry">
+        <td colspan="4">${esc(label)}</td>
+        <td class="inv-num">${esc(amountText)}</td>
+      </tr>`;
+
+  const itemsTables = paginateInvoiceItems(invoice)
+    .map((page, pageIndex) => {
+      const body = [
+        page.carryInText ? carryRow('Übertrag', page.carryInText) : '',
+        page.rows.map(itemRow).join(''),
+        page.carryOutText ? carryRow('Übertrag', page.carryOutText) : '',
+      ].join('');
+
+      return `<table class="inv-table${pageIndex > 0 ? ' inv-table--continued' : ''}">
+    <thead>
+      <tr>
+        <th class="inv-num">Pos.</th>
+        <th>Leistung</th>
+        <th class="inv-num">Menge</th>
+        <th class="inv-num">Einzelpreis</th>
+        <th class="inv-num">Gesamt</th>
+      </tr>
+    </thead>
+    <tbody>${body}</tbody>
+  </table>`;
+    })
+    .join('\n');
 
   const bankLine = [
     invoice.payment.ibanText ? `IBAN ${invoice.payment.ibanText}` : '',
@@ -153,18 +184,7 @@ export function renderInvoiceBodyHtml(
     </div>
   </section>
 
-  <table class="inv-table">
-    <thead>
-      <tr>
-        <th class="inv-num">Pos.</th>
-        <th>Leistung</th>
-        <th class="inv-num">Menge</th>
-        <th class="inv-num">Einzelpreis</th>
-        <th class="inv-num">Gesamt</th>
-      </tr>
-    </thead>
-    <tbody>${lineRows}</tbody>
-  </table>
+  ${itemsTables}
 
   <div class="inv-summary">
     <div class="inv-summary__row">
@@ -187,8 +207,8 @@ export function renderInvoiceBodyHtml(
 /**
  * The `@page` block: full-bleed cream margins, a logo + title in the top band
  * and a "pfalz-development.de · Seite X von Y · IBAN" line in the bottom band,
- * repeated on every sheet. `logoDataUri` must be an SVG-wrapped image so it
- * renders at a fixed size (raster `content: url()` can't be scaled).
+ * repeated on every sheet. `logoDataUri` is a raster pre-sized to ~34mm at
+ * 96dpi (margin-box `content: url()` renders images at intrinsic pixel size).
  */
 export function renderInvoicePageCss(
   invoice: InvoiceViewModel,
