@@ -106,7 +106,7 @@ export const INVOICE_DOCUMENT_CSS = `
 }
 
 .inv-summary {
-  margin: 16px 0 0 auto;
+  margin: 14px 0 0 auto;
   width: 62%;
   max-width: 340px;
   border: 1px solid #cfb290;
@@ -147,12 +147,94 @@ export const INVOICE_DOCUMENT_CSS = `
 }
 
 .inv-note {
-  margin: 16px 0 0;
+  margin: 12px 0 0;
   border: 1px solid #d3b07d;
   background: #fbf3e5;
   color: #4f3b20;
   border-radius: 8px;
   padding: 9px 12px;
   break-inside: avoid;
+}
+
+.inv-pay {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 12px;
+  padding: 11px 13px;
+  border: 1px solid #cfb290;
+  border-radius: 8px;
+  background: #fffdf8;
+  break-inside: avoid;
+}
+
+.inv-pay__text {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.inv-pay__text p {
+  margin: 0;
+}
+
+.inv-pay__text .inv-card__label {
+  margin-bottom: 4px;
+}
+
+.inv-qr {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.inv-qr__label {
+  margin: 0 0 4px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #047857;
+}
+
+.inv-qr__frame {
+  position: relative;
+  width: 26mm;
+  height: 26mm;
+  margin: 0 auto;
+  padding: 1mm;
+  border: 1px solid #d6d3d1;
+  background: #ffffff;
+}
+
+.inv-qr__frame > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.inv-qr__badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.9mm;
+  line-height: 0;
+  background: #ffffff;
+  border: 1px solid #a7f3d0;
+  border-radius: 2.5px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.inv-qr__badge > img {
+  width: 4.6mm;
+  height: 4.6mm;
+  object-fit: contain;
+  display: block;
+}
+
+.inv-qr__amount {
+  margin: 3px 0 0;
+  font-size: 10px;
+  color: #78716c;
 }
 `;

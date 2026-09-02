@@ -1,8 +1,8 @@
 import { INVOICE_DOCUMENT_CSS } from '@/lib/invoice/document-css';
 import {
   renderInvoiceBodyHtml,
-  renderInvoiceFooterHtml,
-  renderInvoiceHeaderHtml,
+  renderInvoicePreviewFooterHtml,
+  renderInvoicePreviewHeaderHtml,
 } from '@/lib/invoice/render-html';
 import type { InvoiceViewModel } from '@/lib/invoice/view-model';
 
@@ -14,10 +14,9 @@ interface InvoicePreviewProps {
 }
 
 /**
- * On-screen approximation of the generated PDF. The running header/footer live
- * in the PDF page margins; here they are stacked above and below the document
- * body so the whole layout can be reviewed while editing. Uses the exact same
- * HTML builders as the PDF.
+ * On-screen approximation of the generated PDF. The real running header/footer
+ * are `@page` margin boxes that only exist when printing, so here they are
+ * faked as plain bars around the same document body the PDF uses.
  */
 export function InvoicePreview({
   invoice,
@@ -25,19 +24,18 @@ export function InvoicePreview({
   logoSrc,
 }: InvoicePreviewProps): React.JSX.Element {
   const markup =
-    renderInvoiceHeaderHtml(invoice, { logoSrc, variant: 'preview' }) +
-    renderInvoiceBodyHtml(invoice) +
-    renderInvoiceFooterHtml(invoice, {
+    renderInvoicePreviewHeaderHtml(invoice, { logoSrc }) +
+    renderInvoiceBodyHtml(invoice, {
       qrSrc: qrDataUrl,
       qrBadgeSrc: '/invoice-qr-badge.webp',
-      variant: 'preview',
-    });
+    }) +
+    renderInvoicePreviewFooterHtml(invoice);
 
   return (
     <div className="mx-auto w-full max-w-[210mm] overflow-hidden rounded-2xl border border-[#e0d5c3] bg-[#fcfbf7] shadow-sm">
       <style dangerouslySetInnerHTML={{ __html: INVOICE_DOCUMENT_CSS }} />
       <div
-        className="flex flex-col gap-4 p-6 sm:p-9"
+        className="p-6 sm:p-9"
         dangerouslySetInnerHTML={{ __html: markup }}
       />
     </div>

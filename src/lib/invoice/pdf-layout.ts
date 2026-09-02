@@ -1,11 +1,19 @@
 /**
- * Shared geometry for the invoice PDF. The header/footer band heights slightly
- * over-fill the `page.pdf` margins so the cream background bleeds to the sheet
- * edge (Puppeteer clips the overflow at the page boundary).
+ * Invoice PDF geometry. The running header/footer are CSS `@page` margin boxes
+ * (not Puppeteer templates): they fill their band with the cream background for
+ * a full-bleed sheet, reserve their space reliably, and carry `counter(page)`
+ * for "Seite X von Y". `page.pdf()` is called without a `margin` option so these
+ * `@page` margins apply.
  */
-export const PDF_PAGE_MARGIN_TOP = '38mm';
-export const PDF_PAGE_MARGIN_BOTTOM = '48mm';
-export const PDF_HEADER_BAND_HEIGHT = '44mm';
-export const PDF_FOOTER_BAND_HEIGHT = '56mm';
-export const PDF_HORIZONTAL_INSET = '14mm';
 export const INVOICE_BACKGROUND = '#fcfbf7';
+
+/** Page margins = the running header/footer bands. Sides are 0; the body insets
+ *  itself so the cream reaches the sheet edge left and right. */
+export const PDF_MARGIN_TOP = '32mm';
+export const PDF_MARGIN_BOTTOM = '24mm';
+export const PDF_HORIZONTAL_INSET = '13mm';
+
+/** Rendered width of the header logo (an SVG wrapper keeps it crisp at this
+ *  physical size). */
+export const PDF_LOGO_WIDTH_MM = 34;
+export const PDF_LOGO_HEIGHT_MM = 19.1;
