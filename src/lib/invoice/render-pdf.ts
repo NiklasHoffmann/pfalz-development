@@ -6,6 +6,12 @@ import { logger } from '@/lib/logger';
 import { INVOICE_DOCUMENT_CSS } from '@/lib/invoice/document-css';
 import { INVOICE_FONT_FACE_CSS } from '@/lib/invoice/fonts';
 import {
+  INVOICE_BACKGROUND,
+  PDF_HORIZONTAL_INSET,
+  PDF_PAGE_MARGIN_BOTTOM,
+  PDF_PAGE_MARGIN_TOP,
+} from '@/lib/invoice/pdf-layout';
+import {
   renderInvoiceBodyHtml,
   renderInvoiceFooterHtml,
   renderInvoiceHeaderHtml,
@@ -86,8 +92,8 @@ function buildDocumentHtml(invoice: InvoiceViewModel): string {
 <meta charset="utf-8" />
 <style>
   ${INVOICE_FONT_FACE_CSS}
-  html, body { margin: 0; padding: 0; background: #fcfbf7; }
-  .inv-page { padding: 0 14mm; }
+  html, body { margin: 0; padding: 0; background: ${INVOICE_BACKGROUND}; }
+  .inv-page { padding: 0 ${PDF_HORIZONTAL_INSET}; }
   ${INVOICE_DOCUMENT_CSS}
 </style>
 </head>
@@ -140,8 +146,8 @@ export async function renderInvoicePdf(
       headerTemplate,
       footerTemplate,
       margin: {
-        top: '42mm',
-        bottom: '54mm',
+        top: PDF_PAGE_MARGIN_TOP,
+        bottom: PDF_PAGE_MARGIN_BOTTOM,
         left: '0',
         right: '0',
       },

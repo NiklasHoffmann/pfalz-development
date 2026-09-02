@@ -1,4 +1,10 @@
 import { INVOICE_FONT_STACK } from '@/lib/invoice/font-stack';
+import {
+  INVOICE_BACKGROUND,
+  PDF_FOOTER_BAND_HEIGHT,
+  PDF_HEADER_BAND_HEIGHT,
+  PDF_HORIZONTAL_INSET,
+} from '@/lib/invoice/pdf-layout';
 import type { InvoiceViewModel } from '@/lib/invoice/view-model';
 
 /**
@@ -131,20 +137,27 @@ export function renderInvoiceHeaderHtml(
   invoice: InvoiceViewModel,
   { logoSrc, variant }: HeaderOptions
 ): string {
-  const padding = variant === 'pdf' ? '6mm 14mm 4mm' : '0 0 10px';
+  const row = `<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:2px solid #92400e;padding-bottom:3mm;font-size:10px;color:#1c1917;">
+    <img src="${esc(
+      logoSrc
+    )}" alt="pfalz-development.de" style="height:13mm;width:auto;object-fit:contain;" />
+    <div style="text-align:right;line-height:1.35;">
+      <div style="font-size:15px;font-weight:700;letter-spacing:0.08em;color:#78350f;">RECHNUNG</div>
+      <div style="color:#57534e;">Nr. ${esc(invoice.invoiceNumber)}</div>
+      ${
+        invoice.statusLabel
+          ? `<div style="color:#b91c1c;">${esc(invoice.statusLabel)}</div>`
+          : ''
+      }
+    </div>
+  </div>`;
 
-  return `<div style="font-family:${INVOICE_FONT_STACK};color:#1c1917;width:100%;box-sizing:border-box;padding:${padding};display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:2px solid #92400e;background:#fcfbf7;font-size:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
-  <img src="${esc(logoSrc)}" alt="pfalz-development.de" style="height:13mm;width:auto;object-fit:contain;" />
-  <div style="text-align:right;line-height:1.35;">
-    <div style="font-size:15px;font-weight:700;letter-spacing:0.08em;color:#78350f;">RECHNUNG</div>
-    <div style="color:#57534e;">Nr. ${esc(invoice.invoiceNumber)}</div>
-    ${
-      invoice.statusLabel
-        ? `<div style="color:#b91c1c;">${esc(invoice.statusLabel)}</div>`
-        : ''
-    }
-  </div>
-</div>`;
+  const wrapper =
+    variant === 'pdf'
+      ? `font-family:${INVOICE_FONT_STACK};box-sizing:border-box;width:100%;height:${PDF_HEADER_BAND_HEIGHT};background:${INVOICE_BACKGROUND};display:flex;flex-direction:column;justify-content:flex-end;padding:0 ${PDF_HORIZONTAL_INSET} 4mm;-webkit-print-color-adjust:exact;print-color-adjust:exact;`
+      : `font-family:${INVOICE_FONT_STACK};padding:0 0 10px;`;
+
+  return `<div style="${wrapper}">${row}</div>`;
 }
 
 interface FooterOptions {
@@ -158,7 +171,6 @@ export function renderInvoiceFooterHtml(
   invoice: InvoiceViewModel,
   { qrSrc, qrBadgeSrc, variant }: FooterOptions
 ): string {
-  const padding = variant === 'pdf' ? '4mm 14mm 6mm' : '12px 0 0';
   const pageNumber =
     variant === 'pdf'
       ? '<span class="pageNumber"></span> von <span class="totalPages"></span>'
@@ -182,20 +194,21 @@ export function renderInvoiceFooterHtml(
 
   const qrBlock = qrSrc
     ? `<div style="text-align:center;flex:0 0 auto;">
-        <div style="font-size:7.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#047857;margin-bottom:1.5mm;">Scan un Pay</div>
+        <div style="font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#047857;margin-bottom:1.5mm;">Scan un Pay</div>
         <div style="position:relative;width:24mm;height:24mm;border:1px solid #d6d3d1;background:#ffffff;padding:1mm;box-sizing:border-box;margin:0 auto;">
           <img src="${esc(
             qrSrc
           )}" alt="EPC-QR-Code für die SEPA-Überweisung" style="width:100%;height:100%;display:block;" />
           ${qrBadge}
         </div>
-        <div style="margin-top:1mm;color:#78716c;">${esc(invoice.totalText)}</div>
+        <div style="margin-top:1mm;font-size:10px;color:#78716c;">${esc(
+          invoice.totalText
+        )}</div>
       </div>`
     : '';
 
-  return `<div style="font-family:${INVOICE_FONT_STACK};color:#57534e;width:100%;box-sizing:border-box;padding:${padding};border-top:1px solid #e0d5c3;background:#fcfbf7;font-size:9px;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:14px;">
-    <div style="max-width:120mm;">
+  const row = `<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+    <div style="max-width:118mm;">
       <div><strong style="color:#1c1917;">Zahlungsziel:</strong> bis ${esc(
         invoice.dueDateText
       )} unter Angabe der Rechnungsnummer ${esc(invoice.invoiceNumber)}${
@@ -208,11 +221,18 @@ export function renderInvoiceFooterHtml(
             )}</div>`
           : ''
       }
-      <div style="margin-top:2mm;color:#78716c;">${esc(
+      <div style="margin-top:2mm;font-size:10px;color:#78716c;">${esc(
         invoice.sender.company || 'pfalz-development.de'
       )} — Seite ${pageNumber}</div>
     </div>
     ${qrBlock}
-  </div>
-</div>`;
+  </div>`;
+
+  const base = `font-family:${INVOICE_FONT_STACK};font-size:11px;line-height:1.55;color:#44403c;border-top:1px solid #d9cfbf;`;
+  const wrapper =
+    variant === 'pdf'
+      ? `${base}box-sizing:border-box;width:100%;height:${PDF_FOOTER_BAND_HEIGHT};background:${INVOICE_BACKGROUND};padding:4mm ${PDF_HORIZONTAL_INSET} 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;`
+      : `${base}padding:12px 0 0;`;
+
+  return `<div style="${wrapper}">${row}</div>`;
 }
