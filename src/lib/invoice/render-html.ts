@@ -3,6 +3,7 @@ import { paginateInvoiceItems } from '@/lib/invoice/paginate';
 import {
   INVOICE_BACKGROUND,
   PDF_HORIZONTAL_INSET,
+  PDF_LOGO_WIDTH_MM,
   PDF_MARGIN_BOTTOM,
   PDF_MARGIN_TOP,
 } from '@/lib/invoice/pdf-layout';
@@ -113,17 +114,23 @@ export function renderInvoiceBodyHtml(
       )}" alt="" /></span>`
     : '';
 
+  const paymentRows = [
+    invoice.payment.payee
+      ? `<p><strong>Empfänger:</strong> ${esc(invoice.payment.payee)}</p>`
+      : '',
+    bankLine ? `<p>${esc(bankLine)}</p>` : '',
+    `<p><strong>Betrag:</strong> ${esc(invoice.totalText)} &nbsp;·&nbsp; <strong>Verwendungszweck:</strong> Rechnung ${esc(
+      invoice.invoiceNumber
+    )}</p>`,
+    `<p><strong>Zahlbar bis ${esc(invoice.dueDateText)}.</strong></p>`,
+  ]
+    .filter(Boolean)
+    .join('');
+
   const paymentBlock = `<section class="inv-pay">
     <div class="inv-pay__text">
       <p class="inv-card__label">Zahlung</p>
-      <p><strong>Zahlungsziel:</strong> bis ${esc(invoice.dueDateText)} unter Angabe der Rechnungsnummer ${esc(
-        invoice.invoiceNumber
-      )}${invoice.payment.payee ? ` an ${esc(invoice.payment.payee)}` : ''}.</p>
-      ${
-        bankLine
-          ? `<p><strong>Bankverbindung:</strong> ${esc(bankLine)}</p>`
-          : ''
-      }
+      ${paymentRows}
     </div>
     ${
       qrSrc
@@ -206,17 +213,17 @@ export function renderInvoiceBodyHtml(
 
 /**
  * The `@page` block: full-bleed cream margins, a logo + title in the top band
- * and a "pfalz-development.de · Seite X von Y · IBAN" line in the bottom band,
- * repeated on every sheet. `logoDataUri` is a raster pre-sized to ~34mm at
- * 96dpi (margin-box `content: url()` renders images at intrinsic pixel size).
+ * and a "pfalz-development.de · Seite X von Y · Rechnung Nr." line in the bottom
+ * band, repeated on every sheet. Full payment details live once in the body,
+ * so the footer only carries what helps if pages get separated. The logo is a
+ * `background-image` scaled with `background-size` (a margin-box `content: url()`
+ * can't scale a raster, so it would look pixelated).
  */
 export function renderInvoicePageCss(
   invoice: InvoiceViewModel,
   { logoDataUri }: { logoDataUri: string }
 ): string {
-  const footerRight = invoice.payment.ibanText
-    ? `IBAN ${invoice.payment.ibanText}`
-    : `Rechnung ${invoice.invoiceNumber}`;
+  const footerRight = `Rechnung ${invoice.invoiceNumber}`;
   const footerLeft = invoice.sender.company || 'pfalz-development.de';
 
   return `@page {
@@ -226,10 +233,13 @@ export function renderInvoicePageCss(
   @top-left-corner { background: ${INVOICE_BACKGROUND}; }
   @top-right-corner { background: ${INVOICE_BACKGROUND}; }
   @top-left {
-    background: ${INVOICE_BACKGROUND};
-    content: url("${logoDataUri}");
-    vertical-align: bottom;
-    padding: 0 0 3.5mm ${PDF_HORIZONTAL_INSET};
+    content: "";
+    width: 58mm;
+    background-color: ${INVOICE_BACKGROUND};
+    background-image: url("${logoDataUri}");
+    background-repeat: no-repeat;
+    background-position: ${PDF_HORIZONTAL_INSET} bottom 5mm;
+    background-size: ${PDF_LOGO_WIDTH_MM} auto;
     border-bottom: 2px solid #92400e;
   }
   @top-center { background: ${INVOICE_BACKGROUND}; border-bottom: 2px solid #92400e; }
@@ -291,13 +301,9 @@ export function renderInvoicePreviewHeaderHtml(
 export function renderInvoicePreviewFooterHtml(
   invoice: InvoiceViewModel
 ): string {
-  const right = invoice.payment.ibanText
-    ? `IBAN ${invoice.payment.ibanText}`
-    : `Rechnung ${invoice.invoiceNumber}`;
-
   return `<div style="display:flex;justify-content:space-between;gap:12px;border-top:1px solid #e0d5c3;padding-top:3mm;margin-top:6mm;font-family:${INVOICE_FONT_STACK};font-size:9pt;color:#78716c;">
     <span>${esc(invoice.sender.company || 'pfalz-development.de')}</span>
     <span>Seite 1 von 1</span>
-    <span>${esc(right)}</span>
+    <span>Rechnung ${esc(invoice.invoiceNumber)}</span>
   </div>`;
 }

@@ -16,3 +16,7 @@ export const PDF_HORIZONTAL_INSET = '13mm';
 /** Height of the content area between the header/footer bands (A4 297mm minus
  *  the two margins). Used to paginate the line items for the carry-over. */
 export const PDF_CONTENT_HEIGHT_MM = 248;
+
+/** Rendered width of the header logo in the top margin box (scaled via
+ *  `background-size` from a high-res raster, so it stays crisp). */
+export const PDF_LOGO_WIDTH_MM = '34mm';
