@@ -54,6 +54,8 @@ export interface InvoiceLineView {
   quantityText: string;
   unitPriceText: string;
   totalText: string;
+  /** Raw line total, used to sum the carry-over on multi-page invoices. */
+  total: number;
 }
 
 export interface InvoiceViewModel {
@@ -152,6 +154,7 @@ export function toInvoiceViewModel(
       quantityText: formatInvoiceAmount(lineItem.quantity),
       unitPriceText: `${formatInvoiceAmount(lineItem.unitPrice)} EUR`,
       totalText: `${formatInvoiceAmount(lineItem.total)} EUR`,
+      total: lineItem.total,
     })),
     subtotalText: `${formatInvoiceAmount(totals.subtotal)} EUR`,
     totalText: `${formatInvoiceAmount(totals.total)} EUR`,
