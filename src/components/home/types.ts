@@ -4,6 +4,18 @@ export type CardItem = {
   href?: string;
 };
 
+export type ReferenceItem = {
+  title: string;
+  category: string;
+  description: string;
+  tags: string[];
+  href?: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+};
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -164,6 +176,12 @@ export type HomePageData = {
   services: {
     title: string;
     items: CardItem[];
+  };
+  references: {
+    title: string;
+    description: string;
+    linkLabel: string;
+    items: ReferenceItem[];
   };
   seoLinks: {
     title: string;
