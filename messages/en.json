@@ -48,6 +48,24 @@
           }
         ]
       },
+      "references": {
+        "title": "Work",
+        "description": "A look at websites I have built for businesses in the Palatinate.",
+        "linkLabel": "View website",
+        "items": [
+          {
+            "title": "Holiday apartment on the Wine Route",
+            "category": "Holiday rental · Neustadt an der Weinstraße",
+            "description": "A calm, photo-led website for a holiday apartment overlooking the Rhine plain. Guests check open dates in the availability calendar, send an enquiry via WhatsApp, phone, or email, and find arrival details, FAQs, and tips on wineries and day trips in one place.",
+            "tags": [
+              "Availability calendar",
+              "Direct enquiries",
+              "Guest info",
+              "Mobile-first"
+            ]
+          }
+        ]
+      },
       "audiences": {
         "title": "Who I build websites for",
         "items": [
@@ -158,7 +176,9 @@
         "whatsAppLabel": "WhatsApp",
         "whatsAppValue": "",
         "addressLabel": "Address",
-        "addressLines": ["Neustadt an der Weinstraße"],
+        "addressLines": [
+          "Neustadt an der Weinstraße"
+        ],
         "regionNote": "For businesses, hosts, and local companies in the Palatinate and nearby.",
         "form": {
           "eyebrow": "Contact form",

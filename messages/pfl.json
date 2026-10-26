@@ -48,6 +48,24 @@
           }
         ]
       },
+      "references": {
+        "title": "Referenze",
+        "description": "En Eiblick in Websites, die isch fer Betriebe in de Palz gebaut hab.",
+        "linkLabel": "Website aagucke",
+        "items": [
+          {
+            "title": "Ferienwohnung an de Woistrooß",
+            "category": "Ferievermietung · Neistadt an de Woistrooß",
+            "description": "En ruhische, bildstarke Website fer e Ferienwohnung mit Blick iwwer die Rheinebene. Gäscht sehne freie Daache direkt im Belegungskalenner, frooche per WhatsApp, Telefon odder E-Mail aa un finne Aareis-Infos, FAQ un Tipps zu Weigüder un Ausflüch an eem Ort.",
+            "tags": [
+              "Belegungskalenner",
+              "Direktaafroog",
+              "Gäschteinfos",
+              "Mobil optimiert"
+            ]
+          }
+        ]
+      },
       "audiences": {
         "title": "Fer wen isch Websites umsetze",
         "items": [
@@ -158,7 +176,9 @@
         "whatsAppLabel": "WhatsApp",
         "whatsAppValue": "",
         "addressLabel": "Adresse",
-        "addressLines": ["Neischdad an de Woistrooß"],
+        "addressLines": [
+          "Neischdad an de Woistrooß"
+        ],
         "regionNote": "Fer Unnernehme, Gaschdgewwer un Betriewe in de Palz un drumrum.",
         "form": {
           "eyebrow": "Kontakdformular",

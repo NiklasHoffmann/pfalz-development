@@ -15,6 +15,7 @@ import type {
   FaqItem,
   HomePageData,
   PackageItem,
+  ReferenceItem,
   ResourceLinkItem,
   SeoLinkItem,
   SupportedLocale,
@@ -473,6 +474,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const navT = await getTranslations({ locale, namespace: 'navigation' });
   const trustItems = t.raw('home.trust.items') as string[];
   const serviceItems = t.raw('home.services.items') as CardItem[];
+  const referenceItems = t.raw('home.references.items') as ReferenceItem[];
   const audiences = t.raw('home.audiences.items') as string[];
   const basePath = localeToBasePath(locale);
   const whyMeItems = t.raw('home.whyMe.items') as string[];
@@ -552,6 +554,12 @@ export default async function HomePage({ params }: HomePageProps) {
     services: {
       title: t('home.services.title'),
       items: withServiceLinks(basePath, serviceItems),
+    },
+    references: {
+      title: t('home.references.title'),
+      description: t('home.references.description'),
+      linkLabel: t('home.references.linkLabel'),
+      items: referenceItems,
     },
     seoLinks: {
       title: localeToSeoLinksTitle(locale),

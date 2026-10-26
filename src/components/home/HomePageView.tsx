@@ -6,6 +6,7 @@ import { HomeHeroSection } from './HomeHeroSection';
 import { HomeIntroductionSection } from './HomeIntroductionSection';
 import { HomePackagesSection } from './HomePackagesSection';
 import { HomeProcessFaqSection } from './HomeProcessFaqSection';
+import { HomeReferencesSection } from './HomeReferencesSection';
 import { HomeSeoLinksSection } from './HomeSeoLinksSection';
 import { HomeScrollOffsetSync } from './HomeScrollOffsetSync';
 import { HomeServicesSection } from './HomeServicesSection';
@@ -45,6 +46,12 @@ export function HomePageView({ data }: HomePageViewProps) {
         <HomeServicesSection
           title={data.services.title}
           items={data.services.items}
+        />
+        <HomeReferencesSection
+          title={data.references.title}
+          description={data.references.description}
+          linkLabel={data.references.linkLabel}
+          items={data.references.items}
         />
         <HomeIntroductionSection
           eyebrow={data.introduction.eyebrow}
