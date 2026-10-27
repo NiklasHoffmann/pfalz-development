@@ -55,23 +55,22 @@ export function HomeReferencesSection({
                     <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-600" />
                     <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-600" />
                   </div>
-                  <div className="relative aspect-[16/10] w-full">
-                    {item.image ? (
-                      <Image
-                        src={item.image.src}
-                        alt={item.image.alt}
-                        fill
-                        sizes="(min-width: 1024px) 640px, 100vw"
-                        quality={75}
-                        className="object-cover object-top"
-                      />
-                    ) : (
-                      <div
-                        aria-hidden="true"
-                        className="absolute inset-0 bg-[linear-gradient(135deg,_rgba(245,235,220,1),_rgba(226,214,196,1))] dark:bg-[linear-gradient(135deg,_rgba(68,58,50,1),_rgba(44,52,62,1))]"
-                      />
-                    )}
-                  </div>
+                  {item.image ? (
+                    <Image
+                      src={item.image.src}
+                      alt={item.image.alt}
+                      width={item.image.width}
+                      height={item.image.height}
+                      sizes="(min-width: 1024px) 640px, 100vw"
+                      quality={100}
+                      className="block h-auto w-full"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden="true"
+                      className="aspect-[16/10] w-full bg-[linear-gradient(135deg,_rgba(245,235,220,1),_rgba(226,214,196,1))] dark:bg-[linear-gradient(135deg,_rgba(68,58,50,1),_rgba(44,52,62,1))]"
+                    />
+                  )}
                 </div>
               </div>
 

@@ -64,8 +64,10 @@
               "Mobile-first"
             ],
             "image": {
-              "src": "/images/referenzen/referenz-ferienwohnung.webp",
-              "alt": "Homepage of the holiday apartment website with a terrace view over the Rhine plain"
+              "src": "/images/referenzen/referenz-fewo-weinstrasse.webp",
+              "alt": "Homepage of the holiday apartment website with a terrace view over the Rhine plain",
+              "width": 792,
+              "height": 440
             }
           }
         ]

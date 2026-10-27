@@ -64,8 +64,10 @@
               "Mobil optimiert"
             ],
             "image": {
-              "src": "/images/referenzen/referenz-ferienwohnung.webp",
-              "alt": "Startseit vun de Ferienwohnungs-Website mit Terrasseblick iwwer die Rheinebene"
+              "src": "/images/referenzen/referenz-fewo-weinstrasse.webp",
+              "alt": "Startseit vun de Ferienwohnungs-Website mit Terrasseblick iwwer die Rheinebene",
+              "width": 792,
+              "height": 440
             }
           }
         ]
