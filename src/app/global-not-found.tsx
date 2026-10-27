@@ -72,7 +72,7 @@ export default async function GlobalNotFound() {
             contactHref="/#kontakt"
             copy={copy}
           />
-          <ScrollToTopButton locale="de" />
+          <ScrollToTopButton locale="de" withMobileDock={false} />
         </ThemeProvider>
       </body>
     </html>
