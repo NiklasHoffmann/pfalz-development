@@ -62,7 +62,11 @@
               "Direct enquiries",
               "Guest info",
               "Mobile-first"
-            ]
+            ],
+            "image": {
+              "src": "/images/referenzen/referenz-ferienwohnung.webp",
+              "alt": "Homepage of the holiday apartment website with a terrace view over the Rhine plain"
+            }
           }
         ]
       },

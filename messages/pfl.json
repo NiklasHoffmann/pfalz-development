@@ -62,7 +62,11 @@
               "Direktaafroog",
               "Gäschteinfos",
               "Mobil optimiert"
-            ]
+            ],
+            "image": {
+              "src": "/images/referenzen/referenz-ferienwohnung.webp",
+              "alt": "Startseit vun de Ferienwohnungs-Website mit Terrasseblick iwwer die Rheinebene"
+            }
           }
         ]
       },

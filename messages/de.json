@@ -62,7 +62,11 @@
               "Direktanfrage",
               "Gästeinfos",
               "Mobil optimiert"
-            ]
+            ],
+            "image": {
+              "src": "/images/referenzen/referenz-ferienwohnung.webp",
+              "alt": "Startseite der Ferienwohnungs-Website mit Terrassenblick über die Rheinebene"
+            }
           }
         ]
       },
