@@ -7,24 +7,16 @@ import {
   getContactRevealEventName,
   readContactRevealUnlocked,
 } from '@/lib/contact-reveal';
-import { isInternalIntakePath } from '@/lib/intake/path';
 import {
   getDockLogicalPath,
   getMobileDockItems,
   getMobileNavigationLabel,
   getNavigationLabels,
+  isMobileDockVisible,
 } from '@/lib/locale-ui';
 
 interface LocaleMobileDockProps {
   locale: string;
-}
-
-function shouldHideMobileDock(pathname: string): boolean {
-  return (
-    pathname === '/impressum' ||
-    pathname === '/datenschutz' ||
-    isInternalIntakePath(pathname)
-  );
 }
 
 export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
@@ -114,7 +106,7 @@ export function LocaleMobileDock({ locale }: LocaleMobileDockProps) {
     };
   }, []);
 
-  if (shouldHideMobileDock(logicalPathname)) {
+  if (!isMobileDockVisible(pathname)) {
     return null;
   }
 

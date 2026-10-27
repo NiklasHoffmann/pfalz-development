@@ -1,5 +1,6 @@
 import type { MobileNavItem, SupportedLocale } from '@/components/home/types';
 import { siteConfig } from '@/config/site';
+import { isInternalIntakePath } from '@/lib/intake/path';
 import { buildWhatsAppHref } from '@/lib/whatsapp';
 
 export function getCurrentLocale(locale: string): SupportedLocale {
@@ -180,4 +181,18 @@ export function getMobileDockItems(
 
 export function getDockLogicalPath(pathname: string): string {
   return stripLocalePrefix(pathname);
+}
+
+/**
+ * Whether the mobile bottom dock is rendered for this path.
+ * Shared by LocaleMobileDock and ScrollToTopButton so both stay in sync.
+ */
+export function isMobileDockVisible(pathname: string): boolean {
+  const logicalPathname = getDockLogicalPath(pathname);
+
+  return !(
+    logicalPathname === '/impressum' ||
+    logicalPathname === '/datenschutz' ||
+    isInternalIntakePath(logicalPathname)
+  );
 }

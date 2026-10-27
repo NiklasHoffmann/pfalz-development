@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import type { SupportedLocale } from '@/components/home/types';
-import { isInternalIntakePath } from '@/lib/intake/path';
-import { getAdminRootPath } from '@/lib/locale-ui';
+import { getAdminRootPath, isMobileDockVisible } from '@/lib/locale-ui';
 
 const SHOW_AFTER_SCROLL_Y = 280;
 
@@ -36,19 +35,22 @@ function ArrowUpIcon() {
 
 interface ScrollToTopButtonProps {
   locale: SupportedLocale;
+  /** Set to false where no mobile dock is rendered (e.g. global 404). */
+  withMobileDock?: boolean;
 }
 
-export function ScrollToTopButton({ locale }: ScrollToTopButtonProps) {
+export function ScrollToTopButton({
+  locale,
+  withMobileDock = true,
+}: ScrollToTopButtonProps) {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const normalizedPathname =
     pathname !== '/' && pathname.endsWith('/')
       ? pathname.slice(0, -1)
       : pathname;
-  const localeRootPath = locale === 'de' ? '/' : `/${locale}`;
   const adminRootPath = getAdminRootPath(locale);
-  const hasMobileDock =
-    normalizedPathname === localeRootPath && !isInternalIntakePath(pathname);
+  const hasMobileDock = withMobileDock && isMobileDockVisible(pathname);
   const isAdminPath =
     normalizedPathname === adminRootPath ||
     normalizedPathname.startsWith(`${adminRootPath}/`);
