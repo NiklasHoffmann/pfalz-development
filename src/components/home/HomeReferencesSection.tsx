@@ -47,14 +47,6 @@ export function HomeReferencesSection({
             >
               <div className="relative bg-stone-200/70 p-4 dark:bg-stone-900/60 sm:p-6">
                 <div className="overflow-hidden rounded-xl border border-stone-300/80 bg-white shadow-[0_12px_30px_rgba(28,25,23,0.12)] dark:border-stone-600">
-                  <div
-                    aria-hidden="true"
-                    className="flex items-center gap-1.5 border-b border-stone-200 bg-stone-100 px-3 py-2 dark:border-stone-700 dark:bg-stone-800"
-                  >
-                    <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-600" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-600" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-600" />
-                  </div>
                   {item.image ? (
                     <Image
                       src={item.image.src}
