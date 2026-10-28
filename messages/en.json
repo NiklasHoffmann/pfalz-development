@@ -50,14 +50,14 @@
       },
       "references": {
         "title": "Work",
-        "description": "A look at websites I have built for businesses in the Palatinate.",
+        "description": "A website I built for a host in the Palatinate.",
         "linkLabel": "View website",
         "linkHint": "Opens in a new tab",
         "items": [
           {
             "title": "Holiday apartment on the Wine Route",
             "category": "Holiday rental · Neustadt an der Weinstraße",
-            "description": "A calm, photo-led website for a holiday apartment overlooking the Rhine plain. Guests check open dates in the availability calendar, send an enquiry via WhatsApp, phone, or email, and find arrival details, FAQs, and tips on wineries and day trips in one place.",
+            "description": "A calm, photo-led website for a holiday apartment overlooking the Rhine plain. Guests see at a glance whether it is free and enquire with the host directly instead of going through a portal.",
             "tags": [
               "Availability calendar",
               "Direct enquiries",

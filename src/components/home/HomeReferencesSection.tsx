@@ -45,7 +45,7 @@ export function HomeReferencesSection({
               as="article"
               key={item.title}
               delayMs={80 + index * 90}
-              className="grid min-w-0 overflow-hidden rounded-[1.25rem] bg-stone-50/95 dark:bg-stone-800/75 lg:grid-cols-[1.15fr_1fr]"
+              className="grid min-w-0 overflow-hidden rounded-[1.25rem] bg-stone-50/95 dark:bg-stone-800/75 lg:grid-cols-[1.9fr_1fr]"
             >
               <div className="p-4 sm:p-6">
                 <div className="relative aspect-[2/1] w-full overflow-hidden rounded-xl">
@@ -54,7 +54,7 @@ export function HomeReferencesSection({
                       src={item.image.src}
                       alt={item.image.alt}
                       fill
-                      sizes="(min-width: 1024px) 640px, 100vw"
+                      sizes="(min-width: 1024px) 800px, 100vw"
                       className="object-cover"
                     />
                   ) : (

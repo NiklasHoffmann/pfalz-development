@@ -50,14 +50,14 @@
       },
       "references": {
         "title": "Referenzen",
-        "description": "Ein Einblick in Websites, die ich für Betriebe in der Pfalz umgesetzt habe.",
+        "description": "Eine Website, die ich für einen Gastgeber in der Pfalz umgesetzt habe.",
         "linkLabel": "Website ansehen",
         "linkHint": "Öffnet in neuem Tab",
         "items": [
           {
             "title": "Ferienwohnung an der Weinstraße",
             "category": "Ferienvermietung · Neustadt an der Weinstraße",
-            "description": "Eine ruhige, bildstarke Website für eine Ferienwohnung mit Blick über die Rheinebene. Gäste sehen freie Termine direkt im Belegungskalender, fragen per WhatsApp, Telefon oder E-Mail an und finden Anreise-Infos, FAQ und Tipps zu Weingütern und Ausflügen an einem Ort.",
+            "description": "Eine ruhige, bildstarke Website für eine Ferienwohnung mit Blick über die Rheinebene. Gäste sehen auf einen Blick, ob frei ist, und fragen direkt beim Gastgeber an statt über ein Portal.",
             "tags": [
               "Belegungskalender",
               "Direktanfrage",
