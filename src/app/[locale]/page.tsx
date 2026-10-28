@@ -559,6 +559,7 @@ export default async function HomePage({ params }: HomePageProps) {
       title: t('home.references.title'),
       description: t('home.references.description'),
       linkLabel: t('home.references.linkLabel'),
+      linkHint: t('home.references.linkHint'),
       items: referenceItems,
     },
     seoLinks: {

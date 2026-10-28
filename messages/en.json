@@ -50,25 +50,21 @@
       },
       "references": {
         "title": "Work",
-        "description": "A look at websites I have built for businesses in the Palatinate.",
+        "description": "A website I built for a host in the Palatinate.",
         "linkLabel": "View website",
+        "linkHint": "Opens in a new tab",
         "items": [
           {
             "title": "Holiday apartment on the Wine Route",
             "category": "Holiday rental · Neustadt an der Weinstraße",
-            "description": "A calm, photo-led website for a holiday apartment overlooking the Rhine plain. Guests check open dates in the availability calendar, send an enquiry via WhatsApp, phone, or email, and find arrival details, FAQs, and tips on wineries and day trips in one place.",
-            "tags": [
-              "Availability calendar",
-              "Direct enquiries",
-              "Guest info",
-              "Mobile-first"
-            ],
+            "description": "A calm, photo-led website for a holiday apartment overlooking the Rhine plain. Guests see at a glance whether it is free and enquire with the host directly instead of going through a portal.",
+            "tags": ["Availability calendar", "Direct enquiries", "Guest info"],
             "href": "https://7raben.de",
             "image": {
-              "src": "/images/referenzen/referenz-fewo-weinstrasse-hd.webp",
+              "src": "/images/referenzen/referenz-fewo-weinstrasse-1920.webp",
               "alt": "Homepage of the holiday apartment website with a terrace view over the Rhine plain",
-              "width": 1600,
-              "height": 817
+              "width": 1920,
+              "height": 1080
             }
           }
         ]
@@ -183,9 +179,7 @@
         "whatsAppLabel": "WhatsApp",
         "whatsAppValue": "",
         "addressLabel": "Address",
-        "addressLines": [
-          "Neustadt an der Weinstraße"
-        ],
+        "addressLines": ["Neustadt an der Weinstraße"],
         "regionNote": "For businesses, hosts, and local companies in the Palatinate and nearby.",
         "form": {
           "eyebrow": "Contact form",

@@ -51,6 +51,7 @@ export function HomePageView({ data }: HomePageViewProps) {
           title={data.references.title}
           description={data.references.description}
           linkLabel={data.references.linkLabel}
+          linkHint={data.references.linkHint}
           items={data.references.items}
         />
         <HomeIntroductionSection

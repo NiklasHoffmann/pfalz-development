@@ -183,6 +183,7 @@ export type HomePageData = {
     title: string;
     description: string;
     linkLabel: string;
+    linkHint: string;
     items: ReferenceItem[];
   };
   seoLinks: {

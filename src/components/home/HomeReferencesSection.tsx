@@ -6,6 +6,7 @@ interface HomeReferencesSectionProps {
   title: string;
   description: string;
   linkLabel: string;
+  linkHint: string;
   items: ReferenceItem[];
 }
 
@@ -13,6 +14,7 @@ export function HomeReferencesSection({
   title,
   description,
   linkLabel,
+  linkHint,
   items,
 }: HomeReferencesSectionProps) {
   if (items.length === 0) {
@@ -29,11 +31,11 @@ export function HomeReferencesSection({
       <div className="mx-auto max-w-7xl">
         <h2
           id="home-references-title"
-          className="inline-flex rounded-full bg-stone-50/90 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.22em] text-amber-800 shadow-sm dark:bg-stone-900/90 dark:text-amber-100"
+          className="max-w-3xl text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl"
         >
           {title}
         </h2>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700 dark:text-stone-200">
+        <p className="mt-5 max-w-2xl text-lg leading-8 text-stone-700 dark:text-stone-300">
           {description}
         </p>
 
@@ -43,24 +45,22 @@ export function HomeReferencesSection({
               as="article"
               key={item.title}
               delayMs={80 + index * 90}
-              className="grid min-w-0 overflow-hidden rounded-[1.25rem] border border-stone-200/90 bg-stone-50/95 shadow-[0_18px_45px_rgba(28,25,23,0.06)] dark:border-stone-500/65 dark:bg-stone-800/75 dark:shadow-[0_20px_50px_rgba(0,0,0,0.22)] lg:grid-cols-[1.15fr_1fr]"
+              className="grid min-w-0 overflow-hidden rounded-[1.25rem] bg-stone-50/95 dark:bg-stone-800/75 lg:grid-cols-[1.9fr_1fr]"
             >
-              <div className="relative bg-stone-200/70 p-4 dark:bg-stone-900/60 sm:p-6">
-                <div className="overflow-hidden rounded-xl border border-stone-300/80 bg-white shadow-[0_12px_30px_rgba(28,25,23,0.12)] dark:border-stone-600">
+              <div className="p-4 sm:p-6">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl">
                   {item.image ? (
                     <Image
                       src={item.image.src}
                       alt={item.image.alt}
-                      width={item.image.width}
-                      height={item.image.height}
-                      sizes="(min-width: 1024px) 640px, 100vw"
-                      quality={100}
-                      className="block h-auto w-full"
+                      fill
+                      sizes="(min-width: 1024px) 800px, 100vw"
+                      className="object-cover"
                     />
                   ) : (
                     <div
                       aria-hidden="true"
-                      className="aspect-[16/10] w-full bg-[linear-gradient(135deg,_rgba(245,235,220,1),_rgba(226,214,196,1))] dark:bg-[linear-gradient(135deg,_rgba(68,58,50,1),_rgba(44,52,62,1))]"
+                      className="h-full w-full bg-[linear-gradient(135deg,_rgba(245,235,220,1),_rgba(226,214,196,1))] dark:bg-[linear-gradient(135deg,_rgba(68,58,50,1),_rgba(44,52,62,1))]"
                     />
                   )}
                 </div>
@@ -81,7 +81,7 @@ export function HomeReferencesSection({
                     {item.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-sm font-medium text-amber-900 dark:border-amber-300/30 dark:bg-amber-200/10 dark:text-amber-100"
+                        className="rounded-full bg-stone-200/70 px-3 py-1 text-sm text-stone-700 dark:bg-stone-700/60 dark:text-stone-200"
                       >
                         {tag}
                       </li>
@@ -93,9 +93,24 @@ export function HomeReferencesSection({
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-8 inline-flex text-sm font-semibold text-amber-700 hover:text-amber-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4 dark:text-amber-200 dark:hover:text-amber-100"
+                    className="mt-8 inline-flex items-center gap-2 self-start rounded-full bg-amber-700 px-5 py-2.5 text-base font-semibold text-white transition-colors hover:bg-amber-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:bg-amber-200 dark:text-stone-900 dark:hover:bg-amber-100 dark:focus-visible:ring-amber-300 dark:focus-visible:ring-offset-stone-800"
                   >
                     {linkLabel}
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                    >
+                      <path d="M7.5 3.5h9v9" />
+                      <path d="M16.5 3.5 8 12" />
+                      <path d="M14 11.5v5h-11v-11h5" />
+                    </svg>
+                    <span className="sr-only">({linkHint})</span>
                   </a>
                 ) : null}
               </div>
