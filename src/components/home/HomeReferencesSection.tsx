@@ -81,7 +81,7 @@ export function HomeReferencesSection({
                     {item.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-sm font-medium text-amber-900 dark:border-amber-300/30 dark:bg-amber-200/10 dark:text-amber-100"
+                        className="rounded-full bg-stone-200/70 px-3 py-1 text-sm text-stone-700 dark:bg-stone-700/60 dark:text-stone-200"
                       >
                         {tag}
                       </li>
