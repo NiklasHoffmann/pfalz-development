@@ -48,7 +48,7 @@ export function HomeReferencesSection({
               className="grid min-w-0 overflow-hidden rounded-[1.25rem] bg-stone-50/95 dark:bg-stone-800/75 lg:grid-cols-[1.9fr_1fr]"
             >
               <div className="p-4 sm:p-6">
-                <div className="relative aspect-[2/1] w-full overflow-hidden rounded-xl">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl">
                   {item.image ? (
                     <Image
                       src={item.image.src}

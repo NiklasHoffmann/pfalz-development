@@ -61,10 +61,10 @@
             "tags": ["Belegungskalender", "Direktanfrage", "Gästeinfos"],
             "href": "https://7raben.de",
             "image": {
-              "src": "/images/referenzen/referenz-fewo-weinstrasse-hd.webp",
+              "src": "/images/referenzen/referenz-fewo-weinstrasse-1920.webp",
               "alt": "Startseite der Ferienwohnungs-Website mit Terrassenblick über die Rheinebene",
-              "width": 1600,
-              "height": 817
+              "width": 1920,
+              "height": 1080
             }
           }
         ]
