@@ -52,6 +52,7 @@
         "title": "Referenze",
         "description": "En Eiblick in Websites, die isch fer Betriebe in de Palz gebaut hab.",
         "linkLabel": "Website aagucke",
+        "linkHint": "Machd e neies Tab uff",
         "items": [
           {
             "title": "Ferienwohnung an de Woistrooß",
@@ -183,9 +184,7 @@
         "whatsAppLabel": "WhatsApp",
         "whatsAppValue": "",
         "addressLabel": "Adresse",
-        "addressLines": [
-          "Neischdad an de Woistrooß"
-        ],
+        "addressLines": ["Neischdad an de Woistrooß"],
         "regionNote": "Fer Unnernehme, Gaschdgewwer un Betriewe in de Palz un drumrum.",
         "form": {
           "eyebrow": "Kontakdformular",

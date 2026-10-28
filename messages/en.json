@@ -52,6 +52,7 @@
         "title": "Work",
         "description": "A look at websites I have built for businesses in the Palatinate.",
         "linkLabel": "View website",
+        "linkHint": "Opens in a new tab",
         "items": [
           {
             "title": "Holiday apartment on the Wine Route",
@@ -183,9 +184,7 @@
         "whatsAppLabel": "WhatsApp",
         "whatsAppValue": "",
         "addressLabel": "Address",
-        "addressLines": [
-          "Neustadt an der Weinstraße"
-        ],
+        "addressLines": ["Neustadt an der Weinstraße"],
         "regionNote": "For businesses, hosts, and local companies in the Palatinate and nearby.",
         "form": {
           "eyebrow": "Contact form",

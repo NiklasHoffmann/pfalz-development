@@ -52,6 +52,7 @@
         "title": "Referenzen",
         "description": "Ein Einblick in Websites, die ich für Betriebe in der Pfalz umgesetzt habe.",
         "linkLabel": "Website ansehen",
+        "linkHint": "Öffnet in neuem Tab",
         "items": [
           {
             "title": "Ferienwohnung an der Weinstraße",
@@ -183,9 +184,7 @@
         "whatsAppLabel": "WhatsApp",
         "whatsAppValue": "",
         "addressLabel": "Adresse",
-        "addressLines": [
-          "Neustadt an der Weinstraße"
-        ],
+        "addressLines": ["Neustadt an der Weinstraße"],
         "regionNote": "Für Unternehmen, Gastgeber und Betriebe in der Pfalz und Umgebung.",
         "form": {
           "eyebrow": "Kontaktformular",
