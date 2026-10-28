@@ -58,12 +58,7 @@
             "title": "Holiday apartment on the Wine Route",
             "category": "Holiday rental · Neustadt an der Weinstraße",
             "description": "A calm, photo-led website for a holiday apartment overlooking the Rhine plain. Guests see at a glance whether it is free and enquire with the host directly instead of going through a portal.",
-            "tags": [
-              "Availability calendar",
-              "Direct enquiries",
-              "Guest info",
-              "Mobile-first"
-            ],
+            "tags": ["Availability calendar", "Direct enquiries", "Guest info"],
             "href": "https://7raben.de",
             "image": {
               "src": "/images/referenzen/referenz-fewo-weinstrasse-hd.webp",

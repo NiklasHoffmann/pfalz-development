@@ -58,12 +58,7 @@
             "title": "Ferienwohnung an der Weinstraße",
             "category": "Ferienvermietung · Neustadt an der Weinstraße",
             "description": "Eine ruhige, bildstarke Website für eine Ferienwohnung mit Blick über die Rheinebene. Gäste sehen auf einen Blick, ob frei ist, und fragen direkt beim Gastgeber an statt über ein Portal.",
-            "tags": [
-              "Belegungskalender",
-              "Direktanfrage",
-              "Gästeinfos",
-              "Mobil optimiert"
-            ],
+            "tags": ["Belegungskalender", "Direktanfrage", "Gästeinfos"],
             "href": "https://7raben.de",
             "image": {
               "src": "/images/referenzen/referenz-fewo-weinstrasse-hd.webp",
