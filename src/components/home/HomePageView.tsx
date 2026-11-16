@@ -55,7 +55,6 @@ export function HomePageView({ data }: HomePageViewProps) {
           linkHint={data.references.linkHint}
           items={data.references.items}
         />
-        <HomeSideProjectSection item={data.sideProject} />
         <HomeIntroductionSection
           eyebrow={data.introduction.eyebrow}
           title={data.introduction.title}
@@ -111,6 +110,7 @@ export function HomePageView({ data }: HomePageViewProps) {
             items={data.guideLinks.items}
           />
         ) : null}
+        <HomeSideProjectSection item={data.sideProject} />
         <HomeFooter
           note={data.footer.note}
           imprintLabel={data.footer.imprintLabel}
