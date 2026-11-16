@@ -69,6 +69,19 @@
           }
         ]
       },
+      "sideProject": {
+        "statusLabel": "In progress",
+        "title": "Pfalz-Verein — my own platform for club websites",
+        "description": "Alongside client projects, I am building Pfalz-Verein, my own SaaS platform: clubs get their own subdomain right away and build their website themselves — with ready-made themes and content blocks, no coding required.",
+        "features": [
+          "Ready-made designs to customize",
+          "Ready-made blocks like news, events, and contact",
+          "An own subdomain right away"
+        ],
+        "linkLabel": "View the project",
+        "linkHint": "Opens in a new tab",
+        "href": "https://pfalz-verein.de"
+      },
       "audiences": {
         "title": "Who I build websites for",
         "items": [

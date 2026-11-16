@@ -475,6 +475,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const trustItems = t.raw('home.trust.items') as string[];
   const serviceItems = t.raw('home.services.items') as CardItem[];
   const referenceItems = t.raw('home.references.items') as ReferenceItem[];
+  const sideProjectFeatures = t.raw('home.sideProject.features') as string[];
   const audiences = t.raw('home.audiences.items') as string[];
   const basePath = localeToBasePath(locale);
   const whyMeItems = t.raw('home.whyMe.items') as string[];
@@ -561,6 +562,15 @@ export default async function HomePage({ params }: HomePageProps) {
       linkLabel: t('home.references.linkLabel'),
       linkHint: t('home.references.linkHint'),
       items: referenceItems,
+    },
+    sideProject: {
+      statusLabel: t('home.sideProject.statusLabel'),
+      title: t('home.sideProject.title'),
+      description: t('home.sideProject.description'),
+      features: sideProjectFeatures,
+      linkLabel: t('home.sideProject.linkLabel'),
+      linkHint: t('home.sideProject.linkHint'),
+      href: t('home.sideProject.href'),
     },
     seoLinks: {
       title: localeToSeoLinksTitle(locale),
