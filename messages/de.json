@@ -69,6 +69,19 @@
           }
         ]
       },
+      "sideProject": {
+        "statusLabel": "Im Aufbau",
+        "title": "Pfalz-Verein — eine eigene Plattform für Vereinswebsites",
+        "description": "Neben Kundenprojekten baue ich mit Pfalz-Verein eine eigene SaaS-Plattform: Vereine bekommen sofort eine eigene Subdomain und gestalten ihre Website selbst — mit fertigen Themes und Bausteinen, ganz ohne Programmierkenntnisse.",
+        "features": [
+          "Fertige Designs zum Anpassen",
+          "Fertige Bausteine wie News, Termine und Kontakt",
+          "Sofort eine eigene Subdomain"
+        ],
+        "linkLabel": "Projekt ansehen",
+        "linkHint": "Öffnet in neuem Tab",
+        "href": "https://pfalz-verein.de"
+      },
       "audiences": {
         "title": "Für wen ich Websites umsetze",
         "items": [

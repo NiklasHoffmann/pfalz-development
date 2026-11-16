@@ -69,6 +69,19 @@
           }
         ]
       },
+      "sideProject": {
+        "statusLabel": "Im Entstehe",
+        "title": "Pfalz-Verein — e eigeni Plattform fer Vereinswebsites",
+        "description": "Neben Kunneprojekte bau isch mit Pfalz-Verein e eigeni SaaS-Plattform: Vereine krigge sofort e eigeni Subdomain un gestalde ihr Website selwer — mit fertige Themes un Bausteine, ganz ohne Programmierkenntnisse.",
+        "features": [
+          "Fertige Designs zum Aapasse",
+          "Fertige Bausteine wie News, Termine un Kontakt",
+          "Sofort e eigeni Subdomain"
+        ],
+        "linkLabel": "Projekt aagucke",
+        "linkHint": "Machd e neies Tab uff",
+        "href": "https://pfalz-verein.de"
+      },
       "audiences": {
         "title": "Fer wen isch Websites umsetze",
         "items": [

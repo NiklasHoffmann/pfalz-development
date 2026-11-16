@@ -18,6 +18,16 @@ export type ReferenceItem = {
   };
 };
 
+export type SideProjectItem = {
+  statusLabel: string;
+  title: string;
+  description: string;
+  features: string[];
+  linkLabel: string;
+  linkHint: string;
+  href: string;
+};
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -186,6 +196,7 @@ export type HomePageData = {
     linkHint: string;
     items: ReferenceItem[];
   };
+  sideProject: SideProjectItem;
   seoLinks: {
     title: string;
     ctaLabel: string;

@@ -10,6 +10,7 @@ import { HomeReferencesSection } from './HomeReferencesSection';
 import { HomeSeoLinksSection } from './HomeSeoLinksSection';
 import { HomeScrollOffsetSync } from './HomeScrollOffsetSync';
 import { HomeServicesSection } from './HomeServicesSection';
+import { HomeSideProjectSection } from './HomeSideProjectSection';
 import type { HomePageData } from './types';
 
 interface HomePageViewProps {
@@ -109,6 +110,7 @@ export function HomePageView({ data }: HomePageViewProps) {
             items={data.guideLinks.items}
           />
         ) : null}
+        <HomeSideProjectSection item={data.sideProject} />
         <HomeFooter
           note={data.footer.note}
           imprintLabel={data.footer.imprintLabel}
